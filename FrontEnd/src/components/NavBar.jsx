@@ -20,7 +20,7 @@ export const NavBar = ({ user, setUser }) => {
     };
     
     return (
-        <Navbar style={{paddingBottom: "2%", padding: "2%"}} expand="lg" className="bg-body-tertiary">
+        <Navbar style={{paddingBottom: "2%", padding: "2%"}} expand="lg" className="bg-black">
             <Container style={{backgroundColor: "black"}}>
                 <Navbar.Brand>
                 <img
