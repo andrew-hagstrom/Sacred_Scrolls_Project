@@ -55,7 +55,6 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences }
             </Card>
         )}
 
-        <Modal show={showModal} onHide={()}
     </>
   );
 }
