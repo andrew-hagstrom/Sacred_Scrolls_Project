@@ -11,6 +11,7 @@ from rest_framework.status import (
     HTTP_201_CREATED,
     HTTP_400_BAD_REQUEST,
     HTTP_401_UNAUTHORIZED,
+    HTTP_204_NO_CONTENT,
 )
 
 
@@ -55,3 +56,11 @@ class Info(APIView):
     
     def get(self, request):
         return JsonResponse({"username":request.user.username})
+    
+class Logout(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request):
+        request.user.auth_token.delete()
+        return JsonResponse({"message":"logout successful."},status=HTTP_204_NO_CONTENT)
