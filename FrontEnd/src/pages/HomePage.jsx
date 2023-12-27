@@ -1,7 +1,6 @@
 import SacredScrollsLogo from '../Images/SacredScrollsBlackBackground.png'
 import {Link} from "react-router-dom"
-import Carousel from 'react-bootstrap/Carousel';
-import ExampleCarouselImage from 'components/ExampleCarouselImage';
+import { IntroCarousel } from '../components/IntroCarousel'
 
 function HomePage() {
     return (
@@ -9,8 +8,9 @@ function HomePage() {
         <h2>
             HomePage
         </h2>
+        <IntroCarousel />
         {/* Image temporary until styled */}
-        <img style={{width:'400px', height:'250px'}} src={SacredScrollsLogo}/>
+        {/* <img style={{width:'400px', height:'250px'}} src={SacredScrollsLogo}/> */}
         <div className='home-text'>
             Embrace the richness of diverse cultures, explore the depths of spirituality, and delve into the profound wisdom encapsulated 
             in three of the {"world's"} most revered religious texts - the Bible, Quran, and Bhagavad Gita.   
