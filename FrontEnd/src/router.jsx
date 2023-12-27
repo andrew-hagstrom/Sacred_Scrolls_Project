@@ -17,7 +17,7 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Home />
+                element: <HomePage />
 
             },
             {
@@ -25,31 +25,21 @@ const router = createBrowserRouter([
                 element: <RegisterPage/>,
             },
             {
-                path: "global-dictionary/",
-                element: <GlobalDictionary/>,
-            },
-            {
-                path: "global-dictionary/:number",
-                element: <GlobalDetails/>,
-            },
-            {
-                path: "personal-dictionary/",
-                element: <PersonalDictionary />,
-
-            },
-            {
-                path: "personal-dictionary/:number",
-                element: <PersonalDetails />,
-
-            },
-            {
-                path: "lvx-calculator/",
-                element: <CalculatorPage />,
-
-            },
-            {
                 path: "about/",
-                element: <About />,
+                element: <AboutPage/>,
+            },
+            {
+                path: "journal/",
+                element: <JournalPage/>,
+            },
+            {
+                path: "favorites/",
+                element: <FavoritesPage />,
+
+            },
+            {
+                path: "text-compare",
+                element: <TextComparePage />,
 
             },
             
