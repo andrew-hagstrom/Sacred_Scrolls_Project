@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import NavLink from 'react-bootstrap/NavLink';
 
-import SacredScrollsLogo from '../Images/SSLogo.png'
+import SacredScrollsLogo from '../Images/SacredScrollsBlackBackground.png'
 
 export const NavBar = ({ user, setUser }) => {
     const navigate = useNavigate();
