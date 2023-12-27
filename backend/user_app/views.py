@@ -49,3 +49,9 @@ class Login(APIView):
         token_str = token[0].key
         
         return JsonResponse({"token":token_str, "user":user.username})
+class Info(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        return JsonResponse({"username":request.user.username})
