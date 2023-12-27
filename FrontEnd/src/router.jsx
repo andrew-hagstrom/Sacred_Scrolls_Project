@@ -7,8 +7,9 @@ import AboutPage from './pages/AboutPage';
 import JournalPage from './pages/JournalPage';
 import RegisterPage from './pages/RegisterPage';
 import TextComparePage from "./pages/TextComparePage";
-
-import NotFoundPage from './pages/NotFoundPage';
+import FavoritesPage from "./pages/FavoritesPage"
+import {NotFoundPage} from './pages/NotFoundPage';
+import LoginPage from "./pages/LoginPage";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
                 element: <TextComparePage />,
 
             },
+            {
+                path: 'login/',
+                element: <LoginPage/>
+            }
             
         ],
         errorElement: <NotFoundPage />
