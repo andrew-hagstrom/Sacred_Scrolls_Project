@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import NavLink from 'react-bootstrap/NavLink';
 
-import SacredScrollsLogo from '../Images/SacredScrollsBlackBackground.png'
+import SacredScrollsLogo from '../Images/TransparentLogo.png'
 
 export const NavBar = ({ user, setUser }) => {
     const navigate = useNavigate();
@@ -22,7 +22,15 @@ export const NavBar = ({ user, setUser }) => {
     return (
         <Navbar style={{paddingBottom: "2%", padding: "2%"}}expand="lg" className="bg-body-tertiary">
             <Container >
-                <Navbar.Brand>Sacred Scrolls Logo</Navbar.Brand>
+                <Navbar.Brand>
+                    <img
+                    src={SacredScrollsLogo}
+                    width="auto"  // You can adjust the width as needed
+                    height="30"   // Adjust the height as needed
+                    className="d-inline-block align-top"  // This aligns the image vertically
+                    alt="Sacred Scrolls Logo"  // Alt text for the logo
+                />
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav style={{ display: 'flex', justifyContent: 'center', width: '100%' }} className="me-auto">
