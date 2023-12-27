@@ -21,12 +21,12 @@ export const NavBar = ({ user, setUser }) => {
     
     return (
         <Navbar style={{paddingBottom: "2%", padding: "2%"}}expand="lg" className="bg-body-tertiary">
-            <Container >
+            <Container style={{backgroundColor: "black"}} >
                 <Navbar.Brand>
                     <img
                     src={SacredScrollsLogo}
                     width="auto"  // You can adjust the width as needed
-                    height="30"   // Adjust the height as needed
+                    height="50"   // Adjust the height as needed
                     className="d-inline-block align-top"  // This aligns the image vertically
                     alt="Sacred Scrolls Logo"  // Alt text for the logo
                 />
