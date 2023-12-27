@@ -61,7 +61,7 @@ export const NavBar = ({ user, setUser }) => {
                                 </Button>
                         )}
                 </div>
-                <div style={{color: "rgb(182, 170, 100)" marginTop: '0.5rem' }}> {/* Separate container for the welcome message */}
+                <div style={{color: "rgb(182, 170, 100)", marginTop: '0.5rem' }}> {/* Separate container for the welcome message */}
                         <span>Welcome, {user ? user.email : 'Guest'}</span>
                 </div>
         </div>
