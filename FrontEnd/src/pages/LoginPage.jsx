@@ -33,7 +33,7 @@ function LoginPage() {
             </FloatingLabel>
             <Button as="input" type="submit" value="Login"/>{' '}
         </Form>
-        Do not have an account? <Link to={'/login/'}>Click here</Link> to register.
+        Do not have an account? <Link to={'/register/'}>Click here</Link> to register.
       </>
   )
 }

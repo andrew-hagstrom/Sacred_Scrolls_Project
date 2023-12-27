@@ -7,7 +7,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import NavLink from 'react-bootstrap/NavLink';
 
-function NavBar({ user, setUser }) {
+import SacredScrollsLogo from '../Images/SSLogo.png'
+
+export const NavBar = ({ user, setUser }) => {
     const navigate = useNavigate();
 
     const logOut = () => {
@@ -60,4 +62,3 @@ function NavBar({ user, setUser }) {
     );
 }
 
-export default NavBar;
