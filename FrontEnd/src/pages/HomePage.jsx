@@ -1,6 +1,6 @@
 import SacredScrollsLogo from '../Images/SacredScrollsBlackBackground.png'
 import {Link} from "react-router-dom"
-import Carousel from 'react-bootstrap/Carousel';
+
 
 function HomePage() {
     return (
@@ -8,7 +8,6 @@ function HomePage() {
         <h2>
             HomePage
         </h2>
-        <IntroCarousel />
         {/* Image temporary until styled */}
         {/* <img style={{width:'400px', height:'250px'}} src={SacredScrollsLogo}/> */}
         <div className='home-text'>
@@ -28,7 +27,7 @@ function HomePage() {
             {"Sacred Scrolls invites persons of faith, students of culture, and those seeking spiritual enlightenment to embark on a transformative experience. Embrace the diversity of sacred wisdom and unlock the profound insights that lie within the pages of the Bible, Quran, and Bhagavad Gita."}
             {"Start your exploration now and let the Sacred Scrolls be your guide to a deeper understanding of the spiritual tapestry that unites us all. Welcome to a world where knowledge transcends borders and wisdom knows no limits."}
         </div>
-        <div className='home-text'>
+        <div style={{fontSize: '24px'}}>
             Begin Your Journey ⟶ <Link to={'/register/'}>Get Started</Link>
         </div>
         </>

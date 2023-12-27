@@ -12,3 +12,14 @@
   background-color: black;
 }
 
+.home-text {
+  border: 5px solid black;
+  margin-bottom: 25px;
+  font-size: 24px;
+  padding-left:10px;
+  padding-right: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  box-shadow: 0 0 5px 3px #000;
+  border-radius: 15px;
+}
