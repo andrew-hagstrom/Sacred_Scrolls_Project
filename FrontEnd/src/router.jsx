@@ -11,6 +11,7 @@ import FavoritesPage from "./pages/FavoritesPage"
 import {NotFoundPage} from './pages/NotFoundPage';
 import LoginPage from "./pages/LoginPage";
 
+
 const router = createBrowserRouter([
     {
         path: '/',
