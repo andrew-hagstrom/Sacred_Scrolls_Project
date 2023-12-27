@@ -1,4 +1,5 @@
-.body {
+
+#root {
   margin: 0;
   height: 100%;
   width: 100%;
@@ -7,3 +8,7 @@
 .mx-2 {
   color: rgb(182, 170, 100);
 }
+.bg-body-tertiary {
+  background-color: black;
+}
+
