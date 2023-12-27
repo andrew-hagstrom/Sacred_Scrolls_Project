@@ -8,7 +8,7 @@ import JournalPage from './pages/JournalPage';
 import RegisterPage from './pages/RegisterPage';
 import TextComparePage from "./pages/TextComparePage";
 
-import NotFoundPage from './pages/NotFoundPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 
 const router = createBrowserRouter([
     {
