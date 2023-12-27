@@ -20,6 +20,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences }
 
   return (
     <>
+    
         {showCard && (
             <Card>
                 <Card.Header>
@@ -54,6 +55,32 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences }
                 </Card.Body>
             </Card>
         )}
+        <Modal 
+            show={{showModal}} 
+            onHide = {() => setShowModal(false)}
+        >
+            <Modal.Header closeButton>
+                <Modal.Title>
+                    Select a Reference
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <ListGroup>
+                    {additionalReferences.map(({ text, reference }) => (
+                        <ListGroup.Item 
+                            key={reference} 
+                            onClick = {() => 
+                            handleReferenceClick(text, reference)}
+                        >
+
+                            {reference}
+
+                        </ListGroup.Item>
+                    ))}
+
+                </ListGroup>
+            </Modal.Body>
+        </Modal>
 
     </>
   );
