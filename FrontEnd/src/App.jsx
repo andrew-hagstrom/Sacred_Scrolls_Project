@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import './App.css'
+import { Outlet } from 'react-router-dom'
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
      <h1>
       SacredScrolls
      </h1>
+     <Outlet />
     </>
   )
 }
