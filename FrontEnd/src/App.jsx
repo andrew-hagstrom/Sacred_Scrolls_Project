@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 
 import './App.css'
-import Container from 'react-bootstrap/Container';
 
 function App() {
 
@@ -14,6 +13,7 @@ function App() {
      <h1>
       SacredScrolls
      </h1>
+     <Outlet />
     </>
   )
 }

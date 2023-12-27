@@ -4,22 +4,23 @@ import Button from 'react-bootstrap/Button'
 import { useState} from 'react';
 import { Link } from 'react-router-dom'
 
-function RegisterPage() {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
 
-    const createUser = async(e) => {
-        e.preventDefault()
-        console.log(`email:${email} , password:${password}`)
-        alert('function not done yet goober')
-    }
+function LoginPage() {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
-    return (
-        <>
-        <h2>
-            RegisterPage
-        </h2>
-        <Form onSubmit={(e)=>createUser(e)}>
+  const login = async(e) => {
+    e.preventDefault()
+    console.log(`email:${email} , password:${password}`)
+    return
+  }
+
+  return (
+      <>
+      <h2>
+          Login Page
+      </h2>
+      <Form onSubmit={(e)=>login(e)}>
             <FloatingLabel
             controlId="floatingInput"
             label="Email address" 
@@ -30,11 +31,11 @@ function RegisterPage() {
             <FloatingLabel controlId="floatingPassword" label="Password">
                 <Form.Control type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)}/>
             </FloatingLabel>
-            <Button as="input" type="submit" value="Register"/>{' '}
+            <Button as="input" type="submit" value="Login"/>{' '}
         </Form>
-        Already have an account? <Link to={'/login/'}>Click here</Link> to sign in.
-        </>
-    )
+        Do not have an account? <Link to={'/login/'}>Click here</Link> to register.
+      </>
+  )
 }
 
-export default RegisterPage
+export default LoginPage
