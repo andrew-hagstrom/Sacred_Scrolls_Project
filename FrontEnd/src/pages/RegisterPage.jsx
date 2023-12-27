@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import { useState} from 'react';
 import { Link } from 'react-router-dom'
+import SacredScrollsLogo from '../Images/SacredScrollsBlackBackground.png'
 
 function RegisterPage() {
     const [email, setEmail] = useState("")
@@ -19,6 +20,7 @@ function RegisterPage() {
         <h2>
             RegisterPage
         </h2>
+        <img style={{width:'400px', height:'250px'}} src={SacredScrollsLogo}/>
         <Form onSubmit={(e)=>createUser(e)}>
             <FloatingLabel
             controlId="floatingInput"

@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import { useState} from 'react';
 import { Link } from 'react-router-dom'
+import SacredScrollsLogo from '../Images/SacredScrollsBlackBackground.png'
 
 
 function LoginPage() {
@@ -20,6 +21,7 @@ function LoginPage() {
       <h2>
           Login Page
       </h2>
+      <img style={{width:'400px', height:'250px'}} src={SacredScrollsLogo}/>
       <Form onSubmit={(e)=>login(e)}>
             <FloatingLabel
             controlId="floatingInput"
@@ -33,7 +35,7 @@ function LoginPage() {
             </FloatingLabel>
             <Button as="input" type="submit" value="Login"/>{' '}
         </Form>
-        Do not have an account? <Link to={'/register/'}>Click here</Link> to register.
+        {"Don't have an account?"} {<Link to={'/register/'}>Click here</Link>} to register.
       </>
   )
 }
