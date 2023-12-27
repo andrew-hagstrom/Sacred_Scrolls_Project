@@ -1,7 +1,7 @@
 import SacredScrollsLogo from '../Images/SacredScrollsBlackBackground.png'
 import {Link} from "react-router-dom"
 import Carousel from 'react-bootstrap/Carousel';
-import ExampleCarouselImage from 'components/ExampleCarouselImage';
+// import ExampleCarouselImage from 'components/ExampleCarouselImage';
 
 function HomePage() {
     return (
