@@ -20,24 +20,25 @@ export const NavBar = ({ user, setUser }) => {
     };
     
     return (
-        <Navbar style={{paddingBottom: "2%", padding: "2%"}}expand="lg" className="bg-body-tertiary">
-            <Container style={{backgroundColor: "black"}} >
+        <Navbar style={{paddingBottom: "2%", padding: "2%"}} expand="lg" className="bg-body-tertiary">
+            <Container style={{backgroundColor: "black"}}>
                 <Navbar.Brand>
-                    <img
-                    src={SacredScrollsLogo}
-                    width="auto"  // You can adjust the width as needed
-                    height="50"   // Adjust the height as needed
-                    className="d-inline-block align-top"  // This aligns the image vertically
-                    alt="Sacred Scrolls Logo"  // Alt text for the logo
-                />
+                <img
+        src={SacredScrollsLogo}
+        width="100"  // Adjusted width
+        height="30"  // Adjusted height
+        className="d-inline-block align-top img-fluid"  // Added img-fluid for responsiveness
+        alt="Sacred Scrolls Logo"
+    />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav style={{ display: 'flex', justifyContent: 'center', width: '100%' }} className="me-auto">
                         <NavLink as={Link} to="/" className="mx-2">Home</NavLink>
-                        <NavLink as={Link} to="/text-compare/" className="mx-2">Text Compare</NavLink>
+                        
                         {user ? (
                             <>
+                                <NavLink as={Link} to="/text-compare/" className="mx-2">Text Compare</NavLink>
                                 <NavLink as={Link} to="/journal/" className="mx-2">Journal</NavLink>
                                 <NavLink as={Link} to="/favorites/" className="mx-2">Favorites</NavLink>
                                 <NavLink as={Link} to="/about/" className="mx-2">About</NavLink>
@@ -60,7 +61,7 @@ export const NavBar = ({ user, setUser }) => {
                                 </Button>
                         )}
                 </div>
-                <div style={{ marginTop: '0.5rem' }}> {/* Separate container for the welcome message */}
+                <div style={{color: "rgb(182, 170, 100)" marginTop: '0.5rem' }}> {/* Separate container for the welcome message */}
                         <span>Welcome, {user ? user.email : 'Guest'}</span>
                 </div>
         </div>
