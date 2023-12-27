@@ -32,7 +32,7 @@ function App() {
 
   return (
     <>
-    <NavBar style={{backgroundColor:"black"}} user={user} setUser={setUser} />
+    <NavBar user={user} setUser={setUser} />
     <Container>
      <h1>
       SacredScrolls
