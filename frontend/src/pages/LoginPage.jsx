@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import { useState} from 'react';
 import { Link, useOutletContext } from 'react-router-dom'
 import SacredScrollsLogo from '../Images/SacredScrollsBlackBackground.png'
-import { api } from "../utilities/ApiUtilities.jsx"
+import { api } from "../utilities/ApiUtilities.js"
 import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
