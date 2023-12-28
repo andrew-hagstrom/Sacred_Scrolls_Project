@@ -25,8 +25,8 @@ export const NavBar = ({ user, setUser }) => {
                 <Navbar.Brand>
                 <img
         src={SacredScrollsLogo}
-        width="100"  // Adjusted width
-        height="30"  // Adjusted height
+        width="150"  // Adjusted width
+        height="auto"  // Adjusted height
         className="d-inline-block align-top img-fluid"  // Added img-fluid for responsiveness
         alt="Sacred Scrolls Logo"
     />
