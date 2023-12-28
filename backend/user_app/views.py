@@ -33,7 +33,6 @@ class Signup(APIView):
             {"message": serializer.errors}, status=HTTP_400_BAD_REQUEST
         )
 
-
 class Login(APIView):
     def post(self, request):
         data = request.data
@@ -64,3 +63,15 @@ class Logout(APIView):
     def post(self, request):
         request.user.auth_token.delete()
         return JsonResponse({"message":"logout successful."},status=HTTP_204_NO_CONTENT)
+
+class Favorites(APIView):
+    pass
+
+class Passages(APIView):
+    pass
+
+class Journal(APIView):
+    pass
+
+class Posts(APIView):
+    pass

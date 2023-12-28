@@ -17,3 +17,21 @@ class User(AbstractUser):
     )
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = []
+
+class Passages(models.Model):
+    book = models.CharField(max_length=100, default=None)
+    reference = models.CharField(max_length=100, default=None, unique=True)
+    text = models.CharField(max_length=100, default=None)
+
+class Favorites(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_favorite')
+    passage_id = models.OneToOneField(Passages, on_delete=models.CASCADE, related_name='user_passage')
+
+class Journal(models.Model):
+    text = models.OneToOneField(User, max_length=100, default=None, unique=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='')
+
+class Posts(models.Model):
+    text = models.OneToOneField(max_length=100, default=None, unique=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='')
+
