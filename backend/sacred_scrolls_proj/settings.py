@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'bg_app', 
     'bible_app',
     'quran_app',
-    'rest_framework',
     'user_app'
 ]
 
