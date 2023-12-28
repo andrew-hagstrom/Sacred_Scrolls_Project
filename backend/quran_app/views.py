@@ -8,7 +8,7 @@ from django.http import JsonResponse
 
 class EngQurChapter(APIView):
     def get(self, request, QurChapterNumber):
-        api_url = f'http://api.alquran.cloud/v1/surah/{QurChapterNumber}/en.asad'
+        api_url = f'http://api.alquran.cloud/v1/surah/{QurChapterNumber}/en.sahih'
         headers = {
             'Content-Type': 'application/json',  
         }
@@ -23,4 +23,21 @@ class EngQurChapter(APIView):
             return None
         
         # http://api.alquran.cloud/v1/surah/2/en.asad
-        
+class EngQurChapterVerse(APIView):
+    def get(self, request, QurChapterNumber, QurVerseNumber):
+        api_url = f'http://api.alquran.cloud/v1/surah/{QurChapterNumber}:{QurVerseNumber}/en.sahih'
+        headers = {
+            'Content-Type': 'application/json',  
+        }
+        try:
+            response = requests.get(api_url, headers=headers)
+            data = response.json()["data"]
+            # Grab just the verse we need from the returned array
+            verse = [verse for verse in data["ayahs"] if str(verse["numberInSurah"]) == QurVerseNumber]
+            print(verse)
+            return JsonResponse({"data":verse})
+            
+        except requests.exceptions.RequestException as e:
+           
+            print(f"Error accessing API: {e}")
+            return None
