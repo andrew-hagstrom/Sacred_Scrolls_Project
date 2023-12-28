@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 
 import { NavBar } from './components/NavBar'
@@ -17,7 +17,7 @@ function App() {
       api.defaults.headers.common["Authorization"] = `Token ${token}`;
       try {
         const response = await api.get("users/info/"); // Update with the correct endpoint
-        setUser(response.data);
+        setUser(response.data.username);
       } catch (error) {
         console.error('Error fetching user info:', error);
         // Optionally handle error (e.g., invalid token)
@@ -25,9 +25,9 @@ function App() {
     }
   }; 
   
-  // useEffect(() => {
-  //   getInfo();
-  // }, []);
+  useEffect(() => {
+    getInfo();
+  }, [user]);
 
 
   return (
@@ -38,7 +38,7 @@ function App() {
      <h1>
       SacredScrolls
      </h1>
-     <Outlet />
+     <Outlet context={{user, setUser}}/>
      </Container>
     </>
   )
