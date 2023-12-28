@@ -2,7 +2,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import { useState} from 'react';
-import { Link, Navigate, useOutletContext } from 'react-router-dom'
+import { Link, useOutletContext } from 'react-router-dom'
 import SacredScrollsLogo from '../Images/SacredScrollsBlackBackground.png'
 import { api } from "../utilities/ApiUtilities.jsx"
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 function LoginPage() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const {user, setUser} = useOutletContext()
+  const {setUser} = useOutletContext()
   const navigate = useNavigate()
 
   const login = async(e) => {
