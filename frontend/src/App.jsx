@@ -34,10 +34,7 @@ function App() {
     <>
     <NavBar user={user} setUser={setUser} />
 
-    <Container>
-     <h1>
-      SacredScrolls
-     </h1>
+    <Container style={{display:'flex', flexDirection:'column',alignItems:'center', height:'100%', overflowY:'auto'}}>
      <Outlet context={{user, setUser}}/>
      </Container>
     </>

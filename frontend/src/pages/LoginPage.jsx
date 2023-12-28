@@ -3,8 +3,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import { useState} from 'react';
 import { Link, useOutletContext } from 'react-router-dom'
-import SacredScrollsLogo from '../Images/SacredScrollsBlackBackground.png'
-import { api } from "../utilities/ApiUtilities.jsx"
+import LogoWithoutText from '../Images/LogoWithoutText.png'
+import { api } from "../utilities/ApiUtilities"
 import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
@@ -39,17 +39,14 @@ function LoginPage() {
 
   return (
       <>
-      <h2>
-          Login Page
-      </h2>
-      <img style={{width:'400px', height:'250px'}} src={SacredScrollsLogo}/>
-      <Form onSubmit={(e)=>login(e)}>
+      {/* <img style={{width:'100vh', height:'auto', zIndex:0}} src={LogoWithoutText}/> */}
+      <Form style={{backgroundImage:LogoWithoutText,zIndex:1}}onSubmit={(e)=>login(e)}>
             <FloatingLabel
             controlId="floatingInput"
             label="Username" 
             className="mb-3"
             >
-                <Form.Control type="username" placeholder="name@example.com" onChange={(e)=>setUsername(e.target.value)}/>
+              <Form.Control type="username" placeholder="name@example.com" onChange={(e)=>setUsername(e.target.value)}/>
             </FloatingLabel>
             <FloatingLabel controlId="floatingPassword" label="Password">
                 <Form.Control type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)}/>
