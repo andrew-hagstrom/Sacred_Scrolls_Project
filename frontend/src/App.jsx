@@ -12,11 +12,11 @@ function App() {
   const [user, setUser] = useState(null);
 
   const getInfo = async () => {
-    const token = localStorage.getItem("userToken");
+    const token = localStorage.getItem("token");
     if (token) {
       api.defaults.headers.common["Authorization"] = `Token ${token}`;
       try {
-        const response = await api.get("users/info/"); // Update with the correct endpoint
+        const response = await api.get("user/info/"); // Update with the correct endpoint
         setUser(response.data.username);
       } catch (error) {
         console.error('Error fetching user info:', error);

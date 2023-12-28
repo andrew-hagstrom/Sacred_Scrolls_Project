@@ -15,12 +15,13 @@ function LoginPage() {
 
   const login = async(e) => {
     e.preventDefault()
-    let response = await api.post("api/v1/user/login/", {
+    let response = await api
+    .post("user/login/", {
       username: username,
       password: password
     })
     .catch((err)=>{
-      if (err.message.status === 404){
+      if (err.message.status === 401){
         console.log('wrong credentials')
       }
     })

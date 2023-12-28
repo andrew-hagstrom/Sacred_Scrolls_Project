@@ -21,10 +21,11 @@ function RegisterPage() {
             "password": password,
         }
         let response = await api
-            .post("api/v1/user/signup/", data)
+            .post("user/signup/", data)
             .catch((err) => {
                 console.log(err)
             })
+        console.log(response)
         if (response.status === 201) {
             setUser(response.data.username)
             localStorage.setItem('token', response.data.token);
