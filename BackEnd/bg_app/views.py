@@ -6,11 +6,10 @@ from rest_framework.response import Response
 from sacred_scrolls_proj.settings import env 
 
 
-
 class EngBGChapter(APIView):
     def get_chapter_data(self, api_url, api_key):
         headers = {
-            'api-key': api_key,
+            'X-RapidAPI-Key': api_key,
             'Content-Type': 'application/json',  
         }
         try:
@@ -30,21 +29,30 @@ class EngBGChapter(APIView):
 
         chapter_data = self.get_chapter_data(api_url, api_key)
         print(chapter_data)
-        if chapter_data:
-            print("API Data:")
-            print(chapter_data)
-        else:
-            print("Failed to retrieve API data.")
         
-        english_verses = [verse["description"] for verse in chapter_data["translations"] if verse["author_name"] == "Swami Adidevananda"]
-
-
-        return Response(english_verses)
+        if chapter_data:
+            english_verses = []
+            for verse in chapter_data:
+                translations = verse.get("translations", [])
+                for translation in translations:
+                    if (translation.get("author_name") == "Swami Adidevananda" 
+                            and translation.get("language") == "english"):
+                        english_verses.append(f"{verse['chapter_number']}.{verse['verse_number']} {translation['description']}")
+                        break 
+            if english_verses:
+                fluid_text = ' '.join(english_verses)
+                return Response(fluid_text)
+            else:
+                return Response("No English translations by Swami Adidevananda found for this chapter.")
+                            
+        else:
+            return Response("Failed to retrieve API data.")
+ 
 
 class EngBGVerse(APIView):
     def get_verse_data(self, api_url, api_key):
         headers = {
-            'api-key': api_key,
+            'X-RapidAPI-Key': api_key,
             'Content-Type': 'application/json',  
         }
         try:
@@ -76,7 +84,7 @@ class EngBGVerse(APIView):
 class SanBGChapter(APIView):
     def get_chapter_data(self, api_url, api_key):
         headers = {
-            'api-key': api_key,
+            'X-RapidAPI-Key': api_key,
             'Content-Type': 'application/json',  
         }
         try:
@@ -102,15 +110,19 @@ class SanBGChapter(APIView):
         else:
             print("Failed to retrieve API data.")
 
-        sanskrit_verses = [verse["description"] for verse in chapter_data["text"]]
+        
+        sanskrit_verses = [item.get('text', '') for item in chapter_data]
+        
+        sanskrit_verses_without_newlines = [verse.replace('\n', '') for verse in sanskrit_verses]
+       
+        result = ''.join(sanskrit_verses_without_newlines)
 
-
-        return Response(sanskrit_verses)
+        return Response(result)
 
 class SanBGVerse(APIView):
     def get_verse_data(self, api_url, api_key):
         headers = {
-            'api-key': api_key,
+            'X-RapidAPI-Key': api_key,
             'Content-Type': 'application/json',  
         }
         try:
