@@ -1,4 +1,4 @@
-import SacredScrollsLogo from '../Images/SacredScrollsBlackBackground.png'
+import LogoWithoutText from '../Images/LogoWithoutText.png'
 import {Link, useOutletContext} from "react-router-dom"
 
 
@@ -6,11 +6,8 @@ function HomePage() {
     const {user} = useOutletContext()
     return (
         <>
-        <h2>
-            HomePage
-        </h2>
         {/* Image temporary until styled */}
-        {/* <img style={{width:'400px', height:'250px'}} src={SacredScrollsLogo}/> */}
+        <div id='welcome-text'>
         <div className='home-text'>
             Embrace the richness of diverse cultures, explore the depths of spirituality, and delve into the profound wisdom encapsulated 
             in three of the {"world's"} most revered religious texts - the Bible, Quran, and Bhagavad Gita.   
@@ -31,10 +28,11 @@ function HomePage() {
         { user ? 
             null
             :
-            <div style={{fontSize: '24px'}}>
+            <div style={{fontSize: '30px'}}>
                 Begin Your Journey ⟶ <Link to={'/register/'}>Get Started</Link>
             </div>
         }
+        </div>
         </>
     )
 }

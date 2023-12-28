@@ -24,16 +24,16 @@ export const NavBar = ({ user, setUser }) => {
     };
     
     return (
-        <Navbar style={{paddingBottom: "2%", padding: "2%"}} expand="lg" className="bg-black">
-            <Container style={{backgroundColor: "black"}}>
+        <Navbar style={{paddingBottom: "2%", padding: "2%"}} expand="lg" id='navbar-comp'>
+            <Container style={{backgroundColor: "rgb(2, 27, 51)"}}>
                 <Navbar.Brand>
                 <img
-        src={SacredScrollsLogo}
-        width="150"  // Adjusted width
-        height="auto"  // Adjusted height
-        className="d-inline-block align-top img-fluid"  // Added img-fluid for responsiveness
-        alt="Sacred Scrolls Logo"
-    />
+                    src={SacredScrollsLogo}
+                    width="300"  // Adjusted width
+                    height="auto"  // Adjusted height
+                    className="d-inline-block align-top img-fluid"  // Added img-fluid for responsiveness
+                    alt="Sacred Scrolls Logo"
+                />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
