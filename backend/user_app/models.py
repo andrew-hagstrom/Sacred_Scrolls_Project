@@ -28,10 +28,10 @@ class Favorites(models.Model):
     passage_id = models.OneToOneField(Passages, on_delete=models.CASCADE, related_name='user_passage')
 
 class Journal(models.Model):
-    text = models.OneToOneField(User, max_length=100, default=None, unique=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='')
+    text = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_journal')
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='journal_user_id')
 
 class Posts(models.Model):
-    text = models.OneToOneField(max_length=100, default=None, unique=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='')
+    text = models.CharField(max_length=100, default=None)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post_user_id')
 
