@@ -3,6 +3,7 @@ from .views import Signup, Login, Info, Logout, Passages, Posts, APost
 
 post_patterns = [
     path("<int:user_id>/posts/", Posts.as_view(), name="posts"),
+    path("<int:user_id>/posts/<int:post_id>/", Posts.as_view(), name="posts"),
 ]
 
 urlpatterns = [
