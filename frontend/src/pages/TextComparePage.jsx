@@ -3,6 +3,7 @@ import { PassageCard } from '../components/PassageCard';
 
 import { BibleKeywordSearch } from '../utilities/BibleKeywordSearch';
 import { GitaKeywordSearch } from '../utilities/GitaKeywordSearch';
+import { QuranKeywordSearch } from '../utilities/QuranKeywordSearch';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -20,17 +21,26 @@ function TextComparePage() {
     const [additionalBibleReferences, setAdditionalBibleReferences] = useState([]);
     const [firstGitaResult, setFirstGitaResult] = useState(null);
     const [additionalGitaReferences, setAdditionalGitaReferences] = useState([])
-    const [quranText, setQuranText] = useState("Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+    const [firstQuranResult, setFirstQuranResult] = useState(null);
+    const [additionalQuranReferences, setAdditionalQuranReferences] = useState([]);
 
 
     const fetchBibleSearchResults = async() => {
         const results = await BibleKeywordSearch(searchTerm);
         if (results.length > 0) {
-            setFirstBibleResult(results[0])
-            console.log(results)
-            setAdditionalBibleReferences(results.slice(1));
+            setFirstBibleResult({
+                text: results[0].text,
+                reference: results[0].reference
+            });
+            setAdditionalBibleReferences(results.slice(1).map(verse => ({
+                text: verse.text,
+                reference: verse.reference
+            })));
+        } else {
+            setFirstBibleResult(null);
+            setAdditionalBibleReferences([]);
         }
-    }
+    };
 
     const fetchGitaSearchResults = async() => {
         const results = await GitaKeywordSearch(searchTerm);
@@ -53,11 +63,34 @@ function TextComparePage() {
             setAdditionalGitaReferences([]);
         }
     };
+
+    const fetchQuranSearchResults = async () => {
+        const response = await QuranKeywordSearch(searchTerm);
+        const matches = response.matches; 
+    
+        if (matches && matches.length > 0) {
+            const firstResult = {
+                text: matches[0].text,
+                reference: `Surah ${matches[0].surah.englishName} (${matches[0].surah.number}): Verse ${matches[0].numberInSurah}`
+            };
+            setFirstQuranResult(firstResult);
+    
+            const additionalResults = matches.slice(1).map(match => ({
+                text: match.text,
+                reference: `Surah ${match.surah.englishName} (${match.surah.number}): Verse ${match.numberInSurah}`
+            }));
+            setAdditionalQuranReferences(additionalResults);
+        } else {
+            setFirstQuranResult(null);
+            setAdditionalQuranReferences([]);
+        }
+    };
     
     const handleSearch = () => {
     if (searchTerm) {
-        // fetchBibleSearchResults()
-        fetchGitaSearchResults()
+        fetchBibleSearchResults()
+        // fetchGitaSearchResults()
+        fetchQuranSearchResults()
 
     }
 }
@@ -83,35 +116,43 @@ function TextComparePage() {
                         </InputGroup>
                     </Col>
                 </Row>
-                {/* {firstBibleResult && ( */}
+                {firstBibleResult && (
                 <Row className="mb-3"> {/* Add margin-bottom class */}
                     <Col md={12}>
                         <PassageCard 
-                        // sourceText={firstBibleResult.text} 
-                        sourceText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae voluptatum dolorum esse doloribus. Officia, dignissimos totam hic ut possimus, vel repellendus tenetur quidem expedita sint omnis asperiores maxime quae quasi!"
-                        // sourceReference={`${firstBibleResult.book} ${firstBibleResult.chapter}`}
-                        sourceReference="Genesis 1:1"
-                        // additionalReferences={additionalBibleReferences}
-                        // additionalReferences={['Gen 1:2','Gen 2:3','Gen 3:5','Gen 4:6','Gen 5:7']}
+                            sourceText={firstBibleResult.text} 
+                            // sourceText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae voluptatum dolorum esse doloribus. Officia, dignissimos totam hic ut possimus, vel repellendus tenetur quidem expedita sint omnis asperiores maxime quae quasi!"
+                            sourceReference={firstBibleResult.reference}
+                            
+                            additionalReferences={additionalBibleReferences}
+                        
                         />
                     </Col>
                 </Row>
                 
-                {/* )} */}
-                <Row className="mb-3"> {/* Add margin-bottom class */}
+                )}
+                <Row>
                     <Col md={12}>
-                        {quranText && <PassageCard sourceText={quranText} sourceReference="Quran Reference" />}
+                        {firstQuranResult && (
+                            <PassageCard 
+                                sourceText={firstQuranResult.text} 
+                                sourceReference={firstQuranResult.reference}
+                                additionalReferences={additionalQuranReferences}
+                            />
+                        )}
                     </Col>
                 </Row>
                 <Row>
                     <Col md={12}>
-                        {firstGitaResult && (
+                        {/* {firstGitaResult && ( */}
                             <PassageCard 
-                                sourceText={firstGitaResult.text} 
-                                sourceReference={firstGitaResult.reference} 
-                                additionalReferences={additionalGitaReferences}
+                                sourceText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae voluptatum dolorum esse doloribus. Officia, dignissimos totam hic ut possimus, vel repellendus tenetur quidem expedita sint omnis asperiores maxime quae quasi!"
+                                sourceReference="Genesis 1:1"
+                                // sourceText={firstGitaResult.text} 
+                                // sourceReference={firstGitaResult.reference} 
+                                // additionalReferences={additionalGitaReferences}
                             />
-                        )}
+                        {/* )} */}
                     </Col>
                 </Row>
             </Container>
