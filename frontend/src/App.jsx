@@ -34,7 +34,7 @@ function App() {
     <>
     <NavBar user={user} setUser={setUser} />
 
-    <Container style={{display:'flex', flexDirection:'column',alignItems:'center', height:'100%', overflowY:'auto'}}>
+    <Container >
      <Outlet context={{user, setUser}}/>
      </Container>
     </>
