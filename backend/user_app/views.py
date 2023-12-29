@@ -27,8 +27,9 @@ class Signup(APIView):
             # user = serializer.save()
             user = User.objects.create_user(**data)
             token = Token.objects.create(user=user)
+            print(user, token.key)
             return JsonResponse(
-                {"message": "user created successfully."}, status=HTTP_201_CREATED
+                {"user": user.username, "token":token.key}, status=HTTP_201_CREATED
             )
             
         return JsonResponse(
