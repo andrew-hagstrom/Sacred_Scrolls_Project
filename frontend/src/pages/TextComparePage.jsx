@@ -27,15 +27,15 @@ function TextComparePage() {
         const results = await BibleKeywordSearch(searchTerm);
         if (results.length > 0) {
             setFirstBibleResult(results[0])
-            console.log(results[0])
+            console.log(results)
             setAdditionalBibleReferences(results.slice(1));
         }
     }
 
     const fetchGitaSearchResults = async() => {
         const results = await GitaKeywordSearch(searchTerm);
-        setFirstGitaResult(results[0])
-        // console.log(results[0])
+        setFirstGitaResult(results['1'])
+        console.log(results[0])
         setAdditionalGitaReferences(results.slice(1));
     }
 
@@ -43,6 +43,7 @@ function TextComparePage() {
     if (searchTerm) {
         // fetchBibleSearchResults()
         fetchGitaSearchResults()
+
     }
 }
 
@@ -76,7 +77,7 @@ function TextComparePage() {
                         // sourceReference={`${firstBibleResult.book} ${firstBibleResult.chapter}`}
                         sourceReference="Genesis 1:1"
                         // additionalReferences={additionalBibleReferences}
-                        // additionalReferences={[1,2,3,4,5]}
+                        // additionalReferences={['Gen 1:2','Gen 2:3','Gen 3:5','Gen 4:6','Gen 5:7']}
                         />
                     </Col>
                 </Row>
