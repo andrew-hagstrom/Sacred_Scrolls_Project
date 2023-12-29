@@ -17,13 +17,14 @@ export const BibleKeywordSearch = async (keyword) => {
             }
         }
     }
-
+        
         return results;
 
     };
 
     const fetchChapterData = async (book, chapter) => {
         const response = await api.get(`Bible/eng/${book}/chapter/${chapter}/`)
+        console.log(response.data)
         return response.data
     };
     

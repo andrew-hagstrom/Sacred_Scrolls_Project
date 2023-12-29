@@ -3,7 +3,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import { useState} from 'react';
 import { Link, useNavigate, useOutletContext } from 'react-router-dom'
-import SacredScrollsLogo from '../Images/SacredScrollsBlackBackground.png'
 import { api } from "../utilities/ApiUtilities"
 
 function RegisterPage() {
@@ -11,7 +10,7 @@ function RegisterPage() {
     const [password, setPassword] = useState("")
     const [username, setUsername] = useState("")
     const navigate = useNavigate()
-    const {user, setUser} = useOutletContext()
+    const {setUser} = useOutletContext()
 
     const createUser = async(e) => {
         e.preventDefault()
@@ -40,10 +39,8 @@ function RegisterPage() {
 
     return (
         <>
-        <h2>
-            RegisterPage
-        </h2>
-        <img style={{width:'400px', height:'250px'}} src={SacredScrollsLogo}/>
+        <div className='form-page'>
+        <h1 className='form-page-headers' style={{top:'-20% '}}>Registration</h1>
         <Form onSubmit={(e)=>createUser(e)}>
         <FloatingLabel
             controlId="floatingInput"
@@ -62,9 +59,12 @@ function RegisterPage() {
             <FloatingLabel controlId="floatingPassword" label="Password">
                 <Form.Control type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)}/>
             </FloatingLabel>
-            <Button as="input" type="submit" value="Register"/>{' '}
+            <Button className='form-buttons' as="input" type="submit" value="Register"/>{' '}
         </Form>
-        Already have an account? <Link to={'/login/'}>Click here</Link> to sign in.
+        <div style={{justifySelf:'center'}}>
+            Already have an account? <Link to={'/login/'}>Click here</Link> to sign in.
+        </div>
+        </div>
         </>
     )
 }
