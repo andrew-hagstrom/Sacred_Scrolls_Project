@@ -3,11 +3,12 @@ export const GitaKeywordSearch = async (keyword) => {
     const matchedVerses = []
     const totalChapters = 18;
 
-    for (let chapter = 1; chapter <= totalChapters; chapter++) {
+    for (
+        let chapter = 1; chapter <= totalChapters; chapter++) {
         let verse = 1;
         let keepSearching = true;
 
-        while (keepSearching) {
+        // while (keepSearching) {
             try {
                 const response = await api.get(`BG/eng/chapter/${chapter}/verse/${verse}`)
                 const verseText = response.data;
@@ -24,6 +25,6 @@ export const GitaKeywordSearch = async (keyword) => {
                 keepSearching = false;
             }
         }
-    }
+    // }
     return matchedVerses;
 };

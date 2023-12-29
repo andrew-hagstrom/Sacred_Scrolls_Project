@@ -35,7 +35,7 @@ function TextComparePage() {
     const fetchGitaSearchResults = async() => {
         const results = await GitaKeywordSearch(searchTerm);
         setFirstGitaResult(results[0])
-        console.log(results[0])
+        // console.log(results[0])
         setAdditionalGitaReferences(results.slice(1));
     }
 
@@ -76,7 +76,7 @@ function TextComparePage() {
                         // sourceReference={`${firstBibleResult.book} ${firstBibleResult.chapter}`}
                         sourceReference="Genesis 1:1"
                         // additionalReferences={additionalBibleReferences}
-                        additionalReferences={[1,2,3,4,5]}
+                        // additionalReferences={[1,2,3,4,5]}
                         />
                     </Col>
                 </Row>
