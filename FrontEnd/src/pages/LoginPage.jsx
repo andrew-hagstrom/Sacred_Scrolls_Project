@@ -3,8 +3,13 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import { useState} from 'react';
 import { Link, useOutletContext } from 'react-router-dom'
+<<<<<<< HEAD:FrontEnd/src/pages/LoginPage.jsx
+import SacredScrollsLogo from '../Images/SacredScrollsBlackBackground.png'
+import { api } from "../utilities/ApiUtilities.js"
+=======
 import LogoWithoutText from '../Images/LogoWithoutText.png'
 import { api } from "../utilities/ApiUtilities"
+>>>>>>> new-frontend:frontend/src/pages/LoginPage.jsx
 import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {

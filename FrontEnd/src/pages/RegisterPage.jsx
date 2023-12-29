@@ -4,7 +4,11 @@ import Button from 'react-bootstrap/Button'
 import { useState} from 'react';
 import { Link, useNavigate, useOutletContext } from 'react-router-dom'
 import SacredScrollsLogo from '../Images/SacredScrollsBlackBackground.png'
+<<<<<<< HEAD:FrontEnd/src/pages/RegisterPage.jsx
+import { api } from "../utilities/ApiUtilities.js"
+=======
 import { api } from "../utilities/ApiUtilities"
+>>>>>>> new-frontend:frontend/src/pages/RegisterPage.jsx
 
 function RegisterPage() {
     const [email, setEmail] = useState("")
