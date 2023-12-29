@@ -6,8 +6,8 @@ from rest_framework.authtoken.models import Token
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import User
-from .serializers import UserSerializer, FavoritesSerializer
+from .models import User, PostsModel
+from .serializers import UserSerializer, FavoritesSerializer, PostsSerializer
 from rest_framework.status import (
     HTTP_200_OK,
     HTTP_201_CREATED,
@@ -24,8 +24,7 @@ class Signup(APIView):
 
         serializer = UserSerializer(data=data)
         if serializer.is_valid():
-            # user = serializer.save()
-            user = User.objects.create_user(**data)
+            user = User.objects.create_user(**data) 
             token = Token.objects.create(user=user)
             print(user, token.key)
             return JsonResponse(
@@ -94,7 +93,26 @@ class Journal(APIView):
     pass
 
 class Posts(APIView):
-    pass
-
+    def get(self, request, user_id):
+    
+        posts = PostsModel.objects.filter(user_id_id=user_id)
+        print(posts)
+        return JsonResponse({"TODO":"return all user posts"})
+    
+    def post(self, request, user_id):
+        data = request.data
+        data["user_id"] = user_id
+        
+        post_serializer = PostsSerializer(data=data)
+        
+        if not post_serializer.is_valid():
+            return JsonResponse({"error":post_serializer.errors})
+        try:
+            post_serializer.save()
+            return JsonResponse({"message":post_serializer.data})
+        except Exception as e:
+            print(e)
+            return JsonResponse({"error":"Error saving to post to database"})
+        
 class APost(APIView):
     pass
