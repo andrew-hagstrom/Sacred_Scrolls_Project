@@ -34,11 +34,26 @@ function TextComparePage() {
 
     const fetchGitaSearchResults = async() => {
         const results = await GitaKeywordSearch(searchTerm);
-        setFirstGitaResult(results['1'])
-        console.log(results[0])
-        setAdditionalGitaReferences(results.slice(1));
-    }
-
+    
+        // Check if any results were found
+        if (results.length > 0) {
+            // Update the state with the first result
+            setFirstGitaResult(results[0]);
+    
+            // If there are additional results, update the state for additional references
+            if (results.length > 1) {
+                setAdditionalGitaReferences(results.slice(1));
+            } else {
+                // If there are no additional results, clear the existing additional references
+                setAdditionalGitaReferences([]);
+            }
+        } else {
+            // If no results were found, clear both states
+            setFirstGitaResult(null);
+            setAdditionalGitaReferences([]);
+        }
+    };
+    
     const handleSearch = () => {
     if (searchTerm) {
         // fetchBibleSearchResults()

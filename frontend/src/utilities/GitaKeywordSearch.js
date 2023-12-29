@@ -1,7 +1,7 @@
 import { api } from './ApiUtilities'
 
 export const GitaKeywordSearch = async (keyword) => {
-    const matchedVerses = [];
+    const results = [];
     const totalChapters = 18;
 
     for (let chapter = 1; chapter <= totalChapters; chapter++) {
@@ -11,19 +11,14 @@ export const GitaKeywordSearch = async (keyword) => {
         while (keepSearching) {
             try {
                 const response = await api.get(`BG/eng/chapter/${chapter}/verse/${verse}/`);
+                const verseText = response.data;
 
-                // Log the response for debugging
-                console.log(`Response for chapter ${chapter}, verse ${verse}:`, response);
-
-                const verseText = response.data; // Directly access the verse text
-
-                if (verseText && verseText.toLowerCase().includes(keyword.toLowerCase())) {
-                    matchedVerses.push({
+                if (verseText.toLowerCase().includes(keyword.toLowerCase())) {
+                    results.push({
                         text: verseText,
                         reference: `Chapter ${chapter}, Verse ${verse}`
                     });
                 }
-
                 verse++;
             } catch (error) {
                 console.error(`Error fetching chapter ${chapter}, verse ${verse}:`, error);
@@ -31,6 +26,5 @@ export const GitaKeywordSearch = async (keyword) => {
             }
         }
     }
-    console.log(matchedVerses);
-    return matchedVerses;
+    return results;
 };
