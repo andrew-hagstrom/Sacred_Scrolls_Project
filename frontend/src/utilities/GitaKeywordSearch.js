@@ -9,8 +9,9 @@ export const GitaKeywordSearch = async (keyword) => {
 
         while (keepSearching) {
             try {
-                const response = await api.get(`BG/eng/chapters/${chapter}/verse/${verse}`)
+                const response = await api.get(`BG/eng/chapter/${chapter}/verse/${verse}`)
                 const verseText = response.data;
+                console.log(verseText)
 
                 if (verseText.includes(keyword)) {
                     matchedVerses.push({
