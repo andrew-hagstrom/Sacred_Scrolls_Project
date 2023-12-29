@@ -208,12 +208,11 @@ class BibleSearch(APIView):
             data = response.json()  
             return data
         except requests.exceptions.RequestException as e:
-           
             print(f"Error accessing API: {e}")
             return None
 
     def get(self, request, keyword):
-        api_url = f"https://api.scripture.api.bible/v1/bibles/bba9f40183526463-01/search?query={keyword}&limit=100&sort=relevances"
+        api_url = f"https://api.scripture.api.bible/v1/bibles/bba9f40183526463-01/search?query={keyword}&limit=100&sort=relevance"
         api_key = env.get('BIBLE_API_KEY')
         search_data = self.get_search_data(api_url, api_key)
         print(search_data)
@@ -223,5 +222,5 @@ class BibleSearch(APIView):
         else:
             print("Failed to retrieve API data.")
 
-        return Response(search_data['data']['verses'])
+        return Response(search_data['data'])
 
