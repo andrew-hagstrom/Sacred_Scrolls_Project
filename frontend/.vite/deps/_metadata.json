@@ -1,0 +1,170 @@
+{
+  "hash": "25079176",
+  "browserHash": "99c7cfbf",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "d081b8ec",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "9fe6d1fa",
+      "needsInterop": false
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "c71e128d",
+      "needsInterop": true
+    },
+    "react-bootstrap/Container": {
+      "src": "../../node_modules/react-bootstrap/esm/Container.js",
+      "file": "react-bootstrap_Container.js",
+      "fileHash": "71e90ba7",
+      "needsInterop": false
+    },
+    "react-bootstrap/FloatingLabel": {
+      "src": "../../node_modules/react-bootstrap/esm/FloatingLabel.js",
+      "file": "react-bootstrap_FloatingLabel.js",
+      "fileHash": "b32291f9",
+      "needsInterop": false
+    },
+    "react-bootstrap/Form": {
+      "src": "../../node_modules/react-bootstrap/esm/Form.js",
+      "file": "react-bootstrap_Form.js",
+      "fileHash": "d98cecd5",
+      "needsInterop": false
+    },
+    "react-bootstrap/Button": {
+      "src": "../../node_modules/react-bootstrap/esm/Button.js",
+      "file": "react-bootstrap_Button.js",
+      "fileHash": "04818769",
+      "needsInterop": false
+    },
+    "react-bootstrap/Row": {
+      "src": "../../node_modules/react-bootstrap/esm/Row.js",
+      "file": "react-bootstrap_Row.js",
+      "fileHash": "0b825259",
+      "needsInterop": false
+    },
+    "react-bootstrap/Col": {
+      "src": "../../node_modules/react-bootstrap/esm/Col.js",
+      "file": "react-bootstrap_Col.js",
+      "fileHash": "06543385",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "b990d416",
+      "needsInterop": false
+    },
+    "react-bootstrap/Nav": {
+      "src": "../../node_modules/react-bootstrap/esm/Nav.js",
+      "file": "react-bootstrap_Nav.js",
+      "fileHash": "7884e8b7",
+      "needsInterop": false
+    },
+    "react-bootstrap/Navbar": {
+      "src": "../../node_modules/react-bootstrap/esm/Navbar.js",
+      "file": "react-bootstrap_Navbar.js",
+      "fileHash": "f4874b03",
+      "needsInterop": false
+    },
+    "react-bootstrap/NavLink": {
+      "src": "../../node_modules/react-bootstrap/esm/NavLink.js",
+      "file": "react-bootstrap_NavLink.js",
+      "fileHash": "e42ee0a6",
+      "needsInterop": false
+    },
+    "react-bootstrap/Card": {
+      "src": "../../node_modules/react-bootstrap/esm/Card.js",
+      "file": "react-bootstrap_Card.js",
+      "fileHash": "37306c5f",
+      "needsInterop": false
+    },
+    "react-bootstrap/Modal": {
+      "src": "../../node_modules/react-bootstrap/esm/Modal.js",
+      "file": "react-bootstrap_Modal.js",
+      "fileHash": "e4c8fa8b",
+      "needsInterop": false
+    },
+    "react-bootstrap/ListGroup": {
+      "src": "../../node_modules/react-bootstrap/esm/ListGroup.js",
+      "file": "react-bootstrap_ListGroup.js",
+      "fileHash": "66eb8141",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-PEWZY26S": {
+      "file": "chunk-PEWZY26S.js"
+    },
+    "chunk-EYCYSLZW": {
+      "file": "chunk-EYCYSLZW.js"
+    },
+    "chunk-5VUHVV23": {
+      "file": "chunk-5VUHVV23.js"
+    },
+    "chunk-NB2YJ3W2": {
+      "file": "chunk-NB2YJ3W2.js"
+    },
+    "chunk-U5Q4OJLK": {
+      "file": "chunk-U5Q4OJLK.js"
+    },
+    "chunk-7YOX6ICD": {
+      "file": "chunk-7YOX6ICD.js"
+    },
+    "chunk-FJ7HQIJI": {
+      "file": "chunk-FJ7HQIJI.js"
+    },
+    "chunk-HTQAT3HQ": {
+      "file": "chunk-HTQAT3HQ.js"
+    },
+    "chunk-VCTKDRPF": {
+      "file": "chunk-VCTKDRPF.js"
+    },
+    "chunk-26ZZPAO3": {
+      "file": "chunk-26ZZPAO3.js"
+    },
+    "chunk-3R3VICS7": {
+      "file": "chunk-3R3VICS7.js"
+    },
+    "chunk-D4P7VYWK": {
+      "file": "chunk-D4P7VYWK.js"
+    },
+    "chunk-NWD57ZMN": {
+      "file": "chunk-NWD57ZMN.js"
+    },
+    "chunk-MKG3NT3Y": {
+      "file": "chunk-MKG3NT3Y.js"
+    },
+    "chunk-F3LV535Q": {
+      "file": "chunk-F3LV535Q.js"
+    },
+    "chunk-VER6FNRX": {
+      "file": "chunk-VER6FNRX.js"
+    },
+    "chunk-K4O3PCAO": {
+      "file": "chunk-K4O3PCAO.js"
+    },
+    "chunk-BTSI54NO": {
+      "file": "chunk-BTSI54NO.js"
+    },
+    "chunk-62VHX56A": {
+      "file": "chunk-62VHX56A.js"
+    },
+    "chunk-TP7L7AND": {
+      "file": "chunk-TP7L7AND.js"
+    },
+    "chunk-67XTWVEJ": {
+      "file": "chunk-67XTWVEJ.js"
+    },
+    "chunk-5WWUZCGV": {
+      "file": "chunk-5WWUZCGV.js"
+    }
+  }
+}

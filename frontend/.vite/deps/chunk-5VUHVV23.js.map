@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../node_modules/react-bootstrap/esm/CardHeaderContext.js"],
+  "sourcesContent": ["\"use client\";\n\nimport * as React from 'react';\nconst context = /*#__PURE__*/React.createContext(null);\ncontext.displayName = 'CardHeaderContext';\nexport default context;"],
+  "mappings": ";;;;;;;;AAEA,YAAuB;AACvB,IAAM,UAA6B,oBAAc,IAAI;AACrD,QAAQ,cAAc;AACtB,IAAO,4BAAQ;",
+  "names": []
+}

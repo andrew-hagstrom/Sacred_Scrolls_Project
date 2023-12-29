@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../node_modules/react-bootstrap/esm/NavbarContext.js"],
+  "sourcesContent": ["\"use client\";\n\nimport * as React from 'react';\n\n// TODO: check\n\nconst context = /*#__PURE__*/React.createContext(null);\ncontext.displayName = 'NavbarContext';\nexport default context;"],
+  "mappings": ";;;;;;;;AAEA,YAAuB;AAIvB,IAAM,UAA6B,oBAAc,IAAI;AACrD,QAAQ,cAAc;AACtB,IAAO,wBAAQ;",
+  "names": []
+}
