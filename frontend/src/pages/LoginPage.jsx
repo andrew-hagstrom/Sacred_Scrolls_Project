@@ -39,8 +39,9 @@ function LoginPage() {
 
   return (
       <>
-      {/* <img style={{width:'100vh', height:'auto', zIndex:0}} src={LogoWithoutText}/> */}
-      <Form style={{backgroundImage:LogoWithoutText,zIndex:1}}onSubmit={(e)=>login(e)}>
+      <div className='form-page'>
+      <h1 className='form-page-headers'>Sign In</h1>
+      <Form onSubmit={(e)=>login(e)}>
             <FloatingLabel
             controlId="floatingInput"
             label="Username" 
@@ -51,9 +52,13 @@ function LoginPage() {
             <FloatingLabel controlId="floatingPassword" label="Password">
                 <Form.Control type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)}/>
             </FloatingLabel>
-            <Button as="input" type="submit" value="Login"/>{' '}
+            <Button className='form-buttons' as="input" type="submit" value="Login"/>{' '}
         </Form>
+        <div style={{justifySelf:'center'}}>
         {"Don't have an account?"} {<Link to={'/register/'}>Click here</Link>} to register.
+        </div>
+      </div>
+
       </>
   )
 }
