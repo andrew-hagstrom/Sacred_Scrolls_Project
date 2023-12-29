@@ -1,23 +1,41 @@
+body {
+  background-image: linear-gradient(to bottom, rgb(2, 27, 51) 33%, rgba(54,69,79,1) 87%);
+  background-size: auto;
+  background-position: 0% 0%;
+  background-repeat: no-repeat;
+  background-color: rgba(0,0,0,0);
+}
 
 #root {
   margin: 0;
-  height: 100%;
-  width: 100%;
+  height: auto;
+  width: auto;
+  font-family:'lato',sans-serif;
+  color:#dcdbd5;
 }
 
 .mx-2 {
-  color: rgb(182, 170, 100);
+  /* color: rgb(182, 170, 100); */
+  background-color: rgb(2, 27, 51);
+  color:#dcdbd5;
 }
 
+#navbar-comp {
+  margin-top: -80px;
+}
 
 .home-text {
-  border: 5px solid black;
-  margin-bottom: 25px;
-  font-size: 24px;
-  padding-left:10px;
-  padding-right: 10px;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  box-shadow: 0 0 5px 3px #000;
+  border: 2px solid #afafaf;
+  margin-bottom: 30px;
+  font-size: 30px;
+  padding-left:20px;
+  padding-right: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  box-shadow: 0 0 5px 2px #758793;
   border-radius: 15px;
+}
+
+#welcome-text {
+  width: 40vw;
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 
 import { NavBar } from './components/NavBar'
@@ -12,12 +12,12 @@ function App() {
   const [user, setUser] = useState(null);
 
   const getInfo = async () => {
-    const token = localStorage.getItem("userToken");
+    const token = localStorage.getItem("token");
     if (token) {
       api.defaults.headers.common["Authorization"] = `Token ${token}`;
       try {
-        const response = await api.get("users/info/"); // Update with the correct endpoint
-        setUser(response.data);
+        const response = await api.get("user/info/"); // Update with the correct endpoint
+        setUser(response.data.username);
       } catch (error) {
         console.error('Error fetching user info:', error);
         // Optionally handle error (e.g., invalid token)
@@ -25,20 +25,17 @@ function App() {
     }
   }; 
   
-  // useEffect(() => {
-  //   getInfo();
-  // }, []);
+  useEffect(() => {
+    getInfo();
+  }, [user]);
 
 
   return (
     <>
     <NavBar user={user} setUser={setUser} />
 
-    <Container>
-     <h1>
-      SacredScrolls
-     </h1>
-     <Outlet />
+    <Container style={{display:'flex', flexDirection:'column',alignItems:'center', height:'100%', overflowY:'auto'}}>
+     <Outlet context={{user, setUser}}/>
      </Container>
     </>
   )
