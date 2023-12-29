@@ -195,8 +195,33 @@ class HebBibVerse(APIView):
 
         return Response(verse_data['data']['content'])
 
+class BibleSearch(APIView):
+    def get_search_data(self, api_url, api_key):
+        headers = {
+            'api-key': api_key,
+            'Content-Type': 'application/json',  
+        }
+        try:
+            response = requests.get(api_url, headers=headers)
+            print(f"\n\n\n {response} \n\n\n")
+            response.raise_for_status()  
+            data = response.json()  
+            return data
+        except requests.exceptions.RequestException as e:
+           
+            print(f"Error accessing API: {e}")
+            return None
 
+    def get(self, request, keyword):
+        api_url = f"https://api.scripture.api.bible/v1/bibles/bba9f40183526463-01/search?query={keyword}&limit=100&sort=relevances"
+        api_key = env.get('BIBLE_API_KEY')
+        search_data = self.get_search_data(api_url, api_key)
+        print(search_data)
+        if search_data:
+            print("API Data:")
+            print(search_data)
+        else:
+            print("Failed to retrieve API data.")
 
-from django.shortcuts import render
+        return Response(search_data['data']['verses'])
 
-# Create your views here.
