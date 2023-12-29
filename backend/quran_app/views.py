@@ -15,7 +15,7 @@ languages = {
 }
 
 
-class EngQurChapter(APIView):
+class QurChapter(APIView):
     def get(self, request, QurChapterNumber, lang):
         language = languages.get(lang)
         if language is None:
@@ -45,7 +45,7 @@ class EngQurChapter(APIView):
         # http://api.alquran.cloud/v1/surah/2/en.asad
 
 
-class EngQurChapterVerse(APIView):
+class QurChapterVerse(APIView):
     def get(self, request, QurChapterNumber, QurVerseNumber, lang):
         language = languages.get(lang)
         if language is None:
@@ -71,6 +71,33 @@ class EngQurChapterVerse(APIView):
                 if str(verse["numberInSurah"]) == QurVerseNumber
             ]
             return JsonResponse({"data": verse}, status=status.HTTP_200_OK)
+
+        except requests.exceptions.RequestException as e:
+            print(f"Error accessing API: {e}")
+            return None
+
+class QurKeywordSearch(APIView):
+    def get(self, request, lang, keyword):
+        language = languages.get(lang)
+        if language is None:
+            return JsonResponse(
+                {
+                    "message": f"You entered which {lang} is not a valid language identifier. Please use a valid one.",
+                    "valid identifiers": list(languages.keys()),
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        print(keyword, language)
+        api_url = f"http://api.alquran.cloud/v1/search/{keyword}/all/{language}"
+        headers = {
+            "Content-Type": "application/json",
+        }
+        try:
+            response = requests.get(api_url, headers=headers)
+            data = response.json()["data"]
+            # Grab just the verse we need from the returned array
+            
+            return JsonResponse({"data": data}, status=status.HTTP_200_OK)
 
         except requests.exceptions.RequestException as e:
             print(f"Error accessing API: {e}")
