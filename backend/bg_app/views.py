@@ -57,7 +57,7 @@ class EngBGVerse(APIView):
         }
         try:
             response = requests.get(api_url, headers=headers)
-            print(f"\n\n\n {response} \n\n\n")
+            # print(f"\n\n\n {response} \n\n\n")
             response.raise_for_status()  
             data = response.json()  
             return data
@@ -71,14 +71,14 @@ class EngBGVerse(APIView):
         api_key = env.get('BG_API_KEY')
 
         verse_data = self.get_verse_data(api_url, api_key)
-        print(verse_data)
-        if verse_data:
-            print("API Data:")
-            print(verse_data)
-        else:
-            print("Failed to retrieve API data.")
+        # print(verse_data)
+        # if verse_data:
+        #     # print("API Data:")
+        #     # print(verse_data)
+        # else:
+        #     print("Failed to retrieve API data.")
 
-
+        print(verse_data['translations'][0]['description'])
         return Response(verse_data['translations'][0]['description'])
 
 class SanBGChapter(APIView):
