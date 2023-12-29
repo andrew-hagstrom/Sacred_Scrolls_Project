@@ -1,15 +1,13 @@
-import SacredScrollsLogo from '../Images/SacredScrollsBlackBackground.png'
-import {Link} from "react-router-dom"
+import LogoWithoutText from '../Images/LogoWithoutText.png'
+import {Link, useOutletContext} from "react-router-dom"
 
 
 function HomePage() {
+    const {user} = useOutletContext()
     return (
         <>
-        <h2>
-            HomePage
-        </h2>
         {/* Image temporary until styled */}
-        {/* <img style={{width:'400px', height:'250px'}} src={SacredScrollsLogo}/> */}
+        <div id='welcome-text'>
         <div className='home-text'>
             Embrace the richness of diverse cultures, explore the depths of spirituality, and delve into the profound wisdom encapsulated 
             in three of the {"world's"} most revered religious texts - the Bible, Quran, and Bhagavad Gita.   
@@ -27,8 +25,13 @@ function HomePage() {
             {"Sacred Scrolls invites persons of faith, students of culture, and those seeking spiritual enlightenment to embark on a transformative experience. Embrace the diversity of sacred wisdom and unlock the profound insights that lie within the pages of the Bible, Quran, and Bhagavad Gita."}
             {"Start your exploration now and let the Sacred Scrolls be your guide to a deeper understanding of the spiritual tapestry that unites us all. Welcome to a world where knowledge transcends borders and wisdom knows no limits."}
         </div>
-        <div style={{fontSize: '24px'}}>
-            Begin Your Journey ⟶ <Link to={'/register/'}>Get Started</Link>
+        { user ? 
+            null
+            :
+            <div style={{fontSize: '30px'}}>
+                Begin Your Journey ⟶ <Link to={'/register/'}>Get Started</Link>
+            </div>
+        }
         </div>
         </>
     )
