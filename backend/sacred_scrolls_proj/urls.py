@@ -19,7 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('api/v1/Bible/', include('bible_app.urls')),
-    # path('api/v1/Quran/', include('quran_app.urls')),
+    path('api/v1/Quran/', include('quran_app.urls')),
     path('api/v1/BG/', include('bg_app.urls')),
     path('admin/', admin.site.urls),
     path('api/v1/user/', include("user_app.urls")),
