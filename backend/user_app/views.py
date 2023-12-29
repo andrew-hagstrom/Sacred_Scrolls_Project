@@ -5,9 +5,11 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from django.http import JsonResponse
 from rest_framework.views import APIView
+from rest_framework.response import Response
 from .models import User
-from .serializers import UserSerializer
+from .serializers import UserSerializer, FavoritesSerializer
 from rest_framework.status import (
+    HTTP_200_OK,
     HTTP_201_CREATED,
     HTTP_400_BAD_REQUEST,
     HTTP_401_UNAUTHORIZED,
@@ -32,7 +34,6 @@ class Signup(APIView):
         return JsonResponse(
             {"message": serializer.errors}, status=HTTP_400_BAD_REQUEST
         )
-
 
 class Login(APIView):
     def post(self, request):
@@ -64,3 +65,34 @@ class Logout(APIView):
     def post(self, request):
         request.user.auth_token.delete()
         return JsonResponse({"message":"logout successful."},status=HTTP_204_NO_CONTENT)
+
+class Favorites(APIView):
+    def get(self, request):
+        favorites = FavoritesSerializer(Favorites.objects.all(), many=True)
+        return Response(favorites.data, status=HTTP_200_OK)
+
+class AFavorite(APIView):
+    def get(self, request):
+         favorite = FavoritesSerializer(Favorites.objects.get(user_id=user_id, passage_id=passage_id))
+         return Response(favorite.data, status=HTTP_200_OK)
+     
+    def post(self, request, passage):
+        pass
+    
+    def delete(self, request, word):
+        pass
+
+class Passages(APIView):
+    pass
+
+class APassage(APIView):
+    pass
+
+class Journal(APIView):
+    pass
+
+class Posts(APIView):
+    pass
+
+class APost(APIView):
+    pass
