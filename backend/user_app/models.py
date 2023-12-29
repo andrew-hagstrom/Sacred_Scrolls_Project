@@ -20,15 +20,15 @@ class User(AbstractUser):
 
 class Passages(models.Model):
     book = models.CharField(max_length=100, default=None)
-    reference = models.CharField(max_length=100, default=None, unique=True)
+    reference = models.CharField(max_length=100, default=None)
     text = models.CharField(max_length=100, default=None)
 
 class Favorites(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_favorite')
-    passage_id = models.OneToOneField(Passages, on_delete=models.CASCADE, related_name='user_passage')
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_id')
+    passage_id = models.OneToOneField(Passages, on_delete=models.CASCADE, related_name='passage_id')
 
 class Journal(models.Model):
-    text = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_journal')
+    text = models.CharField(max_length=100, default=None)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='journal_user_id')
 
 class Posts(models.Model):
