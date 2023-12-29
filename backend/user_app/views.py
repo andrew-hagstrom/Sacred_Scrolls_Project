@@ -65,6 +65,7 @@ class Logout(APIView):
     def post(self, request):
         request.user.auth_token.delete()
         return JsonResponse({"message":"logout successful."},status=HTTP_204_NO_CONTENT)
+    
 
 class Favorites(APIView):
     def get(self, request):
@@ -72,8 +73,8 @@ class Favorites(APIView):
         return Response(favorites.data, status=HTTP_200_OK)
 
 class AFavorite(APIView):
-    def get(self, request):
-         favorite = FavoritesSerializer(Favorites.objects.get(user_id=user_id, passage_id=passage_id))
+    def get(self, request, passage_id):
+         favorite = FavoritesSerializer(Favorites.objects.get(user_id=request.user, passage_id=passage_id))
          return Response(favorite.data, status=HTTP_200_OK)
      
     def post(self, request, passage):

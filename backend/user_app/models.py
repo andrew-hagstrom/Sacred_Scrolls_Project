@@ -19,8 +19,9 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
 class Passages(models.Model):
-    book = models.CharField(max_length=100, default=None)
+    language=models.CharField(max_length=100, default=None)
     reference = models.CharField(max_length=100, default=None)
+    book = models.CharField(max_length=100, default=None)
     text = models.CharField(max_length=100, default=None)
 
 class Favorites(models.Model):

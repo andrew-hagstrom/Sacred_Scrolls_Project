@@ -19,7 +19,7 @@ class FavoritesSerializer(serializers.ModelSerializer):
 class PassagesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Passages
-        fields = ['book','reference', 'text']
+        fields = ['language','reference', 'book', 'text']
 
 class JournalSerializer(serializers.ModelSerializer):
     class Meta:
