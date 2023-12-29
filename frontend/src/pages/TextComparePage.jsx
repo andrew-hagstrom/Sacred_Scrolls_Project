@@ -28,11 +28,19 @@ function TextComparePage() {
     const fetchBibleSearchResults = async() => {
         const results = await BibleKeywordSearch(searchTerm);
         if (results.length > 0) {
-            setFirstBibleResult(results[0])
-            console.log(results)
-            setAdditionalBibleReferences(results.slice(1));
+            setFirstBibleResult({
+                text: results[0].text,
+                reference: results[0].reference
+            });
+            setAdditionalBibleReferences(results.slice(1).map(verse => ({
+                text: verse.text,
+                reference: verse.reference
+            })));
+        } else {
+            setFirstBibleResult(null);
+            setAdditionalBibleReferences([]);
         }
-    }
+    };
 
     const fetchGitaSearchResults = async() => {
         const results = await GitaKeywordSearch(searchTerm);
@@ -56,11 +64,22 @@ function TextComparePage() {
         }
     };
 
-    const fetchQuranSearchResults = async() => {
-        const results = await QuranKeywordSearch(searchTerm);
-        if (results.length > 0) {
-            setFirstQuranResult(results[0]); // Set the first result
-            setAdditionalQuranReferences(results.slice(1)); // Set additional references
+    const fetchQuranSearchResults = async () => {
+        const response = await QuranKeywordSearch(searchTerm);
+        const matches = response.matches; 
+    
+        if (matches && matches.length > 0) {
+            const firstResult = {
+                text: matches[0].text,
+                reference: `Surah ${matches[0].surah.englishName} (${matches[0].surah.number}): Verse ${matches[0].numberInSurah}`
+            };
+            setFirstQuranResult(firstResult);
+    
+            const additionalResults = matches.slice(1).map(match => ({
+                text: match.text,
+                reference: `Surah ${match.surah.englishName} (${match.surah.number}): Verse ${match.numberInSurah}`
+            }));
+            setAdditionalQuranReferences(additionalResults);
         } else {
             setFirstQuranResult(null);
             setAdditionalQuranReferences([]);
@@ -69,7 +88,7 @@ function TextComparePage() {
     
     const handleSearch = () => {
     if (searchTerm) {
-        // fetchBibleSearchResults()
+        fetchBibleSearchResults()
         // fetchGitaSearchResults()
         fetchQuranSearchResults()
 
@@ -97,31 +116,28 @@ function TextComparePage() {
                         </InputGroup>
                     </Col>
                 </Row>
-                {/* {firstBibleResult && ( */}
+                {firstBibleResult && (
                 <Row className="mb-3"> {/* Add margin-bottom class */}
                     <Col md={12}>
                         <PassageCard 
-                            // sourceText={firstBibleResult.text} 
-                            sourceText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae voluptatum dolorum esse doloribus. Officia, dignissimos totam hic ut possimus, vel repellendus tenetur quidem expedita sint omnis asperiores maxime quae quasi!"
-                            // sourceReference={`${firstBibleResult.book} ${firstBibleResult.chapter}`}
-                            sourceReference="Genesis 1:1"
-                            // additionalReferences={additionalBibleReferences}
-                            // additionalReferences={['Gen 1:2','Gen 2:3','Gen 3:5','Gen 4:6','Gen 5:7']}
+                            sourceText={firstBibleResult.text} 
+                            // sourceText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae voluptatum dolorum esse doloribus. Officia, dignissimos totam hic ut possimus, vel repellendus tenetur quidem expedita sint omnis asperiores maxime quae quasi!"
+                            sourceReference={firstBibleResult.reference}
+                            
+                            additionalReferences={additionalBibleReferences}
+                        
                         />
                     </Col>
                 </Row>
                 
-                {/* )} */}
+                )}
                 <Row>
                     <Col md={12}>
                         {firstQuranResult && (
                             <PassageCard 
-                                sourceText={firstQuranResult.text} // Adjust according to your result object
-                                sourceReference={`Quran ${firstQuranResult.surah}:${firstQuranResult.ayah}`} // Example format
-                                additionalReferences={additionalQuranReferences.map(ref => ({
-                                    text: ref.text, // Adjust according to your result object
-                                    reference: `Quran ${ref.surah}:${ref.ayah}` // Example format
-                                }))}
+                                sourceText={firstQuranResult.text} 
+                                sourceReference={firstQuranResult.reference}
+                                additionalReferences={additionalQuranReferences}
                             />
                         )}
                     </Col>
