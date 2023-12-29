@@ -20,9 +20,10 @@ class User(AbstractUser):
 
 class Passages(models.Model):
     language=models.CharField(max_length=100, default=None)
-    reference = models.CharField(max_length=100, default=None)
-    book = models.CharField(max_length=100, default=None)
-    text = models.CharField(max_length=100, default=None)
+    book = models.IntegerField(default=None)
+    chapter = models.IntegerField(default=None)
+    verse = models.CharField(default=None)
+    text = models.TextField(default=None)
 
 class Favorites(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_id')
