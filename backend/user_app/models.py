@@ -31,7 +31,7 @@ class Journal(models.Model):
     text = models.CharField(max_length=100, default=None)
 
 class JournalEntry(models.Model):
-    journal_id = models.ForeignKey(Journal, on_delete=models.CASCADE, related_name='journal_user_id')
+    journal_id = models.ForeignKey(Journal, on_delete=models.CASCADE, related_name='journal_id')
     text = models.CharField(max_length=100, default=None)
 
 

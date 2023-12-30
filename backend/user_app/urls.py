@@ -9,5 +9,5 @@ urlpatterns = [
     path("favorites/", FavoritesView.as_view(), name="favorites"),
     path("favorite/<str:book>/<int:chapter>/<int:verse>", AFavoriteView.as_view(), name='favorite'),
     path("journal/", JournalView.as_view(), name="journal"),
-    path("journalentry/<int:>/", JournalView.as_view(), name="journal_entry"),
+    path("journal/<int:id>", JournalView.as_view(), name="journal_entry"),
 ]

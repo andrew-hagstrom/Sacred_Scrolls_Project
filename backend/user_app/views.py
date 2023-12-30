@@ -100,9 +100,9 @@ class JournalView(APIView):
         return Response(favorite.data, status=status.HTTP_200_OK)
 
 class JournalEntryView(APIView):
-   def get(self, request):
+   def get(self, request, id):
         favorite = FavoritesSerializer(
-            Favorites.objects.get(user_id=request.user )
+            Favorites.objects.get(user_id=request.user, id=id)
         )
         return Response(favorite.data, status=status.HTTP_200_OK)
 
