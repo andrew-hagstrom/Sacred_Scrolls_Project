@@ -9,7 +9,7 @@ from sacred_scrolls_proj.settings import env
 from user_app.serializers import PassagesSerializer, Passages
 
 
-class EngBGChapter(APIView):
+class EngBGChapterView(APIView):
     def get_chapter_data(self, api_url, api_key):
         headers = {
             'X-RapidAPI-Key': api_key,
@@ -50,9 +50,8 @@ class EngBGChapter(APIView):
                             
         else:
             return Response("Failed to retrieve API data.")
- 
 
-class EngBGVerse(APIView):
+class EngBGVerseView(APIView):
     def get_verse_data(self, api_url, api_key):
         headers = {
             'X-RapidAPI-Key': api_key,
@@ -84,7 +83,7 @@ class EngBGVerse(APIView):
         print(verse_data['translations'][0]['description'])
         return Response(verse_data['translations'][0]['description'])
 
-class SanBGChapter(APIView):
+class SanBGChapterView(APIView):
     def get_chapter_data(self, api_url, api_key):
         headers = {
             'X-RapidAPI-Key': api_key,
@@ -122,7 +121,7 @@ class SanBGChapter(APIView):
 
         return Response(result)
 
-class SanBGVerse(APIView):
+class SanBGVerseView(APIView):
     def get_verse_data(self, api_url, api_key):
         headers = {
             'X-RapidAPI-Key': api_key,
@@ -153,7 +152,7 @@ class SanBGVerse(APIView):
 
         return Response(verse_data['text'])
     
-class BGKeywordSearch(APIView):
+class BGKeywordSearchView(APIView):
     def get(self, request, keyword):
         if keyword:
             passages = Passages.objects.filter(
