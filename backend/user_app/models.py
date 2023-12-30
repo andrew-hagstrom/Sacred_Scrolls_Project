@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import EmailValidator
-# Create your models here.
+
 class User(AbstractUser):
     email = models.EmailField(
         verbose_name="email address",
@@ -27,7 +27,11 @@ class Passages(models.Model):
 
 class Favorites(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_id')
-    passage_id = models.OneToOneField(Passages, on_delete=models.CASCADE, related_name='passage_id')
+    language=models.CharField(max_length=100, default='English')
+    book = models.CharField(default=None)
+    chapter = models.IntegerField(default=None)
+    verse = models.CharField(default=None)
+    text = models.TextField(default=None)
 
 class Journal(models.Model):
     text = models.CharField(max_length=100, default=None)

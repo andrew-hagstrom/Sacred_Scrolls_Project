@@ -212,7 +212,7 @@ class BibleSearch(APIView):
             return None
 
     def get(self, request, keyword):
-        api_url = f"https://api.scripture.api.bible/v1/bibles/bba9f40183526463-01/search?query={keyword}&limit=100&sort=relevance"
+        api_url = f"https://api.scripture.api.bible/v1/bibles/bba9f40183526463-01/search?query={keyword}&sort=canonical"
         api_key = env.get('BIBLE_API_KEY')
         search_data = self.get_search_data(api_url, api_key)
         print(search_data)
