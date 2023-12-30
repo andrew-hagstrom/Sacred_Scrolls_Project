@@ -67,11 +67,6 @@ class LogoutView(APIView):
     def post(self, request):
         request.user.auth_token.delete()
         return JsonResponse({"message":"logout successful."},status=HTTP_204_NO_CONTENT)
-    
-class Favorites(APIView):
-        return JsonResponse(
-            {"message": "logout successful."}, status=status.HTTP_204_NO_CONTENT
-        )
 
 
 class FavoritesView(APIView):
@@ -93,9 +88,6 @@ class AFavoriteView(APIView):
     def delete(self, request, word):
         pass
 
-<<<<<<< HEAD
-class Journal(APIView):
-=======
 
 class PassagesView(APIView):
     pass
@@ -106,7 +98,6 @@ class APassageView(APIView):
 
 
 class JournalView(APIView):
->>>>>>> new-back-end
     pass
 
 
