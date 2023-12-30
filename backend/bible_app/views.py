@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from sacred_scrolls_proj.settings import env 
 
 
-class EngBibChapter(APIView):
+class EngBibChapterView(APIView):
     def get_chapter_data(self, api_url, api_key):
         headers = {
             'api-key': api_key,
@@ -17,6 +17,7 @@ class EngBibChapter(APIView):
             print(f"\n\n\n {response} \n\n\n")
             response.raise_for_status()  
             data = response.json()  
+            
             return data
         except requests.exceptions.RequestException as e:
            
@@ -37,7 +38,7 @@ class EngBibChapter(APIView):
 
         return Response(chapter_data['data']['content'])
 
-class EngBibVerse(APIView):
+class EngBibVerseView(APIView):
     def get_verse_data(self, api_url, api_key):
         headers = {
             'api-key': api_key,
@@ -68,8 +69,7 @@ class EngBibVerse(APIView):
 
         return Response(verse_data['data']['content'])
         
-
-class GrkBibChapter(APIView):
+class GrkBibChapterView(APIView):
     def get_chapter_data(self, api_url, api_key):
         headers = {
             'api-key': api_key,
@@ -100,9 +100,7 @@ class GrkBibChapter(APIView):
 
         return Response(chapter_data['data']['content'])
     
-
-
-class GrkBibVerse(APIView):
+class GrkBibVerseView(APIView):
     def get_verse_data(self, api_url, api_key):
         headers = {
             'api-key': api_key,
@@ -133,7 +131,7 @@ class GrkBibVerse(APIView):
         return Response(verse_data['data']['content'])
     
 
-class HebBibChapter(APIView):
+class HebBibChapterView(APIView):
         def get_chapter_data(self, api_url, api_key):
             headers = {
                 'api-key': api_key,
@@ -165,7 +163,7 @@ class HebBibChapter(APIView):
             return Response(chapter_data['data']['content'])
     
 
-class HebBibVerse(APIView):
+class HebBibVerseView(APIView):
     def get_verse_data(self, api_url, api_key):
         headers = {
             'api-key': api_key,
@@ -195,7 +193,7 @@ class HebBibVerse(APIView):
 
         return Response(verse_data['data']['content'])
 
-class BibleSearch(APIView):
+class BibleSearchView(APIView):
     def get_search_data(self, api_url, api_key):
         headers = {
             'api-key': api_key,

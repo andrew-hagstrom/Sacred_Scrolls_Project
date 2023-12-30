@@ -29,4 +29,5 @@ class JournalSerializer(serializers.ModelSerializer):
 class PostsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Posts
-        fields = ['text','user_id']
+        fields = ['text','user_id', 'id']
+        read_only_fields = ['id']
