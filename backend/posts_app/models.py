@@ -1,4 +1,5 @@
 from django.db import models
+from user_app.models import User
 
 class Posts(models.Model):
     text = models.CharField(max_length=100, default=None, null=False, blank=False)
