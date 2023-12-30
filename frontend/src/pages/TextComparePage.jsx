@@ -90,7 +90,7 @@ function TextComparePage() {
     const handleSearch = () => {
     if (searchTerm) {
         fetchBibleSearchResults()
-        // fetchGitaSearchResults()
+        fetchGitaSearchResults()
         fetchQuranSearchResults()
 
     }
@@ -122,7 +122,7 @@ function TextComparePage() {
                     <Col md={12}>
                         <PassageCard 
                             sourceText={firstBibleResult.text} 
-                            // sourceText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae voluptatum dolorum esse doloribus. Officia, dignissimos totam hic ut possimus, vel repellendus tenetur quidem expedita sint omnis asperiores maxime quae quasi!"
+                        
                             sourceReference={firstBibleResult.reference}
                             
                             additionalReferences={additionalBibleReferences}
@@ -145,15 +145,14 @@ function TextComparePage() {
                 </Row>
                 <Row>
                     <Col md={12}>
-                        {/* {firstGitaResult && ( */}
+                        {firstGitaResult && ( 
                             <PassageCard 
-                                sourceText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae voluptatum dolorum esse doloribus. Officia, dignissimos totam hic ut possimus, vel repellendus tenetur quidem expedita sint omnis asperiores maxime quae quasi!"
-                                sourceReference="Genesis 1:1"
-                                // sourceText={firstGitaResult.text} 
-                                // sourceReference={firstGitaResult.reference} 
-                                // additionalReferences={additionalGitaReferences}
+                               
+                                sourceText={firstGitaResult.text} 
+                                sourceReference={firstGitaResult.reference} 
+                                additionalReferences={additionalGitaReferences}
                             />
-                        {/* )} */}
+                        )} 
                     </Col>
                 </Row>
             </Container>
