@@ -2,6 +2,8 @@ import json
 
 
 def process_gita_verses(json_data):
+    """
+    This is a script for taking the wonderful work completed by Kashish Khullar here https://github.com/kashishkhullar/gita_json/blob/master/dataset_english.json and utilizing it in our sacred scrolls app"""
     processed_verses = []
 
     for chapter_number, chapter in json_data["verses"].items():
@@ -26,10 +28,30 @@ def process_gita_verses(json_data):
             }
             processed_verses.append(sanskrit_entry)
 
+            # Entry for Sanskrit Learning (word meaning)
+
+            sanskrit_learning_entry = {
+                "language": "Sanskrit_Learning",
+                "book": "Bhagavad Gita",
+                "chapter": int(chapter_number),
+                "verse": verse_number,  # Keeping verse as string
+                "text": verse_data["word_meanings"]
+            }
+            processed_verses.append(sanskrit_learning_entry)
+
+            sanskrit_transliteration_entry = {
+                "language": "Sanskrit_Learning",
+                "book": "Bhagavad Gita",
+                "chapter": int(chapter_number),
+                "verse": verse_number,  # Keeping verse as string
+                "text": verse_data["transliteration"]
+
+            }
+
     return processed_verses
 
 # Load the JSON file
-with open("<json file>", 'r') as file:
+with open("<gita source>", 'r') as file:
     gita_json = json.load(file)
 
 # Process the data
