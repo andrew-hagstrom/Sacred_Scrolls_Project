@@ -36,7 +36,7 @@ export const NavBar = ({ user, setUser }) => {
                 />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Collapse id="basic-navbar-nav" variant='green'>
                     <Nav style={{ display: 'flex', justifyContent: 'center', width: '100%' }} className="me-auto">
                         <NavLink as={Link} to="/" className="mx-2">Home</NavLink>
                         
