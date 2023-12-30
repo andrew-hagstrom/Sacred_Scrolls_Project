@@ -1,0 +1,1 @@
+path("passages/<int:passage_id>/", BGKeywordSearchView.as_view(), name="passages"),

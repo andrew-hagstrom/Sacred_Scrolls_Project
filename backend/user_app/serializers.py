@@ -21,14 +21,5 @@ class JournalSerializer(serializers.ModelSerializer):
         model = Journal
         fields = ['text', 'user_id']
 
-class PostsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Posts
-        fields = ['text','user_id']
 
-class PassagesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Passages
-        fields = '__all__'
-        fields = ['text','user_id', 'id']
-        read_only_fields = ['id']
+
