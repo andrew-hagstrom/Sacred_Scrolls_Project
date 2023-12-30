@@ -50,7 +50,7 @@ function TextComparePage() {
             // Update the state with the first result
             const firstResultFormatted = {
                 text: results[0].text,
-                reference: `Chapter ${results[0].chapter} Verse ${result.verse}`
+                reference: `Chapter ${results[0].chapter} Verse ${results[0].verse}`
             };
             setFirstGitaResult(firstResultFormatted);
 
@@ -121,6 +121,8 @@ function TextComparePage() {
                 <Row className="mb-3"> {/* Add margin-bottom class */}
                     <Col md={12}>
                         <PassageCard 
+                            cardTitle = "Bible"
+
                             sourceText={firstBibleResult.text} 
                         
                             sourceReference={firstBibleResult.reference}
@@ -136,6 +138,7 @@ function TextComparePage() {
                     <Col md={12}>
                         {firstQuranResult && (
                             <PassageCard 
+                                cardTitle = "Quran"
                                 sourceText={firstQuranResult.text} 
                                 sourceReference={firstQuranResult.reference}
                                 additionalReferences={additionalQuranReferences}
@@ -147,7 +150,7 @@ function TextComparePage() {
                     <Col md={12}>
                         {firstGitaResult && ( 
                             <PassageCard 
-                               
+                                cardTitle = "Bhagavad Gita"
                                 sourceText={firstGitaResult.text} 
                                 sourceReference={firstGitaResult.reference} 
                                 additionalReferences={additionalGitaReferences}

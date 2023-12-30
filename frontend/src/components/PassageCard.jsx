@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-export const PassageCard =({ sourceText, sourceReference, additionalReferences }) => {
+export const PassageCard =({ sourceText, sourceReference, additionalReferences, cardTitle }) => {
     const [showCard, setShowCard] = useState(true);
     const [showModal, setShowModal] = useState(false);
     const [currentText, setCurrentText] = useState(sourceText || 
@@ -32,7 +32,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences }
             {showCard && (
                 <Card>
                     <Card.Header>
-                        Source Text 
+                        {cardTitle}
                         <Button variant="outline-secondary" onClick={() => setShowCard(false)}>Hide</Button>
                     </Card.Header>
 
