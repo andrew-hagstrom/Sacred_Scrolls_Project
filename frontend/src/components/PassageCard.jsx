@@ -4,9 +4,10 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Collapse from 'react-bootstrap/Collapse'
 
-export const PassageCard =({ sourceText, sourceReference, additionalReferences }) => {
-    const [showCard, setShowCard] = useState(true);
+export const PassageCard =({ sourceText, sourceReference, additionalReferences, cardTitle }) => {
+    const [isCollapsed, setIsCollapsed] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [currentText, setCurrentText] = useState(sourceText || 
         'Text not available');
@@ -27,31 +28,40 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences }
         setShowModal(false);
     };
 
+    const toggleCollapse = () => setIsCollapsed(!isCollapsed);
+
     return (
         <>
-            {showCard && (
-                <Card>
-                    <Card.Header>
-                        Source Text 
-                        <Button variant="outline-secondary" onClick={() => setShowCard(false)}>Hide</Button>
-                    </Card.Header>
-
-                    <Card.Body>
-                        <Card.Title style={{ cursor: 'pointer' }} onClick={() => additionalReferences && additionalReferences.length > 0 && setShowModal(true)}>
-                            {currentReference}
-                        </Card.Title>
-                        
-                        <Card.Text>
-                            {currentText}
-                        </Card.Text>
+            
+            <Card>
+                <Card.Header style={{ textAlign: 'center' }}>
+                    <strong>{cardTitle}</strong>
+                    <Button 
+                        variant="outline-secondary" 
+                        onClick={toggleCollapse} 
+                        style={{ position: 'absolute', top: '10px', right: '10px' }}>
+                        {isCollapsed ? 'Expand' : 'Collapse'}
+                    </Button>
+                </Card.Header>
+                <Collapse in={!isCollapsed}>
+                    <div>
+                        <Card.Body>
+                            <Card.Title style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => additionalReferences && additionalReferences.length > 0}>
+                                {sourceReference}
+                            </Card.Title>
+                            <Card.Text>
+                                {sourceText}
+                            </Card.Text>
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Button variant="primary">Details</Button>
                             <Button variant="secondary">Add to Favorites</Button>
                         </div>
                     </Card.Body>
-                </Card>
-            )}
+                    </div>
+                </Collapse>
+            </Card>
+            
 
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
