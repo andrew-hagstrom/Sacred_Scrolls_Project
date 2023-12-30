@@ -15,6 +15,7 @@ import InputGroup from 'react-bootstrap/Container';
 
 
 
+
 function TextComparePage() {
     const [searchTerm, setSearchTerm] = useState('');
     const [firstBibleResult, setFirstBibleResult] = useState(null);
@@ -48,17 +49,18 @@ function TextComparePage() {
         // Check if any results were found
         if (results.length > 0) {
             // Update the state with the first result
-            setFirstGitaResult(results[0]);
-    
-            // If there are additional results, update the state for additional references
-            if (results.length > 1) {
-                setAdditionalGitaReferences(results.slice(1));
-            } else {
-                // If there are no additional results, clear the existing additional references
-                setAdditionalGitaReferences([]);
-            }
+            const firstResultFormatted = {
+                text: results[0].text,
+                reference: `Chapter ${results[0].chapter} Verse ${results[0].verse}`
+            };
+            setFirstGitaResult(firstResultFormatted);
+
+            const additionalReferencesFormatted = results.slice(1).map(result => ({
+                text: result.text,
+                reference: `Chapter ${result.chapter} Verse ${result.verse}`
+            }));
+            setAdditionalGitaReferences(additionalReferencesFormatted);
         } else {
-            // If no results were found, clear both states
             setFirstGitaResult(null);
             setAdditionalGitaReferences([]);
         }
@@ -89,7 +91,7 @@ function TextComparePage() {
     const handleSearch = () => {
     if (searchTerm) {
         fetchBibleSearchResults()
-        // fetchGitaSearchResults()
+        fetchGitaSearchResults()
         fetchQuranSearchResults()
 
     }
@@ -120,8 +122,10 @@ function TextComparePage() {
                 <Row className="mb-3"> {/* Add margin-bottom class */}
                     <Col md={12}>
                         <PassageCard 
+                            cardTitle = "Bible"
+
                             sourceText={firstBibleResult.text} 
-                            // sourceText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae voluptatum dolorum esse doloribus. Officia, dignissimos totam hic ut possimus, vel repellendus tenetur quidem expedita sint omnis asperiores maxime quae quasi!"
+                        
                             sourceReference={firstBibleResult.reference}
                             
                             additionalReferences={additionalBibleReferences}
@@ -135,6 +139,7 @@ function TextComparePage() {
                     <Col md={12}>
                         {firstQuranResult && (
                             <PassageCard 
+                                cardTitle = "Quran"
                                 sourceText={firstQuranResult.text} 
                                 sourceReference={firstQuranResult.reference}
                                 additionalReferences={additionalQuranReferences}
@@ -144,15 +149,14 @@ function TextComparePage() {
                 </Row>
                 <Row>
                     <Col md={12}>
-                        {/* {firstGitaResult && ( */}
+                        {firstGitaResult && ( 
                             <PassageCard 
-                                sourceText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae voluptatum dolorum esse doloribus. Officia, dignissimos totam hic ut possimus, vel repellendus tenetur quidem expedita sint omnis asperiores maxime quae quasi!"
-                                sourceReference="Genesis 1:1"
-                                // sourceText={firstGitaResult.text} 
-                                // sourceReference={firstGitaResult.reference} 
-                                // additionalReferences={additionalGitaReferences}
+                                cardTitle = "Bhagavad Gita"
+                                sourceText={firstGitaResult.text} 
+                                sourceReference={firstGitaResult.reference} 
+                                additionalReferences={additionalGitaReferences}
                             />
-                        {/* )} */}
+                        )} 
                     </Col>
                 </Row>
             </Container>
