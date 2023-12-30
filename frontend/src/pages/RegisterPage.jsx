@@ -26,7 +26,7 @@ function RegisterPage() {
             })
         console.log(response)
         if (response.status === 201) {
-            setUser(response.data.username)
+            setUser(response.username)
             localStorage.setItem('token', response.data.token);
             api.defaults.headers.common[
                 "Authorization"
