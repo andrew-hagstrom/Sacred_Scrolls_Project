@@ -10,9 +10,15 @@ from rest_framework.response import Response
 from .models import User, Posts, Favorites
 from .serializers import UserSerializer, FavoritesSerializer, PostsSerializer
 from rest_framework import status
+from rest_framework.status import (
+    HTTP_200_OK,
+    HTTP_201_CREATED,
+    HTTP_400_BAD_REQUEST,
+    HTTP_204_NO_CONTENT,
+    HTTP_404_NOT_FOUND
+)
 
 
-# Create your views here.
 class SignupView(APIView):
     def post(self, request):
         data = request.data
@@ -74,7 +80,6 @@ class FavoritesView(APIView):
         favorites = FavoritesSerializer(Favorites.objects.all(), many=True)
         return Response(favorites.data, status=status.HTTP_200_OK)
 
-
 class AFavoriteView(APIView):
     def get(self, request, passage_id):
         favorite = FavoritesSerializer(
@@ -82,19 +87,15 @@ class AFavoriteView(APIView):
         )
         return Response(favorite.data, status=status.HTTP_200_OK)
 
-    def post(self, request, passage):
-        pass
+    def post(self, request, book, chapter, verse):
+        added_favorite=FavoritesSerializer(Favorites(user_id=request.user, book=book, chapter=chapter, verse=verse))
+        added_favorite.save()
+        return Response(f'{added_favorite} has been added to your favorites', status=status.HTTP_201_CREATED)
 
-    def delete(self, request, word):
-        pass
-
-
-class PassagesView(APIView):
-    pass
-
-
-class APassageView(APIView):
-    pass
+    def delete(self, request, book, chapter, verse):
+        del_favorite=Favorites.objects.get(book=book, chapter=chapter, verse=verse)
+        del_favorite.delete()
+        return Response(f'{del_favorite} has been deleted from your favorites', status=status.HTTP_204_NO_CONTENT)
 
 
 class JournalView(APIView):

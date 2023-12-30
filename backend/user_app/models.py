@@ -30,7 +30,7 @@ class Favorites(models.Model):
     language=models.CharField(max_length=100, default='English')
     book = models.CharField(default=None)
     chapter = models.IntegerField(default=None)
-    verse = models.CharField(default=None)
+    verse = models.IntegerField(default=None)
     text = models.TextField(default=None)
 
 class Journal(models.Model):

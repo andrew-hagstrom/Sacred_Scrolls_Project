@@ -14,7 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
 class FavoritesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Favorites
-        fields = ['user_id','language', 'chapter', 'book', 'verse', 'text']
+        fields = ['chapter', 'book', 'verse', 'text']
 
 class JournalSerializer(serializers.ModelSerializer):
     class Meta:
