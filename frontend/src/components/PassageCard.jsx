@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState, useEffect } from 'react';
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -13,6 +13,11 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences }
     const [currentReference, setCurrentReference] = useState(
         sourceReference || "Reference not available"
     )
+
+    useEffect(() => {
+        setCurrentText(sourceText || 'Text not available');
+        setCurrentReference(sourceReference || "Reference not available");
+    }, [sourceText, sourceReference]); 
 
     const handleReferenceClick = (newText, newReference) => {
         setCurrentText(newText || 

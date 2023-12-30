@@ -1,9 +1,12 @@
 import requests
 from django.shortcuts import render
 from django.db import models
+from django.db.models import Q
+from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from sacred_scrolls_proj.settings import env 
+from user_app.serializers import PassagesSerializer, Passages
 
 
 class EngBGChapter(APIView):
@@ -149,3 +152,18 @@ class SanBGVerse(APIView):
             print("Failed to retrieve API data.")
 
         return Response(verse_data['text'])
+    
+class BGKeywordSearch(APIView):
+    def get(self, request, keyword):
+        if keyword:
+            passages = Passages.objects.filter(
+                Q(book="Bhagavad Gita") &
+                Q(language="English") &
+                Q(text__icontains=keyword)
+            )
+
+            serializer = PassagesSerializer(passages, many=True)
+
+            return JsonResponse({'results': serializer.data}, safe=False)
+        else:
+            return JsonResponse({'error': 'No keyword provided'}, status=400)
