@@ -15,6 +15,7 @@ import InputGroup from 'react-bootstrap/Container';
 
 
 
+
 function TextComparePage() {
     const [searchTerm, setSearchTerm] = useState('');
     const [firstBibleResult, setFirstBibleResult] = useState(null);
