@@ -113,7 +113,7 @@ class UserPosts(APIView):
         data = request.data
         data["user_id"] = user_id
         post_serializer = PostsSerializer(data=data)
-        
+
         if not post_serializer.is_valid():
             return JsonResponse({"error": post_serializer.errors})
         try:
@@ -131,8 +131,8 @@ class APost(APIView):
             post = PostsModel.objects.get(id=post_id, user_id_id=user_id)
         except Exception as e:
             print(e)
-            return JsonResponse({"error":"error occured fetching post from user"})
-        
+            return JsonResponse({"error": "error occured fetching post from user"})
+
         serialized_post = PostsSerializer(post)
         return JsonResponse({"data": serialized_post.data})
 

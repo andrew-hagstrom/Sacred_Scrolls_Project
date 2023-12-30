@@ -15,5 +15,5 @@ urlpatterns = [
     path("favorites/", Logout.as_view(), name="favorites"),
     path("journal/", Logout.as_view(), name="journal"),
     *post_patterns,
-    path("passages/<int:passage_id>/", Passages.as_view(), name='passages')
+    path("passages/<int:passage_id>/", Passages.as_view(), name="passages"),
 ]
