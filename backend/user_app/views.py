@@ -7,8 +7,8 @@ from rest_framework import status
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import User, Favorites
-from .serializers import UserSerializer, FavoritesSerializer
+from .models import User, Favorites, JournalEntries
+from .serializers import UserSerializer, FavoritesSerializer, JournalEntriesSerializer
 from rest_framework import status
 from rest_framework.status import (
     HTTP_200_OK,
@@ -94,16 +94,20 @@ class AFavoriteView(APIView):
 
 class JournalView(APIView):
    def get(self, request):
-        favorite = FavoritesSerializer(
-            Favorites.objects.get(user_id=request.user)
-        )
-        return Response(favorite.data, status=status.HTTP_200_OK)
+       journal = JournalEntriesSerializer(Journal.objects.get(user_id=request.user))
+       return Response(journal.data, status=status.HTTP_200_OK)
 
 class JournalEntryView(APIView):
-   def get(self, request, id):
-        favorite = FavoritesSerializer(
-            Favorites.objects.get(user_id=request.user, id=id)
-        )
-        return Response(favorite.data, status=status.HTTP_200_OK)
+    def get(self, request, id):
+        journal_entry = JournalEntriesSerializer(JournalEntries.objects.get(user_id=request.user, id=id))
+        return Response(journal_entry.data, status=status.HTTP_200_OK)
+    
+    def put(self, request, id):
+        pass
+   
+    def post(self, request):
+        added_entry = JournalEntriesSerializer(JournalEntries())
 
+    def delete(self, request, id):  
+       journal_entry = 
 

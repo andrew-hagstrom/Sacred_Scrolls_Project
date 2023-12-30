@@ -26,13 +26,10 @@ class Favorites(models.Model):
     verse = models.IntegerField(default=None)
     text = models.TextField(default=None)
 
-class Journal(models.Model):
+class JournalEntries(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='journal_user_id')
     text = models.CharField(max_length=100, default=None)
 
-class JournalEntry(models.Model):
-    journal_id = models.ForeignKey(Journal, on_delete=models.CASCADE, related_name='journal_id')
-    text = models.CharField(max_length=100, default=None)
 
 
 
