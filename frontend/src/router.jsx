@@ -10,6 +10,7 @@ import TextComparePage from "./pages/TextComparePage";
 import FavoritesPage from "./pages/FavoritesPage"
 import {NotFoundPage} from './pages/NotFoundPage';
 import LoginPage from "./pages/LoginPage";
+import VerseDetailPage from './pages/VerseDetailsPage'
 
 
 const router = createBrowserRouter([
@@ -24,15 +25,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "register/",
-                element: <RegisterPage/>,
+                element: <RegisterPage />,
             },
             {
                 path: "about/",
-                element: <AboutPage/>,
+                element: <AboutPage />,
             },
             {
                 path: "journal/",
-                element: <JournalPage/>,
+                element: <JournalPage />,
             },
             {
                 path: "favorites/",
@@ -46,8 +47,12 @@ const router = createBrowserRouter([
             },
             {
                 path: 'login/',
-                element: <LoginPage/>
-            }
+                element: <LoginPage />,
+            },
+            {
+                path: 'verse-details/:book/:chapter/:verse/',
+                element: <VerseDetailPage />,
+            },
             
         ],
         errorElement: <NotFoundPage />
