@@ -48,17 +48,18 @@ function TextComparePage() {
         // Check if any results were found
         if (results.length > 0) {
             // Update the state with the first result
-            setFirstGitaResult(results[0]);
-    
-            // If there are additional results, update the state for additional references
-            if (results.length > 1) {
-                setAdditionalGitaReferences(results.slice(1));
-            } else {
-                // If there are no additional results, clear the existing additional references
-                setAdditionalGitaReferences([]);
-            }
+            const firstResultFormatted = {
+                text: results[0].text,
+                reference: `Chapter ${results[0].chapter} Verse ${result.verse}`
+            };
+            setFirstGitaResult(firstResultFormatted);
+
+            const additionalReferencesFormatted = results.slice(1).map(result => ({
+                text: result.text,
+                reference: `Chapter ${result.chapter} Verse ${result.verse}`
+            }));
+            setAdditionalGitaReferences(additionalReferencesFormatted);
         } else {
-            // If no results were found, clear both states
             setFirstGitaResult(null);
             setAdditionalGitaReferences([]);
         }
