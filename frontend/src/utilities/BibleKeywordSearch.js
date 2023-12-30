@@ -1,29 +1,13 @@
 import { api } from './ApiUtilities'
-import { bibleBooksChapters } from './BibleBooks'
- 
+
+
 export const BibleKeywordSearch = async (keyword) => {
-    let results = [];
-
-    for (const [book, chaptersCount] of Object.entries(bibleBooksChapters)) {
-        for (let chapter = 1; chapter <= chaptersCount; chapter++) {
-            const chapterData = await fetchChapterData(book, chapter);
-            if (chapterData.includes(keyword)) {
-                results.push ({
-                    book: book,
-                    chapter: chapter,
-                    text: chapterData
-
-                });
-            }
-        }
+    try {
+        const response = await api.get(`Bible/${keyword}`);
+        return response.data.verses;
+    } catch (error) {
+        console.error(`Error fetching Bible verses:`, error);
+        return [];
     }
-
-        return results;
-
-    };
-
-    const fetchChapterData = async (book, chapter) => {
-        const response = await api.get(`Bible/eng/${book}/chapter/${chapter}/`)
-        return response.data
-    };
+};
     

@@ -15,7 +15,7 @@ languages = {
 }
 
 
-class QurChapter(APIView):
+class QurChapterView(APIView):
     def get(self, request, QurChapterNumber, lang):
         language = languages.get(lang)
         if language is None:
@@ -45,7 +45,7 @@ class QurChapter(APIView):
         # http://api.alquran.cloud/v1/surah/2/en.asad
 
 
-class QurChapterVerse(APIView):
+class QurChapterVerseView(APIView):
     def get(self, request, QurChapterNumber, QurVerseNumber, lang):
         language = languages.get(lang)
         if language is None:
@@ -76,7 +76,7 @@ class QurChapterVerse(APIView):
             print(f"Error accessing API: {e}")
             return None
 
-class QurKeywordSearch(APIView):
+class QurKeywordSearchView(APIView):
     def get(self, request, lang, keyword):
         language = languages.get(lang)
         if language is None:

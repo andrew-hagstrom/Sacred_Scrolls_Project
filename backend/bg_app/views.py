@@ -1,12 +1,15 @@
 import requests
 from django.shortcuts import render
 from django.db import models
+from django.db.models import Q
+from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from sacred_scrolls_proj.settings import env 
+from user_app.serializers import PassagesSerializer, Passages
 
 
-class EngBGChapter(APIView):
+class EngBGChapterView(APIView):
     def get_chapter_data(self, api_url, api_key):
         headers = {
             'X-RapidAPI-Key': api_key,
@@ -47,9 +50,8 @@ class EngBGChapter(APIView):
                             
         else:
             return Response("Failed to retrieve API data.")
- 
 
-class EngBGVerse(APIView):
+class EngBGVerseView(APIView):
     def get_verse_data(self, api_url, api_key):
         headers = {
             'X-RapidAPI-Key': api_key,
@@ -57,7 +59,7 @@ class EngBGVerse(APIView):
         }
         try:
             response = requests.get(api_url, headers=headers)
-            print(f"\n\n\n {response} \n\n\n")
+            # print(f"\n\n\n {response} \n\n\n")
             response.raise_for_status()  
             data = response.json()  
             return data
@@ -71,17 +73,17 @@ class EngBGVerse(APIView):
         api_key = env.get('BG_API_KEY')
 
         verse_data = self.get_verse_data(api_url, api_key)
-        print(verse_data)
-        if verse_data:
-            print("API Data:")
-            print(verse_data)
-        else:
-            print("Failed to retrieve API data.")
+        # print(verse_data)
+        # if verse_data:
+        #     # print("API Data:")
+        #     # print(verse_data)
+        # else:
+        #     print("Failed to retrieve API data.")
 
-
+        print(verse_data['translations'][0]['description'])
         return Response(verse_data['translations'][0]['description'])
 
-class SanBGChapter(APIView):
+class SanBGChapterView(APIView):
     def get_chapter_data(self, api_url, api_key):
         headers = {
             'X-RapidAPI-Key': api_key,
@@ -119,7 +121,7 @@ class SanBGChapter(APIView):
 
         return Response(result)
 
-class SanBGVerse(APIView):
+class SanBGVerseView(APIView):
     def get_verse_data(self, api_url, api_key):
         headers = {
             'X-RapidAPI-Key': api_key,
@@ -149,3 +151,18 @@ class SanBGVerse(APIView):
             print("Failed to retrieve API data.")
 
         return Response(verse_data['text'])
+    
+class BGKeywordSearchView(APIView):
+    def get(self, request, keyword):
+        if keyword:
+            passages = Passages.objects.filter(
+                Q(book="Bhagavad Gita") &
+                Q(language="English") &
+                Q(text__icontains=keyword)
+            )
+
+            serializer = PassagesSerializer(passages, many=True)
+
+            return JsonResponse({'results': serializer.data}, safe=False)
+        else:
+            return JsonResponse({'error': 'No keyword provided'}, status=400)

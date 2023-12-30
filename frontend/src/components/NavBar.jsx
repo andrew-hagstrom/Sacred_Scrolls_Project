@@ -25,7 +25,7 @@ export const NavBar = ({ user, setUser }) => {
     
     return (
         <Navbar style={{paddingBottom: "2%", padding: "2%"}} expand="lg" id='navbar-comp'>
-            <Container style={{backgroundColor: "rgb(2, 27, 51)"}}>
+            <Container>
                 <Navbar.Brand>
                 <img
                     src={SacredScrollsLogo}
@@ -36,7 +36,7 @@ export const NavBar = ({ user, setUser }) => {
                 />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Collapse id="basic-navbar-nav" variant='green'>
                     <Nav style={{ display: 'flex', justifyContent: 'center', width: '100%' }} className="me-auto">
                         <NavLink as={Link} to="/" className="mx-2">Home</NavLink>
                         
@@ -58,16 +58,16 @@ export const NavBar = ({ user, setUser }) => {
                     </Nav>
 
                 </Navbar.Collapse>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginRight: "2%" }}>
+            <div style={{ display: 'flex', flexDirection:'row', alignItems: 'center', marginRight: "2%" }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}> {/* Row for buttons */}
                         {user && (
-                                <Button onClick={logOut} variant="danger" className="mx-2">
+                                <Button onClick={logOut} variant="none" className="mx-2">
                                         Log Out
                                 </Button>
                         )}
                 </div>
-                <div style={{color: "rgb(182, 170, 100)", marginTop: '0.5rem' }}> {/* Separate container for the welcome message */}
-                        <span>Welcome, {user ? user.username : 'Guest'}</span>
+                <div> {/* Separate container for the welcome message */}
+                        <span>Welcome, {user ? user : 'Guest'}</span>
                 </div>
         </div>
           </Container>
