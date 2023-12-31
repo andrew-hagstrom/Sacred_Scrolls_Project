@@ -7,8 +7,8 @@ from rest_framework import status
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import User, Posts, Favorites
-from .serializers import UserSerializer, FavoritesSerializer, PostsSerializer
+from .models import User, Posts
+from .serializers import PostsSerializer
 from rest_framework import status
 from rest_framework.status import (
     HTTP_200_OK,

@@ -8,8 +8,7 @@ from rest_framework import status
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Passages
-from .serializers import PassagesSerializer
+from .serializers import Passages, PassagesSerializer
 from rest_framework import status
 from rest_framework.status import (
     HTTP_200_OK,
@@ -19,11 +18,11 @@ from rest_framework.status import (
     HTTP_404_NOT_FOUND
 )
 
-class BG_Passage:
-    def get(self, request, id):
+class BG_Passage(APIView):
+    def get(self, request, passage_id):
         call_command('loaddata', 'gita_fixture.json', verbosity=0)
         try:
-            passage = Passages.objects.get(id=id)
+            passage = Passages.objects.get(id=passage_id)
             ser_passage = PassagesSerializer(passage)
             return Response(ser_passage.data, status=status.HTTP_200_OK)
         except Passages.DoesNotExist:
