@@ -103,7 +103,7 @@ class AFavoriteView(APIView):
 
 class JournalView(APIView):
     def get(self, request):
-       journal = JournalEntriesSerializer(JournalEntries.objects.get(user_id=request.user))
+       journal = JournalEntriesSerializer(JournalEntries.objects.filter(user_id=request.user))
        return Response(journal.data, status=status.HTTP_200_OK)
    
     def post(self, request):
@@ -115,17 +115,17 @@ class JournalView(APIView):
             return Response(new_journal_entry.errors, status=HTTP_400_BAD_REQUEST)
    
 class JournalEntryView(APIView):
-    def get(self, request, id):
+    def get(self, request, entry_id):
         try:
-            journal_entry = JournalEntries.objects.get(user=request.user, id=id)
+            journal_entry = JournalEntries.objects.get(user=request.user, id=entry_id)
             serialized_entry = JournalEntriesSerializer(journal_entry)
             return Response(serialized_entry.data, status=status.HTTP_200_OK)
         except JournalEntries.DoesNotExist:
             return Response({"message": "Journal entry not found"}, status=status.HTTP_404_NOT_FOUND)
     
-    def put(self, request, id):
+    def put(self, request, entry_id):
         try:
-            journal_entry = JournalEntries.objects.get(user=request.user, id=id)
+            journal_entry = JournalEntries.objects.get(user=request.user, id=entry_id)
             serializer = JournalEntriesSerializer(journal_entry, data=request.data)
             
             if serializer.is_valid():
@@ -136,9 +136,9 @@ class JournalEntryView(APIView):
         except JournalEntries.DoesNotExist:
             return Response({"message": "Journal entry not found"}, status=status.HTTP_404_NOT_FOUND)
    
-    def delete(self, request, id):
+    def delete(self, request, entry_id):
         try:
-            journal_entry = JournalEntries.objects.get(user=request.user, id=id)
+            journal_entry = JournalEntries.objects.get(user=request.user, id=entry_id)
             journal_entry.delete()
             return Response({"message": "Journal entry deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
         except JournalEntries.DoesNotExist:

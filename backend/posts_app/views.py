@@ -18,6 +18,13 @@ from rest_framework.status import (
     HTTP_404_NOT_FOUND
 )
 
+class AllPostsView(APIView):
+     def get(self, request):
+        posts = Posts.objects.all()
+        serialized_posts = PostsSerializer(posts, many=True)
+        print(serialized_posts)
+        return JsonResponse({"data": serialized_posts.data})
+
 class UserPostsView(APIView):
     def get(self, request, user_id):
         posts = Posts.objects.filter(user_id_id=user_id)
