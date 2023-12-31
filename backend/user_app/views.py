@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from .models import User, Favorites, JournalEntries
 from .serializers import UserSerializer, FavoritesSerializer, JournalEntriesSerializer
 from rest_framework import status
+import requests
 from rest_framework.status import (
     HTTP_200_OK,
     HTTP_201_CREATED,
@@ -71,8 +72,9 @@ class LogoutView(APIView):
         return JsonResponse({"message":"logout successful."},status=HTTP_204_NO_CONTENT)
 
 class FavoritesView(APIView):
+
     def get(self, request):
-        favorites = Favorites.objects.filter(user=request.user)
+        favorites = Favorites.objects.filter(user=request.user.id)
         favorites_serialized = FavoritesSerializer(favorites, many=True)
         return Response(favorites_serialized.data, status=status.HTTP_200_OK)
     
@@ -87,7 +89,7 @@ class FavoritesView(APIView):
 class AFavoriteView(APIView):
     def get(self, request, id):
         try:
-            favorite = Favorites.objects.get(user=request.user, id=id)
+            favorite = Favorites.objects.get(user=request.user.id, id=id)
             favorite_serialized = FavoritesSerializer(favorite)
             return Response(favorite_serialized.data, status=status.HTTP_200_OK)
         except Favorites.DoesNotExist:
@@ -95,7 +97,7 @@ class AFavoriteView(APIView):
 
     def delete(self, request, id):
         try:
-            del_favorite = Favorites.objects.get(user=request.user, id=id)
+            del_favorite = Favorites.objects.get(user=request.user.id, id=id)
             del_favorite.delete()
             return Response({"message": "Favorite deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
         except Favorites.DoesNotExist:
@@ -103,7 +105,7 @@ class AFavoriteView(APIView):
 
 class JournalView(APIView):
     def get(self, request):
-       journal = JournalEntriesSerializer(JournalEntries.objects.filter(user_id=request.user))
+       journal = JournalEntriesSerializer(JournalEntries.objects.filter(user=request.user.id))
        return Response(journal.data, status=status.HTTP_200_OK)
    
     def post(self, request):
@@ -117,7 +119,7 @@ class JournalView(APIView):
 class JournalEntryView(APIView):
     def get(self, request, entry_id):
         try:
-            journal_entry = JournalEntries.objects.get(user=request.user, id=entry_id)
+            journal_entry = JournalEntries.objects.get(user=request.user.id, id=entry_id)
             serialized_entry = JournalEntriesSerializer(journal_entry)
             return Response(serialized_entry.data, status=status.HTTP_200_OK)
         except JournalEntries.DoesNotExist:
@@ -125,7 +127,7 @@ class JournalEntryView(APIView):
     
     def put(self, request, entry_id):
         try:
-            journal_entry = JournalEntries.objects.get(user=request.user, id=entry_id)
+            journal_entry = JournalEntries.objects.get(user=request.user.id, id=entry_id)
             serializer = JournalEntriesSerializer(journal_entry, data=request.data)
             
             if serializer.is_valid():
@@ -138,7 +140,7 @@ class JournalEntryView(APIView):
    
     def delete(self, request, entry_id):
         try:
-            journal_entry = JournalEntries.objects.get(user=request.user, id=entry_id)
+            journal_entry = JournalEntries.objects.get(user=request.user.id, id=entry_id)
             journal_entry.delete()
             return Response({"message": "Journal entry deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
         except JournalEntries.DoesNotExist:
