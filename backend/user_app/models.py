@@ -21,10 +21,9 @@ class User(AbstractUser):
 class Favorites(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
     language=models.CharField(max_length=100, default='English')
-    book = models.CharField(default=None)
-    chapter = models.IntegerField(default=None)
-    verse = models.IntegerField(default=None)
-    text = models.TextField(default=None)
+    source = models.CharField(default=None)
+    reference = models.CharField(default=None)
+    text=models.TextField(default=None)
 
 class JournalEntries(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='journal_user_id')
