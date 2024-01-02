@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, useOutletContext } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -16,6 +16,23 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         sourceReference || "Reference not available"
     )
     const navigate = useNavigate();
+    const {favorites, setFavorites, user} = useOutletContext()
+    const [favText, setFavText] = useState("")
+    const [favSource, setFavSource] = useState("")
+    const [favRef, setFavRef] = useState("")
+
+    const extractBookChapterVerse = (reference) => {
+        const match = reference.match(/(.+) (\d+:\d+)/);
+        if (match) {
+          const book = match[1].toLowerCase().replace(/\s+/g, ''); // Convert to lowercase and remove spaces
+          const [chapter, verse] = match[2].split(':'); // Extract chapter and verse
+          return { book, chapter, verse };
+        }
+        return { book: "N/A", chapter: "N/A", verse: "N/A" }; // Return default values if no match
+      };
+
+      const { book, chapter, verse } = extractBookChapterVerse(currentReference);
+
 
     useEffect(() => {
         setCurrentText(sourceText || 'Text not available');
@@ -30,11 +47,34 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         setShowModal(false);
     };
 
-    // const handleDetailsClick = () => {
-    //     navigate(`/verse-details/${book}/${chapter}/${verse}/`)
-    // }
+    const handleDetailsClick = () => {
+        const { book, chapter, verse } = extractBookChapterVerse(currentReference)
+        // Navigate to the details page with the route parameters
+        navigate(`/text-compare/${book}/${chapter}/${verse}/`);
+    };
 
     const toggleCollapse = () => setIsCollapsed(!isCollapsed);
+
+    const addToFavorites = async() => {
+        let token = localStorage.getItem("token")
+        axios.defaults.headers.common["Authorization"] = `Token ${token}`
+
+        let data = {
+            user : user,
+            language : 'English',
+            source : favSource,
+            reference : favRef,
+            text : favText
+        }
+        let response = await axios.post('http://127.0.0.1:8000/api/v1/user/favorites/', data)
+        console.log(response)
+    }   
+
+    const favDataHandler = () => {
+        setFavRef(currentReference)
+        setFavSource(cardTitle)
+        setFavText(currentText)
+    }
 
     return (
         <>
@@ -51,21 +91,21 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                 </Card.Header>
                 <Collapse in={!isCollapsed}>
                     <div>
-                        <Card.Body>
+                        <Card.Body onMouseEnter={(e) => favDataHandler(e)}>
                             <Card.Title style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => { 
                                 if (additionalReferences && additionalReferences.length > 0) {
                                         setShowModal(true);
                                 }
                                 }}>
-                                {sourceReference}
+                                {currentReference}
                             </Card.Title>
                             <Card.Text>
-                                {sourceText}
+                                {currentText}
                             </Card.Text>
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            {/* <Button variant="primary" onClick={handleDetailsClick}>Details</Button> */}
-                            <Button variant="secondary">Add to Favorites</Button>
+                            <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>Details</Button>
+                            <Button variant="secondary" onClick={(e)=>addToFavorites(e)}>Add to Favorites</Button>
                         </div>
                     </Card.Body>
                     </div>
