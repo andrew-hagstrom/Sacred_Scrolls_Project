@@ -28,13 +28,3 @@ class Favorites(models.Model):
 class JournalEntries(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='journal_user_id')
     text = models.CharField(max_length=100, default=None)
-
-
-
-
-
-
-
-    
-
-
