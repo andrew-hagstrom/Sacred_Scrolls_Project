@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -17,6 +17,8 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     )
     const navigate = useNavigate();
 
+    const { book, chapter, verse } = useParams();
+
     useEffect(() => {
         setCurrentText(sourceText || 'Text not available');
         setCurrentReference(sourceReference || "Reference not available");
@@ -30,9 +32,10 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         setShowModal(false);
     };
 
-    // const handleDetailsClick = () => {
-    //     navigate(`/verse-details/${book}/${chapter}/${verse}/`)
-    // }
+    const handleDetailsClick = () => {
+        // Navigate to the details page with the route parameters
+        navigate(`/text-compare/${book}/${chapter}/${verse}/`);
+    };
 
     const toggleCollapse = () => setIsCollapsed(!isCollapsed);
 
@@ -64,7 +67,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                             </Card.Text>
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            {/* <Button variant="primary" onClick={handleDetailsClick}>Details</Button> */}
+                            <Button variant="primary" onClick={handleDetailsClick}>Details</Button>
                             <Button variant="secondary">Add to Favorites</Button>
                         </div>
                     </Card.Body>

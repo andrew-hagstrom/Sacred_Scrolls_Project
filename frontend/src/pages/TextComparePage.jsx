@@ -1,4 +1,6 @@
 import {useState, useEffect } from 'react';
+
+
 import { PassageCard } from '../components/PassageCard';
 
 import { BibleKeywordSearch } from '../utilities/BibleKeywordSearch';
@@ -159,6 +161,7 @@ function TextComparePage() {
                         )} 
                     </Col>
                 </Row>
+            
             </Container>
 
         </>
