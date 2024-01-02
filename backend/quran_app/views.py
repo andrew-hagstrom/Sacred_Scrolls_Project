@@ -96,7 +96,7 @@ class QurKeywordSearchView(APIView):
             response = requests.get(api_url, headers=headers)
             data = response.json()["data"]
             # Grab just the verse we need from the returned array
-            
+            print(data)
             return JsonResponse({"data": data}, status=status.HTTP_200_OK)
 
         except requests.exceptions.RequestException as e:

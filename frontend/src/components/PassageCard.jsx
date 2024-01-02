@@ -16,6 +16,10 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         sourceReference || "Reference not available"
     )
     const navigate = useNavigate();
+    const {favorites, setFavorites, user} = useOutletContext()
+    const [favText, setFavText] = useState("")
+    const [favSource, setFavSource] = useState("")
+    const [favRef, setFavRef] = useState("")
 
     const { book, chapter, verse } = useParams();
 
@@ -39,6 +43,25 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
 
     const toggleCollapse = () => setIsCollapsed(!isCollapsed);
 
+    const addToFavorites = async() => {
+        let data = {
+            user : user.username,
+            language : 'English',
+            source : favSource,
+            reference : favRef,
+            text : favText
+        }
+        let response = await api
+        .post('user/favorites/', data)
+        console.log(response)
+    }   
+
+    const favDataHandler = () => {
+        setFavRef(currentReference)
+        setFavSource(cardTitle)
+        setFavText(currentText)
+    }
+
     return (
         <>
             
@@ -54,7 +77,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                 </Card.Header>
                 <Collapse in={!isCollapsed}>
                     <div>
-                        <Card.Body>
+                        <Card.Body onMouseEnter={() => favDataHandler()}>
                             <Card.Title style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => { 
                                 if (additionalReferences && additionalReferences.length > 0) {
                                         setShowModal(true);
