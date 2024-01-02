@@ -1,10 +1,5 @@
 from rest_framework import serializers
-from user_app.models import User, Favorites, Passages, Journal, Posts
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['username','email', 'password']
+from user_app.models import User, Favorites, JournalEntries
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,20 +9,12 @@ class UserSerializer(serializers.ModelSerializer):
 class FavoritesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Favorites
-        fields = ['user_id','passage_id']
+        fields = ['chapter', 'book', 'verse', 'text']
 
-class PassagesSerializer(serializers.ModelSerializer):
+class JournalEntriesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Passages
-        fields = '__all__'
+        model = JournalEntries
+        fields = ['user_id', 'text']
 
-class JournalSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Journal
-        fields = ['text', 'user_id']
 
-class PostsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Posts
-        fields = ['text','user_id', 'id']
-        read_only_fields = ['id']
+
