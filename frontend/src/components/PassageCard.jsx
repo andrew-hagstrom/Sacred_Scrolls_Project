@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useOutletContext } from 'react-router-dom';
+import { api } from '../utilities/ApiUtilities'
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -18,6 +19,9 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     )
     const navigate = useNavigate();
     const {favorites, setFavorites, user} = useOutletContext()
+    const [favText, setFavText] = useState("")
+    const [favSource, setFavSource] = useState("")
+    const [favRef, setFavRef] = useState("")
 
     useEffect(() => {
         setCurrentText(sourceText || 'Text not available');
@@ -41,9 +45,20 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     const addToFavorites = async() => {
         let data = {
             user : user.username,
-            language : 'en'
-
+            language : 'English',
+            source : favSource,
+            reference : favRef,
+            text : favText
         }
+        let response = await api
+        .post('user/favorites/', data)
+        console.log(response)
+    }   
+
+    const favDataHandler = () => {
+        setFavRef(currentReference)
+        setFavSource(cardTitle)
+        setFavText(currentText)
     }
 
     return (
@@ -61,7 +76,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                 </Card.Header>
                 <Collapse in={!isCollapsed}>
                     <div>
-                        <Card.Body>
+                        <Card.Body onMouseEnter={() => favDataHandler()}>
                             <Card.Title style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => { 
                                 if (additionalReferences && additionalReferences.length > 0) {
                                         setShowModal(true);
@@ -75,7 +90,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             {/* <Button variant="primary" onClick={handleDetailsClick}>Details</Button> */}
-                            <Button variant="secondary">Add to Favorites</Button>
+                            <Button variant="secondary" onClick={()=>addToFavorites}>Add to Favorites</Button>
                         </div>
                     </Card.Body>
                     </div>
