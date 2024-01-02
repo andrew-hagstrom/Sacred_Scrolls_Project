@@ -1,4 +1,5 @@
 import {useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom'
 
 
 import { PassageCard } from '../components/PassageCard';
@@ -26,6 +27,8 @@ function TextComparePage() {
     const [additionalGitaReferences, setAdditionalGitaReferences] = useState([])
     const [firstQuranResult, setFirstQuranResult] = useState(null);
     const [additionalQuranReferences, setAdditionalQuranReferences] = useState([]);
+
+    const { book, chapter, verse } = useParams();
 
 
     const fetchBibleSearchResults = async() => {
@@ -157,6 +160,9 @@ function TextComparePage() {
                                 sourceText={firstGitaResult.text} 
                                 sourceReference={firstGitaResult.reference} 
                                 additionalReferences={additionalGitaReferences}
+                                book = {book}
+                                chapter={chapter}
+                                verse={verse}
                             />
                         )} 
                     </Col>

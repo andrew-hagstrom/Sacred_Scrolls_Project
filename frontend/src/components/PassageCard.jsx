@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -21,7 +21,18 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     const [favSource, setFavSource] = useState("")
     const [favRef, setFavRef] = useState("")
 
-    const { book, chapter, verse } = useParams();
+    const extractBookChapterVerse = (reference) => {
+        const match = reference.match(/(.+) (\d+:\d+)/);
+        if (match) {
+          const book = match[1].toLowerCase().replace(/\s+/g, ''); // Convert to lowercase and remove spaces
+          const [chapter, verse] = match[2].split(':'); // Extract chapter and verse
+          return { book, chapter, verse };
+        }
+        return { book: "N/A", chapter: "N/A", verse: "N/A" }; // Return default values if no match
+      };
+
+      const { book, chapter, verse } = extractBookChapterVerse(currentReference);
+
 
     useEffect(() => {
         setCurrentText(sourceText || 'Text not available');
@@ -37,6 +48,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     };
 
     const handleDetailsClick = () => {
+        const { book, chapter, verse } = extractBookChapterVerse(currentReference)
         // Navigate to the details page with the route parameters
         navigate(`/text-compare/${book}/${chapter}/${verse}/`);
     };
@@ -90,7 +102,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                             </Card.Text>
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <Button variant="primary" onClick={handleDetailsClick}>Details</Button>
+                            <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>Details</Button>
                             <Button variant="secondary">Add to Favorites</Button>
                         </div>
                     </Card.Body>
