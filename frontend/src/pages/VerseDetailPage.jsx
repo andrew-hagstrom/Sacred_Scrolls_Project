@@ -1,4 +1,5 @@
 
+import { useState } from 'react';
 import { useParams } from 'react-router-dom'
 
 import { BhagavadGitaDetails } from '../components/BhagavadGitaDetails';
@@ -7,6 +8,11 @@ import Container from 'react-bootstrap/Container';
 
 function VerseDetailPage() {
     const { book, chapter, verse } = useParams();
+    const [showChapterModal, setShowChapterModal] = useState(false);
+
+    const openChapterModal = () => {
+        setShowChapterModal(true);
+      };
 
     return (
         <Container>
@@ -15,8 +21,6 @@ function VerseDetailPage() {
 
             {/* Include the BhagavadGitaDetails component to render verse details */}
             <BhagavadGitaDetails book={book} chapter={chapter} verse={verse} />
-            
-            {/* Button to open modal for reading entire chapter */}
         </Container>
     );
 }
