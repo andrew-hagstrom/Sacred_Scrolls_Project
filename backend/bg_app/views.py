@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from sacred_scrolls_proj.settings import env 
-from user_app.serializers import PassagesSerializer, Passages
+from passages_app.serializers import PassagesSerializer, Passages
 
 
 class EngBGChapterView(APIView):
