@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import EmailValidator
-# Create your models here.
+
 class User(AbstractUser):
     email = models.EmailField(
         verbose_name="email address",
@@ -18,22 +18,14 @@ class User(AbstractUser):
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = []
 
-class Passages(models.Model):
-    language=models.CharField(max_length=100, default=None)
+class Favorites(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
+    language=models.CharField(max_length=100, default='English')
     book = models.CharField(default=None)
     chapter = models.IntegerField(default=None)
-    verse = models.CharField(default=None)
+    verse = models.IntegerField(default=None)
     text = models.TextField(default=None)
 
-class Favorites(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_id')
-    passage_id = models.OneToOneField(Passages, on_delete=models.CASCADE, related_name='passage_id')
-
-class Journal(models.Model):
+class JournalEntries(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='journal_user_id')
     text = models.CharField(max_length=100, default=None)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='journal_user_id')
-
-class Posts(models.Model):
-    text = models.CharField(max_length=100, default=None, null=False, blank=False)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post_user_id')
-
