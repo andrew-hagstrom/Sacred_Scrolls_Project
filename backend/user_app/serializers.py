@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
 class FavoritesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Favorites
-        fields = ['source', 'reference', 'text']
+        fields = ['user', 'source', 'reference', 'text']
 
 class JournalEntriesSerializer(serializers.ModelSerializer):
     class Meta:
