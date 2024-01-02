@@ -52,7 +52,11 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                 <Collapse in={!isCollapsed}>
                     <div>
                         <Card.Body>
-                            <Card.Title style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => additionalReferences && additionalReferences.length > 0}>
+                            <Card.Title style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => { 
+                                if (additionalReferences && additionalReferences.length > 0) {
+                                        setShowModal(true);
+                                }
+                                }}>
                                 {sourceReference}
                             </Card.Title>
                             <Card.Text>
