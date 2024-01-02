@@ -30,9 +30,9 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         setShowModal(false);
     };
 
-    const handleDetailsClick = () => {
-        navigate(`/verse-details/${book}/${chapter}/${verse}/`)
-    }
+    // const handleDetailsClick = () => {
+    //     navigate(`/verse-details/${book}/${chapter}/${verse}/`)
+    // }
 
     const toggleCollapse = () => setIsCollapsed(!isCollapsed);
 
@@ -60,7 +60,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                             </Card.Text>
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <Button variant="primary" onClick={handleDetailsClick}>Details</Button>
+                            {/* <Button variant="primary" onClick={handleDetailsClick}>Details</Button> */}
                             <Button variant="secondary">Add to Favorites</Button>
                         </div>
                     </Card.Body>
