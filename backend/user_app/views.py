@@ -79,7 +79,9 @@ class FavoritesView(APIView):
         return Response(favorites_serialized.data, status=status.HTTP_200_OK)
     
     def post(self, request):
-        new_favorite = FavoritesSerializer(data=request.data)
+        data = request.data.copy()
+        data['user'] = request.user.id
+        new_favorite = FavoritesSerializer(data=data)
         if new_favorite.is_valid():
             new_favorite.save()
             return Response(new_favorite.data, status=HTTP_201_CREATED)
@@ -104,6 +106,7 @@ class AFavoriteView(APIView):
             return Response({"message": "Favorite not found"}, status=status.HTTP_404_NOT_FOUND)
 
 class JournalView(APIView):
+
     def get(self, request):
        journal = JournalEntriesSerializer(JournalEntries.objects.filter(user=request.user.id))
        return Response(journal.data, status=status.HTTP_200_OK)
