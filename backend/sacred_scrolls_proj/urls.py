@@ -25,5 +25,5 @@ urlpatterns = [
     path('api/v1/user/', include('user_app.urls')),
     path('api/v1/passages/', include('passages_app.urls')),
     path('api/v1/posts/', include('posts_app.urls')),
-    # path('api/v1/ai/', include('AI_app.urls')),
+    path('api/v1/ai/', include('AI_app.urls')),
 ]

@@ -24,17 +24,8 @@ class Favorites(models.Model):
     source = models.CharField(default=None)
     reference = models.CharField(default=None)
     text=models.TextField(default=None)
+    details=models.TextField(default=None)
 
 class JournalEntries(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='journal_user_id')
     text = models.CharField(max_length=100, default=None)
-
-
-
-
-
-
-
-    
-
-
