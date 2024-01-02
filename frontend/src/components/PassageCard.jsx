@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-
+import { useNavigate, useParams, useOutletContext } from 'react-router-dom';
+import { api } from "../utilities/ApiUtilities"
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
@@ -44,15 +45,17 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     const toggleCollapse = () => setIsCollapsed(!isCollapsed);
 
     const addToFavorites = async() => {
+        let token = localStorage.getItem("token")
+        axios.defaults.headers.common["Authorization"] = `Token ${token}`
+
         let data = {
-            user : user.username,
+            user : user,
             language : 'English',
             source : favSource,
             reference : favRef,
             text : favText
         }
-        let response = await api
-        .post('user/favorites/', data)
+        let response = await axios.post('http://127.0.0.1:8000/api/v1/user/favorites/', data)
         console.log(response)
     }   
 
@@ -77,7 +80,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                 </Card.Header>
                 <Collapse in={!isCollapsed}>
                     <div>
-                        <Card.Body onMouseEnter={() => favDataHandler()}>
+                        <Card.Body onMouseEnter={(e) => favDataHandler(e)}>
                             <Card.Title style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => { 
                                 if (additionalReferences && additionalReferences.length > 0) {
                                         setShowModal(true);
@@ -91,7 +94,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Button variant="primary" onClick={handleDetailsClick}>Details</Button>
-                            <Button variant="secondary">Add to Favorites</Button>
+                            <Button variant="secondary" onClick={(e)=>addToFavorites(e)}>Add to Favorites</Button>
                         </div>
                     </Card.Body>
                     </div>
