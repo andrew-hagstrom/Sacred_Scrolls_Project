@@ -36,7 +36,7 @@ function App() {
     <NavBar user={user} setUser={setUser} />
 
     <Container >
-     <Outlet context={[{user, setUser}, {favorites, setFavorites}]}/>
+     <Outlet context={{user, setUser, favorites, setFavorites}}/>
      </Container>
     </>
   )
