@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useOutletContext } from 'react-router-dom'
 
 import { NavBar } from './components/NavBar'
 import { api } from './utilities/ApiUtilities'
@@ -10,6 +10,7 @@ import Container from 'react-bootstrap/Container'
 
 function App() {
   const [user, setUser] = useState(null);
+  const [favorites, setFavorites] = useState([])
 
   const getInfo = async () => {
     const token = localStorage.getItem("token");
@@ -35,7 +36,7 @@ function App() {
     <NavBar user={user} setUser={setUser} />
 
     <Container >
-     <Outlet context={{user, setUser}}/>
+     <Outlet context={[{user, setUser}, {favorites, setFavorites}]}/>
      </Container>
     </>
   )

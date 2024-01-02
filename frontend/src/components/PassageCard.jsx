@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -16,6 +17,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         sourceReference || "Reference not available"
     )
     const navigate = useNavigate();
+    const {favorites, setFavorites, user} = useOutletContext()
 
     useEffect(() => {
         setCurrentText(sourceText || 'Text not available');
@@ -35,6 +37,14 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     // }
 
     const toggleCollapse = () => setIsCollapsed(!isCollapsed);
+
+    const addToFavorites = async() => {
+        let data = {
+            user : user.username,
+            language : 'en'
+
+        }
+    }
 
     return (
         <>
