@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -14,6 +15,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     const [currentReference, setCurrentReference] = useState(
         sourceReference || "Reference not available"
     )
+    const navigate = useNavigate();
 
     useEffect(() => {
         setCurrentText(sourceText || 'Text not available');
@@ -27,6 +29,10 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
             'Reference not available');
         setShowModal(false);
     };
+
+    // const handleDetailsClick = () => {
+    //     navigate(`/verse-details/${book}/${chapter}/${verse}/`)
+    // }
 
     const toggleCollapse = () => setIsCollapsed(!isCollapsed);
 
@@ -46,7 +52,11 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                 <Collapse in={!isCollapsed}>
                     <div>
                         <Card.Body>
-                            <Card.Title style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => additionalReferences && additionalReferences.length > 0}>
+                            <Card.Title style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => { 
+                                if (additionalReferences && additionalReferences.length > 0) {
+                                        setShowModal(true);
+                                }
+                                }}>
                                 {sourceReference}
                             </Card.Title>
                             <Card.Text>
@@ -54,7 +64,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                             </Card.Text>
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <Button variant="primary">Details</Button>
+                            {/* <Button variant="primary" onClick={handleDetailsClick}>Details</Button> */}
                             <Button variant="secondary">Add to Favorites</Button>
                         </div>
                     </Card.Body>
