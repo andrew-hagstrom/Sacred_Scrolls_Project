@@ -67,10 +67,10 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                                         setShowModal(true);
                                 }
                                 }}>
-                                {sourceReference}
+                                {currentReference}
                             </Card.Title>
                             <Card.Text>
-                                {sourceText}
+                                {currentText}
                             </Card.Text>
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
