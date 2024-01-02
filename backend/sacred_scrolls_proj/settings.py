@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'bg_app', 
     'bible_app',
     'quran_app',
-    'user_app'
+    'user_app', 
+    'passages_app', 
+    'posts_app',
 ]
 
 MIDDLEWARE = [
