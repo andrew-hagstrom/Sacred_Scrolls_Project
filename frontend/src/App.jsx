@@ -10,6 +10,7 @@ import Container from 'react-bootstrap/Container'
 
 function App() {
   const [user, setUser] = useState(null);
+  const [user_id, setUserID] = useState(null);
   const [favorites, setFavorites] = useState([])
 
   const getInfo = async () => {
@@ -19,6 +20,7 @@ function App() {
       try {
         const response = await api.get("user/info/"); // Update with the correct endpoint
         setUser(response.data.username);
+        setUserID(response.data.user_id);
       } catch (error) {
         console.error('Error fetching user info:', error);
         // Optionally handle error (e.g., invalid token)
@@ -38,8 +40,12 @@ function App() {
 
   useEffect(() => {
     getInfo();
+<<<<<<< Updated upstream
     getFavorites();
   }, [user]);
+=======
+  }, [user, user_id]);
+>>>>>>> Stashed changes
 
 
   return (
@@ -47,7 +53,7 @@ function App() {
     <NavBar user={user} setUser={setUser} />
 
     <Container >
-     <Outlet context={{user, setUser, favorites, setFavorites}}/>
+     <Outlet context={{user, setUser, user_id, setUserID, favorites, setFavorites}}/>
      </Container>
     </>
   )
