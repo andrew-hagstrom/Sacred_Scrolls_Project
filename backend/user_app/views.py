@@ -112,12 +112,18 @@ class JournalView(APIView):
        return Response(journal.data, status=status.HTTP_200_OK)
    
     def post(self, request):
-        new_journal_entry = JournalEntriesSerializer(data=request.data)
+        data=request.data.copy()
+        data["user"] = request.user.id
+
+        new_journal_entry = JournalEntriesSerializer(data=data)
+        new_journal_entry.is_valid()
+        print(new_journal_entry.errors)
         if new_journal_entry.is_valid():
             new_journal_entry.save()
             return Response(new_journal_entry.data, status=HTTP_201_CREATED)
-        else:
-            return Response(new_journal_entry.errors, status=HTTP_400_BAD_REQUEST)
+        # else:
+        #     return Response(new_journal_entry.errors, status=HTTP_400_BAD_REQUEST)
+        # return Response(True)
    
 class JournalEntryView(APIView):
     def get(self, request, entry_id):

@@ -19,19 +19,15 @@ function RegisterPage() {
             "email": email,
             "password": password,
         }
+        api.defaults.aut
         let response = await api
             .post("user/signup/", data)
             .catch((err) => {
                 console.log(err)
             })
-        console.log(response)
+        
         if (response.status === 201) {
-            setUser(response.username)
-            localStorage.setItem('token', response.data.token);
-            api.defaults.headers.common[
-                "Authorization"
-            ] = `Token ${response.data.token}`
-            navigate("/")
+            print("creation worked")
         } else {
             alert ('something happened')
         }
