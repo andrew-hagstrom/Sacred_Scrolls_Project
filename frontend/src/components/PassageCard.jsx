@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams, useOutletContext } from 'react-router-dom';
-
+import {api} from '../utilities/ApiUtilities'
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
@@ -20,6 +21,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     const [favText, setFavText] = useState("")
     const [favSource, setFavSource] = useState("")
     const [favRef, setFavRef] = useState("")
+    const [isFavorite, setIsFavorite] = useState(false);
 
     const extractBookChapterVerse = (reference) => {
         const match = reference.match(/(.+) (\d+:\d+)/);
@@ -68,11 +70,21 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
             language : 'English',
             source : favSource,
             reference : favRef,
-            text : favText
+            text : favText,
+            details: '?'
         }
-        let response = await axios.post('http://127.0.0.1:8000/api/v1/user/favorites/', data)
+        let response = await api
+        .post('user/favorites/', data)
+        .catch((err) => {
+            console.log(err.message)
+        })
         console.log(response)
-    }   
+        console.log(response)
+        if (response.status === 201) {
+            setFavorites([...favorites, data])
+            setIsFavorite(true)
+        } 
+    }
 
     const favDataHandler = () => {
         setFavRef(currentReference)
@@ -80,9 +92,18 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         setFavText(currentText)
     }
 
+    const checkIfFavorite = () => {
+        let checking = favorites.some((fav) => fav.reference === currentReference)
+        setIsFavorite(checking)
+    }
+
+    useEffect(()=> {
+        checkIfFavorite()
+    },[currentReference])
+    
     return (
         <>
-            
+  
             <Card>
                 <Card.Header style={{ textAlign: 'center' }}>
                     <strong>{cardTitle}</strong>
@@ -109,7 +130,14 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>Details</Button>
-                            <Button variant="secondary" onClick={(e)=>addToFavorites(e)}>Add to Favorites</Button>
+                            <Button variant="secondary" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
+                                {isFavorite ? 
+                                'Already Added to Favorites' :
+                                'Add to Favorites'} 
+                                </Button>
+                        
+                        
+                        
                         </div>
                     </Card.Body>
                     </div>

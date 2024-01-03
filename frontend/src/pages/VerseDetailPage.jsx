@@ -10,16 +10,6 @@ import Container from 'react-bootstrap/Container';
 function VerseDetailPage() {
     const { book, chapter, verse } = useParams();
 
-    // const renderDetailsComponent = () => {
-    //     switch (book) {
-    //         case 'bhagavadgita':
-    //             return <BhagavadGitaDetails chapter={chapter} verse={verse} />;
-    //         case 'quran':
-    //             return <QuranDetails chapter={chapter} verse={verse} />;
-    //         default:
-    //             return <div>Book not found</div>;
-    //     }
-    // };
 
     const renderDetailsComponent = () => {
         if (book === 'bhagavadgita') {
