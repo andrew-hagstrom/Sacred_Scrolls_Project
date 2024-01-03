@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams, useOutletContext } from 'react-router-dom';
+import { useNavigate, useParams, useLocation, useOutletContext } from 'react-router-dom';
 import {api} from '../utilities/ApiUtilities'
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
@@ -17,6 +17,8 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         sourceReference || "Reference not available"
     )
     const navigate = useNavigate();
+    const location = useLocation();
+
     const {favorites, setFavorites, user} = useOutletContext()
     const [favText, setFavText] = useState("")
     const [favSource, setFavSource] = useState("")
@@ -54,9 +56,15 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     };
 
     const handleDetailsClick = () => {
-        const { book, chapter, verse } = extractBookChapterVerse(currentReference)
-        // Navigate to the details page with the route parameters
-        navigate(`/text-compare/${book}/${chapter}/${verse}/`);
+        const { book, chapter, verse } = extractBookChapterVerse(currentReference);
+    
+        if (location.pathname === `/text-compare/${book}/${chapter}/${verse}/`) {
+            // Navigate to the default text compare page
+            navigate('/text-compare/');
+        } else {
+            // Navigate to the details page with the route parameters
+            navigate(`/text-compare/${book}/${chapter}/${verse}/`);
+        }
     };
 
     const toggleCollapse = () => setIsCollapsed(!isCollapsed);
@@ -100,6 +108,8 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     useEffect(()=> {
         checkIfFavorite()
     },[currentReference])
+
+    const detailsButtonText = location.pathname.startsWith('/text-compare/') && !location.pathname.endsWith('/text-compare/') ? 'Go Back' : 'See More';
     
     return (
         <>
@@ -129,7 +139,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                             </Card.Text>
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>Details</Button>
+                            <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>{detailsButtonText}</Button>
                             <Button variant="secondary" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
                                 {isFavorite ? 
                                 'Already Added to Favorites' :
