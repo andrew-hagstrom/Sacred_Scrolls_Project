@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams, useOutletContext } from 'react-router-dom';
-
+import {api} from '../utilities/ApiUtilities'
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
@@ -64,11 +65,20 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
             language : 'English',
             source : favSource,
             reference : favRef,
-            text : favText
+            text : favText,
+            details: '?'
         }
-        let response = await axios.post('http://127.0.0.1:8000/api/v1/user/favorites/', data)
+        let response = await api
+        .post('user/favorites/', data)
+        .catch((err) => {
+            console.log(err.message)
+        })
         console.log(response)
-    }   
+        // console.log(response)
+        // if (response.status === 201) {
+        //     setFavorites([...favorites, currentReference])
+        // } 
+    }
 
     const favDataHandler = () => {
         setFavRef(currentReference)
@@ -78,7 +88,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
 
     return (
         <>
-            
+  
             <Card>
                 <Card.Header style={{ textAlign: 'center' }}>
                     <strong>{cardTitle}</strong>
