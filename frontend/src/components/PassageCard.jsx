@@ -21,11 +21,16 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     const [favText, setFavText] = useState("")
     const [favSource, setFavSource] = useState("")
     const [favRef, setFavRef] = useState("")
+    const [isFavorite, setIsFavorite] = useState(false);
 
     const extractBookChapterVerse = (reference) => {
         const match = reference.match(/(.+) (\d+:\d+)/);
         if (match) {
-          const book = match[1].toLowerCase().replace(/\s+/g, ''); // Convert to lowercase and remove spaces
+          let book = match[1].toLowerCase().replace(/\s+/g, ''); // Convert to lowercase and remove spaces
+          if (book.includes('surah')) {
+            book = 'quran'
+          }
+            
           const [chapter, verse] = match[2].split(':'); // Extract chapter and verse
           return { book, chapter, verse };
         }
@@ -74,10 +79,11 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
             console.log(err.message)
         })
         console.log(response)
-        // console.log(response)
-        // if (response.status === 201) {
-        //     setFavorites([...favorites, currentReference])
-        // } 
+        console.log(response)
+        if (response.status === 201) {
+            setFavorites([...favorites, data])
+            setIsFavorite(true)
+        } 
     }
 
     const favDataHandler = () => {
@@ -86,6 +92,21 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         setFavText(currentText)
     }
 
+    const removeFromFavorites = async() => {
+        let response = await api
+        .delete(`favorite/`)
+
+    }
+
+    const checkIfFavorite = () => {
+        let checking = favorites.some((fav) => fav.reference === currentReference)
+        setIsFavorite(checking)
+    }
+
+    useEffect(()=> {
+        checkIfFavorite()
+    },[currentReference])
+    
     return (
         <>
   
@@ -115,7 +136,14 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>Details</Button>
+                            
+                            {isFavorite ? 
+                            <Button variant="secondary" onClick={(e)=>removeFromFavorites(e)}>Remove From Favorites</Button>
+                            :
                             <Button variant="secondary" onClick={(e)=>addToFavorites(e)}>Add to Favorites</Button>
+                            }
+                        
+                        
                         </div>
                     </Card.Body>
                     </div>
