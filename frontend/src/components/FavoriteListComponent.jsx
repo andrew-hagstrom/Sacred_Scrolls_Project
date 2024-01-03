@@ -7,15 +7,6 @@ const FavoriteList = () => {
   const {favorites, setFavorites} = useOutletContext()
   
 
-  const getFavoriteList = async() => {
-    let response = await api
-    .get("favorites/")
-    .catch((err) =>{
-      console.log(err.response)
-    })
-    console.log(response)
-  }
-
 
   return (
     <>
