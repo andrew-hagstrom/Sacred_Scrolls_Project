@@ -92,12 +92,6 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         setFavText(currentText)
     }
 
-    const removeFromFavorites = async() => {
-        let response = await api
-        .delete(`favorite/`)
-
-    }
-
     const checkIfFavorite = () => {
         let checking = favorites.some((fav) => fav.reference === currentReference)
         setIsFavorite(checking)
@@ -136,12 +130,12 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>Details</Button>
-                            
-                            {isFavorite ? 
-                            <Button variant="secondary" onClick={(e)=>removeFromFavorites(e)}>Remove From Favorites</Button>
-                            :
-                            <Button variant="secondary" onClick={(e)=>addToFavorites(e)}>Add to Favorites</Button>
-                            }
+                            <Button variant="secondary" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
+                                {isFavorite ? 
+                                'Already Added to Favorites' :
+                                'Add to Favorites'} 
+                                </Button>
+                        
                         
                         
                         </div>
