@@ -1,22 +1,35 @@
 
 import { useParams } from 'react-router-dom'
-
+import { checkIfOldTestament, bibleBookIdAndTestament } from '../utilities/BibleBookUtilities';
 import { BhagavadGitaDetails } from '../components/BhagavadGitaDetails';
 import { QuranDetails } from '../components/QuranDetails';
+import { BibleDetails } from '../components/BibleDetails';
 
 import Container from 'react-bootstrap/Container';
 
 function VerseDetailPage() {
     const { book, chapter, verse } = useParams();
 
+    // const renderDetailsComponent = () => {
+    //     switch (book) {
+    //         case 'bhagavadgita':
+    //             return <BhagavadGitaDetails chapter={chapter} verse={verse} />;
+    //         case 'quran':
+    //             return <QuranDetails chapter={chapter} verse={verse} />;
+    //         default:
+    //             return <div>Book not found</div>;
+    //     }
+    // };
+
     const renderDetailsComponent = () => {
-        switch (book) {
-            case 'bhagavadgita':
-                return <BhagavadGitaDetails chapter={chapter} verse={verse} />;
-            case 'quran':
-                return <QuranDetails chapter={chapter} verse={verse} />;
-            default:
-                return <div>Book not found</div>;
+        if (book === 'bhagavadgita') {
+            return <BhagavadGitaDetails book={book} chapter={chapter} verse={verse} />;
+        } else if (book === 'quran') {
+            return <QuranDetails book={book} chapter={chapter} verse={verse} />;
+        } else if (bibleBookIdAndTestament[book]) {
+            return <BibleDetails book={book} chapter={chapter} verse={verse} />;
+        } else {
+            return <div>Book not found</div>;
         }
     };
 
