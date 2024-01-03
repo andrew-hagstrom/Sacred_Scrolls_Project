@@ -100,7 +100,6 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         setFavText(currentText)
     }
 
-<<<<<<< Updated upstream
     const checkIfFavorite = () => {
         let checking = favorites.some((fav) => fav.reference === currentReference)
         setIsFavorite(checking)
@@ -112,12 +111,6 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
 
     const detailsButtonText = location.pathname.startsWith('/text-compare/') && !location.pathname.endsWith('/text-compare/') ? 'Go Back' : 'See More';
     
-=======
-    const handlePostClick = () => {
-        navigate('/posts/')
-    }
-
->>>>>>> Stashed changes
     return (
         <>
   
@@ -146,7 +139,6 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                             </Card.Text>
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-<<<<<<< Updated upstream
                             <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>{detailsButtonText}</Button>
                             <Button variant="secondary" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
                                 {isFavorite ? 
@@ -156,11 +148,6 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                         
                         
                         
-=======
-                            <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>Details</Button>
-                            <Button variant="secondary" onClick={(e)=>addToFavorites(e)}>Add to Favorites</Button>
-                            <Button onClick={handlePostClick}>Write Comment</Button>
->>>>>>> Stashed changes
                         </div>
                     </Card.Body>
                     </div>

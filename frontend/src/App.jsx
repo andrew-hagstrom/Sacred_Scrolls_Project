@@ -40,12 +40,8 @@ function App() {
 
   useEffect(() => {
     getInfo();
-<<<<<<< Updated upstream
     getFavorites();
-  }, [user]);
-=======
   }, [user, user_id]);
->>>>>>> Stashed changes
 
 
   return (
