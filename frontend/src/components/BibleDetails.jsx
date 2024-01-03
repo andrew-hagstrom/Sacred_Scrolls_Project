@@ -14,7 +14,7 @@ export const BibleDetails = ({ book, chapter, verse }) => {
     const formattedBook = book.toLowerCase().replace(/\s+/g, '');
     const bookId = bibleBookIdAndTestament[formattedBook] ? bibleBookIdAndTestament[formattedBook][0] : 'unknown';
     const reference = `${book} ${chapter}:${verse}`;
-    console.log('something')
+  
 
     const fetchVerse = async (bookId, chapter, verse, language) => {
         try {
@@ -29,11 +29,12 @@ export const BibleDetails = ({ book, chapter, verse }) => {
     const fetchVerseText = async () => {
         try {
             const englishData = await fetchVerse(bookId, chapter, verse, 'eng');
-            setEnglishText(englishData.text);
+            setEnglishText(englishData);
 
             const originalLanguage = checkIfOldTestament(book) ? 'heb' : 'grk';
             const originalData = await fetchVerse(bookId, chapter, verse, originalLanguage);
-            setOriginalText(originalData.text);
+            setOriginalText(originalData);
+            console.log(originalData)
         } catch (error) {
             console.log('Error fetching Bible verse text:', error);
         }
@@ -45,21 +46,23 @@ export const BibleDetails = ({ book, chapter, verse }) => {
     };
 
     useEffect(() => {
-        console.log('something')
         fetchVerseText();
     }, [book, chapter, verse]);
 
     return (
         <>
-            <PassageCard
-                cardTitle="Bible (English)"
-                sourceText={englishText}
-                sourceReference={reference}
-                additionalReferences={[]}
-            />
+            
+            <button onClick={() => toggleChapterModal(checkIfOldTestament(book) ? 'heb' : 'grk')}>See Original Chapter</button>          
             <PassageCard
                 cardTitle={`Bible (${checkIfOldTestament(book) ? 'Hebrew' : 'Greek'})`}
                 sourceText={originalText}
+                sourceReference={reference}
+                additionalReferences={[]}
+            />
+            <button onClick={() => toggleChapterModal('eng')}>See Chapter</button>  
+            <PassageCard
+                cardTitle="Bible (English)"
+                sourceText={englishText}
                 sourceReference={reference}
                 additionalReferences={[]}
             />
@@ -67,7 +70,7 @@ export const BibleDetails = ({ book, chapter, verse }) => {
             <BibleChapterModal
                 book={book}
                 chapter={chapter}
-                language={selectedLanguage}
+                selectedLanguage={selectedLanguage}
                 isOpen={showChapterModal}
                 onRequestClose={() => setShowChapterModal(false)}
             />

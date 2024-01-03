@@ -71,7 +71,8 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
     return (
         <>
           <div>
-            <button onClick={() => toggleChapterModal('san')}>See Chapter</button>
+          
+          <button onClick={() => toggleChapterModal('san')}>See Chapter</button>
             <PassageCard
               cardTitle="Bhagavad Gita"
               sourceText={sanskritText}
@@ -90,6 +91,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
           </div>
           {showChapterModal && (
             <BhagavadGitaChapterModal
+              
               chapter={selectedChapter}
               language={selectedLanguage}
               isOpen={showChapterModal}

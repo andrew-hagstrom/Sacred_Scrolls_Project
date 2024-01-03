@@ -4,29 +4,24 @@ import Button from 'react-bootstrap/Button';
 import { api } from '../utilities/ApiUtilities';
 import { checkIfOldTestament, bibleBookIdAndTestament } from '../utilities/BibleBookUtilities';
 
-export const BibleChapterModal = ({ book, chapter, isOpen, onRequestClose }) => {
-    const [englishChapterText, setEnglishChapterText] = useState('');
-    const [originalChapterText, setOriginalChapterText] = useState('');
+export const BibleChapterModal = ({ book, chapter, isOpen, onRequestClose, selectedLanguage }) => {
+    const [chapterText, setChapterText] = useState('');
     const bookId = bibleBookIdAndTestament[book] ? bibleBookIdAndTestament[book][0] : 'unknown';
 
-    const fetchChapter = async (bookId, chapter, language) => {
+    const fetchChapter = async (bookId, chapter, selectedLanguage) => {
         try {
-            const response = await api.get(`Bible/${language}/${bookId}/chapter/${chapter}`);
+            const response = await api.get(`Bible/${selectedLanguage}/${bookId}/chapter/${chapter}`);
             return response.data;
         } catch (error) {
-            console.error(`Error fetching ${language} Bible chapter:`, error);
+            console.error(`Error fetching ${selectedLanguage} Bible chapter:`, error);
             throw error;
         }
     };
 
     const fetchChapterText = async () => {
         try {
-            const englishData = await fetchChapter(bookId, chapter, 'eng');
-            setEnglishChapterText(englishData.text);
-
-            const originalLanguage = checkIfOldTestament(book) ? 'heb' : 'grk';
-            const originalData = await fetchChapter(bookId, chapter, originalLanguage);
-            setOriginalChapterText(originalData.text);
+            const data = await fetchChapter(bookId, chapter, selectedLanguage);
+            setChapterText(data); // Fetches and sets the text for the selected language
         } catch (error) {
             console.log('Error fetching Bible chapter text:', error);
         }
@@ -34,7 +29,7 @@ export const BibleChapterModal = ({ book, chapter, isOpen, onRequestClose }) => 
 
     useEffect(() => {
         fetchChapterText();
-    }, [book, chapter]);
+    }, [book, chapter, selectedLanguage]);
 
     return (
         <Modal show={isOpen} onHide={onRequestClose}>
@@ -42,10 +37,8 @@ export const BibleChapterModal = ({ book, chapter, isOpen, onRequestClose }) => 
                 <Modal.Title>{`Chapter ${chapter} of ${book}`}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h5>English</h5>
-                <p>{englishChapterText}</p>
-                <h5>{checkIfOldTestament(book) ? 'Hebrew' : 'Greek'}</h5>
-                <p>{originalChapterText}</p>
+                <h5>{selectedLanguage === 'eng' ? 'English' : (checkIfOldTestament(book) ? 'Hebrew' : 'Greek')}</h5>
+                <p>{chapterText}</p>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={onRequestClose}>Close</Button>
