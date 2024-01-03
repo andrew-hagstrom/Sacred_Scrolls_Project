@@ -11,7 +11,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
     const [englishText, setEnglishText] = useState('');
     const [showChapterModal, setShowChapterModal] = useState(false);
     const [selectedChapter, setSelectedChapter] = useState(null);
-    const [selectedLanguage, setSelectedLanguage] = useState('sanskrit');
+    const [selectedLanguage, setSelectedLanguage] = useState('san');
 
     const book = "bhagavadgita"
 
@@ -71,7 +71,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
     return (
         <>
           <div>
-            <button onClick={() => toggleChapterModal('san')}>Modal</button>
+            <button onClick={() => toggleChapterModal('san')}>See Chapter</button>
             <PassageCard
               cardTitle="Bhagavad Gita"
               sourceText={sanskritText}
@@ -80,7 +80,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
             />
           </div>
           <div>
-          <button onClick={() => toggleChapterModal('eng')}>Modal</button>
+          <button onClick={() => toggleChapterModal('eng')}>See Chapter</button>
             <PassageCard
               cardTitle="Bhagavad Gita (English)"
               sourceText={englishText}
