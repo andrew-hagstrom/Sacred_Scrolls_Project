@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { api} from '../utilities/ApiUtilities'
 import { PassageCard } from './PassageCard';
+import { QuranChapterModal } from './QuranChapterModal';
 
 export const QuranDetails = ({chapter, verse }) => {
     const [arabicVerse, setArabicVerse] = useState('');
@@ -13,8 +14,9 @@ export const QuranDetails = ({chapter, verse }) => {
     const fetchArabicVerse = async () => {
         try {
             const response = await api.get(`Quran/ar/chapter/${chapter}/verse/${verse}/`);
-            const verseData = response.data.data[0];
-            setArabicVerse(verseData.text);
+            const verseData = response.data.data;
+            console.log(verseData)
+            setArabicVerse(verseData[0].text);
         }catch (error) {
             console.error('error fetching Arabic verse:', error);
             throw error;
@@ -24,8 +26,9 @@ export const QuranDetails = ({chapter, verse }) => {
     const fetchEnglishVerse = async () => {
         try {
             const response = await api.get(`Quran/en/chapter/${chapter}/verse/${verse}/`);
-            const verseData = response.data.data[0];
-            setEnglishVerse(verseData.text);
+            const verseData = response.data.data;
+            console.log(verseData)
+            setEnglishVerse(verseData[0].text);
         }catch (error) {
             console.error('error fetching English verse:', error);
             throw error;
@@ -36,6 +39,12 @@ export const QuranDetails = ({chapter, verse }) => {
         fetchArabicVerse();
         fetchEnglishVerse();
     }, [chapter, verse]);
+
+    const toggleChapterModal = (language) => {
+        setSelectedChapter(chapter)
+        setSelectedLanguage(language)
+        setShowChapterModal(!showChapterModal);
+    };
 
     return (
         <div>
@@ -53,6 +62,14 @@ export const QuranDetails = ({chapter, verse }) => {
               sourceReference={`Chapter ${chapter}, Verse ${verse}`}
               additionalReferences={[]}
             />
+            {showChapterModal && (
+                <QuranChapterModal
+                    chapter={chapter}
+                    language={selectedLanguage}
+                    isOpen={showChapterModal}
+                    onRequestClose={() => setShowChapterModal(false)}
+                />
+            )}
         </div>
 
     );

@@ -24,7 +24,11 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     const extractBookChapterVerse = (reference) => {
         const match = reference.match(/(.+) (\d+:\d+)/);
         if (match) {
-          const book = match[1].toLowerCase().replace(/\s+/g, ''); // Convert to lowercase and remove spaces
+          let book = match[1].toLowerCase().replace(/\s+/g, ''); // Convert to lowercase and remove spaces
+          if (book.includes('surah')) {
+            book = 'quran'
+          }
+            
           const [chapter, verse] = match[2].split(':'); // Extract chapter and verse
           return { book, chapter, verse };
         }
