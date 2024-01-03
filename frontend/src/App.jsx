@@ -26,8 +26,19 @@ function App() {
     }
   }; 
   
+  const getFavorites = async() => {
+    let response = await api
+    .get('user/favorites/')
+    .catch((err)=> {
+      console.log(err.message)
+    })
+    setFavorites(response.data)
+    console.log(favorites)
+  }
+
   useEffect(() => {
     getInfo();
+    getFavorites();
   }, [user]);
 
 
