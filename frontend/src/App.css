@@ -107,6 +107,28 @@ body{
   width: 50%;
 }
 
+.favorites-page-headers {
+  width:60vw;
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.verse-modal {
+  z-index:4;
+  color: rgba(0, 0, 0, 1);  
+  background-image: linear-gradient(to bottom, rgb(2, 27, 51) 33%, rgba(54,69,79,1) 87%);
+  
+}
+.see-chapter {
+  color: black;
+  position: relative;
+  top: 57px;
+  left: 28px;
+  z-index: 3;
+  background-color: transparent;
+}
+
 #favorites-page {
   display:flex;
   justify-content: flex-start;
@@ -134,4 +156,15 @@ body{
 
 .fade-out {
   opacity: 0;
+}
+.passage-card{
+  background-color: rgb(254, 248, 231);
+  /* border: 2px solid #afafaf; */
+  /* box-shadow: 0 0 5px 2px #758793; */
+  width: 45vw;
+  color:black;
+}
+
+.card-header {
+  background-color: rgb(248, 234, 198) ;
 }

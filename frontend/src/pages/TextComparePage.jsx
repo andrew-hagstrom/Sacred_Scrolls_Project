@@ -112,7 +112,7 @@ function TextComparePage() {
             <Container fluid>
                 <Row className="mb-4">
                     <Col md={8}>
-                        <InputGroup>
+                        <InputGroup >
                             <Form.Control
                                 type="text"
                                 placeholder="Enter a keyword or phrase"

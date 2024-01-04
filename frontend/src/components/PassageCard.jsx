@@ -37,7 +37,20 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         return { book: "N/A", chapter: "N/A", verse: "N/A" }; // Return default values if no match
       };
 
-      const { book, chapter, verse } = extractBookChapterVerse(currentReference);
+    const { book, chapter, verse } = extractBookChapterVerse(currentReference);
+
+    const extractPostBookChapterVerse = (reference) => {
+        const match = reference.match(/(.+) (\d+:\d+)/);
+        if (match) {
+          let postBook = match[1]
+            
+          const [postChapter, postVerse] = match[2].split(':'); // Extract chapter and verse
+          return { postBook, postChapter, postVerse };
+        }
+        return { postBook: "N/A", postChapter: "N/A", postVerse: "N/A" }; // Return default values if no match
+      };
+
+    const { postBook, postChapter, postVerse } = extractBookChapterVerse(currentReference);
 
 
     useEffect(() => {
@@ -54,9 +67,15 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     };
 
     const handleDetailsClick = () => {
-        const { book, chapter, verse } = extractBookChapterVerse(currentReference)
-        // Navigate to the details page with the route parameters
-        navigate(`/text-compare/${book}/${chapter}/${verse}/`);
+        const { book, chapter, verse } = extractBookChapterVerse(currentReference);
+    
+        if (location.pathname !== `/text-compare/`) {
+            // Navigate to the default text compare page
+            navigate('/text-compare/');
+        } else {
+            // Navigate to the details page with the route parameters
+            navigate(`/text-compare/${book}/${chapter}/${verse}/`);
+        }
     };
 
     const toggleCollapse = () => setIsCollapsed(!isCollapsed);
@@ -97,6 +116,11 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         setIsFavorite(checking)
     }
 
+    const handlePostClick = () => {
+        const { postBook, postChapter, postVerse } = extractPostBookChapterVerse(currentReference);
+        navigate(`/passageposts/${encodeURIComponent(postBook)}/${encodeURIComponent(postChapter)}/${encodeURIComponent(postVerse)}`);
+    };
+
     useEffect(()=> {
         checkIfFavorite()
     },[currentReference])
@@ -104,21 +128,21 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     return (
         <>
   
-            <Card>
-                <Card.Header style={{ textAlign: 'center' }}>
+            <Card className='passage-card'style={{ margin: '2vh'}}>
+                <Card.Header className='card-header' style={{ textAlign: 'center'}}>
                     <strong>{cardTitle}</strong>
                     <Button 
                         variant="outline-secondary" 
                         onClick={toggleCollapse}
                         size="sm" 
-                        style={{ position: 'absolute', top: '10px', right: '10px' }}>
+                        style={{ position: 'absolute', top: '5px', right: '10px' }}>
                         {isCollapsed ? 'Expand' : 'Collapse'}
                     </Button>
                 </Card.Header>
                 <Collapse in={!isCollapsed}>
                     <div>
                         <Card.Body onMouseEnter={(e) => favDataHandler(e)}>
-                            <Card.Title style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => { 
+                            <Card.Title style={{ textTransform: 'capitalize',cursor: 'pointer', textAlign: 'center' }} onClick={() => { 
                                 if (additionalReferences && additionalReferences.length > 0) {
                                         setShowModal(true);
                                 }

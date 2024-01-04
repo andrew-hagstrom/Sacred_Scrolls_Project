@@ -8,7 +8,7 @@ function JournalPage() {
   const [isViewingEntry, setIsViewingEntry] = useState(false);
   const [entrySelected, setEntrySelected] = useState(null);
 
-  const [isEditMode, setIsEditMode] = useState(false)
+  const [isEditMode, setIsEditMode] = useState(false);
 
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
@@ -52,10 +52,13 @@ function JournalPage() {
       if (response.status === 201) {
         setJournalData([...journalData, response.data]);
         console.log(journalData);
-        setTitle("")
-        setText("")
-        // Trigger updateEntries
-        // setUpdateEntriesTrigger(!updateEntriesTrigger);
+        setEntrySelected(response.data)
+        setIsViewingEntry(true)
+
+        // reset title and text 
+        // for reuse.
+        setTitle("");
+        setText("");
       }
     } catch (error) {
       console.error("Error submitting data:", error);
@@ -65,7 +68,7 @@ function JournalPage() {
     setTitle("");
     setText("");
   };
-  
+
   const handleDeleteJournal = async () => {
     try {
       // delete from database
@@ -77,51 +80,60 @@ function JournalPage() {
           journalData.filter((entry) => entry.id !== entrySelected.id)
         );
         setEntrySelected(null);
-        setIsViewingEntry(false)
+        setIsViewingEntry(false);
       }
     } catch (error) {
       console.error("Error deleting data:", error);
     }
   };
   const putJournalEntry = async () => {
-    event.preventDefault()
+    event.preventDefault();
 
     try {
       const response = await api.put(`user/journal/${entrySelected.id}`, {
-        "title":title,
-        "text":text
+        title: title,
+        text: text,
       });
       if (response.status === 200) {
-        console.log(response.data)
+        if (response.status === 200) {
+        console.log(response.data);
         // filter and delete journal entry with response id
-        console.log("before edit", journalData)
-
-        const newJournalData =journalData.map((entry) => {
+        console.log("before edit", journalData);
+          
+        const newJournalData = journalData.map((entry) => 
           entry.id == response.data.id ? response.data : entry
-        })
+        );
+        
+        setJournalData(newJournalData);
+        setIsEditMode(false)
+        setEntrySelected(response.data)
+        setIsViewingEntry(true)
 
-        setJournalData(newJournalData)
+        setText("")
+        setTitle("")
+        console.log("edit:",isEditMode, "viewing",isViewingEntry)
+      }
       }
     } catch (error) {
       console.error("Error editing data:", error);
     }
-
-  }
+  };
   const handleEditButton = () => {
-    setIsViewingEntry(false)
-    setIsEditMode(true)
+    setIsViewingEntry(false);
+    setIsEditMode(true);
 
-    setTitle(entrySelected.title)
-    setText(entrySelected.text)
-    console.log(`editmode:${isEditMode} viewmode:${isViewingEntry}`)
-  }
+    setTitle(entrySelected.title);
+    setText(entrySelected.text);
+    console.log(`editmode:${isEditMode} viewmode:${isViewingEntry}`);
+  };
   const handleCreateButton = () => {
-    setEntrySelected(null);
+    setIsViewingEntry(false)
+    setIsEditMode(false)
   };
   const undoEditMode = () => {
-    setIsViewingEntry(true)
-    setIsEditMode(false)
-  }
+    setIsViewingEntry(true);
+    setIsEditMode(false);
+  };
 
   return (
     <>
@@ -134,7 +146,11 @@ function JournalPage() {
             }`}
             style={{ backgroundColor: "gray" }}
           >
-            {journalData ? (
+            {
+            journalData !== null &&
+            journalData !== undefined &&
+            journalData.length > 0
+            ? (
               journalData.map((journal) => (
                 <JournalEntry
                   key={journal.id}
@@ -156,51 +172,68 @@ function JournalPage() {
               <Row className="justify-content-md-center mt-5">
                 <Col xs={12} md={6}>
                   {isViewingEntry || isEditMode ? (
-                    isViewingEntry ?
-                    <>
-                      <div>
-                        <h1>{entrySelected.title}</h1>
-                        <p>{entrySelected.text}</p>
-                      </div>
-                      <div>
-                        <Button variant="secondary" onClick={handleEditButton}>edit</Button>
-                        <Button variant="danger" onClick={handleDeleteJournal}>
-                          delete
-                        </Button>
-                        <Button variant="success" onClick={handleCreateButton}>
-                          create new
-                        </Button>
-                      </div>
-                    </> :
-                    // render editmode
-                    <>
-                      <Form onSubmit={handleSubmit}>
-                      <Form.Group controlId="title">
-                        <Form.Label>Title:</Form.Label>
-                        <Form.Control
-                          type="text"
-                          value={title}
-                          onChange={handleTitleChange}
-                        />
-                      </Form.Group>
+                    isViewingEntry ? (
+                      <>
+                        <div>
+                          <h1>{entrySelected.title}</h1>
+                          <p>{entrySelected.text}</p>
+                        </div>
+                        <div>
+                          <Button
+                            variant="secondary"
+                            onClick={handleEditButton}
+                          >
+                            edit
+                          </Button>
+                          <Button
+                            variant="danger"
+                            onClick={handleDeleteJournal}
+                          >
+                            delete
+                          </Button>
+                          <Button
+                            variant="success"
+                            onClick={handleCreateButton}
+                          >
+                            create new
+                          </Button>
+                        </div>
+                      </>
+                    ) : (
+                      // render editmode
+                      <>
+                        <Form onSubmit={handleSubmit}>
+                          <Form.Group controlId="title">
+                            <Form.Label>Title:</Form.Label>
+                            <Form.Control
+                              type="text"
+                              value={title}
+                              onChange={handleTitleChange}
+                            />
+                          </Form.Group>
 
-                      <Form.Group controlId="text">
-                        <Form.Label>Text:</Form.Label>
-                        <Form.Control
-                          as="textarea"
-                          rows={4}
-                          value={text}
-                          onChange={handleTextChange}
-                          
-                        />
-                      </Form.Group>
-                      <Button variant="primary" type="submit" onClick={putJournalEntry}>
-                        Submit Edit
-                      </Button>
-                      <Button varient="secondary" onClick={undoEditMode}>undo</Button>
-                    </Form>
-                    </>
-                    
+                          <Form.Group controlId="text">
+                            <Form.Label>Text:</Form.Label>
+                            <Form.Control
+                              as="textarea"
+                              rows={4}
+                              value={text}
+                              onChange={handleTextChange}
+                            />
+                          </Form.Group>
+                          <Button
+                            variant="primary"
+                            type="submit"
+                            onClick={putJournalEntry}
+                          >
+                            Submit Edit
+                          </Button>
+                          <Button varient="secondary" onClick={undoEditMode}>
+                            undo
+                          </Button>
+                        </Form>
+                      </>
+                    )
                   ) : (
                     <Form onSubmit={handleSubmit}>
                       <Form.Group controlId="title">
