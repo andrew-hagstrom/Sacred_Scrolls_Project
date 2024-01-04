@@ -132,21 +132,21 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     return (
         <>
   
-            <Card style={{ margin: '2vh'}}>
-                <Card.Header style={{ textAlign: 'center'}}>
+            <Card className='passage-card'style={{ margin: '2vh'}}>
+                <Card.Header className='card-header' style={{ textAlign: 'center'}}>
                     <strong>{cardTitle}</strong>
                     <Button 
                         variant="outline-secondary" 
                         onClick={toggleCollapse}
                         size="sm" 
-                        style={{ position: 'absolute', top: '10px', right: '10px' }}>
+                        style={{ position: 'absolute', top: '5px', right: '10px' }}>
                         {isCollapsed ? 'Expand' : 'Collapse'}
                     </Button>
                 </Card.Header>
                 <Collapse in={!isCollapsed}>
                     <div>
                         <Card.Body onMouseEnter={(e) => favDataHandler(e)}>
-                            <Card.Title style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => { 
+                            <Card.Title style={{ textTransform: 'capitalize',cursor: 'pointer', textAlign: 'center' }} onClick={() => { 
                                 if (additionalReferences && additionalReferences.length > 0) {
                                         setShowModal(true);
                                 }

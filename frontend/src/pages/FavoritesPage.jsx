@@ -11,7 +11,7 @@ import {Link} from 'react-router-dom'
 function FavoritesPage() {
   const {favorites, setFavorites} = useOutletContext()
   const [toRender, setToRender] = useState([])
-  const [selected, setSelected] = useState([])
+  const [selected, setSelected] = useState(null)
   const [postId, setPostId] = useState(null)
 
   const deleteFavorite = async() => {
@@ -65,10 +65,10 @@ function FavoritesPage() {
       </div>
       :
       <div> 
-      {selected.length === 0 ?
+      {selected === null ?
       <h1 className='favorites-page-headers'>Select a favorite</h1>  
       :
-      <Card style={{marginLeft:'275px'}}>
+      <Card className='passage-card' style={{marginLeft:'275px'}}>
       <Card.Header style={{ textAlign: 'center'}}>
           <strong>{selected.source}</strong>
       </Card.Header>
@@ -79,7 +79,6 @@ function FavoritesPage() {
                   <Card.Text>
                       {selected.text} 
                   </Card.Text>
-
           </Card.Body>
           <Button style={{width:'15vw'}} onClick={()=>deleteFavorite(postId)}>Remove from Favorites</Button>
       </Card>
