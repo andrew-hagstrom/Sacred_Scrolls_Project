@@ -2,29 +2,29 @@ import { useState, useEffect } from 'react';
 import { api } from '../../utilities/ApiUtilities';
 import { Modal, Button } from 'react-bootstrap';
 
-export const QuranChapterModal = ({ chapterNumber, isOpen, onRequestClose }) => {
+export const QuranChapterModal = ({ chapter, language, isOpen, onRequestClose }) => {
   const [chapterText, setChapterText] = useState('');
 
   // Fetch the entire chapter
   const fetchQuranChapter = async () => {
     try {
-      const response = await api.get(`Quran/en/chapter/${chapterNumber}/`);
+      const response = await api.get(`Quran/${language}/chapter/${chapter}/`);
       const verses = response.data.data.ayahs.map(ayah => ayah.text).join(' ');
       setChapterText(verses);
     } catch (error) {
-      console.error(`Error fetching Quran chapter ${chapterNumber}:`, error);
+      console.error(`Error fetching Quran chapter ${chapter}:`, error);
       throw error;
     }
   }
 
   useEffect(() => {
     fetchQuranChapter();
-  }, [chapterNumber]);
+  }, [chapter]);
 
   return (
     <Modal className="verse-modal" show={isOpen} onHide={onRequestClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Chapter {chapterNumber}</Modal.Title>
+        <Modal.Title>Chapter {chapter}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <p>{chapterText}</p>
