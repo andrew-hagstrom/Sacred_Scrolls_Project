@@ -1,4 +1,7 @@
 import {useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom'
+
+
 import { PassageCard } from '../components/PassageCard';
 
 import { BibleKeywordSearch } from '../utilities/BibleKeywordSearch';
@@ -24,6 +27,8 @@ function TextComparePage() {
     const [additionalGitaReferences, setAdditionalGitaReferences] = useState([])
     const [firstQuranResult, setFirstQuranResult] = useState(null);
     const [additionalQuranReferences, setAdditionalQuranReferences] = useState([]);
+
+    const { book, chapter, verse } = useParams();
 
 
     const fetchBibleSearchResults = async() => {
@@ -51,13 +56,13 @@ function TextComparePage() {
             // Update the state with the first result
             const firstResultFormatted = {
                 text: results[0].text,
-                reference: `Chapter ${results[0].chapter} Verse ${results[0].verse}`
+                reference: `Bhagavad Gita ${results[0].chapter}:${results[0].verse}`
             };
             setFirstGitaResult(firstResultFormatted);
 
             const additionalReferencesFormatted = results.slice(1).map(result => ({
                 text: result.text,
-                reference: `Chapter ${result.chapter} Verse ${result.verse}`
+                reference: `Bhagavad Gita ${result.chapter}:${result.verse}`
             }));
             setAdditionalGitaReferences(additionalReferencesFormatted);
         } else {
@@ -73,13 +78,13 @@ function TextComparePage() {
         if (matches && matches.length > 0) {
             const firstResult = {
                 text: matches[0].text,
-                reference: `Surah ${matches[0].surah.englishName} (${matches[0].surah.number}): Verse ${matches[0].numberInSurah}`
+                reference: `Surah ${matches[0].surah.englishName} ${matches[0].surah.number}:${matches[0].numberInSurah}`
             };
             setFirstQuranResult(firstResult);
     
             const additionalResults = matches.slice(1).map(match => ({
                 text: match.text,
-                reference: `Surah ${match.surah.englishName} (${match.surah.number}): Verse ${match.numberInSurah}`
+                reference: `Surah ${match.surah.englishName} ${match.surah.number}:${match.numberInSurah}`
             }));
             setAdditionalQuranReferences(additionalResults);
         } else {
@@ -119,15 +124,12 @@ function TextComparePage() {
                     </Col>
                 </Row>
                 {firstBibleResult && (
-                <Row className="mb-3"> {/* Add margin-bottom class */}
+                <Row> {/* Add margin-bottom class */}
                     <Col md={12}>
                         <PassageCard 
                             cardTitle = "Bible"
-
                             sourceText={firstBibleResult.text} 
-                        
                             sourceReference={firstBibleResult.reference}
-                            
                             additionalReferences={additionalBibleReferences}
                         
                         />
@@ -155,10 +157,14 @@ function TextComparePage() {
                                 sourceText={firstGitaResult.text} 
                                 sourceReference={firstGitaResult.reference} 
                                 additionalReferences={additionalGitaReferences}
+                                book = {book}
+                                chapter={chapter}
+                                verse={verse}
                             />
                         )} 
                     </Col>
                 </Row>
+            
             </Container>
 
         </>

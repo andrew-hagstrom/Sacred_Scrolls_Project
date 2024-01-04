@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate, useParams, useLocation, useOutletContext } from 'react-router-dom';
+import {api} from '../utilities/ApiUtilities'
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
@@ -16,6 +17,30 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         sourceReference || "Reference not available"
     )
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const {favorites, setFavorites, user} = useOutletContext()
+    const [favText, setFavText] = useState("")
+    const [favSource, setFavSource] = useState("")
+    const [favRef, setFavRef] = useState("")
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    const extractBookChapterVerse = (reference) => {
+        const match = reference.match(/(.+) (\d+:\d+)/);
+        if (match) {
+          let book = match[1].toLowerCase().replace(/\s+/g, ''); // Convert to lowercase and remove spaces
+          if (book.includes('surah')) {
+            book = 'quran'
+          }
+            
+          const [chapter, verse] = match[2].split(':'); // Extract chapter and verse
+          return { book, chapter, verse };
+        }
+        return { book: "N/A", chapter: "N/A", verse: "N/A" }; // Return default values if no match
+      };
+
+      const { book, chapter, verse } = extractBookChapterVerse(currentReference);
+
 
     useEffect(() => {
         setCurrentText(sourceText || 'Text not available');
@@ -30,42 +55,105 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         setShowModal(false);
     };
 
-    // const handleDetailsClick = () => {
-    //     navigate(`/verse-details/${book}/${chapter}/${verse}/`)
-    // }
+    const handleDetailsClick = () => {
+        const { book, chapter, verse } = extractBookChapterVerse(currentReference);
+    
+        if (location.pathname === `/text-compare/${book}/${chapter}/${verse}/`) {
+            // Navigate to the default text compare page
+            navigate('/text-compare/');
+        } else {
+            // Navigate to the details page with the route parameters
+            navigate(`/text-compare/${book}/${chapter}/${verse}/`);
+        }
+    };
 
     const toggleCollapse = () => setIsCollapsed(!isCollapsed);
 
+    const addToFavorites = async() => {
+        let token = localStorage.getItem("token")
+        axios.defaults.headers.common["Authorization"] = `Token ${token}`
+
+        let data = {
+            user : user,
+            language : 'English',
+            source : favSource,
+            reference : favRef,
+            text : favText,
+            details: '?'
+        }
+        let response = await api
+        .post('user/favorites/', data)
+        .catch((err) => {
+            console.log(err.message)
+        })
+        console.log(response)
+        console.log(response)
+        if (response.status === 201) {
+            setFavorites([...favorites, data])
+            setIsFavorite(true)
+        } 
+    }
+
+    const favDataHandler = () => {
+        setFavRef(currentReference)
+        setFavSource(cardTitle)
+        setFavText(currentText)
+    }
+
+    const checkIfFavorite = () => {
+        let checking = favorites.some((fav) => fav.reference === currentReference)
+        setIsFavorite(checking)
+    }
+
+    const handlePostClick = () => {
+        navigate(`/passageposts/${encodeURIComponent(book)}/${encodeURIComponent(chapter)}/${encodeURIComponent(verse)}`);
+    };
+
+    useEffect(()=> {
+        checkIfFavorite()
+    },[currentReference])
+
+    const detailsButtonText = location.pathname.startsWith('/text-compare/') && !location.pathname.endsWith('/text-compare/') ? 'Go Back' : 'See More';
+    
     return (
         <>
-            
-            <Card>
-                <Card.Header style={{ textAlign: 'center' }}>
+  
+            <Card style={{ margin: '2vh'}}>
+                <Card.Header style={{ textAlign: 'center'}}>
                     <strong>{cardTitle}</strong>
                     <Button 
                         variant="outline-secondary" 
-                        onClick={toggleCollapse} 
+                        onClick={toggleCollapse}
+                        size="sm" 
                         style={{ position: 'absolute', top: '10px', right: '10px' }}>
                         {isCollapsed ? 'Expand' : 'Collapse'}
                     </Button>
                 </Card.Header>
                 <Collapse in={!isCollapsed}>
                     <div>
-                        <Card.Body>
+                        <Card.Body onMouseEnter={(e) => favDataHandler(e)}>
                             <Card.Title style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => { 
                                 if (additionalReferences && additionalReferences.length > 0) {
                                         setShowModal(true);
                                 }
                                 }}>
-                                {sourceReference}
+                                {currentReference}
                             </Card.Title>
                             <Card.Text>
-                                {sourceText}
+                                {currentText} 
                             </Card.Text>
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            {/* <Button variant="primary" onClick={handleDetailsClick}>Details</Button> */}
-                            <Button variant="secondary">Add to Favorites</Button>
+                            <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>{detailsButtonText}</Button>
+                            <Button onClick={handlePostClick}>Write Comment</Button>
+                            <Button variant="secondary" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
+                                {isFavorite ? 
+                                'Already Added to Favorites' :
+                                'Add to Favorites'} 
+                                </Button>
+                        
+                        
+                        
                         </div>
                     </Card.Body>
                     </div>

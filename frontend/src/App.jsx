@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useOutletContext } from 'react-router-dom'
 
 import { NavBar } from './components/NavBar'
 import { api } from './utilities/ApiUtilities'
@@ -10,6 +10,8 @@ import Container from 'react-bootstrap/Container'
 
 function App() {
   const [user, setUser] = useState(null);
+  const [user_id, setUserID] = useState(null);
+  const [favorites, setFavorites] = useState([])
 
   const getInfo = async () => {
     const token = localStorage.getItem("token");
@@ -18,6 +20,7 @@ function App() {
       try {
         const response = await api.get("user/info/"); // Update with the correct endpoint
         setUser(response.data.username);
+        setUserID(response.data.user_id);
       } catch (error) {
         console.error('Error fetching user info:', error);
         // Optionally handle error (e.g., invalid token)
@@ -25,9 +28,20 @@ function App() {
     }
   }; 
   
+  const getFavorites = async() => {
+    let response = await api
+    .get('user/favorites/')
+    .catch((err)=> {
+      console.log(err.message)
+    })
+    setFavorites(response.data)
+    console.log(favorites)
+  }
+
   useEffect(() => {
     getInfo();
-  }, [user]);
+    getFavorites();
+  }, [user, user_id]);
 
 
   return (
@@ -35,7 +49,7 @@ function App() {
     <NavBar user={user} setUser={setUser} />
 
     <Container >
-     <Outlet context={{user, setUser}}/>
+     <Outlet context={{user, setUser, user_id, setUserID, favorites, setFavorites}}/>
      </Container>
     </>
   )

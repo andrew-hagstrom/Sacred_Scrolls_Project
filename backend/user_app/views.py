@@ -61,7 +61,7 @@ class InfoView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        return JsonResponse({"username": request.user.username})
+        return JsonResponse({"user_id": request.user.id, "username": request.user.username})
 
 class LogoutView(APIView):
     authentication_classes = [TokenAuthentication]
