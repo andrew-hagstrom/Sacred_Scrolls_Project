@@ -39,7 +39,20 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         return { book: "N/A", chapter: "N/A", verse: "N/A" }; // Return default values if no match
       };
 
-      const { book, chapter, verse } = extractBookChapterVerse(currentReference);
+    const { book, chapter, verse } = extractBookChapterVerse(currentReference);
+
+    const extractPostBookChapterVerse = (reference) => {
+        const match = reference.match(/(.+) (\d+:\d+)/);
+        if (match) {
+          let postBook = match[1]
+            
+          const [postChapter, postVerse] = match[2].split(':'); // Extract chapter and verse
+          return { postBook, postChapter, postVerse };
+        }
+        return { postBook: "N/A", postChapter: "N/A", postVerse: "N/A" }; // Return default values if no match
+      };
+
+    const { postBook, postChapter, postVerse } = extractBookChapterVerse(currentReference);
 
 
     useEffect(() => {
@@ -58,7 +71,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     const handleDetailsClick = () => {
         const { book, chapter, verse } = extractBookChapterVerse(currentReference);
     
-        if (location.pathname === `/text-compare/${book}/${chapter}/${verse}/`) {
+        if (location.pathname !== `/text-compare/`) {
             // Navigate to the default text compare page
             navigate('/text-compare/');
         } else {
@@ -105,8 +118,9 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         setIsFavorite(checking)
     }
 
-    const handlePostClick = (currentReference) => {
-        navigate(`/passageposts/${encodeURIComponent(book)}/${encodeURIComponent(chapter)}/${encodeURIComponent(verse)}`);
+    const handlePostClick = () => {
+        const { postBook, postChapter, postVerse } = extractPostBookChapterVerse(currentReference);
+        navigate(`/passageposts/${encodeURIComponent(postBook)}/${encodeURIComponent(postChapter)}/${encodeURIComponent(postVerse)}`);
     };
 
     useEffect(()=> {
