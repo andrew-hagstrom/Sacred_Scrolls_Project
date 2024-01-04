@@ -54,7 +54,7 @@ function PassagePostsPage() {
 
     return (
         <div>
-            <h2>{book.charAt(0).toUpperCase()+ book.slice(1).toLowerCase()} {chapter}:{verse}</h2>
+            <h2 style={{textTranform: 'capitalize'}}>{book} {chapter}:{verse}</h2>
             <form onSubmit={handlePostSubmit}>
                 <textarea
                     value={newPostContent}

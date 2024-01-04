@@ -44,7 +44,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     const extractPostBookChapterVerse = (reference) => {
         const match = reference.match(/(.+) (\d+:\d+)/);
         if (match) {
-          let postBook = match[1].toLowerCase().replace(/\s+/g, '')
+          let postBook = match[1]
             
           const [postChapter, postVerse] = match[2].split(':'); // Extract chapter and verse
           return { postBook, postChapter, postVerse };
