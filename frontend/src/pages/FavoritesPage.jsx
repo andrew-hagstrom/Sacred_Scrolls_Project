@@ -46,21 +46,22 @@ function FavoritesPage() {
   return (
     <>
       <div style={{width:'75vw', display:'flex'}}>
-        <Container style={{overflowY:'auto', width:'11vw', position:'absolute', marginLeft:'-10px'}}>
-          <Col style={{position:'relative', border:'2px solid black', height:'70vh', paddingLeft:'15px', display:'flex', flexDirection:'column', alignItems:'center'}}>
+        <Container style={{overflowY:'auto', width:'11vw', position:'absolute'}}>
+          <Col style={{position:'relative', height:'70vh', paddingLeft:'15px', display:'flex', flexDirection:'column', alignItems:'center'}}>
+          <Row style={{fontSize: '34px'}}>Favorites</Row>
           {favorites.map((favorite)=> (
-            <Row style={{cursor: 'pointer'}} key={favorite.id} onMouseEnter={()=>{setToRender(favorite), setPostId(favorite.id), console.log(favorite.id)}} onClick={()=>renderHandler()}>
+            <Row style={{cursor: 'pointer'}} key={favorite.id} onMouseEnter={()=>{setToRender(favorite), setPostId(favorite.id)}} onClick={()=>renderHandler()}>
+              <div className='list-text'>
               {favorite.reference}
+              </div>
               </Row>
               ))}
         </Col>
         </Container>
       {favorites.length === 0 ? 
-      <div>
-      <h1 className='favorites-page-headers'>No favorites saved</h1>
-      <div>
-      <h2 className='favorites-page-headers' style={{textAlign:'center', display:'inline-block'}}>Use the {<Link to="/text-compare/">Text Compare Page</Link>} to search for passages</h2>
-      </div>
+      <div className='favorites-page-headers'> 
+      <h1>No favorites saved</h1>
+      <h2 style={{textAlign:'center', display:'inline-block'}}>Use the {<Link to="/text-compare/">Text Compare Page</Link>} to search for passages</h2>
       </div>
       :
       <div> 
@@ -79,7 +80,9 @@ function FavoritesPage() {
                       {selected.text} 
                   </Card.Text>
           </Card.Body>
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Button className='passagecard-button' variant="dark" style={{width:'10vw'}} onClick={()=>deleteFavorite(postId)}>Remove from Favorites</Button>
+          </div>
       </Card>
       }
       </div>
