@@ -106,8 +106,8 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     }
 
     const handlePostClick = () => {
-        navigate('/posts/')
-    }
+        navigate(`/passageposts/${encodeURIComponent(book)}/${encodeURIComponent(chapter)}/${encodeURIComponent(verse)}`);
+    };
 
     useEffect(()=> {
         checkIfFavorite()
@@ -118,8 +118,8 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     return (
         <>
   
-            <Card>
-                <Card.Header style={{ textAlign: 'center' }}>
+            <Card style={{ margin: '2vh'}}>
+                <Card.Header style={{ textAlign: 'center'}}>
                     <strong>{cardTitle}</strong>
                     <Button 
                         variant="outline-secondary" 
