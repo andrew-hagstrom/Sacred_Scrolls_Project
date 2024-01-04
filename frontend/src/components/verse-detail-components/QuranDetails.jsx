@@ -44,8 +44,6 @@ export const QuranDetails = ({chapter, verse }) => {
         setShowChapterModal(!showChapterModal);
     };
 
-
-
     return (
         <div>
             <button onClick={() => toggleChapterModal('ar')}>View Chapter</button>
