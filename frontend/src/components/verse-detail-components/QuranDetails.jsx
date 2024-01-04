@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { api} from '../../utilities/ApiUtilities'
 import { PassageCard } from '../PassageCard';
+import { QuranChapterModal } from './QuranChapterModal';
 
 export const QuranDetails = ({chapter, verse }) => {
     const [arabicVerse, setArabicVerse] = useState('');
@@ -36,6 +37,19 @@ export const QuranDetails = ({chapter, verse }) => {
         fetchArabicVerse();
         fetchEnglishVerse();
     }, [chapter, verse]);
+    
+    const toggleChapterModal = (language) => {
+        setSelectedChapter(chapter)
+        setSelectedLanguage(language)
+        setShowChapterModal(!showChapterModal);
+    };
+
+
+    const toggleChapterModal = (language) => {
+        setSelectedChapter(chapter)
+        setSelectedLanguage(language)
+        setShowChapterModal(!showChapterModal);
+    };
 
     return (
         <div>
@@ -53,6 +67,14 @@ export const QuranDetails = ({chapter, verse }) => {
               sourceReference={`Chapter ${chapter}, Verse ${verse}`}
               additionalReferences={[]}
             />
+        {showChapterModal && (
+                <QuranChapterModal
+                    chapter={chapter}
+                    language={selectedLanguage}
+                    isOpen={showChapterModal}
+                    onRequestClose={() => setShowChapterModal(false)}
+                />
+            )}
         </div>
 
     );
