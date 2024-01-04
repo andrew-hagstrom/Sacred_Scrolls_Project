@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import {api} from '../utilities/ApiUtilities'
 import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button'
-import { useOutletContext } from 'react-router';
+import { useOutletContext } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import {Link} from 'react-router-dom'
 
@@ -32,7 +32,6 @@ function FavoritesPage() {
       console.log(err.message)
     })
     setFavorites(response.data)
-    
   }
 
   const renderHandler = () => {
@@ -80,7 +79,7 @@ function FavoritesPage() {
                       {selected.text} 
                   </Card.Text>
           </Card.Body>
-          <Button style={{width:'15vw'}} onClick={()=>deleteFavorite(postId)}>Remove from Favorites</Button>
+          <Button className='passagecard-button' variant="dark" style={{width:'10vw'}} onClick={()=>deleteFavorite(postId)}>Remove from Favorites</Button>
       </Card>
       }
       </div>
