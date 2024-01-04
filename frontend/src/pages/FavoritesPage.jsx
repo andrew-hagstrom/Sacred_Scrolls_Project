@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button'
 import { useOutletContext } from 'react-router';
 
 
-function FavoritesPage(currentReference) {
+function FavoritesPage() {
   const {favorites, setFavorites} = useOutletContext()
   const [toRender, setToRender] = useState([])
   const [selected, setSelected] = useState([])
