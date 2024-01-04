@@ -76,38 +76,62 @@ class EngBGChapterView(APIView):
 
         except ValueError:
             return Response({'error': 'Invalid chapter number'}, status=status.HTTP_400_BAD_REQUEST)
-
-class EngBGVerseView(APIView):
-    def get_verse_data(self, api_url, api_key):
-        headers = {
-            'X-RapidAPI-Key': api_key,
-            'Content-Type': 'application/json',  
-        }
-        try:
-            response = requests.get(api_url, headers=headers)
-            # print(f"\n\n\n {response} \n\n\n")
-            response.raise_for_status()  
-            data = response.json()  
-            return data
-        except requests.exceptions.RequestException as e:
-           
-            print(f"Error accessing API: {e}")
-            return None
         
-    def get(self, request, BGChapterNumber, BGVerseNumber):
-        api_url = f"https://bhagavad-gita3.p.rapidapi.com/v2/chapters/{BGChapterNumber}/verses/{BGVerseNumber}/"
-        api_key = env.get('BG_API_KEY')
+class EngBGVerseView(APIView):
+    def get(self, request, chapter_number, verse_number):
+        try:
+            chapter_number = int(chapter_number)  # Parse chapter_number as int
+            verse_number = str(verse_number)  # Convert verse_number to string
 
-        verse_data = self.get_verse_data(api_url, api_key)
-        # print(verse_data)
-        # if verse_data:
-        #     # print("API Data:")
-        #     # print(verse_data)
-        # else:
-        #     print("Failed to retrieve API data.")
+            # Filter passages by language, chapter, and verse
+            passage = Passages.objects.filter(
+                language="English",
+                chapter=chapter_number,
+                verse=verse_number
+            ).first()  # Get the first matching passage
 
-        print(verse_data['translations'][0]['description'])
-        return Response(verse_data['translations'][0]['description'])
+            if passage:
+                return Response({'verse_text': passage.text})
+            else:
+                return Response({'error': 'Verse not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        except ValueError:
+            return Response({'error': 'Invalid chapter or verse number'}, status=status.HTTP_400_BAD_REQUEST)
+
+        
+ 
+
+# class EngBGVerseView(APIView):
+#     def get_verse_data(self, api_url, api_key):
+#         headers = {
+#             'X-RapidAPI-Key': api_key,
+#             'Content-Type': 'application/json',  
+#         }
+#         try:
+#             response = requests.get(api_url, headers=headers)
+#             # print(f"\n\n\n {response} \n\n\n")
+#             response.raise_for_status()  
+#             data = response.json()  
+#             return data
+#         except requests.exceptions.RequestException as e:
+           
+#             print(f"Error accessing API: {e}")
+#             return None
+        
+#     def get(self, request, BGChapterNumber, BGVerseNumber):
+#         api_url = f"https://bhagavad-gita3.p.rapidapi.com/v2/chapters/{BGChapterNumber}/verses/{BGVerseNumber}/"
+#         api_key = env.get('BG_API_KEY')
+
+#         verse_data = self.get_verse_data(api_url, api_key)
+#         # print(verse_data)
+#         # if verse_data:
+#         #     # print("API Data:")
+#         #     # print(verse_data)
+#         # else:
+#         #     print("Failed to retrieve API data.")
+
+#         print(verse_data['translations'][0]['description'])
+#         return Response(verse_data['translations'][0]['description'])
 
 # class SanBGChapterView(APIView):
 #     def get_chapter_data(self, api_url, api_key):
@@ -172,37 +196,57 @@ class SanBGChapterView(APIView):
         except ValueError:
             return Response({'error': 'Invalid chapter number'}, status=status.HTTP_400_BAD_REQUEST)
 
-
 class SanBGVerseView(APIView):
-    def get_verse_data(self, api_url, api_key):
-        headers = {
-            'X-RapidAPI-Key': api_key,
-            'Content-Type': 'application/json',  
-        }
+    def get(self, request, chapter_number, verse_number):
         try:
-            response = requests.get(api_url, headers=headers)
-            # print(f"\n\n\n {response} \n\n\n")
-            response.raise_for_status()  
-            data = response.json()  
-            return data
-        except requests.exceptions.RequestException as e:
-           
-            print(f"Error accessing API: {e}")
-            return None
+            chapter_number = int(chapter_number)  # Parse chapter_number as int
+            verse_number = str(verse_number)  # Convert verse_number to string
+
+            # Filter passages by language, chapter, and verse
+            passage = Passages.objects.filter(
+                language="Sanskrit",
+                chapter=chapter_number,
+                verse=verse_number
+            ).first()  # Get the first matching passage
+
+            if passage:
+                return Response({'verse_text': passage.text})
+            else:
+                return Response({'error': 'Verse not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        except ValueError:
+            return Response({'error': 'Invalid chapter or verse number'}, status=status.HTTP_400_BAD_REQUEST)
         
-    def get(self, request, BGChapterNumber, BGVerseNumber):
-        api_url = f"https://bhagavad-gita3.p.rapidapi.com/v2/chapters/{BGChapterNumber}/verses/{BGVerseNumber}/"
-        api_key = env.get('BG_API_KEY')
+# class SanBGVerseView(APIView):
+#     def get_verse_data(self, api_url, api_key):
+#         headers = {
+#             'X-RapidAPI-Key': api_key,
+#             'Content-Type': 'application/json',  
+#         }
+#         try:
+#             response = requests.get(api_url, headers=headers)
+#             # print(f"\n\n\n {response} \n\n\n")
+#             response.raise_for_status()  
+#             data = response.json()  
+#             return data
+#         except requests.exceptions.RequestException as e:
+           
+#             print(f"Error accessing API: {e}")
+#             return None
+        
+#     def get(self, request, BGChapterNumber, BGVerseNumber):
+#         api_url = f"https://bhagavad-gita3.p.rapidapi.com/v2/chapters/{BGChapterNumber}/verses/{BGVerseNumber}/"
+#         api_key = env.get('BG_API_KEY')
 
-        verse_data = self.get_verse_data(api_url, api_key)
-        # print(verse_data)
-        # if verse_data:
-        #     print("API Data:")
-        #     print(verse_data)
-        # else:
-        #     print("Failed to retrieve API data.")
+#         verse_data = self.get_verse_data(api_url, api_key)
+#         # print(verse_data)
+#         # if verse_data:
+#         #     print("API Data:")
+#         #     print(verse_data)
+#         # else:
+#         #     print("Failed to retrieve API data.")
 
-        return Response(verse_data['text'])
+#         return Response(verse_data['text'])
     
 class BGKeywordSearchView(APIView):
     def get(self, request, keyword):
