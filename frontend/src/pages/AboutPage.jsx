@@ -1,7 +1,7 @@
 
 import BioCard from "../components/BioCard"
 
-import BryanHeadshot from '../Images/bryan-headshot.jpg';
+import BryanHeadshot from '../Images/bryan-headshot.png';
 
 function AboutPage() {
 
