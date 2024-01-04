@@ -126,6 +126,14 @@ body{
   justify-content: flex-start;
 }
 
-.passage-card {
-  background-color: red;
+.passage-card{
+  background-color: rgb(254, 248, 231);
+  /* border: 2px solid #afafaf; */
+  /* box-shadow: 0 0 5px 2px #758793; */
+  width: 45vw;
+  color:black;
+}
+
+.card-header {
+  background-color: rgb(248, 234, 198) ;
 }
