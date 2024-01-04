@@ -132,8 +132,8 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     return (
         <>
   
-            <Card style={{ margin: '2vh'}}>
-                <Card.Header style={{ textAlign: 'center'}}>
+            <Card className='passage-card'style={{ margin: '2vh'}}>
+                <Card.Header className='card-header' style={{ textAlign: 'center'}}>
                     <strong>{cardTitle}</strong>
                     <Button 
                         variant="outline-secondary" 
