@@ -12,6 +12,7 @@ import SacredScrollsLogo from '../Images/TransparentLogo.png'
 export const NavBar = ({ user, setUser }) => {
     const navigate = useNavigate();
 
+
     const logOut = async() => {
         localStorage.removeItem("token");
         let response = await api

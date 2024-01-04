@@ -17,6 +17,14 @@ body{
   background-attachment: fixed;
 } 
 
+.posts-card{
+  margin: 20px;
+  border: 2px solid beige;
+  background-color: rgb(159, 143, 89);
+  color:lightgray;
+  padding: 10px;
+
+}
 
 .mx-2 {
   color:#dcdbd5;

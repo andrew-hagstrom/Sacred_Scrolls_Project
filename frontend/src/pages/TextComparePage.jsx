@@ -17,8 +17,6 @@ import InputGroup from 'react-bootstrap/Container';
 
 
 
-
-
 function TextComparePage() {
     const [searchTerm, setSearchTerm] = useState('');
     const [firstBibleResult, setFirstBibleResult] = useState(null);
@@ -106,7 +104,7 @@ function TextComparePage() {
 
     return (
         <>
-            <h2 style={{marginBottom: '5vh'}}>
+            <h2 style={{marginBottom: '5vh', textAlign: "center"}}>
                 Textual Comparison 
             </h2>
             <Container fluid>
