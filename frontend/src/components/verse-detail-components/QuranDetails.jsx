@@ -45,11 +45,6 @@ export const QuranDetails = ({chapter, verse }) => {
     };
 
 
-    const toggleChapterModal = (language) => {
-        setSelectedChapter(chapter)
-        setSelectedLanguage(language)
-        setShowChapterModal(!showChapterModal);
-    };
 
     return (
         <div>
