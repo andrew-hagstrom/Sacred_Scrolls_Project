@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import BryanHeadshot from '../Images/bryan-headshot.jpg';
 
 function BioCard({ imageSrc, name, description, email }) {
   return (
