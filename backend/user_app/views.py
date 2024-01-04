@@ -158,10 +158,12 @@ class JournalEntryView(APIView):
 
     def put(self, request, entry_id):
         try:
+            data = request.data.copy()
             journal_entry = JournalEntries.objects.get(
                 user=request.user.id, id=entry_id
             )
-            serializer = JournalEntriesSerializer(journal_entry, data=request.data)
+            data["user"] = request.user.id
+            serializer = JournalEntriesSerializer(journal_entry, data=data)
 
             if serializer.is_valid():
                 serializer.save()

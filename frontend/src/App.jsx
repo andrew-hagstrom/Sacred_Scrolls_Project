@@ -20,7 +20,7 @@ function App() {
       try {
         const response = await api.get("user/info/"); // Update with the correct endpoint
         setUser(response.data.username);
-        setUserID(response.data.user_id);
+        // setUserID(response.data.user_id);
       } catch (error) {
         console.error("Error fetching user info:", error);
         // Optionally handle error (e.g., invalid token)
@@ -53,6 +53,11 @@ function App() {
     getJournalData();
   }, [user]);
 
+  // TESTING - DELETE WHEN DONE
+  useEffect(() => {
+    console.log("app level loading journal data",journalData)
+
+  }, [journalData])
   return (
     <>
       <NavBar user={user} setUser={setUser} />

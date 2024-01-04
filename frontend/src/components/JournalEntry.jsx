@@ -1,12 +1,13 @@
 import { Button } from "react-bootstrap";
 export const JournalEntry = (props) => {
-  const { setEntrySelected } = props;
+  const { setEntrySelected, isViewingEntry, setIsViewingEntry } = props;
   const onClickHandler = () => {
     setEntrySelected({
       id: props.id,
       title: props.title,
       text: props.text,
     });
+    setIsViewingEntry(true)
   };
 
   return (

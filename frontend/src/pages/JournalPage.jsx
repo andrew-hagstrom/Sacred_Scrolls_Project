@@ -4,10 +4,11 @@ import { api } from "../utilities/ApiUtilities";
 import { JournalEntry } from "../components/JournalEntry";
 import { useOutletContext } from "react-router";
 
-
 function JournalPage() {
   const [isViewingEntry, setIsViewingEntry] = useState(false);
   const [entrySelected, setEntrySelected] = useState(null);
+
+  const [isEditMode, setIsEditMode] = useState(false)
 
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
@@ -21,7 +22,6 @@ function JournalPage() {
 
   useEffect(() => {
     setLoading(false);
-    
   }, []);
 
   useEffect(() => {
@@ -50,9 +50,10 @@ function JournalPage() {
       });
 
       if (response.status === 201) {
-        
-        setJournalData([...journalData, response.data])
-        console.log(journalData)
+        setJournalData([...journalData, response.data]);
+        console.log(journalData);
+        setTitle("")
+        setText("")
         // Trigger updateEntries
         // setUpdateEntriesTrigger(!updateEntriesTrigger);
       }
@@ -64,26 +65,63 @@ function JournalPage() {
     setTitle("");
     setText("");
   };
-
+  
   const handleDeleteJournal = async () => {
     try {
+      // delete from database
       const response = await api.delete(`user/journal/${entrySelected.id}`);
+      // if successfull deletion from backend
       if (response.status === 204) {
+        // delete from frontend useState obj
         setJournalData((journalData) =>
-        journalData.filter((entry) => entry.id !== entrySelected.id)
-        
-        
-      );
-      setEntrySelected(null)
+          journalData.filter((entry) => entry.id !== entrySelected.id)
+        );
+        setEntrySelected(null);
+        setIsViewingEntry(false)
       }
     } catch (error) {
       console.error("Error deleting data:", error);
     }
   };
+  const putJournalEntry = async () => {
+    event.preventDefault()
 
+    try {
+      const response = await api.put(`user/journal/${entrySelected.id}`, {
+        "title":title,
+        "text":text
+      });
+      if (response.status === 200) {
+        console.log(response.data)
+        // filter and delete journal entry with response id
+        console.log("before edit", journalData)
+
+        const newJournalData =journalData.map((entry) => {
+          entry.id == response.data.id ? response.data : entry
+        })
+
+        setJournalData(newJournalData)
+      }
+    } catch (error) {
+      console.error("Error editing data:", error);
+    }
+
+  }
+  const handleEditButton = () => {
+    setIsViewingEntry(false)
+    setIsEditMode(true)
+
+    setTitle(entrySelected.title)
+    setText(entrySelected.text)
+    console.log(`editmode:${isEditMode} viewmode:${isViewingEntry}`)
+  }
   const handleCreateButton = () => {
     setEntrySelected(null);
   };
+  const undoEditMode = () => {
+    setIsViewingEntry(true)
+    setIsEditMode(false)
+  }
 
   return (
     <>
@@ -110,35 +148,59 @@ function JournalPage() {
                 />
               ))
             ) : (
-              <></>
+              <h1>empty</h1>
             )}
           </div>
           <div className="col-7">
             <Container>
               <Row className="justify-content-md-center mt-5">
                 <Col xs={12} md={6}>
-                  {entrySelected ? (
+                  {isViewingEntry || isEditMode ? (
+                    isViewingEntry ?
                     <>
                       <div>
                         <h1>{entrySelected.title}</h1>
                         <p>{entrySelected.text}</p>
                       </div>
                       <div>
-                        <Button variant="secondary">edit</Button>
-                        <Button
-                          variant="danger"
-                          onClick={handleDeleteJournal}
-                        >
+                        <Button variant="secondary" onClick={handleEditButton}>edit</Button>
+                        <Button variant="danger" onClick={handleDeleteJournal}>
                           delete
                         </Button>
-                        <Button
-                          variant="success"
-                          onClick={handleCreateButton}
-                        >
+                        <Button variant="success" onClick={handleCreateButton}>
                           create new
                         </Button>
                       </div>
+                    </> :
+                    // render editmode
+                    <>
+                      <Form onSubmit={handleSubmit}>
+                      <Form.Group controlId="title">
+                        <Form.Label>Title:</Form.Label>
+                        <Form.Control
+                          type="text"
+                          value={title}
+                          onChange={handleTitleChange}
+                        />
+                      </Form.Group>
+
+                      <Form.Group controlId="text">
+                        <Form.Label>Text:</Form.Label>
+                        <Form.Control
+                          as="textarea"
+                          rows={4}
+                          value={text}
+                          onChange={handleTextChange}
+                          
+                        />
+                      </Form.Group>
+                      <Button variant="primary" type="submit" onClick={putJournalEntry}>
+                        Submit Edit
+                      </Button>
+                      <Button varient="secondary" onClick={undoEditMode}>undo</Button>
+                    </Form>
                     </>
+                    
                   ) : (
                     <Form onSubmit={handleSubmit}>
                       <Form.Group controlId="title">
