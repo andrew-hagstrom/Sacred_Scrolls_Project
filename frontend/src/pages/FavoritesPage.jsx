@@ -8,7 +8,7 @@ import { useOutletContext } from 'react-router';
 import Card from 'react-bootstrap/Card';
 import {Link} from 'react-router-dom'
 
-function FavoritesPage() {
+function FavoritesPage(currentReference) {
   const {favorites, setFavorites} = useOutletContext()
   const [toRender, setToRender] = useState([])
   const [selected, setSelected] = useState([])
