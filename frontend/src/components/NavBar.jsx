@@ -24,7 +24,7 @@ export const NavBar = ({ user, setUser }) => {
     };
     
     return (
-        <Navbar style={{paddingBottom: "2%", padding: "2%"}} expand="lg" id='navbar-comp'>
+        <Navbar style={{paddingBottom: "2%", padding: "2%", marginTop: '0.5vh'}} expand="lg" id='navbar-comp'>
             <Container>
                 <Navbar.Brand>
                 <img

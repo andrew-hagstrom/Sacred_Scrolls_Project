@@ -18,40 +18,34 @@ from rest_framework.status import (
     HTTP_404_NOT_FOUND
 )
 
-class AllPostsView(APIView):
+class AllPassagePostsView(APIView):
      def get(self, request):
-        posts = Posts.objects.all()
+        book = request.query_params.get("book")
+        chapter = request.query_params.get("chapter")
+        verse = request.query_params.get("verse")
+        posts = Posts.objects.filter(book=book, chapter=chapter, verse=verse)
+        serialized_posts = PostsSerializer(posts, many=True)
+        return Response(serialized_posts.data)
+
+class AllUserPostsView(APIView):
+    def get(self, request, username):
+        user=User.objects.filter(username=username)
+        posts = Posts.objects.filter(user=user)
         serialized_posts = PostsSerializer(posts, many=True)
         print(serialized_posts)
         return Response(serialized_posts.data)
 
-class UserPostsView(APIView):
-    def get(self, request, user_id):
-        posts = Posts.objects.filter(user_id=user_id)
-        serialized_posts = PostsSerializer(posts, many=True)
-        print(serialized_posts)
-        return Response({"data": serialized_posts.data})
+    def post(self, request, username):
+        user = User.objects.get(username=username)
+        text = request.data.get('text')
+        book = request.data.get("book")
+        chapter = request.data.get("chapter")
+        verse = request.data.get("verse")
+        new_post=Posts(user=user, book=book, chapter=chapter, verse=verse, text=text)
+        ser_new_post=PostsSerializer(new_post)
+        new_post.save()
+        return Response(ser_new_post.data)
 
-    def post(self, request, user_id):
-        try:
-            user = User.objects.get(id=user_id)
-            text = request.data.get('text')
-
-            post_data = {'user_id': user.id, 'text': text}
-
-            new_post_serializer = PostsSerializer(data=post_data)
-
-            if new_post_serializer.is_valid():
-                new_post_serializer.save()
-                return Response({"message": "Post created successfully"}, status=status.HTTP_201_CREATED)
-            else:
-                # Return errors if the data is not valid
-                return Response({"error": new_post_serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-
-        except User.DoesNotExist:
-            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-        except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class APostView(APIView):

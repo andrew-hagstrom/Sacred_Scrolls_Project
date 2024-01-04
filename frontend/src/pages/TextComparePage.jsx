@@ -124,7 +124,7 @@ function TextComparePage() {
                     </Col>
                 </Row>
                 {firstBibleResult && (
-                <Row className="mb-3"> {/* Add margin-bottom class */}
+                <Row> {/* Add margin-bottom class */}
                     <Col md={12}>
                         <PassageCard 
                             cardTitle = "Bible"

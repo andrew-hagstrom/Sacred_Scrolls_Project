@@ -11,7 +11,7 @@ import FavoritesPage from "./pages/FavoritesPage"
 import {NotFoundPage} from './pages/NotFoundPage';
 import LoginPage from "./pages/LoginPage";
 import VerseDetailPage from './pages/VerseDetailPage'
-import PostsPage from './pages/PostsPage'
+import PassagePostsPage from './pages/PassagePostsPage'
 
 
 const router = createBrowserRouter([
@@ -57,8 +57,8 @@ const router = createBrowserRouter([
                 element: <LoginPage />,
             },
             {
-                path: 'posts/',
-                element: <PostsPage />,
+                path: 'passageposts/:book/:chapter/:verse/',
+                element: <PassagePostsPage />,
             },
 
            
