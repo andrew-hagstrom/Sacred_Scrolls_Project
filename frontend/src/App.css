@@ -105,6 +105,10 @@ body {
   width: 50%;
 }
 
+.verse-modal {
+  color: rgba(0, 0, 0, 1);
+}
+
 #favorites-page {
   display:flex;
   justify-content: flex-start;
