@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { api } from '../utilities/ApiUtilities';
+import { api } from '../../utilities/ApiUtilities';
 
 import { Modal, Button } from 'react-bootstrap';
 
@@ -29,7 +29,7 @@ export const BhagavadGitaChapterModal = ({ chapter, language, isOpen, onRequestC
   }, [chapter, language]);
 
   return (
-    <Modal show={isOpen} onHide={onRequestClose}>
+    <Modal className="verse-modal" show={isOpen} onHide={onRequestClose}>
       <Modal.Header closeButton>
         <Modal.Title>Chapter {chapter}</Modal.Title>
       </Modal.Header>

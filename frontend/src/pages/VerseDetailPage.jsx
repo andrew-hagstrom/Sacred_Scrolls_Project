@@ -1,9 +1,9 @@
 
 import { useParams } from 'react-router-dom'
 import { checkIfOldTestament, bibleBookIdAndTestament } from '../utilities/BibleBookUtilities';
-import { BhagavadGitaDetails } from '../components/BhagavadGitaDetails';
-import { QuranDetails } from '../components/QuranDetails';
-import { BibleDetails } from '../components/BibleDetails';
+import { BhagavadGitaDetails } from '../components/verse-detail-components/BhagavadGitaDetails';
+import { QuranDetails } from '../components/verse-detail-components/QuranDetails';
+import { BibleDetails } from '../components/verse-detail-components/BibleDetails';
 
 import Container from 'react-bootstrap/Container';
 

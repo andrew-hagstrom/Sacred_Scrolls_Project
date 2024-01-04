@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
-import { api} from '../utilities/ApiUtilities'
-import { PassageCard } from './PassageCard';
+import { api} from '../../utilities/ApiUtilities'
+import { PassageCard } from '../PassageCard';
 
 export const QuranDetails = ({chapter, verse }) => {
     const [arabicVerse, setArabicVerse] = useState('');
