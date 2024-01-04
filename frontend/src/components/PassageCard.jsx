@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams, useOutletContext } from 'react-router-dom';
-
+import { useNavigate, useParams, useLocation, useOutletContext } from 'react-router-dom';
+import {api} from '../utilities/ApiUtilities'
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
@@ -16,22 +17,42 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         sourceReference || "Reference not available"
     )
     const navigate = useNavigate();
+    const location = useLocation();
+
     const {favorites, setFavorites, user} = useOutletContext()
     const [favText, setFavText] = useState("")
     const [favSource, setFavSource] = useState("")
     const [favRef, setFavRef] = useState("")
+    const [isFavorite, setIsFavorite] = useState(false);
 
     const extractBookChapterVerse = (reference) => {
         const match = reference.match(/(.+) (\d+:\d+)/);
         if (match) {
-          const book = match[1].toLowerCase().replace(/\s+/g, ''); // Convert to lowercase and remove spaces
+          let book = match[1].toLowerCase().replace(/\s+/g, ''); // Convert to lowercase and remove spaces
+          if (book.includes('surah')) {
+            book = 'quran'
+          }
+            
           const [chapter, verse] = match[2].split(':'); // Extract chapter and verse
           return { book, chapter, verse };
         }
         return { book: "N/A", chapter: "N/A", verse: "N/A" }; // Return default values if no match
       };
 
-      const { book, chapter, verse } = extractBookChapterVerse(currentReference);
+    const { book, chapter, verse } = extractBookChapterVerse(currentReference);
+
+    const extractPostBookChapterVerse = (reference) => {
+        const match = reference.match(/(.+) (\d+:\d+)/);
+        if (match) {
+          let postBook = match[1]
+            
+          const [postChapter, postVerse] = match[2].split(':'); // Extract chapter and verse
+          return { postBook, postChapter, postVerse };
+        }
+        return { postBook: "N/A", postChapter: "N/A", postVerse: "N/A" }; // Return default values if no match
+      };
+
+    const { postBook, postChapter, postVerse } = extractBookChapterVerse(currentReference);
 
 
     useEffect(() => {
@@ -48,9 +69,15 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     };
 
     const handleDetailsClick = () => {
-        const { book, chapter, verse } = extractBookChapterVerse(currentReference)
-        // Navigate to the details page with the route parameters
-        navigate(`/text-compare/${book}/${chapter}/${verse}/`);
+        const { book, chapter, verse } = extractBookChapterVerse(currentReference);
+    
+        if (location.pathname !== `/text-compare/`) {
+            // Navigate to the default text compare page
+            navigate('/text-compare/');
+        } else {
+            // Navigate to the details page with the route parameters
+            navigate(`/text-compare/${book}/${chapter}/${verse}/`);
+        }
     };
 
     const toggleCollapse = () => setIsCollapsed(!isCollapsed);
@@ -64,11 +91,21 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
             language : 'English',
             source : favSource,
             reference : favRef,
-            text : favText
+            text : favText,
+            details: '?'
         }
-        let response = await axios.post('http://127.0.0.1:8000/api/v1/user/favorites/', data)
+        let response = await api
+        .post('user/favorites/', data)
+        .catch((err) => {
+            console.log(err.message)
+        })
         console.log(response)
-    }   
+        console.log(response)
+        if (response.status === 201) {
+            setFavorites([...favorites, data])
+            setIsFavorite(true)
+        } 
+    }
 
     const favDataHandler = () => {
         setFavRef(currentReference)
@@ -76,15 +113,32 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         setFavText(currentText)
     }
 
+    const checkIfFavorite = () => {
+        let checking = favorites.some((fav) => fav.reference === currentReference)
+        setIsFavorite(checking)
+    }
+
+    const handlePostClick = () => {
+        const { postBook, postChapter, postVerse } = extractPostBookChapterVerse(currentReference);
+        navigate(`/passageposts/${encodeURIComponent(postBook)}/${encodeURIComponent(postChapter)}/${encodeURIComponent(postVerse)}`);
+    };
+
+    useEffect(()=> {
+        checkIfFavorite()
+    },[currentReference])
+
+    const detailsButtonText = location.pathname.startsWith('/text-compare/') && !location.pathname.endsWith('/text-compare/') ? 'Go Back' : 'See More';
+    
     return (
         <>
-            
-            <Card>
-                <Card.Header style={{ textAlign: 'center' }}>
+  
+            <Card style={{ margin: '2vh'}}>
+                <Card.Header style={{ textAlign: 'center'}}>
                     <strong>{cardTitle}</strong>
                     <Button 
                         variant="outline-secondary" 
-                        onClick={toggleCollapse} 
+                        onClick={toggleCollapse}
+                        size="sm" 
                         style={{ position: 'absolute', top: '10px', right: '10px' }}>
                         {isCollapsed ? 'Expand' : 'Collapse'}
                     </Button>
@@ -100,12 +154,20 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                                 {currentReference}
                             </Card.Title>
                             <Card.Text>
-                                {currentText}
+                                {currentText} 
                             </Card.Text>
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>Details</Button>
-                            <Button variant="secondary" onClick={(e)=>addToFavorites(e)}>Add to Favorites</Button>
+                            <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>{detailsButtonText}</Button>
+                            <Button onClick={handlePostClick}>Write Comment</Button>
+                            <Button variant="secondary" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
+                                {isFavorite ? 
+                                'Already Added to Favorites' :
+                                'Add to Favorites'} 
+                                </Button>
+                        
+                        
+                        
                         </div>
                     </Card.Body>
                     </div>

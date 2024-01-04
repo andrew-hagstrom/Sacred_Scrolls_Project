@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
 
-import { api } from '../utilities/ApiUtilities';
-import { PassageCard } from './PassageCard';
+import { api } from '../../utilities/ApiUtilities';
+import { PassageCard } from '../PassageCard';
 import { BhagavadGitaChapterModal } from './BhagavadGitaChapterModal'
 
 
@@ -11,7 +11,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
     const [englishText, setEnglishText] = useState('');
     const [showChapterModal, setShowChapterModal] = useState(false);
     const [selectedChapter, setSelectedChapter] = useState(null);
-    const [selectedLanguage, setSelectedLanguage] = useState('sanskrit');
+    const [selectedLanguage, setSelectedLanguage] = useState('san');
 
     const book = "bhagavadgita"
 
@@ -22,7 +22,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
     const fetchEnglishVerse = async (chapterNumber, verseNumber) => {
         try {
         const response = await api.get(`BG/eng/chapter/${chapterNumber}/verse/${verseNumber}/`);
-        return response.data;
+        return response.data.verse_text;
         } catch (error) {
         // Handle errors here
         console.error('Error fetching English Bhagavad Gita verse:', error);
@@ -34,7 +34,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
     const fetchSanskritVerse = async (chapterNumber, verseNumber) => {
         try {
         const response = await api.get(`BG/san/chapter/${chapterNumber}/verse/${verseNumber}/`);
-        return response.data;
+        return response.data.verse_text;
         } catch (error) {
         // Handle errors here
         console.error('Error fetching Sanskrit Bhagavad Gita verse:', error);
@@ -71,7 +71,8 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
     return (
         <>
           <div>
-            <button onClick={() => toggleChapterModal('san')}>Modal</button>
+          
+          <button onClick={() => toggleChapterModal('san')}>See Chapter</button>
             <PassageCard
               cardTitle="Bhagavad Gita"
               sourceText={sanskritText}
@@ -80,7 +81,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
             />
           </div>
           <div>
-          <button onClick={() => toggleChapterModal('eng')}>Modal</button>
+          <button onClick={() => toggleChapterModal('eng')}>See Chapter</button>
             <PassageCard
               cardTitle="Bhagavad Gita (English)"
               sourceText={englishText}
@@ -90,6 +91,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
           </div>
           {showChapterModal && (
             <BhagavadGitaChapterModal
+              
               chapter={selectedChapter}
               language={selectedLanguage}
               isOpen={showChapterModal}
