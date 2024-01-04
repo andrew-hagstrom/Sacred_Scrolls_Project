@@ -139,7 +139,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                         variant="outline-secondary" 
                         onClick={toggleCollapse}
                         size="sm" 
-                        style={{ position: 'absolute', top: '10px', right: '10px' }}>
+                        style={{ position: 'absolute', top: '5px', right: '10px' }}>
                         {isCollapsed ? 'Expand' : 'Collapse'}
                     </Button>
                 </Card.Header>
