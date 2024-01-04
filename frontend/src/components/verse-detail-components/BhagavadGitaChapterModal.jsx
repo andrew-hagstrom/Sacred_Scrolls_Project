@@ -16,8 +16,8 @@ export const BhagavadGitaChapterModal = ({ chapter, language, isOpen, onRequestC
     try {
       const response = await api.get(`BG/${language}/chapter/${chapter}/`);
       const chapterData = response.data;
-      setSanskritText(chapterData);
-      setEnglishText(chapterData);
+      setSanskritText(chapterData.chapter_text);
+      setEnglishText(chapterData.chapter_text);
     } catch (error) {
       console.error(`Error fetching ${language} Bhagavad Gita chapter ${chapter}:`, error);
       throw error;
