@@ -68,7 +68,7 @@ function FavoritesPage() {
       {selected.length === 0 ?
       <h1 className='favorites-page-headers'>Select a favorite</h1>  
       :
-      <Card style={{marginLeft:'275px'}}>
+      <Card className='passage-card' style={{marginLeft:'275px'}}>
       <Card.Header style={{ textAlign: 'center'}}>
           <strong>{selected.source}</strong>
       </Card.Header>

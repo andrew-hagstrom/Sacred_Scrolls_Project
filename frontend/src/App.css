@@ -125,3 +125,7 @@ body{
   display:flex;
   justify-content: flex-start;
 }
+
+.passage-card {
+  background-color: red;
+}
