@@ -1,10 +1,6 @@
 html{
   height:100vh;
-<<<<<<< Updated upstream
-  width:100%;
-=======
   width:100vw;
->>>>>>> Stashed changes
   margin:0;
 }
 
@@ -111,19 +107,6 @@ body{
   width: 50%;
 }
 
-<<<<<<< Updated upstream
-.verse-modal {
-  color: rgba(0, 0, 0, 1);
-  
-  background-image: linear-gradient(to bottom, rgb(2, 27, 51) 33%, rgba(54,69,79,1) 87%);
-  
-  
-}
-
-#favorites-page {
-  display:flex;
-  justify-content: flex-start;
-=======
 #favorites-page {
   display:flex;
   justify-content: flex-start;
@@ -131,6 +114,7 @@ body{
 
 .scrollable {
   max-height: 300px;
+  min-height: 300px;
   overflow-y: auto;
   border: 1px solid #ccc;
 }
@@ -141,5 +125,13 @@ body{
 }
 .journal-entry:hover {
   background-color:white;
->>>>>>> Stashed changes
+}
+
+.fade-in-out {
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
 }
