@@ -32,7 +32,6 @@ function FavoritesPage() {
       console.log(err.message)
     })
     setFavorites(response.data)
-    
   }
 
   const renderHandler = () => {
