@@ -128,11 +128,8 @@ function TextComparePage() {
                     <Col md={12}>
                         <PassageCard 
                             cardTitle = "Bible"
-
                             sourceText={firstBibleResult.text} 
-                        
                             sourceReference={firstBibleResult.reference}
-                            
                             additionalReferences={additionalBibleReferences}
                         
                         />

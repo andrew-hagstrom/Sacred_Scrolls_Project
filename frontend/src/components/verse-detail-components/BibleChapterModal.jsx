@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { api } from '../utilities/ApiUtilities';
-import { checkIfOldTestament, bibleBookIdAndTestament } from '../utilities/BibleBookUtilities';
+import { api } from '../../utilities/ApiUtilities';
+import { checkIfOldTestament, bibleBookIdAndTestament } from '../../utilities/BibleBookUtilities';
 
 export const BibleChapterModal = ({ book, chapter, isOpen, onRequestClose, selectedLanguage }) => {
     const [chapterText, setChapterText] = useState('');
@@ -32,13 +32,13 @@ export const BibleChapterModal = ({ book, chapter, isOpen, onRequestClose, selec
     }, [book, chapter, selectedLanguage]);
 
     return (
-        <Modal show={isOpen} onHide={onRequestClose}>
+        <Modal className="verse-modal" show={isOpen} onHide={onRequestClose}>
             <Modal.Header closeButton>
                 <Modal.Title>{`Chapter ${chapter} of ${book}`}</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body >
                 <h5>{selectedLanguage === 'eng' ? 'English' : (checkIfOldTestament(book) ? 'Hebrew' : 'Greek')}</h5>
-                <p>{chapterText}</p>
+                <p className="verse-modal">{chapterText}</p>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={onRequestClose}>Close</Button>

@@ -105,6 +105,10 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         setIsFavorite(checking)
     }
 
+    const handlePostClick = () => {
+        navigate('/posts/')
+    }
+
     useEffect(()=> {
         checkIfFavorite()
     },[currentReference])
@@ -119,7 +123,8 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                     <strong>{cardTitle}</strong>
                     <Button 
                         variant="outline-secondary" 
-                        onClick={toggleCollapse} 
+                        onClick={toggleCollapse}
+                        size="sm" 
                         style={{ position: 'absolute', top: '10px', right: '10px' }}>
                         {isCollapsed ? 'Expand' : 'Collapse'}
                     </Button>
@@ -135,11 +140,12 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                                 {currentReference}
                             </Card.Title>
                             <Card.Text>
-                                {currentText}
+                                {currentText} 
                             </Card.Text>
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>{detailsButtonText}</Button>
+                            <Button onClick={handlePostClick}>Write Comment</Button>
                             <Button variant="secondary" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
                                 {isFavorite ? 
                                 'Already Added to Favorites' :
