@@ -105,6 +105,10 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         setIsFavorite(checking)
     }
 
+    const handlePostClick = () => {
+        navigate('/posts/')
+    }
+
     useEffect(()=> {
         checkIfFavorite()
     },[currentReference])
@@ -140,6 +144,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>{detailsButtonText}</Button>
+                            <Button onClick={handlePostClick}>Write Comment</Button>
                             <Button variant="secondary" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
                                 {isFavorite ? 
                                 'Already Added to Favorites' :
