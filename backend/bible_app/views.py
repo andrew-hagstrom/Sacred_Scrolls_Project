@@ -7,6 +7,8 @@ from sacred_scrolls_proj.settings import env
 
 
 class EngBibChapterView(APIView):
+    api_key = env.get('BIBLE_API_KEY')
+
     def get_chapter_data(self, api_url, api_key):
         headers = {
             'api-key': api_key,
@@ -23,7 +25,7 @@ class EngBibChapterView(APIView):
            
             print(f"Error accessing API: {e}")
             return None
-        
+  
     def get(self, request, EngBibBookID, EngBibChapterNumber):
         api_url = f"https://api.scripture.api.bible/v1/bibles/bba9f40183526463-01/chapters/{EngBibBookID}.{EngBibChapterNumber}?content-type=text&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false"
         api_key = env.get('BIBLE_API_KEY')
