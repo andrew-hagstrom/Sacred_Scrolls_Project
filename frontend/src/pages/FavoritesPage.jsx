@@ -80,7 +80,7 @@ function FavoritesPage() {
                       {selected.text} 
                   </Card.Text>
           </Card.Body>
-          <Button style={{width:'15vw'}} onClick={()=>deleteFavorite(postId)}>Remove from Favorites</Button>
+          <Button className='passagecard-button' variant="dark" style={{width:'10vw'}} onClick={()=>deleteFavorite(postId)}>Remove from Favorites</Button>
       </Card>
       }
       </div>
