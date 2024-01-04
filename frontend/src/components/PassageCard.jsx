@@ -39,7 +39,20 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         return { book: "N/A", chapter: "N/A", verse: "N/A" }; // Return default values if no match
       };
 
-      const { book, chapter, verse } = extractBookChapterVerse(currentReference);
+    const { book, chapter, verse } = extractBookChapterVerse(currentReference);
+
+    const extractPostBookChapterVerse = (reference) => {
+        const match = reference.match(/(.+) (\d+:\d+)/);
+        if (match) {
+          let postBook = match[1].toLowerCase().replace(/\s+/g, '')
+            
+          const [postChapter, postVerse] = match[2].split(':'); // Extract chapter and verse
+          return { postBook, postChapter, postVerse };
+        }
+        return { postBook: "N/A", postChapter: "N/A", postVerse: "N/A" }; // Return default values if no match
+      };
+
+    const { postBook, postChapter, postVerse } = extractBookChapterVerse(currentReference);
 
 
     useEffect(() => {
@@ -106,7 +119,8 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     }
 
     const handlePostClick = () => {
-        navigate(`/passageposts/${encodeURIComponent(book)}/${encodeURIComponent(chapter)}/${encodeURIComponent(verse)}`);
+        const { postBook, postChapter, postVerse } = extractPostBookChapterVerse(currentReference);
+        navigate(`/passageposts/${encodeURIComponent(postBook)}/${encodeURIComponent(postChapter)}/${encodeURIComponent(postVerse)}`);
     };
 
     useEffect(()=> {
