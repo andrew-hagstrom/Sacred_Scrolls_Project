@@ -45,7 +45,7 @@ export const NavBar = ({ user, setUser }) => {
                                 <NavLink as={Link} to="/text-compare/" className="mx-2">Text Compare</NavLink>
                                 <NavLink as={Link} to="/journal/" className="mx-2">Journal</NavLink>
                                 <NavLink as={Link} to="/favorites/" className="mx-2">Favorites</NavLink>
-                                {/* <NavLink as={Link} to="/posts/" className="mx-2">Posts</NavLink> */}
+                                <NavLink as={Link} to="/posts/" className="mx-2">Posts</NavLink>
                                 <NavLink as={Link} to="/about/" className="mx-2">About</NavLink>
 
                             </>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { api } from '../utilities/ApiUtilities';
+import { api } from '../../utilities/ApiUtilities';
 import { Modal, Button } from 'react-bootstrap';
 
 export const QuranChapterModal = ({ chapterNumber, isOpen, onRequestClose }) => {

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
-import { api } from '../utilities/ApiUtilities';
+import { api } from '../../utilities/ApiUtilities';
 import { BibleChapterModal } from './BibleChapterModal';
-import { checkIfOldTestament, bibleBookIdAndTestament } from '../utilities/BibleBookUtilities';
-import { PassageCard } from './PassageCard';
+import { checkIfOldTestament, bibleBookIdAndTestament } from '../../utilities/BibleBookUtilities';
+import { PassageCard } from '../PassageCard';
 
 
 export const BibleDetails = ({ book, chapter, verse }) => {

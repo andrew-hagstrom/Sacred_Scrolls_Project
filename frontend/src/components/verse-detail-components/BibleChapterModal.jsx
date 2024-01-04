@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { api } from '../utilities/ApiUtilities';
-import { checkIfOldTestament, bibleBookIdAndTestament } from '../utilities/BibleBookUtilities';
+import { api } from '../../utilities/ApiUtilities';
+import { checkIfOldTestament, bibleBookIdAndTestament } from '../../utilities/BibleBookUtilities';
 
 export const BibleChapterModal = ({ book, chapter, isOpen, onRequestClose, selectedLanguage }) => {
     const [chapterText, setChapterText] = useState('');

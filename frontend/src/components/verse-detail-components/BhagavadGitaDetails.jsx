@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
 
-import { api } from '../utilities/ApiUtilities';
-import { PassageCard } from './PassageCard';
+import { api } from '../../utilities/ApiUtilities';
+import { PassageCard } from '../PassageCard';
 import { BhagavadGitaChapterModal } from './BhagavadGitaChapterModal'
 
 
