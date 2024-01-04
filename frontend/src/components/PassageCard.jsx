@@ -146,7 +146,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                 <Collapse in={!isCollapsed}>
                     <div>
                         <Card.Body onMouseEnter={(e) => favDataHandler(e)}>
-                            <Card.Title style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => { 
+                            <Card.Title style={{ textTransform: 'capitalize',cursor: 'pointer', textAlign: 'center' }} onClick={() => { 
                                 if (additionalReferences && additionalReferences.length > 0) {
                                         setShowModal(true);
                                 }
