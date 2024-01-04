@@ -71,7 +71,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     const handleDetailsClick = () => {
         const { book, chapter, verse } = extractBookChapterVerse(currentReference);
     
-        if (location.pathname === `/text-compare/${book}/${chapter}/${verse}/`) {
+        if (location.pathname !== `/text-compare/`) {
             // Navigate to the default text compare page
             navigate('/text-compare/');
         } else {
