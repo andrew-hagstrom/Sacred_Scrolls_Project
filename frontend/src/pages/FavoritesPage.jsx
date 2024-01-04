@@ -5,7 +5,8 @@ import {api} from '../utilities/ApiUtilities'
 import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button'
 import { useOutletContext } from 'react-router';
-
+import Card from 'react-bootstrap/Card';
+import {Link} from 'react-router-dom'
 
 function FavoritesPage() {
   const {favorites, setFavorites} = useOutletContext()
@@ -19,10 +20,19 @@ function FavoritesPage() {
     .catch((err)=>{
       console.log(err.message)
     })
-    console.log(response)
     if (response.status === 204) {
       window.location.reload()
     }
+  }
+
+  const getFavorites = async() => {
+    let response = await api
+    .get('user/favorites/')
+    .catch((err)=> {
+      console.log(err.message)
+    })
+    setFavorites(response.data)
+    
   }
 
   const renderHandler = () => {
@@ -30,33 +40,53 @@ function FavoritesPage() {
     return selected
   }
 
+  useEffect(()=>{
+    getFavorites()
+  },[])
 
-  
   return (
     <>
-      {favorites.length === 0 ? 
-      <h1>No favorites saved</h1>
-      :
       <div style={{width:'75vw', display:'flex'}}>
         <Container style={{overflowY:'auto', width:'11vw', position:'absolute', marginLeft:'-10px'}}>
           <Col style={{position:'relative', border:'2px solid black', height:'70vh', paddingLeft:'15px', display:'flex', flexDirection:'column', alignItems:'center'}}>
           {favorites.map((favorite)=> (
-            <Row key={favorite.id} onMouseEnter={()=>{setToRender(favorite), setPostId(favorite.id), console.log(favorite.id)}} onClick={()=>renderHandler()}>
+            <Row style={{cursor: 'pointer'}} key={favorite.id} onMouseEnter={()=>{setToRender(favorite), setPostId(favorite.id), console.log(favorite.id)}} onClick={()=>renderHandler()}>
               {favorite.reference}
               </Row>
               ))}
         </Col>
         </Container>
+      {favorites.length === 0 ? 
+      <div>
+      <h1 className='favorites-page-headers'>No favorites saved</h1>
+      <div>
+      <h2 className='favorites-page-headers' style={{textAlign:'center', display:'inline-block'}}>Use the {<Link to="/text-compare/">Text Compare Page</Link>} to search for passages</h2>
+      </div>
+      </div>
+      :
+      <div> 
+      {selected.length === 0 ?
+      <h1 className='favorites-page-headers'>Select a favorite</h1>  
+      :
+      <Card style={{marginLeft:'275px'}}>
+      <Card.Header style={{ textAlign: 'center'}}>
+          <strong>{selected.source}</strong>
+      </Card.Header>
+              <Card.Body>
+                  <Card.Title style={{textAlign: 'center' }}>
+                      {selected.reference}
+                  </Card.Title>
+                  <Card.Text>
+                      {selected.text} 
+                  </Card.Text>
 
-        <div id='favorites-text-display'> 
-            <h2>{selected.source}</h2>
-            <h3>{selected.reference}</h3>
-            <p>{selected.text}</p>
-            <Button>Im a button</Button>
-            <Button onClick={()=>deleteFavorite(postId)}>Remove from Favorites</Button>
-        </div>
-        </div>
-      } 
+          </Card.Body>
+          <Button style={{width:'15vw'}} onClick={()=>deleteFavorite(postId)}>Remove from Favorites</Button>
+      </Card>
+      }
+      </div>
+      }
+      </div>
       </>
       )
 }

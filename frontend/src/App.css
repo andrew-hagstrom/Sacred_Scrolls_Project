@@ -107,11 +107,7 @@ body{
   width: 50%;
 }
 
-#favorites-text-display {
-  justify-self: center;
-  align-self: center;
-  background-color: red;
-  margin-left: 275px;
+.favorites-page-headers {
   width:60vw;
   display:flex;
   align-items: center;
