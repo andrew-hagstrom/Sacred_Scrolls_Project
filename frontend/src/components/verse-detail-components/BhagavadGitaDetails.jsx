@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
 
-import { api } from '../utilities/ApiUtilities';
-import { PassageCard } from './PassageCard';
+import { api } from '../../utilities/ApiUtilities';
+import { PassageCard } from '../PassageCard';
 import { BhagavadGitaChapterModal } from './BhagavadGitaChapterModal'
 
 
@@ -22,7 +22,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
     const fetchEnglishVerse = async (chapterNumber, verseNumber) => {
         try {
         const response = await api.get(`BG/eng/chapter/${chapterNumber}/verse/${verseNumber}/`);
-        return response.data;
+        return response.data.verse_text;
         } catch (error) {
         // Handle errors here
         console.error('Error fetching English Bhagavad Gita verse:', error);
@@ -34,7 +34,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
     const fetchSanskritVerse = async (chapterNumber, verseNumber) => {
         try {
         const response = await api.get(`BG/san/chapter/${chapterNumber}/verse/${verseNumber}/`);
-        return response.data;
+        return response.data.verse_text;
         } catch (error) {
         // Handle errors here
         console.error('Error fetching Sanskrit Bhagavad Gita verse:', error);
