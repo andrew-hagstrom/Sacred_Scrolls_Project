@@ -12,6 +12,7 @@ import {NotFoundPage} from './pages/NotFoundPage';
 import LoginPage from "./pages/LoginPage";
 import VerseDetailPage from './pages/VerseDetailPage'
 import PassagePostsPage from './pages/PassagePostsPage'
+import UserPostsPage from './pages/PassagePostsPage'
 
 
 const router = createBrowserRouter([
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
             {
                 path: 'passageposts/:book/:chapter/:verse/',
                 element: <PassagePostsPage />,
+            },
+            {
+                path: 'userposts/:book/:chapter/:verse/',
+                element: <UserPostsPage />,
             },
 
            
