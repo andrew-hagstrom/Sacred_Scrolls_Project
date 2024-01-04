@@ -108,12 +108,14 @@ body{
 }
 
 #favorites-text-display {
-  position:'relative';
-  left:'40%';
-  display: flex;
+  justify-self: center;
+  align-self: center;
+  background-color: red;
+  margin-left: 275px;
+  width:60vw;
+  display:flex;
+  align-items: center;
   flex-direction: column;
-  align-items: flex-start;
-  transform: translate(40%, 0);
 }
 
 .verse-modal {
