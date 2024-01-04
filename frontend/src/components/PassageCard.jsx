@@ -105,7 +105,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         setIsFavorite(checking)
     }
 
-    const handlePostClick = () => {
+    const handlePostClick = (currentReference) => {
         navigate(`/passageposts/${encodeURIComponent(book)}/${encodeURIComponent(chapter)}/${encodeURIComponent(verse)}`);
     };
 
