@@ -44,13 +44,6 @@ export const QuranDetails = ({chapter, verse }) => {
         setShowChapterModal(!showChapterModal);
     };
 
-
-    const toggleChapterModal = (language) => {
-        setSelectedChapter(chapter)
-        setSelectedLanguage(language)
-        setShowChapterModal(!showChapterModal);
-    };
-
     return (
         <div>
             <button onClick={() => toggleChapterModal('ar')}>View Chapter</button>
