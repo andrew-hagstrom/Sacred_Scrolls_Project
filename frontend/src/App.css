@@ -1,6 +1,10 @@
 html{
   height:100vh;
+<<<<<<< Updated upstream
   width:100%;
+=======
+  width:100vw;
+>>>>>>> Stashed changes
   margin:0;
 }
 
@@ -107,6 +111,7 @@ body{
   width: 50%;
 }
 
+<<<<<<< Updated upstream
 .verse-modal {
   color: rgba(0, 0, 0, 1);
   
@@ -118,4 +123,23 @@ body{
 #favorites-page {
   display:flex;
   justify-content: flex-start;
+=======
+#favorites-page {
+  display:flex;
+  justify-content: flex-start;
+}
+
+.scrollable {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+}
+.journal-entry{
+  background-color:lightgrey;
+  color:black;
+  /* transition: color 0.3s ease;  */
+}
+.journal-entry:hover {
+  background-color:white;
+>>>>>>> Stashed changes
 }

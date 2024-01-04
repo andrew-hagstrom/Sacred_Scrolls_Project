@@ -16,8 +16,9 @@ from rest_framework.status import (
     HTTP_201_CREATED,
     HTTP_400_BAD_REQUEST,
     HTTP_204_NO_CONTENT,
-    HTTP_404_NOT_FOUND
+    HTTP_404_NOT_FOUND,
 )
+
 
 class SignupView(APIView):
     def post(self, request):
@@ -29,12 +30,14 @@ class SignupView(APIView):
             token = Token.objects.create(user=user)
             print(user, token.key)
             return JsonResponse(
-                {"user": user.username, "token": token.key}, status=status.HTTP_201_CREATED
+                {"user": user.username, "token": token.key},
+                status=status.HTTP_201_CREATED,
             )
 
         return JsonResponse(
             {"message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST
         )
+
 
 class LoginView(APIView):
     def post(self, request):
@@ -56,6 +59,7 @@ class LoginView(APIView):
 
         return JsonResponse({"token": token_str, "user": user.username})
 
+
 class InfoView(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
@@ -63,30 +67,34 @@ class InfoView(APIView):
     def get(self, request):
         return JsonResponse({"user_id": request.user.id, "username": request.user.username})
 
+
 class LogoutView(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
         request.user.auth_token.delete()
-        return JsonResponse({"message":"logout successful."},status=HTTP_204_NO_CONTENT)
+        return JsonResponse(
+            {"message": "logout successful."}, status=HTTP_204_NO_CONTENT
+        )
+
 
 class FavoritesView(APIView):
-
     def get(self, request):
         favorites = Favorites.objects.filter(user=request.user.id)
         favorites_serialized = FavoritesSerializer(favorites, many=True)
         return Response(favorites_serialized.data, status=status.HTTP_200_OK)
-    
+
     def post(self, request):
         data = request.data.copy()
-        data['user'] = request.user.id
+        data["user"] = request.user.id
         new_favorite = FavoritesSerializer(data=data)
         if new_favorite.is_valid():
             new_favorite.save()
             return Response(new_favorite.data, status=HTTP_201_CREATED)
         else:
             return Response(new_favorite.errors, status=HTTP_400_BAD_REQUEST)
+
 
 class AFavoriteView(APIView):
     def get(self, request, id):
@@ -95,24 +103,33 @@ class AFavoriteView(APIView):
             favorite_serialized = FavoritesSerializer(favorite)
             return Response(favorite_serialized.data, status=status.HTTP_200_OK)
         except Favorites.DoesNotExist:
-            return Response({"message": "Favorite not found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"message": "Favorite not found"}, status=status.HTTP_404_NOT_FOUND
+            )
 
     def delete(self, request, id):
         try:
             del_favorite = Favorites.objects.get(user=request.user.id, id=id)
             del_favorite.delete()
-            return Response({"message": "Favorite deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+            return Response(
+                {"message": "Favorite deleted successfully"},
+                status=status.HTTP_204_NO_CONTENT,
+            )
         except Favorites.DoesNotExist:
-            return Response({"message": "Favorite not found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"message": "Favorite not found"}, status=status.HTTP_404_NOT_FOUND
+            )
+
 
 class JournalView(APIView):
-
     def get(self, request):
-       journal = JournalEntriesSerializer(JournalEntries.objects.filter(user=request.user.id))
-       return Response(journal.data, status=status.HTTP_200_OK)
-   
+        journal_entries = JournalEntries.objects.filter(user=request.user.id)
+
+        journal = JournalEntriesSerializer(journal_entries, many=True)
+        return Response(journal.data, status=status.HTTP_200_OK)
+
     def post(self, request):
-        data=request.data.copy()
+        data = request.data.copy()
         data["user"] = request.user.id
 
         new_journal_entry = JournalEntriesSerializer(data=data)
@@ -124,35 +141,49 @@ class JournalView(APIView):
         # else:
         #     return Response(new_journal_entry.errors, status=HTTP_400_BAD_REQUEST)
         # return Response(True)
-   
+
+
 class JournalEntryView(APIView):
     def get(self, request, entry_id):
         try:
-            journal_entry = JournalEntries.objects.get(user=request.user.id, id=entry_id)
+            journal_entry = JournalEntries.objects.get(
+                user=request.user.id, id=entry_id
+            )
             serialized_entry = JournalEntriesSerializer(journal_entry)
             return Response(serialized_entry.data, status=status.HTTP_200_OK)
         except JournalEntries.DoesNotExist:
-            return Response({"message": "Journal entry not found"}, status=status.HTTP_404_NOT_FOUND)
-    
+            return Response(
+                {"message": "Journal entry not found"}, status=status.HTTP_404_NOT_FOUND
+            )
+
     def put(self, request, entry_id):
         try:
-            journal_entry = JournalEntries.objects.get(user=request.user.id, id=entry_id)
+            journal_entry = JournalEntries.objects.get(
+                user=request.user.id, id=entry_id
+            )
             serializer = JournalEntriesSerializer(journal_entry, data=request.data)
-            
+
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_200_OK)
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except JournalEntries.DoesNotExist:
-            return Response({"message": "Journal entry not found"}, status=status.HTTP_404_NOT_FOUND)
-   
+            return Response(
+                {"message": "Journal entry not found"}, status=status.HTTP_404_NOT_FOUND
+            )
+
     def delete(self, request, entry_id):
         try:
-            journal_entry = JournalEntries.objects.get(user=request.user.id, id=entry_id)
+            journal_entry = JournalEntries.objects.get(
+                user=request.user.id, id=entry_id
+            )
             journal_entry.delete()
-            return Response({"message": "Journal entry deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+            return Response(
+                {"message": "Journal entry deleted successfully"},
+                status=status.HTTP_204_NO_CONTENT,
+            )
         except JournalEntries.DoesNotExist:
-            return Response({"message": "Journal entry not found"}, status=status.HTTP_404_NOT_FOUND)
-
-
+            return Response(
+                {"message": "Journal entry not found"}, status=status.HTTP_404_NOT_FOUND
+            )

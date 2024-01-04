@@ -11,7 +11,10 @@ import FavoritesPage from "./pages/FavoritesPage"
 import {NotFoundPage} from './pages/NotFoundPage';
 import LoginPage from "./pages/LoginPage";
 import VerseDetailPage from './pages/VerseDetailPage'
+<<<<<<< Updated upstream
 import PassagePostsPage from './pages/PassagePostsPage'
+=======
+>>>>>>> Stashed changes
 
 
 const router = createBrowserRouter([
@@ -50,18 +53,30 @@ const router = createBrowserRouter([
                 path: "text-compare/:book/:chapter/:verse/",
                 element: <VerseDetailPage />,
                
+<<<<<<< Updated upstream
             },
 
             {
                 path: 'login/',
                 element: <LoginPage />,
+=======
+>>>>>>> Stashed changes
             },
+
             {
+<<<<<<< Updated upstream
                 path: 'passageposts/:book/:chapter/:verse/',
                 element: <PassagePostsPage />,
             },
 
            
+=======
+                path: 'login/',
+                element: <LoginPage />,
+            },
+           
+            
+>>>>>>> Stashed changes
         ],
         errorElement: <NotFoundPage />
     } 

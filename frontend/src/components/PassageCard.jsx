@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
+<<<<<<< Updated upstream
 import { useNavigate, useParams, useLocation, useOutletContext } from 'react-router-dom';
+=======
+import { useNavigate, useParams, useOutletContext } from 'react-router-dom';
+>>>>>>> Stashed changes
 import {api} from '../utilities/ApiUtilities'
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
@@ -17,8 +21,11 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         sourceReference || "Reference not available"
     )
     const navigate = useNavigate();
+<<<<<<< Updated upstream
     const location = useLocation();
 
+=======
+>>>>>>> Stashed changes
     const {favorites, setFavorites, user} = useOutletContext()
     const [favText, setFavText] = useState("")
     const [favSource, setFavSource] = useState("")
@@ -56,6 +63,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     };
 
     const handleDetailsClick = () => {
+<<<<<<< Updated upstream
         const { book, chapter, verse } = extractBookChapterVerse(currentReference);
     
         if (location.pathname === `/text-compare/${book}/${chapter}/${verse}/`) {
@@ -65,6 +73,11 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
             // Navigate to the details page with the route parameters
             navigate(`/text-compare/${book}/${chapter}/${verse}/`);
         }
+=======
+        const { book, chapter, verse } = extractBookChapterVerse(currentReference)
+        // Navigate to the details page with the route parameters
+        navigate(`/text-compare/${book}/${chapter}/${verse}/`);
+>>>>>>> Stashed changes
     };
 
     const toggleCollapse = () => setIsCollapsed(!isCollapsed);
@@ -105,6 +118,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         setIsFavorite(checking)
     }
 
+<<<<<<< Updated upstream
     const handlePostClick = () => {
         navigate(`/passageposts/${encodeURIComponent(book)}/${encodeURIComponent(chapter)}/${encodeURIComponent(verse)}`);
     };
@@ -114,12 +128,22 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     },[currentReference])
 
     const detailsButtonText = location.pathname.startsWith('/text-compare/') && !location.pathname.endsWith('/text-compare/') ? 'Go Back' : 'See More';
+=======
+    useEffect(()=> {
+        checkIfFavorite()
+    },[currentReference])
+>>>>>>> Stashed changes
     
     return (
         <>
   
+<<<<<<< Updated upstream
             <Card style={{ margin: '2vh'}}>
                 <Card.Header style={{ textAlign: 'center'}}>
+=======
+            <Card>
+                <Card.Header style={{ textAlign: 'center' }}>
+>>>>>>> Stashed changes
                     <strong>{cardTitle}</strong>
                     <Button 
                         variant="outline-secondary" 
@@ -140,12 +164,20 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                                 {currentReference}
                             </Card.Title>
                             <Card.Text>
+<<<<<<< Updated upstream
                                 {currentText} 
                             </Card.Text>
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>{detailsButtonText}</Button>
                             <Button onClick={handlePostClick}>Write Comment</Button>
+=======
+                                {currentText}
+                            </Card.Text>
+                        
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>Details</Button>
+>>>>>>> Stashed changes
                             <Button variant="secondary" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
                                 {isFavorite ? 
                                 'Already Added to Favorites' :

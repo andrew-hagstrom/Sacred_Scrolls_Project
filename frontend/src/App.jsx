@@ -10,7 +10,10 @@ import Container from 'react-bootstrap/Container'
 
 function App() {
   const [user, setUser] = useState(null);
+<<<<<<< Updated upstream
   const [user_id, setUserID] = useState(null);
+=======
+>>>>>>> Stashed changes
   const [favorites, setFavorites] = useState([])
 
   const getInfo = async () => {
@@ -41,7 +44,11 @@ function App() {
   useEffect(() => {
     getInfo();
     getFavorites();
+<<<<<<< Updated upstream
   }, [user, user_id]);
+=======
+  }, [user]);
+>>>>>>> Stashed changes
 
 
   return (
@@ -49,7 +56,11 @@ function App() {
     <NavBar user={user} setUser={setUser} />
 
     <Container >
+<<<<<<< Updated upstream
      <Outlet context={{user, setUser, user_id, setUserID, favorites, setFavorites}}/>
+=======
+     <Outlet context={{user, setUser, favorites, setFavorites}}/>
+>>>>>>> Stashed changes
      </Container>
     </>
   )
