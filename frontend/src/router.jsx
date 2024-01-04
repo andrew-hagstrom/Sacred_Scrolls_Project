@@ -52,7 +52,6 @@ const router = createBrowserRouter([
                 element: <VerseDetailPage />,
                
             },
-
             {
                 path: 'login/',
                 element: <LoginPage />,
@@ -62,7 +61,7 @@ const router = createBrowserRouter([
                 element: <PassagePostsPage />,
             },
             {
-                path: 'userposts/:book/:chapter/:verse/',
+                path: 'userposts/',
                 element: <UserPostsPage />,
             },
 
