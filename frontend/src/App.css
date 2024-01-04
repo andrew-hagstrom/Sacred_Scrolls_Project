@@ -23,7 +23,6 @@ body{
 }
 
 .mx-2:hover {
-  background-color: rgb(2, 27, 51);
   color:rgb(255,242,194);
 }
 
@@ -150,4 +149,13 @@ body{
   background-color: transparent;
   border: 'black 2px solid';
   color:black;
+}
+
+.list-text {
+  margin-bottom: 6px;
+  font-size: 18px;
+}
+
+.list-text:hover {
+  color:rgb(255,242,194);
 }
