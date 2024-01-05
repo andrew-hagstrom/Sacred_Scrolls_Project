@@ -22,7 +22,7 @@ export const QuranChapterModal = ({ chapter, language, isOpen, onRequestClose })
   }, [chapter]);
 
   return (
-    <Modal className="verse-modal" show={isOpen} onHide={onRequestClose}>
+    <Modal className="verse-modal" show={isOpen} onHide={onRequestClose} scrollable={true}>
       <Modal.Header closeButton>
         <Modal.Title>Chapter {chapter}</Modal.Title>
       </Modal.Header>

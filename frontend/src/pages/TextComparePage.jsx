@@ -101,26 +101,24 @@ function TextComparePage() {
 }
 
 
-
     return (
         <>
-            <h2 style={{marginBottom: '5vh', textAlign: "center"}}>
-                Textual Comparison 
+            <h2 style={{marginBottom: '2vh', textAlign: "center", fontSize:'26px'}}>
+                Enter a keyword or phrase into the search bar to find relevant passages in the Bible, Bhagavad Gita, or Quran
             </h2>
-            <Container fluid>
+            <Container fluid style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
                 <Row className="mb-4">
                     <Col md={8}>
-                        <InputGroup style={{display:'flex', flexDirection:'row'}}>
-                             <Button variant="primary" onClick={handleSearch}>Search</Button>
-
+                        <InputGroup style={{display:'flex', width:'25vw'}}>
                             <Form.Control
                                 type="text"
                                 placeholder="Enter a keyword or phrase"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
+                                style={{marginRight:'6px'}}
             
                             />
-                
+                            <Button variant="primary" onClick={handleSearch}>Search</Button>
                         </InputGroup>
                     </Col>
                 </Row>

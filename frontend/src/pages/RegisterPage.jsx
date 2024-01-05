@@ -25,9 +25,14 @@ function RegisterPage() {
             .catch((err) => {
                 console.log(err)
             })
-        
+
         if (response.status === 201) {
-            console.log("creation worked")
+            setUser(response.data.email);
+            localStorage.setItem("token", response.data.token);
+            api.defaults.headers.common[
+            "Authorization"
+            ] = `Token ${response.data.token}`;
+            navigate("/");
         } else {
             alert ('something happened')
         }
@@ -55,7 +60,7 @@ function RegisterPage() {
             <FloatingLabel controlId="floatingPassword" label="Password">
                 <Form.Control type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)}/>
             </FloatingLabel>
-            <Button className='form-buttons' as="input" type="submit" value="Register"/>{' '}
+            <Button className='form-buttons' as="input" type="submit" value="Create Account"/>{' '}
         </Form>
         <div style={{justifySelf:'center'}}>
             Already have an account? <Link to={'/login/'}>Click here</Link> to sign in.
