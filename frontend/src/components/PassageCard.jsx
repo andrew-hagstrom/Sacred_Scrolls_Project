@@ -161,6 +161,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Button className='passagecard-button' variant="dark" onClick={() => handleDetailsClick(book, chapter, verse)}>{detailsButtonText}</Button>
                             <Button className='passagecard-button' variant="dark" onClick={handlePostClick}>Comment</Button>
+                            <Button className='passagecard-button' variant="dark" onClick={handlePostClick}>Comment</Button>
                             <Button className='passagecard-button' variant="dark" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
                                 {isFavorite ? 
                                 'Already Added\n to Favorites' :
