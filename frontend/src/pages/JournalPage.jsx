@@ -42,7 +42,6 @@ function JournalPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Call API function here with the title and text data
     try {
       const response = await api.post("user/journal/", {
         title: title,
@@ -52,10 +51,10 @@ function JournalPage() {
       if (response.status === 201) {
         setJournalData([...journalData, response.data]);
         console.log(journalData);
-        setEntrySelected(response.data)
-        setIsViewingEntry(true)
+        setEntrySelected(response.data);
+        setIsViewingEntry(true);
 
-        // reset title and text 
+        // reset title and text
         // for reuse.
         setTitle("");
         setText("");
@@ -96,23 +95,23 @@ function JournalPage() {
       });
       if (response.status === 200) {
         if (response.status === 200) {
-        console.log(response.data);
-        // filter and delete journal entry with response id
-        console.log("before edit", journalData);
-          
-        const newJournalData = journalData.map((entry) => 
-          entry.id == response.data.id ? response.data : entry
-        );
-        
-        setJournalData(newJournalData);
-        setIsEditMode(false)
-        setEntrySelected(response.data)
-        setIsViewingEntry(true)
+          console.log(response.data);
+          // filter and delete journal entry with response id
+          console.log("before edit", journalData);
 
-        setText("")
-        setTitle("")
-        console.log("edit:",isEditMode, "viewing",isViewingEntry)
-      }
+          const newJournalData = journalData.map((entry) =>
+            entry.id == response.data.id ? response.data : entry
+          );
+
+          setJournalData(newJournalData);
+          setIsEditMode(false);
+          setEntrySelected(response.data);
+          setIsViewingEntry(true);
+
+          setText("");
+          setTitle("");
+          console.log("edit:", isEditMode, "viewing", isViewingEntry);
+        }
       }
     } catch (error) {
       console.error("Error editing data:", error);
@@ -127,8 +126,8 @@ function JournalPage() {
     console.log(`editmode:${isEditMode} viewmode:${isViewingEntry}`);
   };
   const handleCreateButton = () => {
-    setIsViewingEntry(false)
-    setIsEditMode(false)
+    setIsViewingEntry(false);
+    setIsEditMode(false);
   };
   const undoEditMode = () => {
     setIsViewingEntry(true);
@@ -146,11 +145,9 @@ function JournalPage() {
             }`}
             style={{ backgroundColor: "gray" }}
           >
-            {
-            journalData !== null &&
+            {journalData !== null &&
             journalData !== undefined &&
-            journalData.length > 0
-            ? (
+            journalData.length > 0 ? (
               journalData.map((journal) => (
                 <JournalEntry
                   key={journal.id}
