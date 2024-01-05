@@ -29,7 +29,7 @@ export const BhagavadGitaChapterModal = ({ chapter, language, isOpen, onRequestC
   }, [chapter, language]);
 
   return (
-    <Modal className="verse-modal" show={isOpen} onHide={onRequestClose}>
+    <Modal className="verse-modal" show={isOpen} onHide={onRequestClose} scrollable={true}>
       <Modal.Header closeButton>
         <Modal.Title>Chapter {chapter}</Modal.Title>
       </Modal.Header>
