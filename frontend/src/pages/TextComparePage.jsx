@@ -1,5 +1,5 @@
 import {useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 
 import { PassageCard } from '../components/PassageCard';
@@ -25,6 +25,24 @@ function TextComparePage() {
     const [additionalGitaReferences, setAdditionalGitaReferences] = useState([])
     const [firstQuranResult, setFirstQuranResult] = useState(null);
     const [additionalQuranReferences, setAdditionalQuranReferences] = useState([]);
+    const navigate = useNavigate();
+
+    const initialState = {
+        searchTerm: '',
+        firstBibleResult: null,
+        additionalBibleReferences: [],
+        firstGitaResult: null,
+        additionalGitaReferences: [],
+        firstQuranResult: null,
+        additionalQuranReferences: []
+    };
+
+    const [resultsState, setResultsState] = useState(() => {
+    
+    const savedState = sessionStorage.getItem('resultsState');
+    return savedState ? JSON.parse(savedState) : initialState;
+  });
+
 
     const { book, chapter, verse } = useParams();
 
@@ -99,6 +117,45 @@ function TextComparePage() {
 
     }
 }
+useEffect(() => {
+    const savedState = sessionStorage.getItem('TextComparePageState');
+    if (savedState) {
+        const {
+            searchTerm,
+            firstBibleResult,
+            additionalBibleReferences,
+            firstGitaResult,
+            additionalGitaReferences,
+            firstQuranResult,
+            additionalQuranReferences
+        } = JSON.parse(savedState);
+
+        setSearchTerm(searchTerm);
+        setFirstBibleResult(firstBibleResult);
+        setAdditionalBibleReferences(additionalBibleReferences);
+        setFirstGitaResult(firstGitaResult);
+        setAdditionalGitaReferences(additionalGitaReferences);
+        setFirstQuranResult(firstQuranResult);
+        setAdditionalQuranReferences(additionalQuranReferences);
+    }
+}, []);
+
+useEffect(() => {
+    const stateToSave = {
+        searchTerm,
+        firstBibleResult,
+        additionalBibleReferences,
+        firstGitaResult,
+        additionalGitaReferences,
+        firstQuranResult,
+        additionalQuranReferences
+    };
+    sessionStorage.setItem('TextComparePageState', JSON.stringify(stateToSave));
+}, [searchTerm, firstBibleResult, additionalBibleReferences, firstGitaResult, additionalGitaReferences, firstQuranResult, additionalQuranReferences]);
+
+
+
+
 
 
     return (

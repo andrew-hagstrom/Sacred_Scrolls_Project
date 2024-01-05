@@ -72,7 +72,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     
         if (location.pathname !== `/text-compare/`) {
             // Navigate to the default text compare page
-            navigate('/text-compare/');
+            navigate(-1);
         } else {
             // Navigate to the details page with the route parameters
             navigate(`/text-compare/${book}/${chapter}/${verse}/`);

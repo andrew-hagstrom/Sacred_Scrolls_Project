@@ -178,6 +178,8 @@ body{
   min-height: 300px;
   overflow-y: auto;
   border: 1px solid #ccc;
+  overflow-x: hidden; /* Hide the vertical scroll bar */
+  overflow-y: scroll;
 }
 
 .fade-in-out {
@@ -207,22 +209,24 @@ body{
 .bio-card {
   width: 100%;
   background-color: rgb(254, 248, 231);
+  padding: 1%;
+  margin-bottom: 1%;
 }
 
 .bio-image {
   max-width: 50%;
-  height: auto;
+  max-height: auto;
   object-fit: cover;
 }
 
 .bio-text {
-  width: 90%;
+  width: 100%;
   /* Add any additional styling for text here */
 }
 
 @media (min-width: 769px) {
   .bio-card {
-    height: 25vh;
+    height: 35vh;
     overflow-y: auto;
   }
 
@@ -260,4 +264,89 @@ body{
 
 .list-text:hover {
   color:rgb(255,242,194);
+}
+
+.journal-form {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 11px;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
+}
+.journal-button {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: rgb(2, 27, 51);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.journal-button:hover {
+  /* background-color: rgba(255, 255, 255, 1); */
+  color: rgb(2, 27, 51);
+}
+.entry {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
+  margin: 20px 0;
+  background: rgba(255, 255, 255, 0.01);
+  
+  /* text-indent: 25px; */
+}
+
+.entry h1 {
+  margin-bottom: 10px;
+  /* text-align: center; */
+  color: rgb(238, 225, 164);
+}
+
+.entry p {
+  margin-bottom: 15px;
+  text-align: left;
+  color: rgb(233, 225, 190);
+}
+
+.entry button {
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  color: rgb(255, 255, 255);
+  
+}
+
+.entry button:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(2, 27, 51);
+}
+
+.journal-icon {
+  margin-left: 25px;
+  margin-right: 25px;
+  cursor: pointer;
+}
+.delete-icon{
+  color:rgb(247, 86, 86);
+  cursor: pointer;
+}
+.edit-icon{
+  color:rgb(184, 184, 184);
+  cursor: pointer;
+}
+.plus-icon{
+  border:1px solid;
+  border-radius: 3px;
+  padding:3px;
+  margin-left:10px;
+  transition: background-color 0.5s ease;
+  cursor: pointer;
+  
+}
+.plus-icon:hover{
+background-color:white;
+
 }
