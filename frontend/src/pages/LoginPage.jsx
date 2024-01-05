@@ -35,6 +35,7 @@ function LoginPage() {
       ] = `Token ${response.data.token}`;
       navigate("/")
     } else {
+      localStorage.clear()
       alert('something went wrong')
     }
   }
