@@ -14,7 +14,7 @@ function HomePage() {
         <div id='home-text-container'>
         <div className='home-text'>
             <div className='home-text-headers'>
-                Explore with ease
+                Mission Statement
             </div>
             {"Sacred Scrolls is not just a website; it's a journey into the heart of sacred knowledge. We understand that approaching ancient texts can be a formidable task, and that's why we've created a user-friendly interface to help you navigate the intricate tapestry of the Bible, Quran, and Bhagavad Gita effortlessly."}
         </div>
@@ -22,7 +22,7 @@ function HomePage() {
             <div className='home-text-headers'>
                Broaden your horizons
             </div>
-            {"Embark on your exploration by navigating seamlessly through the sacred texts. Use our intuitive search feature to find passages that resonate with your interests or study themes across multiple scriptures. Uncover hidden gems of wisdom that transcend cultural and religious boundaries."}
+            {"Embark on your exploration by navigating seamlessly through the Bible, Quran, and Bhagavad Gita. Use our intuitive search feature to find passages that resonate with your interests or study themes across multiple scriptures. Uncover hidden gems of wisdom that transcend cultural and religious boundaries."}
         </div>
         <div className='home-text'>
             <div className='home-text-headers'>
