@@ -162,7 +162,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                             <Button className='passagecard-button' variant="dark" onClick={handlePostClick}>Comment</Button>
                             <Button className='passagecard-button' variant="dark" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
                                 {isFavorite ? 
-                                'Already Added\n to Favorites' :
+                                'Added to Favorites' :
                                 'Add to Favorites'} 
                                 </Button>
                         

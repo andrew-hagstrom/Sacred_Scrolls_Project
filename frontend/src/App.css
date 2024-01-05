@@ -155,6 +155,10 @@ body{
   max-height: 90vh;
 }
 
+.modal-title {
+  color:black;
+}
+
 .see-chapter {
   color: black;
   position: relative;

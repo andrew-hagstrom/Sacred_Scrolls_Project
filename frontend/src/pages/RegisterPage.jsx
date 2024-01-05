@@ -70,7 +70,7 @@ function RegisterPage() {
         <div style={{color:'#FF000D', fontSize:'20px', alignSelf:'center', margin:'0px'}}>
         {wrongCredential ? 
         'Username or Email Already In Use.'
-        : 
+        :
         null
         }
         </div>
