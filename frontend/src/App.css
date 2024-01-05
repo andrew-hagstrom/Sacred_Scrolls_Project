@@ -118,6 +118,10 @@ body{
   position: relative;
   left:25%;
   width: 50%;
+  background-color: transparent;
+  color: #dcdbd5;
+  /* color:#fff2c2; */
+  border: 1px solid #dcdbd5
 }
 
 .favorites-page-headers {
@@ -149,6 +153,10 @@ body{
   overflow-y: auto;
   /* scroll-behavior: smooth; */
   max-height: 90vh;
+}
+
+.modal-title {
+  color:black;
 }
 
 .see-chapter {
