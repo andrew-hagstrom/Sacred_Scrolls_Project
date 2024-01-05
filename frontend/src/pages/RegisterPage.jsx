@@ -25,9 +25,14 @@ function RegisterPage() {
             .catch((err) => {
                 console.log(err)
             })
-        
+
         if (response.status === 201) {
-            console.log("creation worked")
+            setUser(response.data.email);
+            localStorage.setItem("token", response.data.token);
+            api.defaults.headers.common[
+            "Authorization"
+            ] = `Token ${response.data.token}`;
+            navigate("/");
         } else {
             alert ('something happened')
         }
