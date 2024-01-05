@@ -133,6 +133,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                     <strong>{cardTitle}</strong>
                     <Button 
                         variant="outline-secondary" 
+                        className='passagecard-button'
                         onClick={toggleCollapse}
                         size="sm" 
                         style={{ position: 'absolute', top: '5px', right: '10px' }}>
@@ -154,10 +155,11 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                             </Card.Text>
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>Details</Button>
-                            <Button variant="secondary" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
+                            <Button className='passagecard-button' variant="dark" onClick={() => handleDetailsClick(book, chapter, verse)}>{detailsButtonText}</Button>
+                            <Button className='passagecard-button' variant="dark" onClick={handlePostClick}>Write Comment</Button>
+                            <Button className='passagecard-button' variant="dark" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
                                 {isFavorite ? 
-                                'Already Added to Favorites' :
+                                'Already Added\n to Favorites' :
                                 'Add to Favorites'} 
                                 </Button>
                         
