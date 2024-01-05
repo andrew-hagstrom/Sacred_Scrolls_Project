@@ -13,6 +13,8 @@ function FavoritesPage() {
   const [toRender, setToRender] = useState([])
   const [selected, setSelected] = useState(null)
   const [postId, setPostId] = useState(null)
+  const [isVisible, setIsVisible] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const deleteFavorite = async() => {
     let response = await api
@@ -39,12 +41,21 @@ function FavoritesPage() {
     return selected
   }
 
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
   useEffect(()=>{
     getFavorites()
-  },[])
+    if (!loading) {
+      setIsVisible(true)
+    }
+  },[loading])
+
 
   return (
     <>
+    <div className={`fade-in-out ${isVisible ? "" : "fade-out"}`}>
       <div style={{width:'75vw', display:'flex'}}>
         <Container style={{overflowY:'auto', width:'11vw', position:'absolute'}}>
           <Col style={{position:'relative', height:'70vh', paddingLeft:'15px', display:'flex', flexDirection:'column', alignItems:'center'}}>
@@ -87,6 +98,7 @@ function FavoritesPage() {
       }
       </div>
       }
+      </div>
       </div>
       </>
       )
