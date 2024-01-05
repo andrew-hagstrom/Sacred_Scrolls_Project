@@ -2,5 +2,6 @@
 .venv
 __pycache__
 .raw-data
+.ssh
 # .data
 
