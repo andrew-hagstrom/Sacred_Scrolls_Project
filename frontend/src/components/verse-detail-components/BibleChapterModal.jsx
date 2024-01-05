@@ -36,9 +36,9 @@ export const BibleChapterModal = ({ book, chapter, isOpen, onRequestClose, selec
             <Modal.Header closeButton>
                 <Modal.Title>{`Chapter ${chapter} of ${book}`}</Modal.Title>
             </Modal.Header>
-            <Modal.Body >
+            <Modal.Body style={{overflowY: 'auto'}}>
                 <h5>{selectedLanguage === 'eng' ? 'English' : (checkIfOldTestament(book) ? 'Hebrew' : 'Greek')}</h5>
-                <p>{chapterText}</p>
+                <p >{chapterText}</p>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={onRequestClose}>Close</Button>

@@ -125,6 +125,7 @@ body{
   z-index:4;
   color: rgba(0, 0, 0, 1);  
   background-image: linear-gradient(to bottom, rgb(2, 27, 51) 33%, rgba(54,69,79,1) 87%);
+  overflow-y: auto;
   
 }
 .see-chapter {
