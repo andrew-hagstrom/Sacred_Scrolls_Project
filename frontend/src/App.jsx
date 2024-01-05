@@ -9,9 +9,11 @@ import Container from "react-bootstrap/Container";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [favorites, setFavorites] = useState([]);
 
   const [journalData, setJournalData] = useState(null);
+  const [user_id, setUserID] = useState(null);
+  const [favorites, setFavorites] = useState([])
+  const [posts, setUserPosts] = useState([]);
 
   const getInfo = async () => {
     const token = localStorage.getItem("token");
@@ -47,11 +49,24 @@ function App() {
     }
   };
 
+  const fetchUserPosts = async () => {
+    try {
+        const response = await api.get(`posts/${user}/`);
+        console.log(user)
+        setUserPosts(response.data);
+        console.log(posts)
+        console.log("from fetch posts")
+    } catch (error) {
+        console.error('Error fetching posts:', error);
+    }
+};
+
   useEffect(() => {
     getInfo();
     getFavorites();
     getJournalData();
-  }, [user]);
+    fetchUserPosts();
+  }, [user, user_id]);
 
   // TESTING - DELETE WHEN DONE
   useEffect(() => {
@@ -62,9 +77,10 @@ function App() {
     <>
       <NavBar user={user} setUser={setUser} />
 
-      <Container>
-        <Outlet context={{ user, setUser, favorites, setFavorites, journalData, setJournalData}} />
-      </Container>
+
+    <Container >
+     <Outlet context={{user, setUser, user_id, setUserID, favorites, setFavorites, fetchUserPosts, setUserPosts, posts, journalData, setJournalData}}/>
+     </Container>
     </>
   );
 }

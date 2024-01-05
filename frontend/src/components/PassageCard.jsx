@@ -118,7 +118,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
 
     const handlePostClick = () => {
         const { postBook, postChapter, postVerse } = extractPostBookChapterVerse(currentReference);
-        navigate(`/passageposts/${encodeURIComponent(postBook)}/${encodeURIComponent(postChapter)}/${encodeURIComponent(postVerse)}`);
+        navigate(`/passageposts/${encodeURIComponent(postBook)}/${encodeURIComponent(postChapter)}/${encodeURIComponent(postVerse)}?currentText=${encodeURIComponent(currentText)}`);
     };
 
     useEffect(()=> {
@@ -156,7 +156,8 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Button className='passagecard-button' variant="dark" onClick={() => handleDetailsClick(book, chapter, verse)}>{detailsButtonText}</Button>
-                            <Button className='passagecard-button' variant="dark" onClick={handlePostClick}>Write Comment</Button>
+                            <Button className='passagecard-button' variant="dark" onClick={handlePostClick}>Comment</Button>
+                            <Button className='passagecard-button' variant="dark" onClick={handlePostClick}>Comment</Button>
                             <Button className='passagecard-button' variant="dark" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
                                 {isFavorite ? 
                                 'Already Added\n to Favorites' :
