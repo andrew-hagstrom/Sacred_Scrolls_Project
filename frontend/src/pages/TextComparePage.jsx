@@ -17,8 +17,6 @@ import InputGroup from 'react-bootstrap/Container';
 
 
 
-
-
 function TextComparePage() {
     const [searchTerm, setSearchTerm] = useState('');
     const [firstBibleResult, setFirstBibleResult] = useState(null);
@@ -106,20 +104,23 @@ function TextComparePage() {
 
     return (
         <>
-            <h2>
-                TextComparePage
+            <h2 style={{marginBottom: '5vh', textAlign: "center"}}>
+                Textual Comparison 
             </h2>
             <Container fluid>
                 <Row className="mb-4">
                     <Col md={8}>
-                        <InputGroup >
+                        <InputGroup style={{display:'flex', flexDirection:'row'}}>
+                             <Button variant="primary" onClick={handleSearch}>Search</Button>
+
                             <Form.Control
                                 type="text"
                                 placeholder="Enter a keyword or phrase"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
+            
                             />
-                            <Button variant="primary" onClick={handleSearch}>Search</Button>
+                
                         </InputGroup>
                     </Col>
                 </Row>
