@@ -20,7 +20,7 @@ function HomePage() {
         </div>
         <div className='home-text'>
             <div className='home-text-headers'>
-                Some title idk yet
+               Broaden your horizons
             </div>
             {"Embark on your exploration by navigating seamlessly through the sacred texts. Use our intuitive search feature to find passages that resonate with your interests or study themes across multiple scriptures. Uncover hidden gems of wisdom that transcend cultural and religious boundaries."}
         </div>
