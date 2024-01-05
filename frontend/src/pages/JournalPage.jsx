@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { api } from "../utilities/ApiUtilities";
 import { JournalEntry } from "../components/JournalEntry";
-import { useOutletContext } from "react-router";
+import { useOutletContext } from "react-router-dom";
 
 function JournalPage() {
   const [isViewingEntry, setIsViewingEntry] = useState(false);
