@@ -26,7 +26,7 @@ SECRET_KEY = env.get('SECRET_KEY')
 AUTH_USER_MODEL = 'user_app.User'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
