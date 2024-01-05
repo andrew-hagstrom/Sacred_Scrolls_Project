@@ -19,7 +19,6 @@ function RegisterPage() {
             "email": email,
             "password": password,
         }
-        api.defaults.aut
         let response = await api
             .post("user/signup/", data)
             .catch((err) => {
@@ -29,6 +28,7 @@ function RegisterPage() {
         if (response.status === 201) {
             console.log("creation worked")
         } else {
+            localStorage.clear()
             alert ('something happened')
         }
     }
