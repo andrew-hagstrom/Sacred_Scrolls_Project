@@ -10,6 +10,8 @@ function RegisterPage() {
     const [password, setPassword] = useState("")
     const [username, setUsername] = useState("")
     const navigate = useNavigate()
+    const [wrongCredential, setWrongCredential] = useState(false)
+
     const {setUser} = useOutletContext()
 
     const createUser = async(e) => {
@@ -23,7 +25,10 @@ function RegisterPage() {
         let response = await api
             .post("user/signup/", data)
             .catch((err) => {
-                console.log(err)
+                if (err.response.status===400){
+                    localStorage.removeItem("token")
+                    setWrongCredential(true)
+                  }
             })
 
         if (response.status === 201) {
@@ -62,6 +67,13 @@ function RegisterPage() {
             </FloatingLabel>
             <Button className='form-buttons' as="input" type="submit" value="Create Account"/>{' '}
         </Form>
+        <div style={{color:'#FF000D', fontSize:'20px', alignSelf:'center', margin:'0px'}}>
+        {wrongCredential ? 
+        'Username or Email Already In Use.'
+        : 
+        null
+        }
+        </div>
         <div style={{justifySelf:'center'}}>
             Already have an account? <Link to={'/login/'}>Click here</Link> to sign in.
         </div>
