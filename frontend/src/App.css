@@ -182,22 +182,24 @@ body{
 .bio-card {
   width: 100%;
   background-color: rgb(254, 248, 231);
+  padding: 1%;
+  margin-bottom: 1%;
 }
 
 .bio-image {
   max-width: 50%;
-  height: auto;
+  max-height: auto;
   object-fit: cover;
 }
 
 .bio-text {
-  width: 90%;
+  width: 100%;
   /* Add any additional styling for text here */
 }
 
 @media (min-width: 769px) {
   .bio-card {
-    height: 25vh;
+    height: 35vh;
     overflow-y: auto;
   }
 
