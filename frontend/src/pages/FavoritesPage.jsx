@@ -92,7 +92,7 @@ function FavoritesPage() {
                   </Card.Text>
           </Card.Body>
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button className='passagecard-button' variant="dark" style={{width:'10vw'}} onClick={()=>deleteFavorite(postId)}>Remove from Favorites</Button>
+          <Button className='passagecard-button' variant="dark" style={{width:'8vw', margin:'3px'}} onClick={()=>deleteFavorite(postId)}>Remove from Favorites</Button>
           </div>
       </Card>
       }

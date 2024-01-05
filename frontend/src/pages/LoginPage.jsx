@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 function LoginPage() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  const [wrongCredential, setWrongCredential] = useState(false)
   const {setUser} = useOutletContext()
   const navigate = useNavigate()
 
@@ -21,8 +22,9 @@ function LoginPage() {
       password: password
     })
     .catch((err)=>{
-      if (err.message.status === 401){
-        console.log('wrong credentials')
+      if (err.response.status===401){
+        localStorage.removeItem("token")
+        setWrongCredential(true)
       }
     })
     if (response.status === 200) {
@@ -53,8 +55,15 @@ function LoginPage() {
             <FloatingLabel controlId="floatingPassword" label="Password">
                 <Form.Control type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)}/>
             </FloatingLabel>
-            <Button className='form-buttons' as="input" type="submit" value="Login"/>{' '}
+            <Button className='form-buttons' variant='none' as="input" type="submit" value="Login"/>{' '}
         </Form>
+        <div style={{color:'#FF000D', fontSize:'20px', alignSelf:'center', margin:'0px'}}>
+      {wrongCredential ? 
+      'Username or Password Incorrect.'
+      : 
+      null
+      }
+      </div>
         <div style={{justifySelf:'center'}}>
         {"Don't have an account?"} {<Link to={'/register/'}>Click here</Link>} to register.
         </div>

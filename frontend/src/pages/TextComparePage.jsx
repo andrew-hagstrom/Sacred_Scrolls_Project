@@ -118,7 +118,7 @@ function TextComparePage() {
                                 style={{marginRight:'6px'}}
             
                             />
-                            <Button variant="primary" onClick={handleSearch}>Search</Button>
+                            <Button variant="none" style={{backgroundColor:'transparent', color:'#dcdbd5', border:'1px solid #dcdbd5'}}onClick={handleSearch}>Search</Button>
                         </InputGroup>
                     </Col>
                 </Row>
