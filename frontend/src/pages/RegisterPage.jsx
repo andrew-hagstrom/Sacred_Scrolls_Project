@@ -65,7 +65,7 @@ function RegisterPage() {
             <FloatingLabel controlId="floatingPassword" label="Password">
                 <Form.Control type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)}/>
             </FloatingLabel>
-            <Button className='form-buttons' as="input" type="submit" value="Create Account"/>{' '}
+            <Button className='form-buttons' as="input" variant='none' type="submit" value="Create Account"/>{' '}
         </Form>
         <div style={{color:'#FF000D', fontSize:'20px', alignSelf:'center', margin:'0px'}}>
         {wrongCredential ? 

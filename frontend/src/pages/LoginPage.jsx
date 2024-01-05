@@ -54,7 +54,7 @@ function LoginPage() {
             <FloatingLabel controlId="floatingPassword" label="Password">
                 <Form.Control type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)}/>
             </FloatingLabel>
-            <Button className='form-buttons' as="input" type="submit" value="Login"/>{' '}
+            <Button className='form-buttons' variant='none' as="input" type="submit" value="Login"/>{' '}
         </Form>
         <div style={{color:'#FF000D', fontSize:'20px', alignSelf:'center', margin:'0px'}}>
       {wrongCredential ? 
