@@ -130,6 +130,7 @@ body{
 .verse-modal {
   color: rgba(0, 0, 0, 1);  
   background-image: linear-gradient(to bottom, rgb(2, 27, 51) 33%, rgba(54,69,79,1) 87%);
+  overflow-y: auto;
 }
 
 .modal-backdrop {
@@ -201,7 +202,7 @@ body{
 }
 
 .bio-image {
-  max-width: 80%;
+  max-width: 50%;
   height: auto;
   object-fit: cover;
 }

@@ -36,9 +36,9 @@ export const BhagavadGitaChapterModal = ({ chapter, language, isOpen, onRequestC
       <Modal.Body>
         {/* Conditionally render chapter content based on the selected language */}
         {language === 'san' ? (
-          <p>Sanskrit Text: {sanskritText}</p>
+          <p style={{overflowY: "auto"}}>Sanskrit Text: {sanskritText}</p>
         ) : (
-          <p>English Text: {englishText}</p>
+          <p style={{overflowY: "auto"}}>English Text: {englishText}</p>
         )}
       </Modal.Body>
       <Modal.Footer>

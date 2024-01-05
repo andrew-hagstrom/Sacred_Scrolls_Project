@@ -38,7 +38,7 @@ export const BibleChapterModal = ({ book, chapter, isOpen, onRequestClose, selec
             </Modal.Header>
             <Modal.Body>
                 <h5>{selectedLanguage === 'eng' ? 'English' : (checkIfOldTestament(book) ? 'Hebrew' : 'Greek')}</h5>
-                <p>{chapterText}</p>
+                <p >{chapterText}</p>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={onRequestClose}>Close</Button>

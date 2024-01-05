@@ -16,28 +16,16 @@ class EngBibChapterView(APIView):
         }
         try:
             response = requests.get(api_url, headers=headers)
-            print(f"\n\n\n {response} \n\n\n")
             response.raise_for_status()  
-            data = response.json()  
-            
+            data = response.json()   
             return data
         except requests.exceptions.RequestException as e:
-           
-            print(f"Error accessing API: {e}")
             return None
   
     def get(self, request, EngBibBookID, EngBibChapterNumber):
         api_url = f"https://api.scripture.api.bible/v1/bibles/bba9f40183526463-01/chapters/{EngBibBookID}.{EngBibChapterNumber}?content-type=text&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false"
         api_key = env.get('BIBLE_API_KEY')
-
         chapter_data = self.get_chapter_data(api_url, api_key)
-        print(chapter_data)
-        if chapter_data:
-            print("API Data:")
-            print(chapter_data)
-        else:
-            print("Failed to retrieve API data.")
-
         return Response(chapter_data['data']['content'])
 
 class EngBibVerseView(APIView):
@@ -48,27 +36,16 @@ class EngBibVerseView(APIView):
         }
         try:
             response = requests.get(api_url, headers=headers)
-            print(f"\n\n\n {response} \n\n\n")
             response.raise_for_status()  
             data = response.json()  
             return data
         except requests.exceptions.RequestException as e:
-           
-            print(f"Error accessing API: {e}")
             return None
         
     def get(self, request, EngBibBookID, EngBibChapterNumber, EngBibVerseNumber):
         api_url = f"https://api.scripture.api.bible/v1/bibles/bba9f40183526463-01/verses/{EngBibBookID}.{EngBibChapterNumber}.{EngBibVerseNumber}?content-type=text&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false&use-org-id=false"
         api_key = env.get('BIBLE_API_KEY')
-
         verse_data = self.get_verse_data(api_url, api_key)
-        print(verse_data)
-        if verse_data:
-            print("API Data:")
-            print(verse_data)
-        else:
-            print("Failed to retrieve API data.")
-
         return Response(verse_data['data']['content'])
         
 class GrkBibChapterView(APIView):
@@ -79,13 +56,10 @@ class GrkBibChapterView(APIView):
         }
         try:
             response = requests.get(api_url, headers=headers)
-            print(f"\n\n\n {response} \n\n\n")
             response.raise_for_status()  
             data = response.json()  
             return data
         except requests.exceptions.RequestException as e:
-           
-            print(f"Error accessing API: {e}")
             return None
 
     def get(self, request, GrkBibBookID, GrkBibChapterNumber):
@@ -93,13 +67,6 @@ class GrkBibChapterView(APIView):
         api_key = env.get('BIBLE_API_KEY')
        
         chapter_data = self.get_chapter_data(api_url, api_key)
-        print(chapter_data)
-        if chapter_data:
-            print("API Data:")
-            print(chapter_data)
-        else:
-            print("Failed to retrieve API data.")
-
         return Response(chapter_data['data']['content'])
     
 class GrkBibVerseView(APIView):
@@ -110,26 +77,17 @@ class GrkBibVerseView(APIView):
         }
         try:
             response = requests.get(api_url, headers=headers)
-            print(f"\n\n\n {response} \n\n\n")
             response.raise_for_status()  
             data = response.json()  
             return data
         except requests.exceptions.RequestException as e:
            
-            print(f"Error accessing API: {e}")
             return None
 
     def get(self, request, GrkBibBookID, GrkBibChapterNumber, GrkBibVerseNumber):
         api_url = f"https://api.scripture.api.bible/v1/bibles/7644de2e4c5188e5-01/verses/{GrkBibBookID}.{GrkBibChapterNumber}.{GrkBibVerseNumber}?content-type=text&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false&use-org-id=false"
         api_key = env.get('BIBLE_API_KEY')
         verse_data = self.get_verse_data(api_url, api_key)
-        print(verse_data)
-        if verse_data:
-            print("API Data:")
-            print(verse_data)
-        else:
-            print("Failed to retrieve API data.")
-
         return Response(verse_data['data']['content'])
     
 
@@ -141,27 +99,17 @@ class HebBibChapterView(APIView):
             }
             try:
                 response = requests.get(api_url, headers=headers)
-                print(f"\n\n\n {response} \n\n\n")
                 response.raise_for_status()  
                 data = response.json()  
                 return data
             except requests.exceptions.RequestException as e:
             
-                print(f"Error accessing API: {e}")
                 return None
 
         def get(self, request, HebBibBookID, HebBibChapterNumber):
             api_url = f"https://api.scripture.api.bible/v1/bibles/0b262f1ed7f084a6-01/chapters/{HebBibBookID}.{HebBibChapterNumber}?content-type=text&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false"
-            api_key = env.get('BIBLE_API_KEY')
-        
+            api_key = env.get('BIBLE_API_KEY')        
             chapter_data = self.get_chapter_data(api_url, api_key)
-            print(chapter_data)
-            if chapter_data:
-                print("API Data:")
-                print(chapter_data)
-            else:
-                print("Failed to retrieve API data.")
-
             return Response(chapter_data['data']['content'])
     
 
@@ -173,7 +121,6 @@ class HebBibVerseView(APIView):
         }
         try:
             response = requests.get(api_url, headers=headers)
-            print(f"\n\n\n {response} \n\n\n")
             response.raise_for_status()  
             data = response.json()  
             return data
@@ -186,13 +133,6 @@ class HebBibVerseView(APIView):
         api_url = f"https://api.scripture.api.bible/v1/bibles/0b262f1ed7f084a6-01/verses/{HebBibBookID}.{HebBibChapterNumber}.{HebBibVerseNumber}?content-type=text&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false&use-org-id=false"
         api_key = env.get('BIBLE_API_KEY')
         verse_data = self.get_verse_data(api_url, api_key)
-        print(verse_data)
-        if verse_data:
-            print("API Data:")
-            print(verse_data)
-        else:
-            print("Failed to retrieve API data.")
-
         return Response(verse_data['data']['content'])
 
 class BibleSearchView(APIView):
@@ -203,24 +143,15 @@ class BibleSearchView(APIView):
         }
         try:
             response = requests.get(api_url, headers=headers)
-            print(f"\n\n\n {response} \n\n\n")
             response.raise_for_status()  
             data = response.json()  
             return data
         except requests.exceptions.RequestException as e:
-            print(f"Error accessing API: {e}")
             return None
 
     def get(self, request, keyword):
         api_url = f"https://api.scripture.api.bible/v1/bibles/bba9f40183526463-01/search?query={keyword}&limit=500&sort=canonical&fuzziness=0"
         api_key = env.get('BIBLE_API_KEY')
         search_data = self.get_search_data(api_url, api_key)
-        print(search_data)
-        if search_data:
-            print("API Data:")
-            print(search_data)
-        else:
-            print("Failed to retrieve API data.")
-
         return Response(search_data['data'])
 
