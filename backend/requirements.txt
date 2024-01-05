@@ -8,13 +8,7 @@ Django==5.0
 django-cors-headers==4.3.1
 django-dotenv==1.4.2
 djangorestframework==3.14.0
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 exceptiongroup==1.2.0
-=======
->>>>>>> new-frontend
->>>>>>> Stashed changes
 h11==0.14.0
 httpcore==1.0.2
 httpx==0.26.0
