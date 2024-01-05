@@ -14,6 +14,7 @@ function App() {
   const [user_id, setUserID] = useState(null);
   const [favorites, setFavorites] = useState([])
   const [posts, setUserPosts] = useState([]);
+  const [allposts, setAllPosts] = useState([])
 
   const getInfo = async () => {
     const token = localStorage.getItem("token");
@@ -61,11 +62,21 @@ function App() {
     }
 };
 
+const fetchAllPosts = async () => {
+  try {
+      const response = await api.get('posts/');
+      setAllPosts(response.data);
+  } catch (error) {
+      console.error('Error fetching posts:', error);
+  }
+};
+
   useEffect(() => {
     getInfo();
     getFavorites();
     getJournalData();
     fetchUserPosts();
+    fetchAllPosts();
   }, [user, user_id]);
 
   // TESTING - DELETE WHEN DONE
@@ -79,7 +90,7 @@ function App() {
 
 
     <Container >
-     <Outlet context={{user, setUser, user_id, setUserID, favorites, setFavorites, fetchUserPosts, setUserPosts, posts, journalData, setJournalData}}/>
+     <Outlet context={{user, setUser, user_id, setUserID, favorites, setFavorites, fetchUserPosts, setUserPosts, posts, allposts, setAllPosts, journalData, setJournalData}}/>
      </Container>
     </>
   );

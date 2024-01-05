@@ -126,7 +126,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         checkIfFavorite()
     },[currentReference])
 
-    const detailsButtonText = location.pathname.startsWith('/text-compare/') && !location.pathname.endsWith('/text-compare/') ? 'Go Back' : 'See More';
+    const detailsButtonText = location.pathname.startsWith('/text-compare/') && !location.pathname.endsWith('/text-compare/') ? 'Return to Search' : 'See More';
     
     return (
         <>
