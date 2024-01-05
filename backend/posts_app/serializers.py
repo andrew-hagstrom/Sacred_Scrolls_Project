@@ -8,7 +8,7 @@ class PostsSerializer(serializers.ModelSerializer):
     formatted_timestamp = serializers.SerializerMethodField()
     class Meta:
         model = Posts
-        fields = ['username', 'book', 'chapter', 'verse', 'text','timestamp', 'formatted_timestamp']
+        fields = ['id', 'username', 'book', 'chapter', 'verse', 'text','timestamp', 'formatted_timestamp']
     
     def get_formatted_timestamp(self, obj):
         user_timezone_time = obj.timestamp.astimezone(timezone.get_current_timezone())

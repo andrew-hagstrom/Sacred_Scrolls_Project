@@ -76,9 +76,9 @@ class APostView(APIView):
         updated_post.save()
         return Response({"data": updated_post.data})
 
-    def delete(self, request, username, post_id):
+    def delete(self, request, username, id):
         user = User.objects.get(username=username)
-        post = Posts.objects.get(user=user, id=post_id)
+        post = Posts.objects.get(user=user, id=id)
         try:
             post.delete()
         except Exception as e:
