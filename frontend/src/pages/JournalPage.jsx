@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { api } from "../utilities/ApiUtilities";
 import { JournalEntry } from "../components/JournalEntry";
-import { useOutletContext } from "react-router";
+import { useOutletContext } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPenToSquare,
   faTrash,
   faRotateLeft,
+  faSquarePlus,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 function JournalPage() {
   const [isViewingEntry, setIsViewingEntry] = useState(false);
@@ -152,24 +154,56 @@ function JournalPage() {
               isVisible ? "" : "fade-out"
             }`}
           >
-            {journalData.length > 0 ? (
-              journalData.map((journal) => (
-                <JournalEntry
-                  key={journal.id}
-                  id={journal.id}
-                  title={journal.title}
-                  text={journal.text}
-                  isViewingEntry={isViewingEntry}
-                  entrySelected={entrySelected}
-                  setIsViewingEntry={setIsViewingEntry}
-                  setEntrySelected={setEntrySelected}
-                />
-              ))
-            ) : (
-              <h1>empty</h1>
-            )}
+            <Container>
+              <div style={{textAlign:"center"}}>
+              <h1 style={{display:"inline"}}>Entries</h1><FontAwesomeIcon icon={faPlus} className="plus-icon" onClick={handleCreateButton}/>
+              </div>
+              <div style={{textAlign:"center"}}>
+              
+              </div>
+              <div
+                style={{
+                  overflowY: "auto",
+                  width: "11vw",
+                  position: "absolute",
+                  height: "250px",
+                }}
+              >
+                <Col
+                  style={{
+                    position: "relative",
+                    height: "70vh",
+                    paddingLeft: "15px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  {/* <Row style={{ fontSize: "34px" }}>Journal</Row> */}
+                  {journalData.length > 0 ? (
+                    journalData.map((journal) => (
+                      <JournalEntry
+                        key={journal.id}
+                        id={journal.id}
+                        title={journal.title}
+                        text={journal.text}
+                        isViewingEntry={isViewingEntry}
+                        entrySelected={entrySelected}
+                        setIsViewingEntry={setIsViewingEntry}
+                        setEntrySelected={setEntrySelected}
+                      />
+                    ))
+                  ) : (
+                    <>
+                      <h1>empty</h1>
+                    </>
+                  )}
+                </Col>
+              </div>
+            </Container>
           </div>
-          <div className="col-7">
+
+          <div className="col-7 md-12">
             <Container>
               <Row className="justify-content-md-center mt-5">
                 <Col xs={12} md={6}>
@@ -217,36 +251,7 @@ function JournalPage() {
                     ) : (
                       // render editmode
                       <>
-                        {/* <Form onSubmit={handleSubmit} className="journal-form">
-                          <Form.Group controlId="title">
-                            <Form.Control
-                              type="text"
-                              value={title}
-                              onChange={handleTitleChange}
-                            />
-                          </Form.Group>
-
-                          <Form.Group controlId="text">
-                            <Form.Label></Form.Label>
-                            <Form.Control
-                              as="textarea"
-                              rows={4}
-                              value={text}
-                              onChange={handleTextChange}
-                            />
-                          </Form.Group>
-                          <Button
-                            variant="outline-light"
-                            type="submit"
-                            onClick={putJournalEntry}
-                          >
-                            save
-                          </Button>
-                          <FontAwesomeIcon
-                            icon={faRotateLeft}
-                            onClick={undoEditMode}
-                          />
-                        </Form> */}
+                       
                         <Form onSubmit={handleSubmit} className="journal-form">
                           <Form.Group controlId="title">
                             <Form.Control
@@ -308,9 +313,11 @@ function JournalPage() {
                           placeholder="Write your journal entry"
                         />
                       </Form.Group>
-                      <button className="journal-button" type="submit">
+                      <div style={{textAlign:"center"}}>
+                      <button className="journal-button"  type="submit">
                         Submit
                       </button>
+                      </div>
                     </Form>
                   )}
                 </Col>
