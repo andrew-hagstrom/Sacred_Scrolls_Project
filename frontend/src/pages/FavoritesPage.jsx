@@ -72,7 +72,7 @@ function FavoritesPage() {
       {favorites.length === 0 ? 
       <div className='favorites-page-headers'> 
       <h1>No favorites saved</h1>
-      <h2 style={{textAlign:'center', display:'inline-block'}}>Use the {<Link to="/text-compare/">Text Compare Page</Link>} to search for passages</h2>
+      <h2 style={{textAlign:'center', display:'inline-block'}}>Use the {<Link to="/text-compare/">Textual Comparison Page</Link>} to search for passages</h2>
       </div>
       :
       <div> 

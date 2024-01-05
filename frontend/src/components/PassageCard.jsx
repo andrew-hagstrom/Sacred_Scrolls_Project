@@ -175,7 +175,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
             </Card>
             
 
-            <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal className='extra-source-modal' show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Select a Reference</Modal.Title>
                 </Modal.Header>
@@ -183,7 +183,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                     <ListGroup>
                         {additionalReferences && additionalReferences.length > 0 ? (
                             additionalReferences.map(({ text, reference }) => (
-                                <ListGroup.Item key={reference} onClick={() => handleReferenceClick(text, reference)}>
+                                <ListGroup.Item style={{cursor:'pointer'}} key={reference} onClick={() => handleReferenceClick(text, reference)}>
                                     {reference}
                                 </ListGroup.Item>
                             ))
