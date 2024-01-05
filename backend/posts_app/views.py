@@ -65,10 +65,10 @@ class APostView(APIView):
         serialized_post = PostsSerializer(post)
         return Response({"data": serialized_post.data})
 
-    def put(self, request, username, post_id):
+    def put(self, request, username, id):
         try:
             user = User.objects.get(username=username)
-            post = Posts.objects.get(id=post_id, user=user)
+            post = Posts.objects.get(id=id, user=user)
         except Exception as e:
             print(e)
             return Response({"error": "Error while trying to fetch post."})

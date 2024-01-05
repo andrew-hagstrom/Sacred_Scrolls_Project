@@ -115,6 +115,7 @@ function PassagePostsPage() {
                         <div className="posts-card" key={post.id}> {post.formatted_timestamp} <br></br> 
                         User: {post.username} <br></br>
                         Comment:<span style={{ fontSize: '25px', color: "purple" }}> "{post.text}"</span> <br></br>
+                        Reference: <Link to={`/text-compare/${post.book.toLowerCase()}/${post.chapter}/${post.verse}/`}> {post.book} {post.chapter}:{post.verse}</Link>
                         {user === post.username && (
                             <div>
                             <button onClick={() => handlePostDelete(post.id)}>Delete</button> 
