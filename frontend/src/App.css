@@ -128,12 +128,29 @@ body{
 }
 
 .verse-modal {
-  z-index:4;
   color: rgba(0, 0, 0, 1);  
   background-image: linear-gradient(to bottom, rgb(2, 27, 51) 33%, rgba(54,69,79,1) 87%);
   overflow-y: auto;
-  
 }
+
+.modal-backdrop {
+  --bs-backdrop-zindex: 1050;
+  --bs-backdrop-bg: none;
+  --bs-backdrop-opacity: 0.5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--bs-backdrop-zindex);
+  width: 100vw;
+  height: 100vh;
+}
+
+.modal-body{
+  overflow-y: auto;
+  /* scroll-behavior: smooth; */
+  max-height: 90vh;
+}
+
 .see-chapter {
   color: black;
   position: relative;
