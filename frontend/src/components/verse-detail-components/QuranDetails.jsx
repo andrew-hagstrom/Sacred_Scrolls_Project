@@ -74,3 +74,10 @@ export const QuranDetails = ({chapter, verse }) => {
 
     );
 };
+
+
+
+
+
+
+

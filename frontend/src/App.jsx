@@ -10,7 +10,7 @@ import Container from "react-bootstrap/Container";
 function App() {
   const [user, setUser] = useState(null);
 
-  const [journalData, setJournalData] = useState(null);
+  const [journalData, setJournalData] = useState([]);
   const [user_id, setUserID] = useState(null);
   const [favorites, setFavorites] = useState([])
   const [posts, setUserPosts] = useState([]);
