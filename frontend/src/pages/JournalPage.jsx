@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { api } from "../utilities/ApiUtilities";
 import { JournalEntry } from "../components/JournalEntry";
-import { useOutletContext } from "react-router";
+import { useOutletContext } from "react-router-dom";
 
 function JournalPage() {
   const [isViewingEntry, setIsViewingEntry] = useState(false);
@@ -137,18 +137,14 @@ function JournalPage() {
 
   return (
     <>
-      <h2>Journal</h2>
-      <div className={`container fade-in-out ${isVisible ? "" : "fade-out"}`}>
+      <div className={`fade-in-out ${isVisible ? "" : "fade-out"}`}>
         <div className="row">
-          <div
+          <div style={{border:'none'}}
             className={`col-2 scrollable fade-in-out ${
               isVisible ? "" : "fade-out"
             }`}
-            style={{ backgroundColor: "gray" }}
           >
             {
-            journalData !== null &&
-            journalData !== undefined &&
             journalData.length > 0
             ? (
               journalData.map((journal) => (

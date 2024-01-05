@@ -27,7 +27,7 @@ function RegisterPage() {
             })
         
         if (response.status === 201) {
-            print("creation worked")
+            console.log("creation worked")
         } else {
             alert ('something happened')
         }

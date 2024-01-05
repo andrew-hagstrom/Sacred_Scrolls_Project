@@ -148,14 +148,6 @@ body{
   overflow-y: auto;
   border: 1px solid #ccc;
 }
-.journal-entry{
-  background-color:lightgrey;
-  color:black;
-  /* transition: color 0.3s ease;  */
-}
-.journal-entry:hover {
-  background-color:white;
-}
 
 .fade-in-out {
   opacity: 1;
