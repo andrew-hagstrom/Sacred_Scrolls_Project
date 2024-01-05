@@ -80,3 +80,15 @@ export const BibleDetails = ({ book, chapter, verse }) => {
         </>
     );
 };
+
+
+
+
+
+
+
+
+
+
+
+

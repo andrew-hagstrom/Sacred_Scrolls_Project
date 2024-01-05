@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams, useOutletContext } from 'react-router-dom';
+import { useNavigate, useParams, useOutletContext, useLocation } from 'react-router-dom';
 import {api} from '../utilities/ApiUtilities'
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
@@ -17,6 +17,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         sourceReference || "Reference not available"
     )
     const navigate = useNavigate();
+    const location=useLocation();
     const {favorites, setFavorites, user} = useOutletContext()
     const [favText, setFavText] = useState("")
     const [favSource, setFavSource] = useState("")
@@ -124,6 +125,8 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     useEffect(()=> {
         checkIfFavorite()
     },[currentReference])
+
+    const detailsButtonText = location.pathname.startsWith('/text-compare/') && !location.pathname.endsWith('/text-compare/') ? 'Go Back' : 'See More';
     
     return (
         <>
@@ -156,7 +159,6 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Button className='passagecard-button' variant="dark" onClick={() => handleDetailsClick(book, chapter, verse)}>{detailsButtonText}</Button>
-                            <Button className='passagecard-button' variant="dark" onClick={handlePostClick}>Comment</Button>
                             <Button className='passagecard-button' variant="dark" onClick={handlePostClick}>Comment</Button>
                             <Button className='passagecard-button' variant="dark" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
                                 {isFavorite ? 
