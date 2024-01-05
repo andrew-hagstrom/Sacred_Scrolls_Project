@@ -35,3 +35,10 @@ export const QuranChapterModal = ({ chapter, language, isOpen, onRequestClose })
     </Modal>
   );
 }
+
+
+
+
+
+
+
