@@ -4,14 +4,14 @@ import Container from 'react-bootstrap/Container';
 import {api} from '../utilities/ApiUtilities'
 import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button'
-import { useOutletContext } from 'react-router';
+import { useOutletContext } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import {Link} from 'react-router-dom'
 
 function FavoritesPage() {
   const {favorites, setFavorites} = useOutletContext()
   const [toRender, setToRender] = useState([])
-  const [selected, setSelected] = useState([])
+  const [selected, setSelected] = useState(null)
   const [postId, setPostId] = useState(null)
 
   const deleteFavorite = async() => {
@@ -32,7 +32,6 @@ function FavoritesPage() {
       console.log(err.message)
     })
     setFavorites(response.data)
-    
   }
 
   const renderHandler = () => {
@@ -47,28 +46,29 @@ function FavoritesPage() {
   return (
     <>
       <div style={{width:'75vw', display:'flex'}}>
-        <Container style={{overflowY:'auto', width:'11vw', position:'absolute', marginLeft:'-10px'}}>
-          <Col style={{position:'relative', border:'2px solid black', height:'70vh', paddingLeft:'15px', display:'flex', flexDirection:'column', alignItems:'center'}}>
+        <Container style={{overflowY:'auto', width:'11vw', position:'absolute'}}>
+          <Col style={{position:'relative', height:'70vh', paddingLeft:'15px', display:'flex', flexDirection:'column', alignItems:'center'}}>
+          <Row style={{fontSize: '34px'}}>Favorites</Row>
           {favorites.map((favorite)=> (
-            <Row style={{cursor: 'pointer'}} key={favorite.id} onMouseEnter={()=>{setToRender(favorite), setPostId(favorite.id), console.log(favorite.id)}} onClick={()=>renderHandler()}>
+            <Row style={{cursor: 'pointer'}} key={favorite.id} onMouseEnter={()=>{setToRender(favorite), setPostId(favorite.id)}} onClick={()=>renderHandler()}>
+              <div className='list-text'>
               {favorite.reference}
+              </div>
               </Row>
               ))}
         </Col>
         </Container>
       {favorites.length === 0 ? 
-      <div>
-      <h1 className='favorites-page-headers'>No favorites saved</h1>
-      <div>
-      <h2 className='favorites-page-headers' style={{textAlign:'center', display:'inline-block'}}>Use the {<Link to="/text-compare/">Text Compare Page</Link>} to search for passages</h2>
-      </div>
+      <div className='favorites-page-headers'> 
+      <h1>No favorites saved</h1>
+      <h2 style={{textAlign:'center', display:'inline-block'}}>Use the {<Link to="/text-compare/">Text Compare Page</Link>} to search for passages</h2>
       </div>
       :
       <div> 
-      {selected.length === 0 ?
+      {selected === null ?
       <h1 className='favorites-page-headers'>Select a favorite</h1>  
       :
-      <Card style={{marginLeft:'275px'}}>
+      <Card className='passage-card' style={{marginLeft:'275px'}}>
       <Card.Header style={{ textAlign: 'center'}}>
           <strong>{selected.source}</strong>
       </Card.Header>
@@ -79,9 +79,10 @@ function FavoritesPage() {
                   <Card.Text>
                       {selected.text} 
                   </Card.Text>
-
           </Card.Body>
-          <Button style={{width:'15vw'}} onClick={()=>deleteFavorite(postId)}>Remove from Favorites</Button>
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Button className='passagecard-button' variant="dark" style={{width:'10vw'}} onClick={()=>deleteFavorite(postId)}>Remove from Favorites</Button>
+          </div>
       </Card>
       }
       </div>
