@@ -112,7 +112,6 @@ function TextComparePage() {
                     <Col md={8}>
                         <InputGroup style={{display:'flex', flexDirection:'row'}}>
                              <Button variant="primary" onClick={handleSearch}>Search</Button>
-                       
 
                             <Form.Control
                                 type="text"
@@ -121,8 +120,6 @@ function TextComparePage() {
                                 onChange={(e) => setSearchTerm(e.target.value)}
             
                             />
-                        
-                           
                 
                         </InputGroup>
                     </Col>
