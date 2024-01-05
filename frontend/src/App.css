@@ -26,6 +26,12 @@ body{
 
 }
 
+.AndrewsPhoto {
+  border: 2px solid red;
+  border-radius: 8px;
+  width: 600px;
+}
+
 .mx-2 {
   color:#dcdbd5;
 }
@@ -172,6 +178,10 @@ body{
   color:black;
 }
 
+.delete-button {
+  margin-left: 20px;
+}
+
 .card-header {
   background-color: rgb(248, 234, 198) ;
 }
@@ -195,9 +205,39 @@ body{
 }
 
 .bio-text {
-  margin-left: -50%;
+  /* margin-left: -50%; */
+  width: 90%;
 
 }
+
+.andrew-card{
+  /* align-items: left;
+  display: flex;
+  background-color: rgb(254, 248, 231);
+  height: 50vh;
+  width: 100vw;
+  overflow: hidden;
+  word-wrap: break-word; */
+  width: 100%;
+  background-color: rgb(254, 248, 231);
+
+
+}
+
+.andrew-image {
+  /* margin-top: 2%;
+  margin-left: 2%;
+  margin-bottom: 60%;
+  margin-bottom:2%;
+  height: 30vh;
+  width: 33vh;
+  background-size: cover;
+  background-position: fixed; */
+  max-width: 80%;
+  height: auto;
+  object-fit: cover;
+}
+
 
 @media (max-width: 768px) {
   .bio-card {

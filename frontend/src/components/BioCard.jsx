@@ -6,11 +6,17 @@ import Col from 'react-bootstrap/Col';
 
 
 function BioCard({ imageSrc, name, description, email }) {
+  const isAndrew = name === 'Andrew Hagstrom';
+  const imageClass = isAndrew ? 'andrew-image' : 'bio-image';
+  const cardClass = isAndrew? 'andrew-card' : 'bio-card';
+  
+
+
   return (
-    <Card className="bio-card">
+    <Card className={cardClass}>
       <Row noGutters>
         <Col md={6}>
-          <div className="bio-image" style={{ backgroundImage: `url(${imageSrc})` }} />
+          <div className={imageClass} style={{ backgroundImage: `url(${imageSrc})` }} />
         </Col>
         <Col md={6}>
           <Card.Body className='bio-text'>
