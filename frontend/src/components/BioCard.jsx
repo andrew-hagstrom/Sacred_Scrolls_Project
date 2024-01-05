@@ -4,8 +4,12 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
-function BioCard({ imageSrc, name, description, email }) {
+
+function BioCard({ imageSrc, name, description, email, githubLink, linkedinLink }) {
     return (
       <Card className="bio-card">
         <Row>
@@ -20,7 +24,19 @@ function BioCard({ imageSrc, name, description, email }) {
               <Card.Text>
                   {description}
               </Card.Text>
-              <Button href={`mailto:${email}`} variant="dark" size="sm">e-mail me</Button>
+              <div>
+                <a href={`mailto:${email}`} className="icon-link">
+                  <FontAwesomeIcon icon={faEnvelope} size="lg" />
+                </a>
+                {' '}
+                <a href={githubLink} className="icon-link">
+                  <FontAwesomeIcon icon={faGithub} size="lg" />
+                </a>
+                {' '}
+                <a href={linkedinLink} className="icon-link">
+                  <FontAwesomeIcon icon={faLinkedin} size="lg" />
+                </a>
+              </div>
             </Card.Body>
           </Col>
         </Row>
