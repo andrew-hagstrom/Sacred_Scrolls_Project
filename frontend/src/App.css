@@ -153,14 +153,6 @@ body{
   overflow-y: auto;
   border: 1px solid #ccc;
 }
-.journal-entry{
-  background-color:lightgrey;
-  color:black;
-  /* transition: color 0.3s ease;  */
-}
-.journal-entry:hover {
-  background-color:white;
-}
 
 .fade-in-out {
   opacity: 1;
@@ -201,35 +193,6 @@ body{
   width: 90%;
   /* Add any additional styling for text here */
 }
-
-.andrew-card{
-  /* align-items: left;
-  display: flex;
-  background-color: rgb(254, 248, 231);
-  height: 50vh;
-  width: 100vw;
-  overflow: hidden;
-  word-wrap: break-word; */
-  width: 100%;
-  background-color: rgb(254, 248, 231);
-
-
-}
-
-.andrew-image {
-  /* margin-top: 2%;
-  margin-left: 2%;
-  margin-bottom: 60%;
-  margin-bottom:2%;
-  height: 30vh;
-  width: 33vh;
-  background-size: cover;
-  background-position: fixed; */
-  max-width: 80%;
-  height: auto;
-  object-fit: cover;
-}
-
 
 @media (min-width: 769px) {
   .bio-card {

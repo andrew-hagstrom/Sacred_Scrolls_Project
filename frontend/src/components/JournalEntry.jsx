@@ -1,19 +1,29 @@
 import { Button } from "react-bootstrap";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+
 export const JournalEntry = (props) => {
   const { setEntrySelected, isViewingEntry, setIsViewingEntry } = props;
   const onClickHandler = () => {
     setEntrySelected({
       id: props.id,
-      title: props.title,
       text: props.text,
+      title: props.title,
     });
     setIsViewingEntry(true)
   };
 
   return (
-    <div className="journal-entry" onClick={onClickHandler}>
-      <p>{props.title}</p>
-      <p>{props.text}</p>
-    </div>
+
+    <Container style={{overflowY:'auto', width:'11vw', position:'absolute'}}>
+      <Col style={{position:'relative', height:'70vh', paddingLeft:'15px', display:'flex', flexDirection:'column', alignItems:'center'}}>
+      <Row style={{fontSize: '34px'}}>Jorunal</Row>
+      <Row style={{cursor: 'pointer'}} onClick={()=> onClickHandler}>
+            {props.title}
+        </Row>
+      </Col>
+    </Container>
+
   );
 };
