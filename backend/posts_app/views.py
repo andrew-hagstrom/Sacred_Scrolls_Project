@@ -29,7 +29,7 @@ class AllPassagePostsView(APIView):
 
 class AllUserPostsView(APIView):
     def get(self, request, username):
-        user=User.objects.filter(username=username)
+        user=User.objects.get(username=username)
         posts = Posts.objects.filter(user=user)
         serialized_posts = PostsSerializer(posts, many=True)
         print(serialized_posts)

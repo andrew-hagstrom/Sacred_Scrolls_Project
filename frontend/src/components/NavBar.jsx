@@ -12,6 +12,7 @@ import SacredScrollsLogo from '../Images/TransparentLogo.png'
 export const NavBar = ({ user, setUser }) => {
     const navigate = useNavigate();
 
+
     const logOut = async() => {
         localStorage.removeItem("token");
         let response = await api
@@ -42,10 +43,10 @@ export const NavBar = ({ user, setUser }) => {
                         
                         {user ? (
                             <>
-                                <NavLink as={Link} to="/text-compare/" className="mx-2">Text Compare</NavLink>
+                                <NavLink as={Link} to="/text-compare/" className="mx-2">Textual Comparison</NavLink>
                                 <NavLink as={Link} to="/journal/" className="mx-2">Journal</NavLink>
                                 <NavLink as={Link} to="/favorites/" className="mx-2">Favorites</NavLink>
-                                <NavLink as={Link} to="/posts/" className="mx-2">Posts</NavLink>
+                                <NavLink as={Link} to="/userposts/" className="mx-2">Posts</NavLink>
                                 <NavLink as={Link} to="/about/" className="mx-2">About</NavLink>
 
                             </>
