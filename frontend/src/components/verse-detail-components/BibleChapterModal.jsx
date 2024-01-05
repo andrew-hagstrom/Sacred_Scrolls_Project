@@ -32,11 +32,11 @@ export const BibleChapterModal = ({ book, chapter, isOpen, onRequestClose, selec
     }, [book, chapter, selectedLanguage]);
 
     return (
-        <Modal className="verse-modal" show={isOpen} onHide={onRequestClose}>
+        <Modal className="verse-modal" show={isOpen} onHide={onRequestClose} scrollable={true}>
             <Modal.Header closeButton>
                 <Modal.Title>{`Chapter ${chapter} of ${book}`}</Modal.Title>
             </Modal.Header>
-            <Modal.Body >
+            <Modal.Body>
                 <h5>{selectedLanguage === 'eng' ? 'English' : (checkIfOldTestament(book) ? 'Hebrew' : 'Greek')}</h5>
                 <p>{chapterText}</p>
             </Modal.Body>
