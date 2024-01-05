@@ -18,11 +18,23 @@ export const JournalEntry = (props) => {
 
     <Container style={{overflowY:'auto', width:'11vw', position:'absolute'}}>
       <Col style={{position:'relative', height:'70vh', paddingLeft:'15px', display:'flex', flexDirection:'column', alignItems:'center'}}>
-      <Row style={{fontSize: '34px'}}>Jorunal</Row>
-      <Row style={{cursor: 'pointer'}} onClick={()=> onClickHandler}>
+      <Row style={{fontSize: '34px'}}>Journal</Row>
+      <Row>
+      
+      </Row>
+      <Row style={{cursor: 'pointer'}} onClick={()=> onClickHandler()}>
             {props.title}
         </Row>
+        <Row>
+        <Button
+                                variant="outline-light"
+                                // onClick={handleCreateButton}
+                              >
+                                create
+                              </Button>
+        </Row>
       </Col>
+      
     </Container>
 
   );

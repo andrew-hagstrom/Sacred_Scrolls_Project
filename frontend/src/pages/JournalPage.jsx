@@ -3,7 +3,12 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { api } from "../utilities/ApiUtilities";
 import { JournalEntry } from "../components/JournalEntry";
 import { useOutletContext } from "react-router";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPenToSquare,
+  faTrash,
+  faRotateLeft,
+} from "@fortawesome/free-solid-svg-icons";
 function JournalPage() {
   const [isViewingEntry, setIsViewingEntry] = useState(false);
   const [entrySelected, setEntrySelected] = useState(null);
@@ -69,20 +74,23 @@ function JournalPage() {
   };
 
   const handleDeleteJournal = async () => {
-    try {
-      // delete from database
-      const response = await api.delete(`user/journal/${entrySelected.id}`);
-      // if successfull deletion from backend
-      if (response.status === 204) {
-        // delete from frontend useState obj
-        setJournalData((journalData) =>
-          journalData.filter((entry) => entry.id !== entrySelected.id)
-        );
-        setEntrySelected(null);
-        setIsViewingEntry(false);
+    const isConfirmed = window.confirm("Delete journal entry forever?");
+    if (isConfirmed) {
+      try {
+        // delete from database
+        const response = await api.delete(`user/journal/${entrySelected.id}`);
+        // if successfull deletion from backend
+        if (response.status === 204) {
+          // delete from frontend useState obj
+          setJournalData((journalData) =>
+            journalData.filter((entry) => entry.id !== entrySelected.id)
+          );
+          setEntrySelected(null);
+          setIsViewingEntry(false);
+        }
+      } catch (error) {
+        console.error("Error deleting data:", error);
       }
-    } catch (error) {
-      console.error("Error deleting data:", error);
     }
   };
   const putJournalEntry = async () => {
@@ -138,14 +146,13 @@ function JournalPage() {
     <>
       <div className={`fade-in-out ${isVisible ? "" : "fade-out"}`}>
         <div className="row">
-          <div style={{border:'none'}}
+          <div
+            style={{ border: "none" }}
             className={`col-2 scrollable fade-in-out ${
               isVisible ? "" : "fade-out"
             }`}
           >
-            {
-            journalData.length > 0
-            ? (
+            {journalData.length > 0 ? (
               journalData.map((journal) => (
                 <JournalEntry
                   key={journal.id}
@@ -169,37 +176,49 @@ function JournalPage() {
                   {isViewingEntry || isEditMode ? (
                     isViewingEntry ? (
                       <>
-                        <div>
+                        <div className="entry">
+                          <Row>
+                            <Col
+                              md={{ span: 6, offset: 0 }}
+                              className="text-left"
+                            ></Col>
+                            <Col
+                              md={{ span: 6, offset: 0 }}
+                              className="text-right"
+                            ></Col>
+                          </Row>
+
                           <h1>{entrySelected.title}</h1>
                           <p>{entrySelected.text}</p>
-                        </div>
-                        <div>
-                          <Button
-                            variant="secondary"
-                            onClick={handleEditButton}
-                          >
-                            edit
-                          </Button>
-                          <Button
-                            variant="danger"
-                            onClick={handleDeleteJournal}
-                          >
-                            delete
-                          </Button>
-                          <Button
-                            variant="success"
-                            onClick={handleCreateButton}
-                          >
-                            create new
-                          </Button>
+                          <Row>
+                            <Col md={6}>
+                              {/* <Button
+                                variant="outline-light"
+                                onClick={handleCreateButton}
+                              >
+                                create new
+                              </Button> */}
+                            </Col>
+                            <Col md={6}>
+                              <FontAwesomeIcon
+                                icon={faTrash}
+                                onClick={handleDeleteJournal}
+                                className="journal-icon delete-icon"
+                              />
+                              <FontAwesomeIcon
+                                icon={faPenToSquare}
+                                onClick={handleEditButton}
+                                className="journal-icon edit-icon"
+                              />
+                            </Col>
+                          </Row>
                         </div>
                       </>
                     ) : (
                       // render editmode
                       <>
-                        <Form onSubmit={handleSubmit}>
+                        {/* <Form onSubmit={handleSubmit} className="journal-form">
                           <Form.Group controlId="title">
-                            <Form.Label>Title:</Form.Label>
                             <Form.Control
                               type="text"
                               value={title}
@@ -208,7 +227,7 @@ function JournalPage() {
                           </Form.Group>
 
                           <Form.Group controlId="text">
-                            <Form.Label>Text:</Form.Label>
+                            <Form.Label></Form.Label>
                             <Form.Control
                               as="textarea"
                               rows={4}
@@ -217,41 +236,81 @@ function JournalPage() {
                             />
                           </Form.Group>
                           <Button
-                            variant="primary"
+                            variant="outline-light"
                             type="submit"
                             onClick={putJournalEntry}
                           >
-                            Submit Edit
+                            save
                           </Button>
-                          <Button varient="secondary" onClick={undoEditMode}>
-                            undo
-                          </Button>
+                          <FontAwesomeIcon
+                            icon={faRotateLeft}
+                            onClick={undoEditMode}
+                          />
+                        </Form> */}
+                        <Form onSubmit={handleSubmit} className="journal-form">
+                          <Form.Group controlId="title">
+                            <Form.Control
+                              type="text"
+                              value={title}
+                              onChange={handleTitleChange}
+                            />
+                          </Form.Group>
+
+                          <Form.Group controlId="text">
+                            <Form.Label></Form.Label>
+                            <Form.Control
+                              as="textarea"
+                              rows={4}
+                              value={text}
+                              onChange={handleTextChange}
+                            />
+                          </Form.Group>
+
+                          <div className="d-flex justify-content-between">
+                            <Button
+                              variant="outline-light"
+                              type="submit"
+                              onClick={putJournalEntry}
+                            >
+                              save
+                            </Button>
+
+                            <FontAwesomeIcon
+                              icon={faRotateLeft}
+                              onClick={undoEditMode}
+                            />
+                          </div>
                         </Form>
                       </>
                     )
                   ) : (
-                    <Form onSubmit={handleSubmit}>
+                    <Form
+                      onSubmit={handleSubmit}
+                      className="journal-form"
+                      autoComplete="off"
+                    >
                       <Form.Group controlId="title">
-                        <Form.Label>Title:</Form.Label>
                         <Form.Control
                           type="text"
                           value={title}
                           onChange={handleTitleChange}
+                          placeholder="Journal Title"
                         />
                       </Form.Group>
 
                       <Form.Group controlId="text">
-                        <Form.Label>Text:</Form.Label>
+                        <Form.Label></Form.Label>
                         <Form.Control
                           as="textarea"
                           rows={4}
                           value={text}
                           onChange={handleTextChange}
+                          placeholder="Write your journal entry"
                         />
                       </Form.Group>
-                      <Button variant="primary" type="submit">
+                      <button className="journal-button" type="submit">
                         Submit
-                      </Button>
+                      </button>
                     </Form>
                   )}
                 </Col>
