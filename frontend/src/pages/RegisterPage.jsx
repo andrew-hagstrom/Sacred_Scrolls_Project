@@ -21,7 +21,6 @@ function RegisterPage() {
             "email": email,
             "password": password,
         }
-        api.defaults.aut
         let response = await api
             .post("user/signup/", data)
             .catch((err) => {
@@ -39,6 +38,7 @@ function RegisterPage() {
             ] = `Token ${response.data.token}`;
             navigate("/");
         } else {
+            localStorage.clear()
             alert ('something happened')
         }
     }
