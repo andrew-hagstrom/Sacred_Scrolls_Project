@@ -185,7 +185,7 @@ body{
 }
 
 .bio-image {
-  max-width: 80%;
+  max-width: 50%;
   height: auto;
   object-fit: cover;
 }
