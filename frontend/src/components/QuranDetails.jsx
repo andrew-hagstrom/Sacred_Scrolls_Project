@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react';
 
-import { api} from '../../utilities/ApiUtilities'
-import { PassageCard } from '../PassageCard';
-import { QuranChapterModal } from './QuranChapterModal';
-
-import Button from 'react-bootstrap/Button'
+import { api} from '../utilities/ApiUtilities'
+import { PassageCard } from './PassageCard';
 
 export const QuranDetails = ({chapter, verse }) => {
     const [arabicVerse, setArabicVerse] = useState('');
@@ -39,37 +36,23 @@ export const QuranDetails = ({chapter, verse }) => {
         fetchArabicVerse();
         fetchEnglishVerse();
     }, [chapter, verse]);
-    
-    const toggleChapterModal = (language) => {
-        setSelectedChapter(chapter)
-        setSelectedLanguage(language)
-        setShowChapterModal(!showChapterModal);
-    };
 
     return (
         <div>
-            <Button size='sm' variant="secondary" className='see-chapter' onClick={() => toggleChapterModal('ar')}>View Chapter</Button>
+            <button onClick={() => toggleChapterModal('ar')}>View Chapter</button>
             <PassageCard
               cardTitle={`Quran ${chapter}:${verse} (Arabic)`}
               sourceText={arabicVerse}
               sourceReference={`Chapter ${chapter}, Verse ${verse}`}
               additionalReferences={[]}
             />
-            <Button size='sm' variant="secondary" className='see-chapter' onClick={() => toggleChapterModal('en')}>View Chapter</Button>
+            <button onClick={() => toggleChapterModal('en')}>View Chapter</button>
             <PassageCard
               cardTitle={`Quran ${chapter}:${verse} (English)`}
               sourceText={englishVerse}
               sourceReference={`Chapter ${chapter}, Verse ${verse}`}
               additionalReferences={[]}
             />
-        {showChapterModal && (
-                <QuranChapterModal
-                    chapter={chapter}
-                    language={selectedLanguage}
-                    isOpen={showChapterModal}
-                    onRequestClose={() => setShowChapterModal(false)}
-                />
-            )}
         </div>
 
     );

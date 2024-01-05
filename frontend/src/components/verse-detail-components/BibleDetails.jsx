@@ -5,6 +5,8 @@ import { BibleChapterModal } from './BibleChapterModal';
 import { checkIfOldTestament, bibleBookIdAndTestament } from '../../utilities/BibleBookUtilities';
 import { PassageCard } from '../PassageCard';
 
+import Button from 'react-bootstrap/Button'
+
 
 export const BibleDetails = ({ book, chapter, verse }) => {
     const [selectedLanguage, setSelectedLanguage] = useState('eng');
@@ -52,14 +54,14 @@ export const BibleDetails = ({ book, chapter, verse }) => {
     return (
         <>
             
-            <button onClick={() => toggleChapterModal(checkIfOldTestament(book) ? 'heb' : 'grk')}>See Original Chapter</button>          
+            <Button size='sm' variant="secondary" className='see-chapter' onClick={() => toggleChapterModal(checkIfOldTestament(book) ? 'heb' : 'grk')}>See Chapter</Button>           
             <PassageCard
                 cardTitle={`Bible (${checkIfOldTestament(book) ? 'Hebrew' : 'Greek'})`}
                 sourceText={originalText}
                 sourceReference={reference}
                 additionalReferences={[]}
             />
-            <button onClick={() => toggleChapterModal('eng')}>See Chapter</button>  
+            <Button className='see-chapter' size='sm' variant="secondary" onClick={() => toggleChapterModal('eng')}>See Chapter</Button>   
             <PassageCard
                 cardTitle="Bible (English)"
                 sourceText={englishText}

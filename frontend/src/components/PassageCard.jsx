@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams, useLocation, useOutletContext } from 'react-router-dom';
+import { useNavigate, useParams, useOutletContext } from 'react-router-dom';
 import {api} from '../utilities/ApiUtilities'
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
@@ -17,8 +17,6 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         sourceReference || "Reference not available"
     )
     const navigate = useNavigate();
-    const location = useLocation();
-
     const {favorites, setFavorites, user} = useOutletContext()
     const [favText, setFavText] = useState("")
     const [favSource, setFavSource] = useState("")
@@ -120,33 +118,32 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
 
     const handlePostClick = () => {
         const { postBook, postChapter, postVerse } = extractPostBookChapterVerse(currentReference);
-        navigate(`/passageposts/${encodeURIComponent(postBook)}/${encodeURIComponent(postChapter)}/${encodeURIComponent(postVerse)}`);
+        navigate(`/passageposts/${encodeURIComponent(postBook)}/${encodeURIComponent(postChapter)}/${encodeURIComponent(postVerse)}?currentText=${encodeURIComponent(currentText)}`);
     };
 
     useEffect(()=> {
         checkIfFavorite()
     },[currentReference])
-
-    const detailsButtonText = location.pathname.startsWith('/text-compare/') && !location.pathname.endsWith('/text-compare/') ? 'Go Back' : 'See More';
     
     return (
         <>
   
-            <Card style={{ margin: '2vh'}}>
-                <Card.Header style={{ textAlign: 'center'}}>
+            <Card className='passage-card'style={{ margin: '2vh'}}>
+                <Card.Header className='card-header' style={{ textAlign: 'center'}}>
                     <strong>{cardTitle}</strong>
                     <Button 
                         variant="outline-secondary" 
+                        className='passagecard-button'
                         onClick={toggleCollapse}
                         size="sm" 
-                        style={{ position: 'absolute', top: '10px', right: '10px' }}>
+                        style={{ position: 'absolute', top: '5px', right: '10px' }}>
                         {isCollapsed ? 'Expand' : 'Collapse'}
                     </Button>
                 </Card.Header>
                 <Collapse in={!isCollapsed}>
                     <div>
                         <Card.Body onMouseEnter={(e) => favDataHandler(e)}>
-                            <Card.Title style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => { 
+                            <Card.Title style={{ textTransform: 'capitalize',cursor: 'pointer', textAlign: 'center' }} onClick={() => { 
                                 if (additionalReferences && additionalReferences.length > 0) {
                                         setShowModal(true);
                                 }
@@ -154,15 +151,16 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                                 {currentReference}
                             </Card.Title>
                             <Card.Text>
-                                {currentText} 
+                                {currentText}
                             </Card.Text>
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>{detailsButtonText}</Button>
-                            <Button onClick={handlePostClick}>Write Comment</Button>
-                            <Button variant="secondary" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
+                            <Button className='passagecard-button' variant="dark" onClick={() => handleDetailsClick(book, chapter, verse)}>{detailsButtonText}</Button>
+                            <Button className='passagecard-button' variant="dark" onClick={handlePostClick}>Comment</Button>
+                            <Button className='passagecard-button' variant="dark" onClick={handlePostClick}>Comment</Button>
+                            <Button className='passagecard-button' variant="dark" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
                                 {isFavorite ? 
-                                'Already Added to Favorites' :
+                                'Already Added\n to Favorites' :
                                 'Add to Favorites'} 
                                 </Button>
                         

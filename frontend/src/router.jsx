@@ -12,6 +12,8 @@ import {NotFoundPage} from './pages/NotFoundPage';
 import LoginPage from "./pages/LoginPage";
 import VerseDetailPage from './pages/VerseDetailPage'
 import PassagePostsPage from './pages/PassagePostsPage'
+import UserPostsPage from './pages/UserPostsPage'
+
 
 
 const router = createBrowserRouter([
@@ -51,7 +53,6 @@ const router = createBrowserRouter([
                 element: <VerseDetailPage />,
                
             },
-
             {
                 path: 'login/',
                 element: <LoginPage />,
@@ -60,8 +61,14 @@ const router = createBrowserRouter([
                 path: 'passageposts/:book/:chapter/:verse/',
                 element: <PassagePostsPage />,
             },
+            {
+                path: "userposts/",
+                element: <UserPostsPage />,
+            },
+
 
            
+            
         ],
         errorElement: <NotFoundPage />
     } 
