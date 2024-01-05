@@ -47,9 +47,8 @@ class AllUserPostsView(APIView):
         return Response(ser_new_post.data)
 
 
-
 class APostView(APIView):
-    def get(self, request, user_id, post_id):
+    def get(self, request, username, post_id):
         post = None
         try:
             post = Posts.objects.get(id=post_id, user_id=user_id)
@@ -60,7 +59,7 @@ class APostView(APIView):
         serialized_post = PostsSerializer(post)
         return Response({"data": serialized_post.data})
 
-    def put(self, request, user, post_id):
+    def put(self, request, username, post_id):
         data = request.data
         post = None
         try:
@@ -77,9 +76,9 @@ class APostView(APIView):
         updated_post.save()
         return Response({"data": updated_post.data})
 
-    def delete(self, request, user, post_id):
+    def delete(self, request, username, post_id):
+        user = User.objects.get(username=username)
         post = Posts.objects.get(user=user, id=post_id)
-
         try:
             post.delete()
         except Exception as e:
