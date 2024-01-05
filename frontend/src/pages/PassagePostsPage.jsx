@@ -79,7 +79,13 @@ function PassagePostsPage() {
             {Array.isArray(posts) && posts.length > 0 ? (
                 <ul>
                     {posts.map((post) => (
-                        <div className="posts-card" key={post.id}> {post.timestamp} <br></br> User: {post.username} <br></br>Comment: "{post.text}" </div>
+                        <div className="posts-card" key={post.id}> {post.formatted_timestamp} <br></br> 
+                        User: {post.username} <br></br>
+                        Comment: "{post.text}" 
+                        {user === post.username && (
+                            <button onClick={() => handlePostDelete(post.id)}>Delete</button>
+                            )}
+                        </div>
                     ))}
                 </ul>
             ) : (

@@ -52,10 +52,10 @@ function App() {
   const fetchUserPosts = async () => {
     try {
         const response = await api.get(`posts/${user}/`);
-        console.log(user)
+        // console.log(user)
         setUserPosts(response.data);
-        console.log(posts)
-        console.log("from fetch posts")
+        // console.log(posts)
+        // console.log("from fetch posts")
     } catch (error) {
         console.error('Error fetching posts:', error);
     }
