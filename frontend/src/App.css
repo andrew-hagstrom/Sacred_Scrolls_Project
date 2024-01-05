@@ -178,37 +178,44 @@ body{
 
 .bio-card {
   width: 100%;
-  height: 25vh; /* 1/4 of the viewport height */
-  display: flex;
-  align-items: center;
   background-color: rgb(254, 248, 231);
 }
 
 .bio-image {
-  margin-top: 2%;
-  margin-left: 2%;
-  height: 82%;
-  width: 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  max-width: 80%;
+  height: auto;
+  object-fit: cover;
 }
 
 .bio-text {
-  margin-left: -50%;
+  width: 90%;
+  /* Add any additional styling for text here */
+}
 
+@media (min-width: 769px) {
+  .bio-card {
+    height: 25vh;
+    overflow-y: auto;
+  }
+
+  .bio-image {
+    height: 100%;
+  }
 }
 
 @media (max-width: 768px) {
   .bio-card {
-    width: 100vw; /* 100% of viewport width */
-    height: 100vh; /* 100% of viewport height */
+    height: 50vh;
+    overflow-y: auto;
   }
-}
-@media (max-height: 800px) {
-  .bio-card {
-    width: 100vw; /* 100% of viewport width */
-    height: 50vh; /* 100% of viewport height */
+
+  .bio-image {
+    width: 100%;
+    height: 50vh;
+  }
+
+  .bio-text {
+    width: 100%;
   }
 }
 
