@@ -4,6 +4,8 @@ import { api} from '../../utilities/ApiUtilities'
 import { PassageCard } from '../PassageCard';
 import { QuranChapterModal } from './QuranChapterModal';
 
+import Button from 'react-bootstrap/Button'
+
 export const QuranDetails = ({chapter, verse }) => {
     const [arabicVerse, setArabicVerse] = useState('');
     const [englishVerse, setEnglishVerse] = useState('');
@@ -46,14 +48,14 @@ export const QuranDetails = ({chapter, verse }) => {
 
     return (
         <div>
-            <button onClick={() => toggleChapterModal('ar')}>View Chapter</button>
+            <Button size='sm' variant="secondary" className='see-chapter' onClick={() => toggleChapterModal('ar')}>View Chapter</Button>
             <PassageCard
               cardTitle={`Quran ${chapter}:${verse} (Arabic)`}
               sourceText={arabicVerse}
               sourceReference={`Chapter ${chapter}, Verse ${verse}`}
               additionalReferences={[]}
             />
-            <button onClick={() => toggleChapterModal('en')}>View Chapter</button>
+            <Button size='sm' variant="secondary" className='see-chapter' onClick={() => toggleChapterModal('en')}>View Chapter</Button>
             <PassageCard
               cardTitle={`Quran ${chapter}:${verse} (English)`}
               sourceText={englishVerse}

@@ -5,6 +5,8 @@ import { api } from '../../utilities/ApiUtilities';
 import { PassageCard } from '../PassageCard';
 import { BhagavadGitaChapterModal } from './BhagavadGitaChapterModal'
 
+import Button from 'react-bootstrap/Button';
+
 
 export const BhagavadGitaDetails = ({ chapter, verse }) => {
     const [sanskritText, setSanskritText] = useState('');
@@ -72,7 +74,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
         <>
           <div>
           
-          <button onClick={() => toggleChapterModal('san')}>See Chapter</button>
+          <Button size='sm' variant="secondary" className='see-chapter' onClick={() => toggleChapterModal('san')}>See Chapter</Button>
             <PassageCard
               cardTitle="Bhagavad Gita"
               sourceText={sanskritText}
@@ -81,7 +83,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
             />
           </div>
           <div>
-          <button onClick={() => toggleChapterModal('eng')}>See Chapter</button>
+          <Button size='sm' variant="secondary" className='see-chapter' onClick={() => toggleChapterModal('eng')}>See Chapter</Button>
             <PassageCard
               cardTitle="Bhagavad Gita (English)"
               sourceText={englishText}

@@ -132,21 +132,22 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     return (
         <>
   
-            <Card style={{ margin: '2vh'}}>
-                <Card.Header style={{ textAlign: 'center'}}>
+            <Card className='passage-card'style={{ margin: '2vh'}}>
+                <Card.Header className='card-header' style={{ textAlign: 'center'}}>
                     <strong>{cardTitle}</strong>
                     <Button 
                         variant="outline-secondary" 
+                        className='passagecard-button'
                         onClick={toggleCollapse}
                         size="sm" 
-                        style={{ position: 'absolute', top: '10px', right: '10px' }}>
+                        style={{ position: 'absolute', top: '5px', right: '10px' }}>
                         {isCollapsed ? 'Expand' : 'Collapse'}
                     </Button>
                 </Card.Header>
                 <Collapse in={!isCollapsed}>
                     <div>
                         <Card.Body onMouseEnter={(e) => favDataHandler(e)}>
-                            <Card.Title style={{ cursor: 'pointer', textAlign: 'center' }} onClick={() => { 
+                            <Card.Title style={{ textTransform: 'capitalize',cursor: 'pointer', textAlign: 'center' }} onClick={() => { 
                                 if (additionalReferences && additionalReferences.length > 0) {
                                         setShowModal(true);
                                 }
@@ -158,11 +159,13 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                             </Card.Text>
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <Button variant="primary" onClick={() => handleDetailsClick(book, chapter, verse)}>{detailsButtonText}</Button>
-                            <Button onClick={handlePostClick}>Comment</Button>
-                            <Button variant="secondary" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
+
+                            <Button className='passagecard-button' variant="dark" onClick={() => handleDetailsClick(book, chapter, verse)}>{detailsButtonText}</Button>
+                            <Button className='passagecard-button' variant="dark" onClick={handlePostClick}>Comment</Button>
+                            <Button className='passagecard-button' variant="dark" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
+
                                 {isFavorite ? 
-                                'Already Added to Favorites' :
+                                'Already Added\n to Favorites' :
                                 'Add to Favorites'} 
                                 </Button>
                         
