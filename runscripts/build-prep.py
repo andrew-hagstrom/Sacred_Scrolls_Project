@@ -1,6 +1,7 @@
 import subprocess
+import os
 
-def run_command(command):
+def run_command(command, cwd=None):
     
     """
     run a shell command 
@@ -16,8 +17,8 @@ def run_command(command):
     
 
 def main():
-    backend_project_dir = "~/Sacred_scrolls_Project/backend"
-    frontend_project_dir = "~/Sacred_Scrolls_Project/frontend"
+    backend_project_dir = os.path.expanduser("~/Sacred_scrolls_Project/backend")
+    frontend_project_dir = os.path.expanduser("~/Sacred_Scrolls_Project/frontend")
 
     backend_commands = [
         "pip3 install -r ~/Sacred_Scrolls_Project/backend/requirements.txt",
