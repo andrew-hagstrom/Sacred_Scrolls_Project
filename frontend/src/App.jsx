@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react'
-import { Outlet, useOutletContext } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import { Outlet, useOutletContext } from "react-router-dom";
 
-import { NavBar } from './components/NavBar'
-import { api } from './utilities/ApiUtilities'
+import { NavBar } from "./components/NavBar";
+import { api } from "./utilities/ApiUtilities";
 
-import './App.css'
-import Container from 'react-bootstrap/Container'
-
+import "./App.css";
+import Container from "react-bootstrap/Container";
 
 function App() {
   const [user, setUser] = useState(null);
+
+  const [journalData, setJournalData] = useState(null);
   const [user_id, setUserID] = useState(null);
   const [favorites, setFavorites] = useState([])
   const [posts, setUserPosts] = useState([]);
@@ -21,23 +22,32 @@ function App() {
       try {
         const response = await api.get("user/info/"); // Update with the correct endpoint
         setUser(response.data.username);
-        setUserID(response.data.user_id);
+        // setUserID(response.data.user_id);
       } catch (error) {
-        console.error('Error fetching user info:', error);
+        console.error("Error fetching user info:", error);
         // Optionally handle error (e.g., invalid token)
       }
     }
-  }; 
-  
-  const getFavorites = async() => {
-    let response = await api
-    .get('user/favorites/')
-    .catch((err)=> {
-      console.log(err.message)
-    })
-    setFavorites(response.data)
-    console.log(favorites)
-  }
+  };
+
+  const getFavorites = async () => {
+    let response = await api.get("user/favorites/").catch((err) => {
+      console.log(err.message);
+    });
+    setFavorites(response.data);
+    console.log(favorites);
+  };
+
+  const getJournalData = async () => {
+    try {
+      const response = await api.get("user/journal/");
+      if (response.status === 200) {
+        setJournalData(response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   const fetchUserPosts = async () => {
     try {
@@ -54,19 +64,25 @@ function App() {
   useEffect(() => {
     getInfo();
     getFavorites();
+    getJournalData();
     fetchUserPosts();
   }, [user, user_id]);
 
+  // TESTING - DELETE WHEN DONE
+  useEffect(() => {
+    console.log("app level loading journal data",journalData)
 
+  }, [journalData])
   return (
     <>
-    <NavBar user={user} setUser={setUser} />
+      <NavBar user={user} setUser={setUser} />
+
 
     <Container >
-     <Outlet context={{user, setUser, user_id, setUserID, favorites, setFavorites, fetchUserPosts, setUserPosts, posts}}/>
+     <Outlet context={{user, setUser, user_id, setUserID, favorites, setFavorites, fetchUserPosts, setUserPosts, posts, journalData, setJournalData}}/>
      </Container>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

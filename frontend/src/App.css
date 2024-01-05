@@ -1,6 +1,6 @@
 html{
   height:100vh;
-  width:100%;
+  width:100vw;
   margin:0;
 }
 
@@ -141,6 +141,29 @@ body{
   justify-content: flex-start;
 }
 
+.scrollable {
+  max-height: 300px;
+  min-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+}
+.journal-entry{
+  background-color:lightgrey;
+  color:black;
+  /* transition: color 0.3s ease;  */
+}
+.journal-entry:hover {
+  background-color:white;
+}
+
+.fade-in-out {
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
+}
 .passage-card{
   background-color: rgb(254, 248, 231);
   /* border: 2px solid #afafaf; */

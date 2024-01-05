@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams, useLocation, useOutletContext } from 'react-router-dom';
+import { useNavigate, useParams, useOutletContext } from 'react-router-dom';
 import {api} from '../utilities/ApiUtilities'
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
@@ -17,8 +17,6 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         sourceReference || "Reference not available"
     )
     const navigate = useNavigate();
-    const location = useLocation();
-
     const {favorites, setFavorites, user} = useOutletContext()
     const [favText, setFavText] = useState("")
     const [favSource, setFavSource] = useState("")
@@ -126,8 +124,6 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     useEffect(()=> {
         checkIfFavorite()
     },[currentReference])
-
-    const detailsButtonText = location.pathname.startsWith('/text-compare/') && !location.pathname.endsWith('/text-compare/') ? 'Go Back' : 'See More';
     
     return (
         <>
@@ -155,7 +151,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                                 {currentReference}
                             </Card.Title>
                             <Card.Text>
-                                {currentText} 
+                                {currentText}
                             </Card.Text>
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>

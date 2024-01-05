@@ -15,6 +15,7 @@ import PassagePostsPage from './pages/PassagePostsPage'
 import UserPostsPage from './pages/UserPostsPage'
 
 
+
 const router = createBrowserRouter([
     {
         path: '/',
@@ -65,7 +66,9 @@ const router = createBrowserRouter([
                 element: <UserPostsPage />,
             },
 
+
            
+            
         ],
         errorElement: <NotFoundPage />
     } 
