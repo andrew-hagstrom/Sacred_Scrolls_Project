@@ -150,7 +150,7 @@ function JournalPage() {
         <div className="row">
           <div
             style={{ border: "none" }}
-            className={`col-2 scrollable fade-in-out ${
+            className={`col-2 fade-in-out ${
               isVisible ? "" : "fade-out"
             }`}
           >
@@ -221,18 +221,12 @@ function JournalPage() {
                               className="text-right"
                             ></Col>
                           </Row>
-
+                          <div style={{wordWrap:"break-word"}}>
                           <h1>{entrySelected.title}</h1>
                           <p>{entrySelected.text}</p>
+                          </div>
                           <Row>
-                            <Col md={6}>
-                              {/* <Button
-                                variant="outline-light"
-                                onClick={handleCreateButton}
-                              >
-                                create new
-                              </Button> */}
-                            </Col>
+                            
                             <Col md={6}>
                               <FontAwesomeIcon
                                 icon={faTrash}
