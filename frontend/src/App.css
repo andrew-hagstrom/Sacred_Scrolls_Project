@@ -164,8 +164,8 @@ body{
 .see-chapter {
   color: white;
   border: 1px solid white;
-  width: 99%;
-  margin-left: 1%;
+  width: 89%;
+  margin-left: 2.15%;
   background-color: transparent;
 }
 .detail-card-container {
@@ -200,7 +200,7 @@ body{
   background-color: rgb(254, 248, 231);
   /* border: 2px solid #afafaf; */
   /* box-shadow: 0 0 5px 2px #758793; */
-  width:99%;
+  width:90%;
   color:black;
   padding: 1%;
   margin-right: 2%;
