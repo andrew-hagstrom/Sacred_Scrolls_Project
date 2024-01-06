@@ -1,5 +1,5 @@
 import {useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 
 import { PassageCard } from '../components/PassageCard';
@@ -25,6 +25,24 @@ function TextComparePage() {
     const [additionalGitaReferences, setAdditionalGitaReferences] = useState([])
     const [firstQuranResult, setFirstQuranResult] = useState(null);
     const [additionalQuranReferences, setAdditionalQuranReferences] = useState([]);
+    const navigate = useNavigate();
+
+    const initialState = {
+        searchTerm: '',
+        firstBibleResult: null,
+        additionalBibleReferences: [],
+        firstGitaResult: null,
+        additionalGitaReferences: [],
+        firstQuranResult: null,
+        additionalQuranReferences: []
+    };
+
+    const [resultsState, setResultsState] = useState(() => {
+    
+    const savedState = sessionStorage.getItem('resultsState');
+    return savedState ? JSON.parse(savedState) : initialState;
+  });
+
 
     const { book, chapter, verse } = useParams();
 
@@ -99,28 +117,65 @@ function TextComparePage() {
 
     }
 }
+useEffect(() => {
+    const savedState = sessionStorage.getItem('TextComparePageState');
+    if (savedState) {
+        const {
+            searchTerm,
+            firstBibleResult,
+            additionalBibleReferences,
+            firstGitaResult,
+            additionalGitaReferences,
+            firstQuranResult,
+            additionalQuranReferences
+        } = JSON.parse(savedState);
+
+        setSearchTerm(searchTerm);
+        setFirstBibleResult(firstBibleResult);
+        setAdditionalBibleReferences(additionalBibleReferences);
+        setFirstGitaResult(firstGitaResult);
+        setAdditionalGitaReferences(additionalGitaReferences);
+        setFirstQuranResult(firstQuranResult);
+        setAdditionalQuranReferences(additionalQuranReferences);
+    }
+}, []);
+
+useEffect(() => {
+    const stateToSave = {
+        searchTerm,
+        firstBibleResult,
+        additionalBibleReferences,
+        firstGitaResult,
+        additionalGitaReferences,
+        firstQuranResult,
+        additionalQuranReferences
+    };
+    sessionStorage.setItem('TextComparePageState', JSON.stringify(stateToSave));
+}, [searchTerm, firstBibleResult, additionalBibleReferences, firstGitaResult, additionalGitaReferences, firstQuranResult, additionalQuranReferences]);
+
+
+
 
 
 
     return (
         <>
-            <h2 style={{marginBottom: '5vh', textAlign: "center"}}>
-                Textual Comparison 
+            <h2 style={{marginBottom: '2vh', textAlign: "center", fontSize:'26px'}}>
+                Enter a keyword or phrase into the search bar to find relevant passages in the Bible, Bhagavad Gita, or Quran
             </h2>
-            <Container fluid>
+            <Container fluid style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
                 <Row className="mb-4">
                     <Col md={8}>
-                        <InputGroup style={{display:'flex', flexDirection:'row'}}>
-                             <Button variant="primary" onClick={handleSearch}>Search</Button>
-
+                        <InputGroup style={{display:'flex', width:'25vw'}}>
                             <Form.Control
                                 type="text"
                                 placeholder="Enter a keyword or phrase"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
+                                style={{marginRight:'6px'}}
             
                             />
-                
+                            <Button variant="none" style={{backgroundColor:'transparent', color:'#dcdbd5', border:'1px solid #dcdbd5'}}onClick={handleSearch}>Search</Button>
                         </InputGroup>
                     </Col>
                 </Row>

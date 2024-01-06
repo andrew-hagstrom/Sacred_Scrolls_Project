@@ -24,7 +24,7 @@ function VerseDetailPage() {
 
     return (
         <Container>
-            <h2>Verse Details Page</h2>
+            <h1 style={{display:'grid', textAlign:'center'}}>Verse Details</h1>
             {renderDetailsComponent()}
         </Container>
     );

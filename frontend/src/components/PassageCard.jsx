@@ -72,7 +72,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     
         if (location.pathname !== `/text-compare/`) {
             // Navigate to the default text compare page
-            navigate('/text-compare/');
+            navigate(-1);
         } else {
             // Navigate to the details page with the route parameters
             navigate(`/text-compare/${book}/${chapter}/${verse}/`);
@@ -162,7 +162,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                             <Button className='passagecard-button' variant="dark" onClick={handlePostClick}>Comment</Button>
                             <Button className='passagecard-button' variant="dark" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
                                 {isFavorite ? 
-                                'Already Added\n to Favorites' :
+                                'Added to Favorites' :
                                 'Add to Favorites'} 
                                 </Button>
                         
@@ -175,7 +175,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
             </Card>
             
 
-            <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal className='extra-source-modal' show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Select a Reference</Modal.Title>
                 </Modal.Header>
@@ -183,7 +183,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                     <ListGroup>
                         {additionalReferences && additionalReferences.length > 0 ? (
                             additionalReferences.map(({ text, reference }) => (
-                                <ListGroup.Item key={reference} onClick={() => handleReferenceClick(text, reference)}>
+                                <ListGroup.Item style={{cursor:'pointer'}} key={reference} onClick={() => handleReferenceClick(text, reference)}>
                                     {reference}
                                 </ListGroup.Item>
                             ))

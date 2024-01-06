@@ -20,7 +20,7 @@ function HomePage() {
         </div>
         <div className='home-text'>
             <div className='home-text-headers'>
-               Search for Key Terms
+               Broaden your horizons
             </div>
             {"Embark on your exploration by navigating seamlessly through the Bible, Quran, and Bhagavad Gita. Use our intuitive search feature to find passages that resonate with your interests or study themes across multiple scriptures. Uncover hidden gems of wisdom that transcend cultural and religious boundaries."}
         </div>
@@ -32,7 +32,7 @@ function HomePage() {
         </div>
         <div style={{flexBasis:'100%', fontSize:'24px'}}>
             {"Sacred Scrolls invites persons of faith, students of culture, and those seeking spiritual enlightenment to embark on a transformative experience. Embrace the diversity of sacred wisdom and unlock the profound insights that lie within the pages of the Bible, Quran, and Bhagavad Gita."}
-            {"Start your exploration now and let the Sacred Scrolls be your guide to a deeper understanding of the spiritual tapestry that unites us all."}
+            {" Start your exploration now and let the Sacred Scrolls be your guide to a deeper understanding of the spiritual tapestry that unites us all."}
         { user ? 
             null
             :
