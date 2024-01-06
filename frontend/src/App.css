@@ -20,8 +20,8 @@ body{
 .posts-card{
   margin: 20px;
   border: 2px solid beige;
-  background-color: rgb(159, 143, 89);
-  color:lightgray;
+  background-color: rgb(164, 143, 73);
+  color: black;
   padding: 10px;
 
 }
@@ -221,7 +221,7 @@ body{
 
 .bio-text {
   width: 100%;
-  /* Add any additional styling for text here */
+ 
 }
 
 @media (min-width: 769px) {
