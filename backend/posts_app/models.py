@@ -6,6 +6,6 @@ class Posts(models.Model):
     book=models.CharField(max_length=500, default='Quran/Bible/BG', null=False, blank=False)
     chapter=models.CharField(max_length=100, default='Chapter', null=False, blank=False)
     verse=models.TextField(default='Verse', null=False, blank=False)
-    text = models.TextField(default=None, null=False, blank=False)
+    text = models.TextField(null=False, blank=False)
     timestamp = models.DateTimeField(auto_now_add=True)
   
