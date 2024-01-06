@@ -18,11 +18,13 @@ body{
 } 
 
 .posts-card{
-  margin: 20px;
+  margin: 20px auto;
   border: 2px solid beige;
   background-color: rgb(164, 143, 73);
   color: black;
   padding: 10px;
+  width: 50vw;
+  
 
 }
 

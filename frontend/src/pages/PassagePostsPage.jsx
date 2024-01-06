@@ -42,21 +42,12 @@ function PassagePostsPage() {
 
     const handlePostSubmit = async (e) => {
         e.preventDefault();
-        let token = localStorage.getItem("token")
-        axios.defaults.headers.common["Authorization"] = `Token ${token}`;
-
-
-        console.log("User:", user);
-        console.log("Book:", book);
-        console.log("Chapter:", chapter);
-        console.log("Verse:", verse);
-        console.log("New Post Content:", newPostContent);
     
         try {
             const response = await api.post(`posts/${user}/`, { text: newPostContent, book: book, chapter: chapter, verse: verse});
-            console.log('Post created:', response.data);
             fetchPosts();
             setNewPostContent('');
+              console.log('Post created:', response.data);
         } catch (error) {
             console.error('Error creating post:', error);
         }
@@ -115,7 +106,7 @@ function PassagePostsPage() {
 
     return (
         <div> 
-            <h2 style={{textTranform: 'capitalize', textAlign: 'center', marginBottom: '5vh'}}> <Link to={`/text-compare/${book.toLowerCase().startsWith('surah') 
+            <h2 style={{textTranform: 'capitalize', textAlign: 'center', marginBottom: '2vh'}}> <Link to={`/text-compare/${book.toLowerCase().startsWith('surah') 
             ? 'quran'
             : book.toLowerCase().startsWith('bhagavad')
             ? 'bhagavadgita'
@@ -123,25 +114,27 @@ function PassagePostsPage() {
 
           {book} {chapter}:{verse}
         </Link></h2>
-            <h3>{currentText}</h3>
+            <div style={{textAlign:"center", marginBottom: '5vh'}}><button onClick={handleGoBack}>Return to Search Results</button> </div>
+            <h3 style={{marginBottom: "2vh"}}>"{currentText}"</h3>
            
             <form style={{display:'flex', flexDirection:'row', justifyContent: 'center', marginBottom: '5vh'}} onSubmit={handlePostSubmit}>
                 <button type="submit">Submit Post</button>
-                <textarea
+                <textarea 
+                    style = {{width: "40vw"}}
                     value={newPostContent}
                     onChange={(e) => setNewPostContent(e.target.value)}
                     placeholder="Write your post..."
                 ></textarea>
                   
             </form>
-         <div style={{textAlign:"center"}}><button onClick={handleGoBack}>Go Back</button> </div>
+         
             <div>
             {Array.isArray(sortedPosts) && sortedPosts.length > 0 ? (
                 <div>
                     {sortedPosts.map((post) => (
                         <div className="posts-card" key={post.id}> {post.formatted_timestamp} <br></br> 
                         User: {post.username} <br></br>
-                        Comment:<span style={{ fontSize: '25px', color: "purple" }}> "{post.text}"</span> <br></br>
+                        Comment:<span style={{ color: "purple" }}> "{post.text}"</span> <br></br>
                         Reference: <Link to={`/text-compare/${book.toLowerCase().startsWith('surah') 
             ? 'quran'
             : book.toLowerCase().startsWith('bhagavad')

@@ -160,7 +160,7 @@ useEffect(() => {
 
     return (
         <>
-            <h2 style={{marginBottom: '2vh', textAlign: "center", fontSize:'26px'}}>
+            <h2 style={{marginBottom: '2vh', textAlign: "center", fontSize:'26px', marginBottom: '5vh'}}>
                 Enter a keyword or phrase into the search bar to find relevant passages in the Bible, Bhagavad Gita, or Quran
             </h2>
             <Container fluid style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
