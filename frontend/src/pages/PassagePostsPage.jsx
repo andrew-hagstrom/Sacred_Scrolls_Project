@@ -12,13 +12,13 @@ function PassagePostsPage() {
     const searchParams = new URLSearchParams(location.search);
     const currentText = searchParams.get('currentText');
     const navigate = useNavigate();
+    const [editedText, setEditedText] = useState('');
 
     const sortedPosts = posts.slice().sort((a, b) => {
         const dateA = new Date(a.formatted_timestamp);
         const dateB = new Date(b.formatted_timestamp);
         return dateB - dateA;
     });
-  
 
     const fetchPosts = async () => {
         try {
@@ -85,6 +85,33 @@ function PassagePostsPage() {
         navigate(-1); // Go back to the previous page
     };
 
+    const handleEditPost = async (postId, newText) => {
+        try {
+            const response = await api.put(`posts/${user}/post/${postId}/`, {
+                text: newText,
+            });
+    
+            if (response.status === 200) {
+                // Update the local posts list with the edited post
+                const updatedPosts = posts.map((post) =>
+                    post.id === postId ? { ...post, text: newText } : post
+                );
+                setPosts(updatedPosts);
+                console.log('Post updated successfully:', response.data);
+    
+                setEditedText(prevState => {
+                    const updatedEditedTexts = { ...prevState };
+                    delete updatedEditedTexts[postId];
+                    return updatedEditedTexts;
+                });
+            } else {
+                console.error('Failed to update post');
+            }
+        } catch (error) {
+            console.error('Error editing post:', error);
+        }
+    };
+
 
     return (
         <div> 
@@ -119,13 +146,31 @@ function PassagePostsPage() {
                         {user === post.username && (
                             <div>
                             <button onClick={() => handlePostDelete(post.id)}>Delete</button> 
-                            <button>Edit</button>
+                            <button onClick={() => setEditedText({
+                                ...editedText,
+                                [post.id]: post.text
+                                    })}>
+                                        Edit
+                                    </button>
+                            {editedText[post.id] && (
+                            <div>
+                                <textarea
+                                    value={editedText[post.id]}
+                                    onChange={(e) => setEditedText({
+                                    ...editedText,
+                                    [post.id]: e.target.value
+                                        })}
+                                    ></textarea>
+                                    <button onClick={() => handleEditPost(post.id, editedText[post.id])}>
+                                        Save
+                                    </button>
                             </div>
-        
-                            )}
-                        </div>
-                    ))}
+                        )}
+                    </div>
+                )}
                 </div>
+            ))}
+            </div>
             ) : (
                 <p>No posts available</p>
             )}
