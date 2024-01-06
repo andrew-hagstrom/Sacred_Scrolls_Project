@@ -118,7 +118,7 @@ function PassagePostsPage() {
             <div style={{textAlign:"center", marginBottom: '5vh'}}><button onClick={handleGoBack}>Return to Search Results</button> </div>
             <h3 style={{marginBottom: "2vh"}}>"{currentText}"</h3>
            
-            <form style={{display:'flex', flexDirection:'row', justifyContent: 'center', marginBottom: '5vh'}} onSubmit={handlePostSubmit}>
+            <form style={{display:'flex', flexDirection:'row', justifyContent: 'center'}} onSubmit={handlePostSubmit}>
                
                 <textarea 
                     style = {{width: "40vw"}}
