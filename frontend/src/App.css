@@ -402,11 +402,14 @@ background-color:white;
 
 }
 .scrollable-box{
-  overflow-y: auto
+  overflow-y: auto;
 }
-.scroll-container::-webkit-scrollbar {
-  width: 0.5em;
+.scrollable-box::-webkit-scrollbar {
+  display:none;
 }
-.scroll-container::-webkit-scrollbar-thumb {
-  background-color: transparent;
+.journal-row{
+  transition: 0.3s;
+}
+.journal-row:hover{
+  color:rgb(238, 225, 164);
 }

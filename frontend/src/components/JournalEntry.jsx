@@ -17,7 +17,7 @@ export const JournalEntry = (props) => {
   return (
     <>
       <Row className="journal-row" style={{ cursor: "pointer"}} onClick={() => onClickHandler()()}>
-      <div style={{wordWrap:"break-word"}}>
+      <div style={{wordWrap:"break-word", maxWidth:"150px"}}>
         {props.title}
         
         </div>
