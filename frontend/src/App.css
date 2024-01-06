@@ -350,3 +350,12 @@ body{
 background-color:white;
 
 }
+.scrollable-box{
+  overflow-y: auto
+}
+.scroll-container::-webkit-scrollbar {
+  width: 0.5em;
+}
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}

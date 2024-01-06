@@ -154,7 +154,7 @@ function JournalPage() {
               isVisible ? "" : "fade-out"
             }`}
           >
-            <Container>
+            <Container style={{}}>
               <div style={{textAlign:"center"}}>
               <h1 style={{display:"inline"}}>Entries</h1><FontAwesomeIcon icon={faPlus} className="plus-icon" onClick={handleCreateButton}/>
               </div>
@@ -162,14 +162,18 @@ function JournalPage() {
               
               </div>
               <div
+              className="scrollable-box"
                 style={{
-                  overflowY: "auto",
+                  // overflowY: "auto",
                   width: "11vw",
                   position: "absolute",
                   height: "250px",
+            
+                    wordBreak:"break-all"
                 }}
               >
                 <Col
+                
                   style={{
                     position: "relative",
                     height: "70vh",
@@ -177,6 +181,7 @@ function JournalPage() {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
+                    wordBreak:"break-all"
                   }}
                 >
                   {/* <Row style={{ fontSize: "34px" }}>Journal</Row> */}
