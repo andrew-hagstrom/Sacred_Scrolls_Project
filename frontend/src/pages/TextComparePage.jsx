@@ -163,8 +163,8 @@ useEffect(() => {
             <h2 style={{marginBottom: '2vh', textAlign: "center", fontSize:'26px', marginBottom: '5vh'}}>
                 Enter a keyword or phrase into the search bar to find relevant passages in the Bible, Bhagavad Gita, or Quran
             </h2>
-            <Container fluid style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
-                <Row className="mb-4">
+            <Container fluid style={{display:'flex', flexDirection:'column'}}>
+                <Row className="mb-4" style={{alignSelf:'center'}}>
                     <Col md={8}>
                         <InputGroup style={{display:'flex', width:'25vw'}}>
                             <Form.Control

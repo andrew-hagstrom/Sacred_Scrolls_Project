@@ -119,14 +119,14 @@ function PassagePostsPage() {
             <h3 style={{marginBottom: "2vh"}}>"{currentText}"</h3>
            
             <form style={{display:'flex', flexDirection:'row', justifyContent: 'center', marginBottom: '5vh'}} onSubmit={handlePostSubmit}>
-                <button type="submit">Submit Post</button>
+               
                 <textarea 
                     style = {{width: "40vw"}}
                     value={newPostContent}
                     onChange={(e) => setNewPostContent(e.target.value)}
                     placeholder="Write your post..."
                 ></textarea>
-                  
+                <button type="submit">Submit Post</button>   
             </form>
          
             <div>
