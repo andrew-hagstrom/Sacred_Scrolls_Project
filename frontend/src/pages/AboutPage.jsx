@@ -4,7 +4,7 @@ import BioCard from "../components/BioCard"
 import BryanHeadshot from '../Images/bryan-headshot.png';
 
 import AndrewsPhoto from '../Images/AndrewsPhoto.png';
-
+// import JoshsPhoto from '../Images'
 function AboutPage() {
 
     const developers = [
@@ -24,6 +24,7 @@ function AboutPage() {
           githubLink:'https://github.com/andrew-hagstrom',
           githubLink: 'https://www.linkedin.com/in/andrew-hagstrom1/'
         },
+
         // Add information for other developers here
       ];
     
