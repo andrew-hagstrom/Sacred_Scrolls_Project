@@ -72,7 +72,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
 
     return (
         <>
-          <div>
+          <div className="detail-card-container">
           
           <Button size='sm' variant="secondary" className='see-chapter' onClick={() => toggleChapterModal('san')}>See Chapter</Button>
             <PassageCard
@@ -82,7 +82,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
               additionalReferences={[]}
             />
           </div>
-          <div>
+          <div className="detail-card-container">
           <Button size='sm' variant="secondary" className='see-chapter' onClick={() => toggleChapterModal('eng')}>See Chapter</Button>
             <PassageCard
               cardTitle="Bhagavad Gita (English)"

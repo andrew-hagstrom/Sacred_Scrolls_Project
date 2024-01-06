@@ -160,12 +160,15 @@ body{
 }
 
 .see-chapter {
-  color: black;
-  position: relative;
-  top: 62px;
-  left: 34px;
-  z-index: 3;
+  color: white;
+  border: 1px solid white;
+  width: 100%;
   background-color: transparent;
+}
+.detail-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 #favorites-page {
@@ -194,8 +197,26 @@ body{
   background-color: rgb(254, 248, 231);
   /* border: 2px solid #afafaf; */
   /* box-shadow: 0 0 5px 2px #758793; */
-  width: 45vw;
+  width:99%;
   color:black;
+  padding: 1%;
+  margin-right: 2%;
+}
+
+.passage-card-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 768) {
+  .passage-card-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .passage-card-buttons .passagecard-button {
+    margin-bottom: 10px;
+    width: 100%;
+  }
 }
 
 .delete-button {
@@ -204,9 +225,36 @@ body{
 
 .card-header {
   background-color: rgb(248, 234, 198) ;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
 }
 
+.card-header > strong {
+  flex-grow: 1;
+
+}
+
+@media (max-width: 768) {
+  .card-header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-header > strong {
+    margin-bottom: 10px;
+    width: 100%
+  }
+  .passagecard-button {
+    width: auto;
+  }
+
+}
+
+
 .bio-card {
+  height: auto;
   width: 100%;
   background-color: rgb(254, 248, 231);
   padding: 1%;
@@ -214,7 +262,7 @@ body{
 }
 
 .bio-image {
-  max-width: 50%;
+  max-width: 70%;
   max-height: auto;
   object-fit: cover;
 }
@@ -226,8 +274,9 @@ body{
 
 @media (min-width: 769px) {
   .bio-card {
-    height: 35vh;
+    height: auto;
     overflow-y: auto;
+    padding: 5%
   }
 
   .bio-image {

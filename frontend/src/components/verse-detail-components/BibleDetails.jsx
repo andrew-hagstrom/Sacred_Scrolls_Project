@@ -53,7 +53,7 @@ export const BibleDetails = ({ book, chapter, verse }) => {
 
     return (
         <>
-            
+            <div className="detail-card-container">
             <Button size='sm' variant="secondary" className='see-chapter' onClick={() => toggleChapterModal(checkIfOldTestament(book) ? 'heb' : 'grk')}>See Chapter</Button>           
             <PassageCard
                 cardTitle={`Bible (${checkIfOldTestament(book) ? 'Hebrew' : 'Greek'})`}
@@ -61,6 +61,8 @@ export const BibleDetails = ({ book, chapter, verse }) => {
                 sourceReference={reference}
                 additionalReferences={[]}
             />
+            </div>
+            <div className="detail-card-container">
             <Button className='see-chapter' size='sm' variant="secondary" onClick={() => toggleChapterModal('eng')}>See Chapter</Button>   
             <PassageCard
                 cardTitle="Bible (English)"
@@ -68,6 +70,7 @@ export const BibleDetails = ({ book, chapter, verse }) => {
                 sourceReference={reference}
                 additionalReferences={[]}
             />
+            </div>
             {showChapterModal && (
             <BibleChapterModal
                 book={book}
