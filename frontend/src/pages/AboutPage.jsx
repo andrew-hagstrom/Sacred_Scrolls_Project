@@ -4,7 +4,7 @@ import BioCard from "../components/BioCard"
 import BryanHeadshot from '../Images/bryan-headshot.png';
 
 import AndrewsPhoto from '../Images/AndrewsPhoto.png';
-
+// import JoshsPhoto from '../Images'
 function AboutPage() {
 
     const developers = [
@@ -21,7 +21,10 @@ function AboutPage() {
           name: 'Andrew Hagstrom',
           description: 'Andrew is a full-stack software engineer and Marine Corps Reserve Officer who holds Master of Arts degrees in Greek and Latin and New Testament and has a reading knoweldge of Hebrew and Coptic. In graduate school, his particular area of interest was the intersection of early Christian and Greco-Roman pagan practice and belief. This pursuit led to a broader interest in comparative mythology and religion viz-a-viz the archetypes of Carl Jung or monomyth of Joseph Campbell that unite human imaginations across cultures. He has a passion for ancient languages and texts and for making them accessible to a wider audience through the power of technology. Hence the inspiration for the Sacred Scrolls application, which brings together in one place three of the most revered religious texts in the world (the Bible, Quran, and Bhagavad Gita) and allows the user to dynamically engage with them for comparative study and reflection. On the more active side, Andrew enjoys hiking, skateboarding, blues dancing, and playing guitar.',
           email: 'andrew.hagstrom1@gmail.com',
+          githubLink:'https://github.com/andrew-hagstrom',
+          linkedinLink: 'https://www.linkedin.com/in/andrew-hagstrom1/'
         },
+
         // Add information for other developers here
       ];
     

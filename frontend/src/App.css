@@ -18,11 +18,13 @@ body{
 } 
 
 .posts-card{
-  margin: 20px;
+  margin: 20px auto;
   border: 2px solid beige;
   background-color: rgb(164, 143, 73);
   color: black;
   padding: 10px;
+  width: 50vw;
+  
 
 }
 
@@ -400,4 +402,16 @@ body{
 .plus-icon:hover{
 background-color:white;
 
+}
+.scrollable-box{
+  overflow-y: auto;
+}
+.scrollable-box::-webkit-scrollbar {
+  display:none;
+}
+.journal-row{
+  transition: 0.3s;
+}
+.journal-row:hover{
+  color:rgb(238, 225, 164);
 }
