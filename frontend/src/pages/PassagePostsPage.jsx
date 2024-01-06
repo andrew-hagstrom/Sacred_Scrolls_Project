@@ -47,7 +47,8 @@ function PassagePostsPage() {
             const response = await api.post(`posts/${user}/`, { text: newPostContent, book: book, chapter: chapter, verse: verse});
             fetchPosts();
             setNewPostContent('');
-              console.log('Post created:', response.data);
+            window.location.reload(); 
+            console.log('Post created:', response.data);
         } catch (error) {
             console.error('Error creating post:', error);
         }
