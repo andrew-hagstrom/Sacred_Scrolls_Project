@@ -46,10 +46,10 @@ body{
   margin-top: -80px;
 }
 
-/* .navbar-toggler-icon , .navbar-toggler, .navbar-toggler-icon{
+.navbar-toggler{
   
-  border: 2px solid red;
-} */
+  border: 2px solid rgb(90, 84, 35);
+}
 
 @media (min-width:1840px) {
   .home-text {
