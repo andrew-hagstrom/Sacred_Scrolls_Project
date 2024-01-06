@@ -126,20 +126,20 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         checkIfFavorite()
     },[currentReference])
 
-    const detailsButtonText = location.pathname.startsWith('/text-compare/') && !location.pathname.endsWith('/text-compare/') ? 'Return to Search' : 'See More';
+    const detailsButtonText = location.pathname.startsWith('/text-compare/') && !location.pathname.endsWith('/text-compare/') ? 'Go Back' : 'See More';
     
     return (
         <>
   
             <Card className='passage-card'style={{ margin: '2vh'}}>
-                <Card.Header className='card-header' style={{ textAlign: 'center'}}>
+                <Card.Header className='card-header' >
                     <strong>{cardTitle}</strong>
                     <Button 
                         variant="outline-secondary" 
                         className='passagecard-button'
                         onClick={toggleCollapse}
                         size="sm" 
-                        style={{ position: 'absolute', top: '5px', right: '10px' }}>
+                        >
                         {isCollapsed ? 'Expand' : 'Collapse'}
                     </Button>
                 </Card.Header>
@@ -157,7 +157,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                                 {currentText}
                             </Card.Text>
                         
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <div className="passage-card-buttons">
                             <Button className='passagecard-button' variant="dark" onClick={() => handleDetailsClick(book, chapter, verse)}>{detailsButtonText}</Button>
                             <Button className='passagecard-button' variant="dark" onClick={handlePostClick}>Comment</Button>
                             <Button className='passagecard-button' variant="dark" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
