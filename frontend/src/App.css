@@ -19,19 +19,13 @@ body{
 
 .posts-card{
   margin: 20px auto;
-  border: 2px solid beige;
-  background-color: rgb(164, 143, 73);
+  border: 5px solid goldenrod;
   color: black;
+  background-color: rgb(254, 248, 231);
   padding: 10px;
   width: 50vw;
-  
+  border-radius: 10px;
 
-}
-
-.AndrewsPhoto {
-  border: 2px solid red;
-  border-radius: 8px;
-  width: 600px;
 }
 
 .mx-2 {

@@ -87,10 +87,10 @@ function AllPostsPage() {
                         {allpost.book} {allpost.chapter}:{allpost.verse}</Link>
                     {user === allpost.username && (
                         <div>
-                            <button onClick={() => handlePostDelete(allpost.id)}>
+                            <button style={{background:'transparent', borderRadius: '5px'}} onClick={() => handlePostDelete(allpost.id)}>
                                 Delete
                             </button>
-                            <button onClick={() => setEditedText({
+                            <button style={{background:'transparent', borderRadius: '5px'}} onClick={() => setEditedText({
                                 ...editedText,
                                 [allpost.id]: allpost.text
                                     })}>
@@ -105,7 +105,7 @@ function AllPostsPage() {
                                     [allpost.id]: e.target.value
                                         })}
                                     ></textarea>
-                                    <button onClick={() => handleEditPost(allpost.id, editedText[allpost.id])}>
+                                    <button style={{background:'transparent', borderRadius: '5px'}} onClick={() => handleEditPost(allpost.id, editedText[allpost.id])}>
                                         Save
                                     </button>
                             </div>
