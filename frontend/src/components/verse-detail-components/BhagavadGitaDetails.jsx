@@ -76,7 +76,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
           
           <Button size='sm' variant="secondary" className='see-chapter' onClick={() => toggleChapterModal('san')}>See Chapter</Button>
             <PassageCard
-              cardTitle="Bhagavad Gita"
+              cardTitle="Bhagavad Gita (Sanskrit)"
               sourceText={sanskritText}
               sourceReference={reference}
               additionalReferences={[]}

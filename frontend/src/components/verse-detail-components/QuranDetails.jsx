@@ -65,7 +65,7 @@ export const QuranDetails = ({chapter, verse }) => {
             <div className="detail-card-container">
             <Button size='sm' variant="secondary" className='see-chapter' onClick={() => toggleChapterModal('ar')}>View Chapter</Button>
             <PassageCard
-              cardTitle={`Quran: Surah ${quranChapter} ${verse} (Arabic)`}
+              cardTitle={`Quran (Arabic)`}
               sourceText={arabicVerse}
               sourceReference={`Surah ${quranChapter} ${verse}`}
               additionalReferences={[]}
@@ -74,7 +74,7 @@ export const QuranDetails = ({chapter, verse }) => {
             <div className="detail-card-container">
             <Button size='sm' variant="secondary" className='see-chapter' onClick={() => toggleChapterModal('en')}>View Chapter</Button>
             <PassageCard
-              cardTitle={`Quran: Surah ${quranChapter} ${verse} (English)`}
+              cardTitle={`Quran (English)`}
               sourceText={englishVerse}
               sourceReference={`Surah ${quranChapter} ${quranChapterTranslation} ${verse}`}
               additionalReferences={[]}
