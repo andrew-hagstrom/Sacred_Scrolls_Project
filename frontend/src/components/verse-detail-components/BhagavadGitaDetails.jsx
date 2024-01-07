@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 
 
 import { api } from '../../utilities/ApiUtilities';
+import { gitaChapters } from '../../utilities/GitaBookUtilities';
+
 import { PassageCard } from '../PassageCard';
 import { BhagavadGitaChapterModal } from './BhagavadGitaChapterModal'
 
@@ -9,6 +11,12 @@ import Button from 'react-bootstrap/Button';
 
 
 export const BhagavadGitaDetails = ({ chapter, verse }) => {
+
+  /* This is mostly a straight-forward api call, but the titles of the Gita chapters in both English and Sanskrit come from 
+  
+  *GitaBookUtilities.js
+  
+  */
     const [sanskritText, setSanskritText] = useState('');
     const [englishText, setEnglishText] = useState('');
     const [showChapterModal, setShowChapterModal] = useState(false);
@@ -16,8 +24,9 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
     const [selectedLanguage, setSelectedLanguage] = useState('san');
 
     const book = "bhagavadgita"
-
-    const reference = `Bhagavad Gita ${chapter}:${verse}`;
+    const englishChapter = gitaChapters[`${chapter}`][1]
+    const gitaChapter = gitaChapters[`${chapter}`][0]
+   
  
 
    // Fetch English verse by chapter and verse number
@@ -78,7 +87,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
             <PassageCard
               cardTitle="Bhagavad Gita (Sanskrit)"
               sourceText={sanskritText}
-              sourceReference={reference}
+              sourceReference={`${gitaChapter} ${verse}`}
               additionalReferences={[]}
             />
           </div>
@@ -87,7 +96,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
             <PassageCard
               cardTitle="Bhagavad Gita (English)"
               sourceText={englishText}
-              sourceReference={reference}
+              sourceReference={`${gitaChapter} ${englishChapter} ${verse}`}
               additionalReferences={[]}
             />
           </div>
