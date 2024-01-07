@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { api} from '../../utilities/ApiUtilities'
+import { quranChapters } from '../../utilities/QuranBookUtilities';
 import { PassageCard } from '../PassageCard';
 import { QuranChapterModal } from './QuranChapterModal';
 
@@ -24,6 +25,9 @@ export const QuranDetails = ({chapter, verse }) => {
         }
     };
 
+    const quranChapter = quranChapters[`${chapter}`][0]
+    const quranChapterTranslation = quranChapters[`${chapter}`][1]
+
     const fetchEnglishVerse = async () => {
         try {
             const response = await api.get(`Quran/en/chapter/${chapter}/verse/${verse}/`);
@@ -34,6 +38,8 @@ export const QuranDetails = ({chapter, verse }) => {
             throw error;
         }
     };
+
+    
 
     useEffect(() => {
         fetchArabicVerse();
@@ -51,18 +57,18 @@ export const QuranDetails = ({chapter, verse }) => {
             <div className="detail-card-container">
             <Button size='sm' variant="secondary" className='see-chapter' onClick={() => toggleChapterModal('ar')}>View Chapter</Button>
             <PassageCard
-              cardTitle={`Quran ${chapter}:${verse} (Arabic)`}
+              cardTitle={`Quran: Surah ${quranChapter} ${verse} (Arabic)`}
               sourceText={arabicVerse}
-              sourceReference={`Chapter ${chapter}, Verse ${verse}`}
+              sourceReference={`Surah ${quranChapter} ${verse}`}
               additionalReferences={[]}
             />
             </div>
             <div className="detail-card-container">
             <Button size='sm' variant="secondary" className='see-chapter' onClick={() => toggleChapterModal('en')}>View Chapter</Button>
             <PassageCard
-              cardTitle={`Quran ${chapter}:${verse} (English)`}
+              cardTitle={`Quran: Surah ${quranChapter} ${verse} (English)`}
               sourceText={englishVerse}
-              sourceReference={`Chapter ${chapter}, Verse ${verse}`}
+              sourceReference={`Surah ${quranChapter} ${quranChapterTranslation} ${verse}`}
               additionalReferences={[]}
             />
             </div>
