@@ -36,6 +36,10 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     const [favRef, setFavRef] = useState("")
     const [isFavorite, setIsFavorite] = useState(false);
 
+    const isVerseDetailsPage = () => {
+        return location.pathname.startsWith('/text-compare/') && location.pathname.slice('/text-compare/'.length).length > 0;
+    }
+
     const extractBookChapterVerse = (reference) => {
         const match = reference.match(/(.+) (\d+:\d+)/);
         if (match) {
@@ -181,7 +185,9 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                         
                         <div className="passage-card-buttons">
                             <Button className='passagecard-button' variant="dark" onClick={() => handleDetailsClick(book, chapter, verse)}>{detailsButtonText}</Button>
+                            {!isVerseDetailsPage() && (
                             <Button className='passagecard-button' variant="dark" onClick={handlePostClick}>Comment</Button>
+                            )} 
                             <Button className='passagecard-button' variant="dark" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
                                 {isFavorite ? 
                                 'Added to Favorites' :

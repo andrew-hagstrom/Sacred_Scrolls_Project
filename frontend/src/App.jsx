@@ -49,6 +49,15 @@ function App() {
     }
   };
 
+const fetchAllPosts = async () => {
+  try {
+      const response = await api.get('posts/');
+      setAllPosts(response.data);
+  } catch (error) {
+      console.error('Error fetching posts:', error);
+  }
+};
+
   const fetchUserPosts = async () => {
     try {
         console.log(user)
@@ -59,14 +68,6 @@ function App() {
     }
 };
 
-const fetchAllPosts = async () => {
-  try {
-      const response = await api.get('posts/');
-      setAllPosts(response.data);
-  } catch (error) {
-      console.error('Error fetching posts:', error);
-  }
-};
 
   useEffect(() => {
     getInfo();
