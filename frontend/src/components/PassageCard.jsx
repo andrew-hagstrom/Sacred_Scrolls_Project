@@ -9,6 +9,18 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Collapse from 'react-bootstrap/Collapse'
 
 export const PassageCard =({ sourceText, sourceReference, additionalReferences, cardTitle }) => {
+
+    /* reused over several pages, this component is the heart of the keyword search page and the verse details page. It also makes an appearance on the favorites page and directs navigation to the posts page.
+    
+    There are two fairly similar functions on this component: 
+    
+    * extractBookChapterVerse  
+    * extractPostBookChapterVerse
+    
+    This may be refactored later, but is necessary for our current site organization.
+
+
+    */
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [currentText, setCurrentText] = useState(sourceText || 
@@ -55,11 +67,17 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
 
 
     useEffect(() => {
+
+        /* This useEffect sets the verse being viewed as the sourceText, which comes from TextComparePage.jsx */
+
         setCurrentText(sourceText || 'Text not available');
         setCurrentReference(sourceReference || "Reference not available");
     }, [sourceText, sourceReference]); 
 
     const handleReferenceClick = (newText, newReference) => {
+        /* This changes the text and reference viewed in the component to be one of the "additionalReferences" from TextComparePage.jsx 
+        */
+
         setCurrentText(newText || 
             'Text not available');
         setCurrentReference(newReference || 
@@ -68,6 +86,9 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     };
 
     const handleDetailsClick = () => {
+        /* This function handles the details button, grabbing book, chapter, and verse, which are formatted for the endpoint of VerseDetails.jsx 
+        For more about VerseDetails.jsx, look at the directory: verse-detail-components
+        */
         const { book, chapter, verse } = extractBookChapterVerse(currentReference);
     
         if (location.pathname !== `/text-compare/`) {
@@ -126,6 +147,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         checkIfFavorite()
     },[currentReference])
 
+    /* The following variable effects the "see more" button */
     const detailsButtonText = location.pathname.startsWith('/text-compare/') && !location.pathname.endsWith('/text-compare/') ? 'Go Back' : 'See More';
     
     return (

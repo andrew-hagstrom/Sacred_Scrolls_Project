@@ -9,6 +9,12 @@ import Button from 'react-bootstrap/Button'
 
 
 export const BibleDetails = ({ book, chapter, verse }) => {
+
+    /* This page is mostly a straightforward api call. There is some conditional logic related to whether the book in question is from the old or new testement. This logic takes place here:
+    
+    *BibleBookUtilities.js
+    
+    */
     const [selectedLanguage, setSelectedLanguage] = useState('eng');
     const [englishText, setEnglishText] = useState('');
     const [originalText, setOriginalText] = useState('');

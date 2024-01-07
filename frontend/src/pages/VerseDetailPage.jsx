@@ -7,8 +7,22 @@ import { BibleDetails } from '../components/verse-detail-components/BibleDetails
 import Container from 'react-bootstrap/Container';
 
 function VerseDetailPage() {
-    const { book, chapter, verse } = useParams();
+ /* This page is really the result of 
 
+ *PassageCard.jsx
+
+ *BhagavadGitaDetails.jsx
+ *BhagavadGitaChapterModal.jsx 
+ 
+ *BibleDetails.jsx
+ *BibleChapterModal.jsx
+ 
+ *QuranDetails.jsx
+ *QuranChapterModal.jsx
+ 
+ */
+
+    const { book, chapter, verse } = useParams();
 
     const renderDetailsComponent = () => {
         if (book === 'bhagavadgita') {

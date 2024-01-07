@@ -8,6 +8,14 @@ import { QuranChapterModal } from './QuranChapterModal';
 import Button from 'react-bootstrap/Button'
 
 export const QuranDetails = ({chapter, verse }) => {
+
+    /* 
+    
+    This is a pretty straightforward API call. The verse endpoint of our api does not contain the name of the Surah. Because the components were already dealing with quite a few props, it felt simpler to store these Surah names in an object. Doing this also allowed us to pass along the english translations of the Surah names. This object is found here:
+    
+    *QuranBookUtilities.js
+    
+    */
     const [arabicVerse, setArabicVerse] = useState('');
     const [englishVerse, setEnglishVerse] = useState('');
     const [showChapterModal, setShowChapterModal] = useState(false);
