@@ -18,6 +18,14 @@ import InputGroup from 'react-bootstrap/Container';
 
 
 function TextComparePage() {
+
+    /* This page is responsible for the keyword search of 
+    *The Bible
+    *The Quran
+    *The Bhagavad Gita
+
+    It passes the results into the PassageCard.jsx component and stores the information for access in the card itself or in its corresponding modal.
+    */
     const [searchTerm, setSearchTerm] = useState('');
     const [firstBibleResult, setFirstBibleResult] = useState(null);
     const [additionalBibleReferences, setAdditionalBibleReferences] = useState([]);
@@ -118,6 +126,7 @@ function TextComparePage() {
     }
 }
 useEffect(() => {
+    /* State Restoration Effect */
     const savedState = sessionStorage.getItem('TextComparePageState');
     if (savedState) {
         const {
@@ -141,6 +150,7 @@ useEffect(() => {
 }, []);
 
 useEffect(() => {
+    /* State Saving Effect */
     const stateToSave = {
         searchTerm,
         firstBibleResult,
