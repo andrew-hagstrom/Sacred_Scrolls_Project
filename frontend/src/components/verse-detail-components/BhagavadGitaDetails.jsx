@@ -11,6 +11,12 @@ import Button from 'react-bootstrap/Button';
 
 
 export const BhagavadGitaDetails = ({ chapter, verse }) => {
+
+  /* This is mostly a straight-forward api call, but the titles of the Gita chapters in both English and Sanskrit come from 
+  
+  *GitaBookUtilities.js
+  
+  */
     const [sanskritText, setSanskritText] = useState('');
     const [englishText, setEnglishText] = useState('');
     const [showChapterModal, setShowChapterModal] = useState(false);
