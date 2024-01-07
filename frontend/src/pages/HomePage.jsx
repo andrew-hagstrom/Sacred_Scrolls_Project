@@ -14,9 +14,9 @@ function HomePage() {
         <div id='home-text-container'>
         <div className='home-text'>
             <div className='home-text-headers'>
-                Mission Statement
+                Embark on a Journey
             </div>
-            {"Sacred Scrolls is not just a website; it's a journey into the heart of sacred knowledge. We understand that approaching ancient texts can be a formidable task, and that's why we've created a user-friendly interface to help you navigate the intricate tapestry of the Bible, Quran, and Bhagavad Gita effortlessly."}
+            {"Sacred Scrolls is not just a website; it is a journey into the heart of sacred knowledge. We understand that approaching ancient texts can be a formidable task, and that is why we have created a user-friendly interface to help you effortlessly navigate the intricate pathways of the Bible, Quran, and Bhagavad Gita."}
         </div>
         <div className='home-text'>
             <div className='home-text-headers'>
@@ -31,7 +31,7 @@ function HomePage() {
             {"Sacred Scrolls empowers you to read these timeless texts side by side, providing a unique opportunity for comparative study. Witness the interconnectedness of different faiths and deepen your understanding of the common threads that bind humanity together."}
         </div>
         <div style={{flexBasis:'100%', fontSize:'24px'}}>
-            {"Sacred Scrolls invites persons of faith, students of culture, and those seeking spiritual enlightenment to embark on a transformative experience. Embrace the diversity of sacred wisdom and unlock the profound insights that lie within the pages of the Bible, Quran, and Bhagavad Gita."}
+            {"Sacred Scrolls invites persons of faith, students of religion, and those seeking spiritual enlightenment to embark on a transformative experience. Embrace the diversity of sacred wisdom and unlock the profound insights that lie within the pages of the Bible, Quran, and Bhagavad Gita."}
             {" Start your exploration now and let the Sacred Scrolls be your guide to a deeper understanding of the spiritual tapestry that unites us all."}
         { user ? 
             null
