@@ -9,7 +9,6 @@ import Container from "react-bootstrap/Container";
 
 function App() {
   const [user, setUser] = useState(null);
-
   const [journalData, setJournalData] = useState([]);
   const [user_id, setUserID] = useState(null);
   const [favorites, setFavorites] = useState([])
@@ -52,11 +51,9 @@ function App() {
 
   const fetchUserPosts = async () => {
     try {
+        console.log(user)
         const response = await api.get(`posts/${user}/`);
-        // console.log(user)
         setUserPosts(response.data);
-        // console.log(posts)
-        // console.log("from fetch posts")
     } catch (error) {
         console.error('Error fetching posts:', error);
     }
