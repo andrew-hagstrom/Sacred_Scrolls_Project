@@ -313,6 +313,13 @@ body{
   color:rgb(255,242,194);
 }
 
+@media (max-width: 767px) {
+  .favorites-list {
+    margin-top: 20px; /* Adjust as needed */
+  }
+}
+
+
 .journal-form {
   width: 100%;
   max-width: 600px;
