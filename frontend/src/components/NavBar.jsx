@@ -1,4 +1,8 @@
+import { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
+
+import { TutorialModal } from "./TutorialModal";
+
 import { api } from '../utilities/ApiUtilities';
 
 import Container from 'react-bootstrap/Container';
@@ -10,6 +14,11 @@ import NavLink from 'react-bootstrap/NavLink';
 import SacredScrollsLogo from '../Images/TransparentLogo.png'
 
 export const NavBar = ({ user, setUser }) => {
+    const [showTutorial, setShowTutorial] = useState(false);
+
+    const handleShowTutorialModal = () => setShowTutorial(true);
+    const handleHideTutorialModal = () => setShowTutorial(false);
+
     const navigate = useNavigate();
 
 
@@ -27,6 +36,7 @@ export const NavBar = ({ user, setUser }) => {
     return (
         <Navbar style={{paddingBottom: "2%", padding: "2%", marginTop: '0.5vh'}} expand="lg" id='navbar-comp'>
             <Container>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Navbar.Brand>
                 <img
                     src={SacredScrollsLogo}
@@ -36,6 +46,9 @@ export const NavBar = ({ user, setUser }) => {
                     alt="Sacred Scrolls Logo"
                 />
                 </Navbar.Brand>
+                <Button style={{marginTop:"-7%"}} variant="dark" onClick={handleShowTutorialModal}>
+                    Tutorial</Button>                
+                </div>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" variant='green'>
                     <Nav style={{ display: 'flex', justifyContent: 'center', width: '100%' }} className="me-auto">
@@ -73,6 +86,7 @@ export const NavBar = ({ user, setUser }) => {
                 </div>
         </div>
           </Container>
+          <TutorialModal show={showTutorial} onHide={handleHideTutorialModal} />
 
         </Navbar>
     );

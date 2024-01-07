@@ -18,11 +18,13 @@ body{
 } 
 
 .posts-card{
-  margin: 20px;
+  margin: 20px auto;
   border: 2px solid beige;
   background-color: rgb(164, 143, 73);
   color: black;
   padding: 10px;
+  width: 50vw;
+  
 
 }
 
@@ -44,10 +46,10 @@ body{
   margin-top: -80px;
 }
 
-/* .navbar-toggler-icon , .navbar-toggler, .navbar-toggler-icon{
+.navbar-toggler{
   
-  border: 2px solid red;
-} */
+  border: 2px solid rgb(90, 84, 35);
+}
 
 @media (min-width:1840px) {
   .home-text {
@@ -162,8 +164,8 @@ body{
 .see-chapter {
   color: white;
   border: 1px solid white;
-  width: 99%;
-  margin-left: 1%;
+  width: 89%;
+  margin-left: 2.15%;
   background-color: transparent;
 }
 .detail-card-container {
@@ -198,7 +200,7 @@ body{
   background-color: rgb(254, 248, 231);
   /* border: 2px solid #afafaf; */
   /* box-shadow: 0 0 5px 2px #758793; */
-  width:99%;
+  width:90%;
   color:black;
   padding: 1%;
   margin-right: 2%;
