@@ -9,8 +9,8 @@ import { Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
-export const TutorialModal = () => {
-  const [show, setShow] = useState(true); 
+export const TutorialModal = ({ show, onHide }) => {
+
   const [currentTutorial, setCurrentTutorial] = useState(0); 
 
   // Array of tutorial contents
@@ -34,7 +34,7 @@ export const TutorialModal = () => {
   };
 
   return (
-    <Modal style={{color:"black"}}show={show} onHide={() => setShow(false)}>
+    <Modal style={{color:"black"}}show={show} onHide={onHide}>
       <Modal.Header closeButton>
         <Modal.Title>Tutorial</Modal.Title>
       </Modal.Header>

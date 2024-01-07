@@ -16,7 +16,9 @@ import SacredScrollsLogo from '../Images/TransparentLogo.png'
 export const NavBar = ({ user, setUser }) => {
     const [showTutorial, setShowTutorial] = useState(false);
 
-    const handleTutorialModal = () => setShowTutorial(!showTutorial);
+    const handleShowTutorialModal = () => setShowTutorial(true);
+    const handleHideTutorialModal = () => setShowTutorial(false);
+
     const navigate = useNavigate();
 
 
@@ -44,7 +46,7 @@ export const NavBar = ({ user, setUser }) => {
                     alt="Sacred Scrolls Logo"
                 />
                 </Navbar.Brand>
-                <Button style={{marginTop:"-7%"}}variant="dark" onClick={handleTutorialModal}>
+                <Button style={{marginTop:"-7%"}} variant="dark" onClick={handleShowTutorialModal}>
                     Tutorial</Button>                
                 </div>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -84,7 +86,7 @@ export const NavBar = ({ user, setUser }) => {
                 </div>
         </div>
           </Container>
-          <TutorialModal show={showTutorial} onHide={handleTutorialModal} />
+          <TutorialModal show={showTutorial} onHide={handleHideTutorialModal} />
 
         </Navbar>
     );
