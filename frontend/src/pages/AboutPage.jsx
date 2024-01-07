@@ -32,6 +32,14 @@ function AboutPage() {
           email:"jminchew97@gmail.com",
           githubLink:"https://github.com/jminchew97",
           linkedinLink:"https://www.linkedin.com/in/joshuaminchew/",
+        },
+        {
+          // imageSrc:EricsPhoto,
+          name:'Eric Mitchell',
+          description:"I am a full-stack software developer and army veteran. After leaving the army I decided to spend some time abroad in South Korea for a few years studying Korean at a Yonsei University Korean Language Institute. I found an interest in programming towards the end of my time abroad in South Korea and spent a few months self studying. When I returned to the United States I decided to make a career change into software development by attending a coding bootcamp, which led to me helping create the Sacred Scrolls. In my spare time I enjoy studying foreign languages, spending time with family or catching a football game. I hope you can you enjoy using Sacred Scrolls.",
+          email:"ericmitchell1625@hotmail.com",
+          githubLink:"https://github.com/mitch1625",
+          linkedinLink:"https://www.linkedin.com/in/ericmitchell1625/",
         }
 
         // Add information for other developers here
