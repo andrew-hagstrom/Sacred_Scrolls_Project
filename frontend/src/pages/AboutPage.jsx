@@ -22,8 +22,18 @@ function AboutPage() {
           name: 'Andrew Hagstrom',
           description: 'Andrew is a full-stack software engineer and Marine Corps Reserve Officer who holds Master of Arts degrees in Greek and Latin and New Testament and has a reading knoweldge of Hebrew and Coptic. In graduate school, his particular area of interest was the intersection of early Christian and Greco-Roman pagan practice and belief. This pursuit led to a broader interest in comparative mythology and religion viz-a-viz the archetypes of Carl Jung or monomyth of Joseph Campbell that unite human imaginations across cultures. He has a passion for ancient languages and texts and for making them accessible to a wider audience through the power of technology. Hence the inspiration for the Sacred Scrolls application, which brings together in one place three of the most revered religious texts in the world (the Bible, Quran, and Bhagavad Gita) and allows the user to dynamically engage with them for comparative study and reflection. On the more active side, Andrew enjoys hiking, skateboarding, blues dancing, and playing guitar.',
           email: 'andrew.hagstrom1@gmail.com',
+          githubLink:'https://github.com/andrew-hagstrom',
+          linkedinLink: 'https://www.linkedin.com/in/andrew-hagstrom1/'
+        },
+        {
+          imageSrc:JoshsPhoto,
+          name:'Joshua Minchew',
+          description:"Hey, I'm Joshua, a full-stack software engineer. Three years back, I jumped into coding and completed my first program - a text RPG game using Python. That got me hooked on the idea of bringing my ideas to life through code and I havent stopped coding since. Fast forward to 2024, I decided to work on Sacred Scrolls because I knew it would be a challenge for me and also because I have a passion for studying Christianity and Islam. When I'm not doing software engineering you'll probably find me reading or doing game development. Thanks for visiting Sacred Scrolls, I hope you enjoy using it as much as we enjoyed making it!",
+          email:"jminchew97@gmail.com",
+          githubLink:"https://github.com/jminchew97",
+          linkedinLink:"https://www.linkedin.com/in/joshuaminchew/",
         }
-        
+
         // Add information for other developers here
       ];
     
