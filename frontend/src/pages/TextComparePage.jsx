@@ -176,7 +176,7 @@ useEffect(() => {
             <Container fluid style={{display:'flex', flexDirection:'column'}}>
                 <Row className="mb-4" style={{alignSelf:'center'}}>
                     <Col md={8}>
-                        <InputGroup style={{display:'flex', width:'25vw'}}>
+                        <InputGroup style={{display:'flex', width:'80vw'}}>
                             <Form.Control
                                 type="text"
                                 placeholder="Enter a keyword or phrase"
