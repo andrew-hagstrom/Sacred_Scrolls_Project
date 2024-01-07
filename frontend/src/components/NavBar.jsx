@@ -46,7 +46,7 @@ export const NavBar = ({ user, setUser }) => {
                     alt="Sacred Scrolls Logo"
                 />
                 </Navbar.Brand>
-                <Button style={{marginTop:"-7%"}} variant="dark" onClick={handleShowTutorialModal}>
+                <Button style={{marginTop:"-15%", color: 'rgb(90, 84, 35)'}} variant="transparent" onClick={handleShowTutorialModal} className="pulse-button">
                     Tutorial</Button>                
                 </div>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

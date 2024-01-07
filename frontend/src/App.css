@@ -44,6 +44,21 @@ body{
   
   border: 2px solid rgb(90, 84, 35);
 }
+@keyframes pulse {
+  0% {
+    filter: brightness(100%);
+  }
+  50% {
+    filter: brightness(150%);
+  }
+  100% {
+    filter: brightness(100%);
+  }
+}
+
+.pulse-button {
+  animation: pulse 2s infinite;
+}
 
 @media (min-width:1840px) {
   .home-text {
