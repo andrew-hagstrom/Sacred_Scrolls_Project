@@ -14,8 +14,7 @@ export const FavoritesTutorial = () => (
         <li>
           <strong>Removing Verses from Favorites:</strong>
           <p>Locate the verse you wish to remove from your favorites.</p>
-          <p>Click on a remove option, typically indicated by a minus icon or a trash can icon, near the verse.</p>
-          <p>Confirm the removal if prompted to permanently delete the verse from your favorites list.</p>
+          <p>Click on the  "Remove" option to remove a verse from your favorites</p>
         </li>
       </ul>
     </div>

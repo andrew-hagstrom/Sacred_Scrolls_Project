@@ -15,7 +15,7 @@ export const JournalTutorial = () => (
         <li>
           <strong>Browsing Journal Entries:</strong>
           <p>Scroll through or search your journal entries to find specific notes.</p>
-          <p>Entries are displayed with dates and possibly titles for easy identification.</p>
+          <p>Entries are displayed with dates titles for easy identification.</p>
         </li>
         <li>
           <strong>Editing Journal Entries:</strong>
@@ -26,8 +26,8 @@ export const JournalTutorial = () => (
         <li>
           <strong>Deleting Journal Entries:</strong>
           <p>Select the entry you wish to delete.</p>
-          <p>Click on a delete option, usually indicated by a trash can icon.</p>
-          <p>Confirm deletion if prompted to permanently remove the entry from your journal.</p>
+          <p>Click on a delete option, indicated by a trash can icon.</p>
+          
         </li>
       </ul>
     </div>

@@ -19,15 +19,13 @@ export const PostsTutorial = () => (
         <li>
           <strong>Editing Your Own Comments:</strong>
           <p>Find a comment you have previously made.</p>
-          <p>Click the 'Edit' button, usually indicated by a pencil icon, near your comment.</p>
-          <p>Make changes to your comment in the provided text area.</p>
+          <p>Click the 'Edit' button, near your comment and make changes to your comment in the provided text area.</p>
           <p>Save the changes to update your comment.</p>
         </li>
         <li>
           <strong>Deleting Your Own Comments:</strong>
           <p>Locate a comment you wish to delete.</p>
-          <p>Click the 'Delete' button, often represented by a trash can icon, near your comment.</p>
-          <p>Confirm the deletion if prompted to permanently remove your comment from the posts.</p>
+          <p>Click the 'Delete' button near your comment. to delete it</p>
         </li>
       </ul>
     </div>
