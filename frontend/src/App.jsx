@@ -90,6 +90,7 @@ const fetchAllPosts = async () => {
     <Container >
      <Outlet context={{user, setUser, user_id, setUserID, favorites, setFavorites, setUserPosts, userPosts, allPosts, setAllPosts, journalData, setJournalData}}/>
      </Container>
+     {/* <footer style={{position:'absolute', left:'0',bottom:'0', right:'0', display:'inline', textAlign:'center'}}>&copy; Sacred Scrolls 2024</footer> */}
     </>
   );
 }

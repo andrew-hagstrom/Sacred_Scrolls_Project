@@ -500,3 +500,9 @@ background-color:white;
 .journal-row:hover{
   color:rgb(238, 225, 164);
 }
+
+
+footer {
+  display:flex
+  
+}
