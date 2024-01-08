@@ -147,42 +147,33 @@ function JournalPage() {
   return (
     <>
       <div className={`fade-in-out ${isVisible ? "" : "fade-out"}`}>
-        <div className="row">
-          <div
-            style={{ border: "none" }}
-            className={`col-12 col-md-2 fade-in-out ${
-              isVisible ? "" : "fade-out"
-            }`}
-          >
-            <Container style={{}}>
-              <div style={{ textAlign: "center" }}>
-                <h1 style={{ display: "inline" }}>Entries</h1>
-                <FontAwesomeIcon
-                  icon={faPlus}
-                  className="plus-icon"
-                  onClick={handleCreateButton}
-                />
-              </div>
-              <div style={{ textAlign: "center" }}></div>
-              <div
-                className="scrollable-box"
-                style={{
-                  // overflowY: "auto",
-                  width: "11vw",
-                  position: "absolute",
-                  height: "250px",
-
-                  wordBreak: "break-all",
-                }}
-              >
-                <Col
+        <div
+          style={{ border: "none" }}
+          className={`fade-in-out ${isVisible ? "" : "fade-out"}`}
+        >
+          <Container>
+            {/* Entry Sidebar Column */}
+            <Row style={{marginLeft: '11%;'}}>
+            <Col xs="12" lg="2">
+              <Row>
+                <div >
+                  <h1 style={{ display: "inline" }}>Entries</h1>
+                  <FontAwesomeIcon
+                    icon={faPlus}
+                    className="plus-icon"
+                    onClick={handleCreateButton}
+                  />
+                </div>
+              </Row>
+              <Row>
+                <div
+                  className="scrollable-box"
                   style={{
-                    position: "relative",
-                    height: "70vh",
-                    paddingLeft: "15px",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
+                    // overflowY: "auto",
+                    // width: "11vw",
+                    // position: "absolute",
+                    // height: "250px",
+
                     wordBreak: "break-all",
                   }}
                 >
@@ -203,29 +194,16 @@ function JournalPage() {
                   ) : (
                     <></>
                   )}
-                </Col>
-              </div>
-            </Container>
-          </div>
-
-          <div className="col-13">
-            <Container>
-              <Row className="justify-content-md-center mt-5">
-                <Col xs={12} md={6}>
+                </div>
+              </Row>
+            </Col>
+            <Col xs="12" lg="10" md="8">
+              <Container>
+                <Col>
                   {isViewingEntry || isEditMode ? (
                     isViewingEntry ? (
                       <>
                         <div className="entry">
-                          <Row>
-                            <Col
-                              md={{ span: 6, offset: 0 }}
-                              className="text-left"
-                            ></Col>
-                            <Col
-                              md={{ span: 6, offset: 0 }}
-                              className="text-right"
-                            ></Col>
-                          </Row>
                           <div style={{ wordWrap: "break-word" }}>
                             <h1>{entrySelected.title}</h1>
                             <p>{entrySelected.text}</p>
@@ -278,17 +256,18 @@ function JournalPage() {
                             >
                               save
                             </Button>
-                            <span className="undo-edit-button" onClick={undoEditMode}>
-                            <FontAwesomeIcon
-                              icon={faRotateLeft}
-                              
-                            />
+                            <span
+                              className="undo-edit-button"
+                              onClick={undoEditMode}
+                            >
+                              <FontAwesomeIcon icon={faRotateLeft} />
                             </span>
                           </div>
                         </Form>
                       </>
                     )
                   ) : (
+                    // create journal entry
                     <Form
                       onSubmit={handleSubmit}
                       className="journal-form"
@@ -321,9 +300,10 @@ function JournalPage() {
                     </Form>
                   )}
                 </Col>
-              </Row>
-            </Container>
-          </div>
+                </Container>
+            </Col>
+            </Row>
+          </Container>
         </div>
       </div>
     </>
