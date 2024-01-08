@@ -499,7 +499,9 @@ background-color:white;
 }
 
 
-footer {
-  display:flex
+.footer {
+margin-top: 3%;
+margin-left: 5%;
+
   
 }
