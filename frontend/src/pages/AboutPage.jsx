@@ -4,7 +4,7 @@ import BioCard from "../components/BioCard"
 import BryanHeadshot from '../Images/bryan-headshot.png';
 
 import AndrewsPhoto from '../Images/AndrewsPhoto.png';
-import JoshsPhoto from "../Images/JoshsPhoto.jpg"
+import JoshsPhoto from "../Images/JoshsPhoto.png"
 // import JoshsPhoto from '../Images'
 function AboutPage() {
 
