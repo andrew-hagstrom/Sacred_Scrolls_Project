@@ -448,6 +448,7 @@ background-color:white;
 }
 .scrollable-box{
   overflow-y: auto;
+  height:50vh
 }
 
 /* CSS for screens wider than 768px */
