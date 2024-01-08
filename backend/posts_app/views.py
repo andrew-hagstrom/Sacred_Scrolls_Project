@@ -52,12 +52,11 @@ class AllUserPostsView(APIView):
         new_post.save()
         return Response(ser_new_post.data)
 
-
 class APostView(APIView):
-    def get(self, request, username, post_id):
+    def get(self, request, username, id):
         try:
             user = User.objects.get(username=username)
-            post = Posts.objects.get(id=post_id, user=user)
+            post = Posts.objects.get(id=id, user=user)
         except Exception as e:
             print(e)
             return Response({"error": "error occured fetching post from user"})
@@ -96,4 +95,5 @@ class APostView(APIView):
             {"message": "post deleted sucessfully"},
             status=status.HTTP_200_OK,
         )
+
 
