@@ -60,7 +60,7 @@ function FavoritesPage() {
         <Row>
           {/* Favorites List */}
           <Col lg={4} xs={12} className="order-2 order-lg-1">
-            <div className="favorites-list" style={{marginLeft: '11%', overflowY: 'auto'}}>
+            <div className="favorites-list" style={{marginLeft: '11%', overflowY: 'auto', overflowX:'hidden'}}>
               <h1 style={{fontSize: '34px'}}>Favorites</h1>
               {favorites.map((favorite) => (
                 <Row style={{cursor: 'pointer'}} key={favorite.id} onMouseEnter={() => {setToRender(favorite); setPostId(favorite.id)}} onClick={renderHandler}>
