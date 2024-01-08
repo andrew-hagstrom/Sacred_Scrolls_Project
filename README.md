@@ -1,4 +1,4 @@
-<h1>Sacred Scrolls</h1>
+<h1><a href="http://sacredscrolls.org">Sacred Scrolls</a></h1>
 Embrace the richness of diverse cultures, explore the depths of spirituality, and delve into the profound wisdom encapsulated in three of the world's most revered religious texts - the Bible, Quran, and Bhagavad Gita.
 </br>
 <h2>Embark on a Journey</h2>
@@ -29,6 +29,8 @@ Sacred Scrolls invites persons of faith, students of religion, and those seeking
        <p>The Bhagavad Gita, otherwise known as the "Gita" or the "Song of God", is a 700-verse Hindu scripture that forms part (18 chapters) of a larger Indian epic called the Mahabharata recounting the conflict between the Pandava brothers and their cousins the Kauravas. While small, the Bhagavad Gita is one of the principal religious texts of the Hindus.  According to Hindu tradition, the author of the Mahabharata and the Gita was a holy man named Vyasa, or Veda-Vyasa. But more likely the Gita was the work of several authors and compilers. Its composition is dated between the 5th century and 2nd century BC. The Bhagavad Gita is a poem of 700 verses originally written in the Sanskrit language. The basic unit of the text is called a "shloka." The subject of the Bhagavad Gita is a dialogue between the Hindu god Krishna and Arjuna, one of the five Pandavas (or sons of King Pandu), on the eve of a great battle. Arjuna has doubts about the rationale for the bloodshed at hand and asks his charioteer Krishna for guidance. The ensuing conversation touches on philophical and religious themes such as the ethics of killing, the afterlife, karma. duty, and self-realization. <br></br><br></br>
         The Sacred Scrolls app uses a JSON file of the Bhagavad Gita from github (https://github.com/kashishkhullar/gita_json/tree/master) which contains both Sanskrit and the English translation. 
         </p>  
+        
+<h2>How to Navigate</h2>
  <h3>Textual Comparison Page</h3>
       <ul>
         <li>
