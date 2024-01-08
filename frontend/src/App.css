@@ -28,6 +28,10 @@ body{
 
 }
 
+.texts{
+  text-align: center;
+}
+
 .mx-2 {
   color:#dcdbd5;
 }

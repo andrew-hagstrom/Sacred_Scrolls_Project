@@ -13,6 +13,7 @@ import LoginPage from "./pages/LoginPage";
 import VerseDetailPage from './pages/VerseDetailPage'
 import PassagePostsPage from './pages/PassagePostsPage'
 import AllPostsPage from './pages/AllPostsPage'
+import TextsPage from './pages/TextsPage.jsx'
 
 
 
@@ -65,7 +66,10 @@ const router = createBrowserRouter([
                 path: "allposts/",
                 element: <AllPostsPage />,
             },
-
+            {
+                path: "texts/",
+                element: <TextsPage />,
+            },
 
            
         ],
