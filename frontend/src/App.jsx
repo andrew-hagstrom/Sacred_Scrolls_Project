@@ -7,6 +7,10 @@ import { api } from "./utilities/ApiUtilities";
 import "./App.css";
 import Container from "react-bootstrap/Container";
 
+import  reactIcon from './assets/react.svg'
+import  djangoIcon from './assets/django-logo-negative.svg'
+import gitHubIcon from './images/github-mark.png'
+
 function App() {
   const [user, setUser] = useState(null);
   const [journalData, setJournalData] = useState([]);
@@ -92,7 +96,20 @@ const fetchAllPosts = async () => {
      </Container>
      <div className="footer">
      <p>&copy; Sacred Scrolls 2024</p>
-     {/* <p style={{fontSize: "smaller"}}>Joshua Minchew -- Eric Mitchell -- Andrew Haagstrom -- Bryan Bartell</p> */}
+     <p>Powered By:</p>
+     <div style={{marginLeft: "-5%",display: "flex", justifyContent: "center"}}>
+        
+        <a href="https://github.com/andrew-hagstrom/Sacred_Scrolls_Project">
+          <img style={{height: "auto", width: '25%'}} src={gitHubIcon} alt="Github Logo" />
+        </a>
+        <a href="https://reactjs.org/">
+          <img src={reactIcon} alt="React Logo" />
+        </a>
+        
+      </div>
+      <a href="https://www.djangoproject.com/">
+              <img style={{height: "auto", width: '5%'}} src={djangoIcon} alt="Django Logo" />
+        </a>
      </div>
     </>
   );
