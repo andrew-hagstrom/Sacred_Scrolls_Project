@@ -1,7 +1,6 @@
 import {useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'
 
-
 import { PassageCard } from '../components/PassageCard';
 
 import { bibleBookIdAndTestament } from '../utilities/BibleBookUtilities';
@@ -17,7 +16,6 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/Container';
-
 
 
 function TextComparePage() {
@@ -54,9 +52,7 @@ function TextComparePage() {
     return savedState ? JSON.parse(savedState) : initialState;
   });
 
-
     const { book, chapter, verse } = useParams();
-
 
     const fetchBibleSearchResults = async() => {
         const results = await BibleKeywordSearch(searchTerm);
@@ -185,16 +181,12 @@ function TextComparePage() {
 
 
 
-
     return (
         <>
-            <h2 style={{marginBottom: '2vh', textAlign: "center", fontSize:'26px'}}>
-                Enter a keyword or phrase into the search bar to find relevant passages in the Bible, Bhagavad Gita, or Quran
-            </h2>
             <Container fluid style={{display:'flex', flexDirection:'column'}}>
                 <Row className="mb-4" style={{alignSelf:'center'}}>
                     <Col md={8}>
-                        <InputGroup style={{display:'flex', width:'80vw'}}>
+                        <InputGroup style={{display:'flex', width:'68vw', contentAlign: 'center', marginRight:'6vw'}}>
                             <Form.Control
                                 type="text"
                                 placeholder="Enter a keyword or phrase"
@@ -207,6 +199,7 @@ function TextComparePage() {
                         </InputGroup>
                     </Col>
                 </Row>
+                <h2 style={{marginBottom: '10vh', marginRight:'19vh', textAlign: "center", fontSize:'23px'}}>Enter a keyword or phrase into the search bar to find relevant passages in the Bible, Bhagavad Gita, and Quran</h2>
                 {firstBibleResult && (
                 <Row> {/* Add margin-bottom class */}
                     <Col md={12}>
@@ -256,3 +249,4 @@ function TextComparePage() {
 }
 
 export default TextComparePage
+
