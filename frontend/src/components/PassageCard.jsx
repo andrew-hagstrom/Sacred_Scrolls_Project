@@ -21,6 +21,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
 
 
     */
+   
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [currentText, setCurrentText] = useState(sourceText || 
