@@ -139,7 +139,7 @@ function PassagePostsPage() {
                         Comment:<span style={{ color: "purple" }}> "{post.text}"</span> <br></br>
                         Reference: <Link to={`/text-compare/${book.toLowerCase().startsWith('surah') 
             ? 'quran'
-            : book.toLowerCase().startsWith('bhagavad')
+            : book.toLowerCase().includes('yoga')
             ? 'bhagavadgita'
             : book.toLowerCase()}/${chapter}/${verse}/`}>
 
