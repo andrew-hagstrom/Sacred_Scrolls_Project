@@ -62,15 +62,6 @@ function AllPostsPage() {
         }
     };
 
-    // <Link to={`/text-compare/${allposts.book.toLowerCase().startsWith('surah') 
-    //         ? 'quran'
-    //         : allposts.book.toLowerCase().startsWith('bhagavad')
-    //         ? 'bhagavadgita'
-    //         : allposts.book.toLowerCase()}/${allposts.chapter}/${allposts.verse}/`}>
-
-    //       {allposts.book} {allposts.chapter}:{allposts.verse}
-    //     </Link>
-
     return (
         <div>
             <h2 style={{textAlign: 'center'}}>Posts</h2>
