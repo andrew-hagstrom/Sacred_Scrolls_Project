@@ -39,6 +39,7 @@ function PassagePostsPage() {
         fetchPosts();
     }, []); 
 
+
     const handlePostSubmit = async (e) => {
         e.preventDefault();
     
@@ -103,6 +104,7 @@ function PassagePostsPage() {
             console.error('Error editing post:', error);
         }
     };
+
 
     return (
         <div> 

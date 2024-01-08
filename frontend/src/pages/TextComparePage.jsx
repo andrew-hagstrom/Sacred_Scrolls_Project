@@ -186,7 +186,7 @@ function TextComparePage() {
             <Container fluid style={{display:'flex', flexDirection:'column'}}>
                 <Row className="mb-4" style={{alignSelf:'center'}}>
                     <Col md={8}>
-                        <InputGroup style={{display:'flex', width:'68vw', contentAlign: 'center', marginRight:'6vw'}}>
+                        <InputGroup style={{display:'flex', width:'70vw', contentAlign: 'center'}}>
                             <Form.Control
                                 type="text"
                                 placeholder="Enter a keyword or phrase"
@@ -197,9 +197,9 @@ function TextComparePage() {
                             />
                             <Button variant="none" style={{backgroundColor:'transparent', color:'#dcdbd5', border:'1px solid #dcdbd5'}}onClick={handleSearch}>Search</Button>
                         </InputGroup>
+                        <h2 style={{marginBottom: '2vh', marginTop:'2vh', contentAlign: "center", textAlign:'center', fontSize:'20px', width:'70vw', color:'rgb(185, 60, 26)'}}>Enter a keyword or phrase into the search bar to find matching passages in the Bible, Bhagavad Gita, and Quran!</h2>
                     </Col>
                 </Row>
-                <h2 style={{marginBottom: '10vh', marginRight:'19vh', textAlign: "center", fontSize:'23px'}}>Enter a keyword or phrase into the search bar to find relevant passages in the Bible, Bhagavad Gita, and Quran</h2>
                 {firstBibleResult && (
                 <Row> {/* Add margin-bottom class */}
                     <Col md={12}>

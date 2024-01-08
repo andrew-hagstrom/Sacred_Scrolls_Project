@@ -245,7 +245,7 @@ body{
   /* border: 2px solid #afafaf; */
   /* box-shadow: 0 0 5px 2px #758793; */
   width:90%;
-  color:black;
+  color:light;
   padding: 1%;
   /* margin-right: 2%; */
 }
@@ -265,6 +265,7 @@ body{
     width: 100%;
   }
 }
+
 
 .delete-button {
   margin-left: 20px;
