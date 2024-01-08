@@ -10,7 +10,7 @@ export const BibleChapterModal = ({ book, chapter, isOpen, onRequestClose, selec
 
     const fetchChapter = async (bookId, chapter, selectedLanguage) => {
         try {
-            const response = await api.get(`Bible/${selectedLanguage}/${bookId}/chapter/${chapter}`);
+            const response = await api.get(`Bible/${selectedLanguage}/${bookId}/chapter/${chapter}/`);
             return response.data;
         } catch (error) {
             console.error(`Error fetching ${selectedLanguage} Bible chapter:`, error);
