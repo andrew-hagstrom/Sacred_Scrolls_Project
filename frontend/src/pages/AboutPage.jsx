@@ -4,7 +4,7 @@ import BioCard from "../components/BioCard"
 import BryanHeadshot from '../Images/bryan-headshot.png';
 
 import AndrewsPhoto from '../Images/AndrewsPhoto.png';
-// import JoshsPhoto from "../Images/JoshsPhoto.jpg"
+import JoshsPhoto from "../Images/JoshsPhoto.png"
 // import JoshsPhoto from '../Images'
 function AboutPage() {
 
@@ -26,7 +26,7 @@ function AboutPage() {
           linkedinLink: 'https://www.linkedin.com/in/andrew-hagstrom1/'
         },
         {
-          // imageSrc:JoshsPhoto,
+          imageSrc:JoshsPhoto,
           name:'Joshua Minchew',
           description:"Hey, I'm Joshua, a full-stack software engineer. Three years back, I jumped into coding and completed my first program - a text RPG game using Python. That got me hooked on the idea of bringing my ideas to life through code and I havent stopped coding since. Fast forward to 2024, I decided to work on Sacred Scrolls because I knew it would be a challenge for me and also because I have a passion for studying Christianity and Islam. When I'm not doing software engineering you'll probably find me reading or doing game development. Thanks for visiting Sacred Scrolls, I hope you enjoy using it as much as we enjoyed making it!",
           email:"jminchew97@gmail.com",
