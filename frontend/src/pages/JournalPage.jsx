@@ -57,7 +57,7 @@ function JournalPage() {
 
       if (response.status === 201) {
         setJournalData([...journalData, response.data]);
-        console.log(journalData);
+        // console.log(journalData);
         setEntrySelected(response.data);
         setIsViewingEntry(true);
 
@@ -105,9 +105,9 @@ function JournalPage() {
       });
       if (response.status === 200) {
         if (response.status === 200) {
-          console.log(response.data);
+          // console.log(response.data);
           // filter and delete journal entry with response id
-          console.log("before edit", journalData);
+          // console.log("before edit", journalData);
 
           const newJournalData = journalData.map((entry) =>
             entry.id == response.data.id ? response.data : entry
@@ -120,7 +120,7 @@ function JournalPage() {
 
           setText("");
           setTitle("");
-          console.log("edit:", isEditMode, "viewing", isViewingEntry);
+          // console.log("edit:", isEditMode, "viewing", isViewingEntry);
         }
       }
     } catch (error) {
@@ -133,7 +133,7 @@ function JournalPage() {
 
     setTitle(entrySelected.title);
     setText(entrySelected.text);
-    console.log(`editmode:${isEditMode} viewmode:${isViewingEntry}`);
+    // console.log(`editmode:${isEditMode} viewmode:${isViewingEntry}`);
   };
   const handleCreateButton = () => {
     setIsViewingEntry(false);

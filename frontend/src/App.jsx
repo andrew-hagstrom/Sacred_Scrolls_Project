@@ -32,10 +32,10 @@ function App() {
 
   const getFavorites = async () => {
     let response = await api.get("user/favorites/").catch((err) => {
-      console.log(err.message);
+      // console.log(err.message);
     });
     setFavorites(response.data);
-    console.log(favorites);
+    // console.log(favorites);
   };
 
   const getJournalData = async () => {
@@ -60,7 +60,7 @@ const fetchAllPosts = async () => {
 
   const fetchUserPosts = async () => {
     try {
-        console.log(user)
+        // console.log(user)
         const response = await api.get(`posts/${user}/`);
         setUserPosts(response.data);
     } catch (error) {
@@ -79,7 +79,7 @@ const fetchAllPosts = async () => {
 
   // TESTING - DELETE WHEN DONE
   useEffect(() => {
-    console.log("app level loading journal data",journalData)
+    // console.log("app level loading journal data",journalData)
 
   }, [journalData])
   return (
@@ -90,6 +90,7 @@ const fetchAllPosts = async () => {
     <Container >
      <Outlet context={{user, setUser, user_id, setUserID, favorites, setFavorites, setUserPosts, userPosts, allPosts, setAllPosts, journalData, setJournalData}}/>
      </Container>
+     {/* <footer style={{position:'absolute', left:'0',bottom:'0', right:'0', display:'inline', textAlign:'center'}}>&copy; Sacred Scrolls 2024</footer> */}
     </>
   );
 }

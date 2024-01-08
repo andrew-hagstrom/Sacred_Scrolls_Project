@@ -68,7 +68,7 @@ export const NavBar = ({ user, setUser }) => {
                         <>
                             <NavLink as={Link} to="/login/" className="mx-2">Log in / Sign up</NavLink>
                             <NavLink as={Link} to="/text-compare/" className="mx-2">Text Compare</NavLink>
-                            <NavLink as={Link} to="/about/" className="mx-2">About</NavLink>
+                            <NavLink as={Link} to="/about/" className="mx-2">About Us</NavLink>
                         </>
                         )}
                     </Nav>
