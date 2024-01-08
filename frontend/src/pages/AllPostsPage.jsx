@@ -83,7 +83,7 @@ function AllPostsPage() {
                         User: {allpost.username} <br></br>
                         Comment:<span style={{ color: "purple" }}> "{allpost.text}"</span> <br></br>
                         Reference:   
-                        <Link to={`/text-compare/${allpost.book.toLowerCase().startsWith('surah') ? 'quran' : allpost.book.toLowerCase().startsWith('bhagavad') ? 'bhagavadgita' : allpost.book.toLowerCase()}/${allpost.chapter}/${allpost.verse}/`}> 
+                        <Link to={`/text-compare/${allpost.book.toLowerCase().startsWith('surah') ? 'quran' : allpost.book.toLowerCase().includes('yoga') ? 'bhagavadgita' : allpost.book.toLowerCase()}/${allpost.chapter}/${allpost.verse}/`}> 
                         {allpost.book} {allpost.chapter}:{allpost.verse}</Link>
                     {user === allpost.username && (
                         <div>
