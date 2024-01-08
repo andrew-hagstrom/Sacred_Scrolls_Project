@@ -43,8 +43,8 @@ function AllPostsPage() {
     
             if (response.status === 200) {
                 // Update the local posts list with the edited post
-                const updatedPosts = allPosts.map((post) =>
-                    post.id === postId ? { ...post, text: newText } : post
+                const updatedPosts = allPosts.map((allpost) =>
+                    allpost.id === postId ? { ...allpost, text: newText } : allpost
                 );
                 setAllPosts(updatedPosts);
                 console.log('Post updated successfully:', response.data);
