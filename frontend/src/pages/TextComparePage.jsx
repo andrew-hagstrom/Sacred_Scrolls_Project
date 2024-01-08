@@ -108,7 +108,7 @@ function TextComparePage() {
     
             const additionalResults = matches.slice(1).map(match => ({
                 text: match.text,
-                reference: `Surah ${match.surah.englishName} ${match.surah.number}:${match.numberInSurah}`
+                reference: `Surah ${match.surah.englishName}${match.numberInSurah}`
             }));
             setAdditionalQuranReferences(additionalResults);
         } else {

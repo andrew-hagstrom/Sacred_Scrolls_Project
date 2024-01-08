@@ -67,7 +67,7 @@ export const QuranDetails = ({chapter, verse }) => {
             <PassageCard
               cardTitle={`Quran (Arabic)`}
               sourceText={arabicVerse}
-              sourceReference={`Surah ${quranChapter} ${verse}`}
+              sourceReference={`Surah ${quranChapter} ${chapter}:${verse}`}
               additionalReferences={[]}
             />
             </div>
@@ -76,7 +76,7 @@ export const QuranDetails = ({chapter, verse }) => {
             <PassageCard
               cardTitle={`Quran (English)`}
               sourceText={englishVerse}
-              sourceReference={`Surah ${quranChapter} ${quranChapterTranslation} ${verse}`}
+              sourceReference={`Surah ${quranChapter} ${quranChapterTranslation} ${chapter}:${verse}`}
               additionalReferences={[]}
             />
             </div>
