@@ -10,6 +10,7 @@ import Container from "react-bootstrap/Container";
 import  reactIcon from './assets/react.svg'
 import  djangoIcon from './assets/django-logo-negative.svg'
 import gitHubIcon from './assets/github-mark.png'
+import codePlatoonIcon from './assets/CP-Logo-White-NoPadding.png'
 
 function App() {
   const [user, setUser] = useState(null);
@@ -97,10 +98,13 @@ const fetchAllPosts = async () => {
      <div className="footer">
      <p>&copy; Sacred Scrolls 2024</p>
      <p>Powered By:</p>
-     <div style={{marginLeft: "-5%",display: "flex", justifyContent: "center"}}>
+     <div style={{marginLeft: "-5%",display: "flex", justifyContent: "center", marginBottom: "1%"}}>
         
         <a href="https://github.com/andrew-hagstrom/Sacred_Scrolls_Project">
           <img style={{height: "auto", width: '25%'}} src={gitHubIcon} alt="Github Logo" />
+        </a>
+        <a style={{marginLeft: "-2%", height: "auto", width: '20%'}} href="https://www.codeplatoon.org">
+          <img src={codePlatoonIcon} alt="Code Platoon Logo" />
         </a>
         <a href="https://reactjs.org/">
           <img src={reactIcon} alt="React Logo" />
