@@ -359,8 +359,8 @@ body{
 
 
 .journal-form {
-  width: 100%;
-  max-width: 600px;
+  width: 50%;
+  /* max-width: 600px; */
   padding: 20px;
   border-radius: 11px;
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
@@ -383,14 +383,13 @@ body{
 .entry {
   width: 100%;
   max-width: 600px;
+  text-align: center;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
   box-sizing: border-box;
   margin: 20px 0;
   background: rgba(255, 255, 255, 0.01);
-  
-  /* text-indent: 25px; */
 }
 
 .entry h1 {
@@ -422,12 +421,37 @@ body{
   cursor: pointer;
 }
 .delete-icon{
+  /* color:rgb(247, 86, 86); */
+  cursor: pointer;
+  transition: 0.1s;
+  color:rgb(184, 184, 184);
+  /* background-color: green; */
+  padding: 10px;
+}
+.delete-icon:hover{
   color:rgb(247, 86, 86);
   cursor: pointer;
+
 }
 .edit-icon{
   color:rgb(184, 184, 184);
   cursor: pointer;
+  padding: 10px;
+  transition: 0.1s;
+}
+.edit-icon:hover{
+  color:rgb(255, 255, 255);
+  cursor: pointer;
+
+}
+.undo-edit-button{
+  color:rgb(184, 184, 184);
+  padding: 10px;
+  transition: 0.1s;
+}
+.undo-edit-button:hover{
+  cursor: pointer;
+  color:rgb(255, 255, 255);
 }
 .plus-icon{
   border:1px solid;
