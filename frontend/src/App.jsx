@@ -12,8 +12,8 @@ function App() {
   const [journalData, setJournalData] = useState([]);
   const [user_id, setUserID] = useState(null);
   const [favorites, setFavorites] = useState([])
-  const [posts, setUserPosts] = useState([]);
-  const [allposts, setAllPosts] = useState([])
+  const [userPosts, setUserPosts] = useState([]);
+  const [allPosts, setAllPosts] = useState([])
 
   const getInfo = async () => {
     const token = localStorage.getItem("token");
@@ -73,7 +73,7 @@ const fetchAllPosts = async () => {
     getInfo();
     getFavorites();
     getJournalData();
-    fetchUserPosts();
+    // fetchUserPosts();
     fetchAllPosts();
   }, [user, user_id]);
 
@@ -88,7 +88,7 @@ const fetchAllPosts = async () => {
 
 
     <Container >
-     <Outlet context={{user, setUser, user_id, setUserID, favorites, setFavorites, fetchUserPosts, setUserPosts, posts, allposts, setAllPosts, journalData, setJournalData}}/>
+     <Outlet context={{user, setUser, user_id, setUserID, favorites, setFavorites, setUserPosts, userPosts, allPosts, setAllPosts, journalData, setJournalData}}/>
      </Container>
     </>
   );

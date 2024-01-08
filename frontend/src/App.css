@@ -23,9 +23,20 @@ body{
   color: black;
   background-color: rgb(254, 248, 231);
   padding: 10px;
-  width: 50vw;
+  /* width: 50vw; */
   border-radius: 10px;
 
+}
+
+.accordion-button:not(.collapsed) {
+  color: black;
+  background-color:  rgb(248, 234, 198);
+  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}
+.accordion-button:not(.notcollapsed) {
+  color: black;
+  background-color:  rgb(248, 234, 198);
+  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
 }
 
 .texts{
@@ -228,6 +239,7 @@ body{
 .fade-out {
   opacity: 0;
 }
+
 .passage-card{
   background-color: rgb(254, 248, 231);
   /* border: 2px solid #afafaf; */
@@ -235,7 +247,7 @@ body{
   width:90%;
   color:black;
   padding: 1%;
-  margin-right: 2%;
+  /* margin-right: 2%; */
 }
 
 .passage-card-buttons {
@@ -253,6 +265,7 @@ body{
     width: 100%;
   }
 }
+
 
 .delete-button {
   margin-left: 20px;
@@ -359,12 +372,15 @@ body{
 
 
 .journal-form {
-  width: 100%;
-  max-width: 600px;
+  /* width: 100%; */
+  /* max-width: 600px; */
   padding: 20px;
   border-radius: 11px;
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
   box-sizing: border-box;
+  overflow-y: auto;
+  max-height:100%;
+  
 }
 .journal-button {
   background-color: rgba(255, 255, 255, 0.8);
@@ -381,15 +397,16 @@ body{
   color: rgb(2, 27, 51);
 }
 .entry {
-  width: 100%;
-  max-width: 600px;
+  /* width: 100%; */
+  /* max-width: 600px; */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
   box-sizing: border-box;
   margin: 20px 0;
   background: rgba(255, 255, 255, 0.01);
-  
+  overflow-y: auto;
+  max-height: 50vh;
   /* text-indent: 25px; */
 }
 
@@ -444,6 +461,7 @@ background-color:white;
 }
 .scrollable-box{
   overflow-y: auto;
+  height:25vh
 }
 
 /* CSS for screens wider than 768px */
@@ -451,10 +469,15 @@ background-color:white;
   .scrollable-box {
     width: 100%; /* or your preferred width */
     position: static;
-    
+    height:25vh
   }
+  @media (min-width: 984px) {
+    .scrollable-box {
+      height:50vh
+    }
   .entry, .journal-form {
-    width: 100%;
+    /* margin-top: 10px; */
+    /* width: 100%; */
   }
 }
 
@@ -463,9 +486,9 @@ background-color:white;
 @media (max-width: 767px) {
   .scrollable-box {
     width: 100%;
-    height: auto; /* Adjust as needed */
-    position: relative; /* or 'static' depending on your layout */
+    height: 20vh; 
   }
+
 }
 
 .scrollable-box::-webkit-scrollbar {

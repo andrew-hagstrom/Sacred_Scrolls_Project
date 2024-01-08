@@ -122,12 +122,12 @@ function PassagePostsPage() {
             <form style={{display:'flex', flexDirection:'row', justifyContent: 'center', marginBottom: '5vh'}} onSubmit={handlePostSubmit}>
                
                 <textarea 
-                    style = {{width: "40vw"}}
+                    style = {{width: "90vw", borderRadius:'5px', border:'2px solid goldenrod'}}
                     value={newPostContent}
                     onChange={(e) => setNewPostContent(e.target.value)}
                     placeholder="Write your post here..."
                 ></textarea>
-                <button style={{background:'transparent', border: '1px solid white', borderRadius: '5px', color: 'white'}} type="submit">Submit Post</button>   
+                <button style={{background:'transparent', border: '1px solid white', borderRadius: '5px', color: 'white', margin:'2px'}} type="submit">Submit Post</button>   
             </form>
          
             <div>
