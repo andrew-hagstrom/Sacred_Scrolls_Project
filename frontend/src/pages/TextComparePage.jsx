@@ -197,7 +197,7 @@ function TextComparePage() {
                             />
                             <Button variant="none" style={{backgroundColor:'transparent', color:'#dcdbd5', border:'1px solid #dcdbd5'}}onClick={handleSearch}>Search</Button>
                         </InputGroup>
-                        <h2 style={{marginBottom: '2vh', marginTop:'2vh', contentAlign: "center", textAlign:'center', fontSize:'20px', width:'70vw'}}>Enter a keyword or phrase into the search bar to find matching passages in the Bible, Bhagavad Gita, and Quran!</h2>
+                        {/* <h2 style={{marginBottom: '2vh', marginTop:'2vh', contentAlign: "center", textAlign:'center', fontSize:'20px', width:'70vw'}}>Enter a keyword or phrase into the search bar to find matching passages in the Bible, Bhagavad Gita, and Quran!</h2> */}
                     </Col>
                 </Row>
                 {firstBibleResult && (

@@ -18,7 +18,7 @@ function AllPostsPage() {
 
     const handlePostDelete = async (postId) => {
         try {
-            console.log(postId)
+            // console.log(postId)
             const response = await api.delete(`posts/${user}/post/${postId}/`);
             if (response.status === 200) {
                 // Post deleted successfully, update the posts list
@@ -47,7 +47,7 @@ function AllPostsPage() {
                     allpost.id === postId ? { ...allpost, text: newText } : allpost
                 );
                 setAllPosts(updatedPosts);
-                console.log('Post updated successfully:', response.data);
+                // console.log('Post updated successfully:', response.data);
     
                 setEditedText(prevState => {
                     const updatedEditedTexts = { ...prevState };
