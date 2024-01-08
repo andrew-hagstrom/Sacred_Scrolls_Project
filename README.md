@@ -1,3 +1,4 @@
+<h1>Sacred Scrolls</h1>
 Embrace the richness of diverse cultures, explore the depths of spirituality, and delve into the profound wisdom encapsulated in three of the world's most revered religious texts - the Bible, Quran, and Bhagavad Gita.
 </br>
 <h2>Embark on a Journey</h2>
