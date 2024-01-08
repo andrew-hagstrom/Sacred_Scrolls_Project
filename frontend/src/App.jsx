@@ -32,10 +32,10 @@ function App() {
 
   const getFavorites = async () => {
     let response = await api.get("user/favorites/").catch((err) => {
-      console.log(err.message);
+      // console.log(err.message);
     });
     setFavorites(response.data);
-    console.log(favorites);
+    // console.log(favorites);
   };
 
   const getJournalData = async () => {
@@ -60,7 +60,7 @@ const fetchAllPosts = async () => {
 
   const fetchUserPosts = async () => {
     try {
-        console.log(user)
+        // console.log(user)
         const response = await api.get(`posts/${user}/`);
         setUserPosts(response.data);
     } catch (error) {
@@ -79,7 +79,7 @@ const fetchAllPosts = async () => {
 
   // TESTING - DELETE WHEN DONE
   useEffect(() => {
-    console.log("app level loading journal data",journalData)
+    // console.log("app level loading journal data",journalData)
 
   }, [journalData])
   return (

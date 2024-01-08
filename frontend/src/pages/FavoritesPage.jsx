@@ -20,7 +20,7 @@ function FavoritesPage() {
     let response = await api
     .delete(`user/favorite/${postId}/`)
     .catch((err)=>{
-      console.log(err.message)
+      // console.log(err.message)
     })
     if (response.status === 204) {
       window.location.reload()
@@ -31,7 +31,7 @@ function FavoritesPage() {
     let response = await api
     .get('user/favorites/')
     .catch((err)=> {
-      console.log(err.message)
+      // console.log(err.message)
     })
     setFavorites(response.data)
   }
