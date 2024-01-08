@@ -26,6 +26,13 @@ class Favorites(models.Model):
     text=models.TextField(default=None)
     details=models.TextField(default=None)
 
+    def save(self, *args, **kwargs):
+        self.reference = self.reference.title()
+        super(Favorites, self).save(*args, **kwargs)
+    
+    class Meta:
+        unique_together = ('user', 'reference')
+
 class JournalEntries(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='journal_user_id')
     text = models.CharField(max_length=500, default=None, null=False, blank=False)

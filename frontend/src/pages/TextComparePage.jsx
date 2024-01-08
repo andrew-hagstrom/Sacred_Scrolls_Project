@@ -4,6 +4,9 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 import { PassageCard } from '../components/PassageCard';
 
+import { bibleBookIdAndTestament } from '../utilities/BibleBookUtilities';
+import { gitaChapters } from '../utilities/GitaBookUtilities';
+import { quranChapters } from '../utilities/QuranBookUtilities'
 import { BibleKeywordSearch } from '../utilities/BibleKeywordSearch';
 import { GitaKeywordSearch } from '../utilities/GitaKeywordSearch';
 import { QuranKeywordSearch } from '../utilities/QuranKeywordSearch';
@@ -18,6 +21,14 @@ import InputGroup from 'react-bootstrap/Container';
 
 
 function TextComparePage() {
+
+    /* This page is responsible for the keyword search of 
+    *The Bible
+    *The Quran
+    *The Bhagavad Gita
+
+    It passes the results into the PassageCard.jsx component and stores the information for access in the card itself or in its corresponding modal.
+    */
     const [searchTerm, setSearchTerm] = useState('');
     const [firstBibleResult, setFirstBibleResult] = useState(null);
     const [additionalBibleReferences, setAdditionalBibleReferences] = useState([]);
@@ -64,23 +75,30 @@ function TextComparePage() {
         }
     };
 
-    const fetchGitaSearchResults = async() => {
+    const fetchGitaSearchResults = async () => {
         const results = await GitaKeywordSearch(searchTerm);
     
         // Check if any results were found
         if (results.length > 0) {
-            // Update the state with the first result
-            const firstResultFormatted = {
-                text: results[0].text,
-                reference: `Bhagavad Gita ${results[0].chapter}:${results[0].verse}`
-            };
-            setFirstGitaResult(firstResultFormatted);
-
-            const additionalReferencesFormatted = results.slice(1).map(result => ({
-                text: result.text,
-                reference: `Bhagavad Gita ${result.chapter}:${result.verse}`
-            }));
-            setAdditionalGitaReferences(additionalReferencesFormatted);
+            const formattedResults = results.map((result, index) => {
+                let gitaChapterSanskrit = gitaChapters[`${result.chapter}`][0];
+                let gitaChapterTranslation = gitaChapters[`${result.chapter}`][1];
+                let gitaChapter = `${gitaChapterSanskrit} ${gitaChapterTranslation}`
+                let formattedResult = {
+                    text: result.text,
+                    reference: `${gitaChapter} ${result.chapter}:${result.verse}`
+                };
+    
+                // For the first result, set it separately
+                if (index === 0) {
+                    setFirstGitaResult(formattedResult);
+                }
+    
+                return formattedResult;
+            });
+    
+            // Set additional references excluding the first one
+            setAdditionalGitaReferences(formattedResults.slice(1));
         } else {
             setFirstGitaResult(null);
             setAdditionalGitaReferences([]);
@@ -89,25 +107,33 @@ function TextComparePage() {
 
     const fetchQuranSearchResults = async () => {
         const response = await QuranKeywordSearch(searchTerm);
-        const matches = response.matches; 
-    
-        if (matches && matches.length > 0) {
-            const firstResult = {
-                text: matches[0].text,
-                reference: `Surah ${matches[0].surah.englishName} ${matches[0].surah.number}:${matches[0].numberInSurah}`
+        const results = response.matches; 
+
+        if (results && results.length > 0) {
+            const formattedResults = results.map((result, index) => {
+                let quranChapterArabic = quranChapters[`${result.surah.number}`][0];
+                let quranChapterTranslation = quranChapters[`${result.surah.number}`][1];
+                let quranChapter = `Surah ${quranChapterArabic} ${quranChapterTranslation}`;
+                let formattedResult = {
+                    text: result.text,
+                    reference: `${quranChapter} ${result.surah.number}:${result.numberInSurah}`
             };
-            setFirstQuranResult(firstResult);
-    
-            const additionalResults = matches.slice(1).map(match => ({
-                text: match.text,
-                reference: `Surah ${match.surah.englishName} ${match.surah.number}:${match.numberInSurah}`
-            }));
-            setAdditionalQuranReferences(additionalResults);
-        } else {
-            setFirstQuranResult(null);
-            setAdditionalQuranReferences([]);
+
+        // For the first result, set it separately
+        if (index === 0) {
+            setFirstQuranResult(formattedResult);
         }
-    };
+
+        return formattedResult;
+    });
+
+    // Set additional references excluding the first one
+        setAdditionalQuranReferences(formattedResults.slice(1));
+    } else {
+        setFirstQuranResult(null);
+        setAdditionalQuranReferences([]);
+    }
+    }
     
     const handleSearch = () => {
     if (searchTerm) {
@@ -115,12 +141,35 @@ function TextComparePage() {
         fetchGitaSearchResults()
         fetchQuranSearchResults()
 
+        }
     }
-}
-useEffect(() => {
-    const savedState = sessionStorage.getItem('TextComparePageState');
-    if (savedState) {
-        const {
+    useEffect(() => {
+        /* State Restoration Effect */
+        const savedState = sessionStorage.getItem('TextComparePageState');
+        if (savedState) {
+            const {
+                searchTerm,
+                firstBibleResult,
+                additionalBibleReferences,
+                firstGitaResult,
+                additionalGitaReferences,
+                firstQuranResult,
+                additionalQuranReferences
+            } = JSON.parse(savedState);
+
+            setSearchTerm(searchTerm);
+            setFirstBibleResult(firstBibleResult);
+            setAdditionalBibleReferences(additionalBibleReferences);
+            setFirstGitaResult(firstGitaResult);
+            setAdditionalGitaReferences(additionalGitaReferences);
+            setFirstQuranResult(firstQuranResult);
+            setAdditionalQuranReferences(additionalQuranReferences);
+        }
+    }, []);
+
+    useEffect(() => {
+        /* State Saving Effect */
+        const stateToSave = {
             searchTerm,
             firstBibleResult,
             additionalBibleReferences,
@@ -128,30 +177,9 @@ useEffect(() => {
             additionalGitaReferences,
             firstQuranResult,
             additionalQuranReferences
-        } = JSON.parse(savedState);
-
-        setSearchTerm(searchTerm);
-        setFirstBibleResult(firstBibleResult);
-        setAdditionalBibleReferences(additionalBibleReferences);
-        setFirstGitaResult(firstGitaResult);
-        setAdditionalGitaReferences(additionalGitaReferences);
-        setFirstQuranResult(firstQuranResult);
-        setAdditionalQuranReferences(additionalQuranReferences);
-    }
-}, []);
-
-useEffect(() => {
-    const stateToSave = {
-        searchTerm,
-        firstBibleResult,
-        additionalBibleReferences,
-        firstGitaResult,
-        additionalGitaReferences,
-        firstQuranResult,
-        additionalQuranReferences
-    };
-    sessionStorage.setItem('TextComparePageState', JSON.stringify(stateToSave));
-}, [searchTerm, firstBibleResult, additionalBibleReferences, firstGitaResult, additionalGitaReferences, firstQuranResult, additionalQuranReferences]);
+        };
+        sessionStorage.setItem('TextComparePageState', JSON.stringify(stateToSave));
+    }, [searchTerm, firstBibleResult, additionalBibleReferences, firstGitaResult, additionalGitaReferences, firstQuranResult, additionalQuranReferences]);
 
 
 
@@ -166,7 +194,7 @@ useEffect(() => {
             <Container fluid style={{display:'flex', flexDirection:'column'}}>
                 <Row className="mb-4" style={{alignSelf:'center'}}>
                     <Col md={8}>
-                        <InputGroup style={{display:'flex', width:'25vw'}}>
+                        <InputGroup style={{display:'flex', width:'80vw'}}>
                             <Form.Control
                                 type="text"
                                 placeholder="Enter a keyword or phrase"

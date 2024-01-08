@@ -62,6 +62,7 @@ function PassagePostsPage() {
                 // Post deleted successfully, update the posts list
                 const updatedPosts = posts.filter(post => post.id !== postid);
                 setPosts(updatedPosts);
+                // window.location.reload(); 
                 console.log("post deleted successfully")
             } else {
                 // Handle deletion failure
@@ -115,7 +116,7 @@ function PassagePostsPage() {
 
           {book} {chapter}:{verse}
         </Link></h2>
-            <div style={{textAlign:"center", marginBottom: '5vh'}}><button onClick={handleGoBack}>Return to Search Results</button> </div>
+            <div style={{textAlign:"center", marginBottom: '5vh'}}><button style={{background:'transparent', border: '1px solid white', borderRadius: '5px', color: 'white'}} onClick={handleGoBack}>Return to Search Results</button> </div>
             <h3 style={{marginBottom: "2vh"}}>"{currentText}"</h3>
            
             <form style={{display:'flex', flexDirection:'row', justifyContent: 'center', marginBottom: '5vh'}} onSubmit={handlePostSubmit}>
@@ -124,9 +125,9 @@ function PassagePostsPage() {
                     style = {{width: "40vw"}}
                     value={newPostContent}
                     onChange={(e) => setNewPostContent(e.target.value)}
-                    placeholder="Write your post..."
+                    placeholder="Write your post here..."
                 ></textarea>
-                <button type="submit">Submit Post</button>   
+                <button style={{background:'transparent', border: '1px solid white', borderRadius: '5px', color: 'white'}} type="submit">Submit Post</button>   
             </form>
          
             <div>
@@ -146,8 +147,8 @@ function PassagePostsPage() {
         </Link>
                         {user === post.username && (
                             <div>
-                            <button onClick={() => handlePostDelete(post.id)}>Delete</button> 
-                            <button onClick={() => setEditedText({
+                            <button style={{background:'transparent', borderRadius: '5px'}} onClick={() => handlePostDelete(post.id)}>Delete</button> 
+                            <button style={{background:'transparent', borderRadius: '5px'}} onClick={() => setEditedText({
                                 ...editedText,
                                 [post.id]: post.text
                                     })}>
@@ -162,7 +163,7 @@ function PassagePostsPage() {
                                     [post.id]: e.target.value
                                         })}
                                     ></textarea>
-                                    <button onClick={() => handleEditPost(post.id, editedText[post.id])}>
+                                    <button style={{background:'transparent', borderRadius: '5px'}} onClick={() => handleEditPost(post.id, editedText[post.id])}>
                                         Save
                                     </button>
                             </div>

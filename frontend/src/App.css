@@ -19,19 +19,17 @@ body{
 
 .posts-card{
   margin: 20px auto;
-  border: 2px solid beige;
-  background-color: rgb(164, 143, 73);
+  border: 5px solid goldenrod;
   color: black;
+  background-color: rgb(254, 248, 231);
   padding: 10px;
   width: 50vw;
-  
+  border-radius: 10px;
 
 }
 
-.AndrewsPhoto {
-  border: 2px solid red;
-  border-radius: 8px;
-  width: 600px;
+.texts{
+  text-align: center;
 }
 
 .mx-2 {
@@ -49,6 +47,21 @@ body{
 .navbar-toggler{
   
   border: 2px solid rgb(90, 84, 35);
+}
+@keyframes pulse {
+  0% {
+    filter: brightness(100%);
+  }
+  50% {
+    filter: brightness(150%);
+  }
+  100% {
+    filter: brightness(100%);
+  }
+}
+
+.pulse-button {
+  animation: pulse 2s infinite;
 }
 
 @media (min-width:1840px) {
@@ -95,7 +108,7 @@ body{
 }
 
 .form-page {
-  position: absolute;
+  position: relative;
   left:50%;
   transform: translate(-50%, 0);
   top:30%;
@@ -104,26 +117,45 @@ body{
   border: solid 3px #afafaf;
   box-shadow: 0 0 5px 2px #758793;
   padding: 25px;
+  width: 90%; /* Added a width for smaller screens */
+  max-width: 500px; /* Maximum width for larger screens */
 }
 
 .form-page-headers {
-  position: absolute;
+  position: relative;
   left:50%;
   transform: translate(-50%, 0);
   top:-25%;
+  margin-top: 10px; 
   
 }
 
 .form-buttons {
   margin-top:12px;
   margin-bottom: 5px;
-  position: relative;
-  left:25%;
-  width: 50%;
+
+  
+  width: 100%;
   background-color: transparent;
   color: #dcdbd5;
   /* color:#fff2c2; */
   border: 1px solid #dcdbd5
+}
+
+@media (max-width: 768px) {
+  .form-page {
+    top: 10%; /* Adjusted top value for smaller screens */
+    width: 95%; /* Adjusted width for smaller screens */
+  }
+
+  .form-page-headers {
+    top: 0;
+    margin-top: 5px; /* Adjusted margin-top for smaller screens */
+  }
+
+  .form-buttons {
+    left: 0; /* Align button to the left edge */
+  }
 }
 
 .favorites-page-headers {
@@ -319,6 +351,13 @@ body{
   color:rgb(255,242,194);
 }
 
+@media (max-width: 767px) {
+  .favorites-list {
+    margin-top: 20px; /* Adjust as needed */
+  }
+}
+
+
 .journal-form {
   width: 100%;
   max-width: 600px;
@@ -406,6 +445,29 @@ background-color:white;
 .scrollable-box{
   overflow-y: auto;
 }
+
+/* CSS for screens wider than 768px */
+@media (min-width: 768px) {
+  .scrollable-box {
+    width: 100%; /* or your preferred width */
+    position: static;
+    
+  }
+  .entry, .journal-form {
+    width: 100%;
+  }
+}
+
+
+/* CSS for screens smaller than 768px (mobile devices) */
+@media (max-width: 767px) {
+  .scrollable-box {
+    width: 100%;
+    height: auto; /* Adjust as needed */
+    position: relative; /* or 'static' depending on your layout */
+  }
+}
+
 .scrollable-box::-webkit-scrollbar {
   display:none;
 }

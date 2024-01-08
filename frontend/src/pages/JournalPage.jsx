@@ -150,9 +150,7 @@ function JournalPage() {
         <div className="row">
           <div
             style={{ border: "none" }}
-            className={`col-2 fade-in-out ${
-              isVisible ? "" : "fade-out"
-            }`}
+            className={`col-12 col-md-2 fade-in-out ${isVisible ? "" : "fade-out"}`}
           >
             <Container style={{}}>
               <div style={{textAlign:"center"}}>
@@ -208,7 +206,7 @@ function JournalPage() {
             </Container>
           </div>
 
-          <div className="col-7 md-12">
+          <div className="col-12 col-md-7">
             <Container>
               <Row className="justify-content-md-center mt-5">
                 <Col xs={12} md={6}>

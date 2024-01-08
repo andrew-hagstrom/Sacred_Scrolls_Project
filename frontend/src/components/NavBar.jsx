@@ -46,7 +46,7 @@ export const NavBar = ({ user, setUser }) => {
                     alt="Sacred Scrolls Logo"
                 />
                 </Navbar.Brand>
-                <Button style={{marginTop:"-7%"}} variant="dark" onClick={handleShowTutorialModal}>
+                <Button style={{marginTop:"-15%", color: 'rgb(90, 84, 35)'}} variant="transparent" onClick={handleShowTutorialModal} className="pulse-button">
                     Tutorial</Button>                
                 </div>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -56,11 +56,12 @@ export const NavBar = ({ user, setUser }) => {
                         
                         {user ? (
                             <>
+                                <NavLink as={Link} to="/texts/" className="mx-2">The Texts</NavLink>
                                 <NavLink as={Link} to="/text-compare/" className="mx-2">Textual Comparison</NavLink>
                                 <NavLink as={Link} to="/journal/" className="mx-2">Journal</NavLink>
                                 <NavLink as={Link} to="/favorites/" className="mx-2">Favorites</NavLink>
                                 <NavLink as={Link} to="/allposts/" className="mx-2">Posts</NavLink>
-                                <NavLink as={Link} to="/about/" className="mx-2">About</NavLink>
+                                <NavLink as={Link} to="/about/" className="mx-2">About Us</NavLink>
 
                             </>
                         ) : (

@@ -2,20 +2,27 @@ import { useState, useEffect } from 'react';
 
 import { api } from '../../utilities/ApiUtilities';
 import { BibleChapterModal } from './BibleChapterModal';
-import { checkIfOldTestament, bibleBookIdAndTestament } from '../../utilities/BibleBookUtilities';
+import { checkIfOldTestament, bibleBookIdAndTestament, getOriginalBookNameAndTranslation } from '../../utilities/BibleBookUtilities';
 import { PassageCard } from '../PassageCard';
 
 import Button from 'react-bootstrap/Button'
 
 
 export const BibleDetails = ({ book, chapter, verse }) => {
+
+    /* This page is mostly a straightforward api call. There is some conditional logic related to whether the book in question is from the old or new testement. This logic takes place here:
+    
+    *BibleBookUtilities.js
+    
+    */
     const [selectedLanguage, setSelectedLanguage] = useState('eng');
     const [englishText, setEnglishText] = useState('');
     const [originalText, setOriginalText] = useState('');
+    const [originalBookName, setOriginalBookName] = useState('');
     const [showChapterModal, setShowChapterModal] = useState(false);
     const formattedBook = book.toLowerCase().replace(/\s+/g, '');
     const bookId = bibleBookIdAndTestament[formattedBook] ? bibleBookIdAndTestament[formattedBook][0] : 'unknown';
-    const reference = `${book} ${chapter}:${verse}`;
+    
   
 
     const fetchVerse = async (bookId, chapter, verse, language) => {
@@ -35,8 +42,10 @@ export const BibleDetails = ({ book, chapter, verse }) => {
 
             const originalLanguage = checkIfOldTestament(book) ? 'heb' : 'grk';
             const originalData = await fetchVerse(bookId, chapter, verse, originalLanguage);
+            const bookName = getOriginalBookNameAndTranslation(book)
+            setOriginalBookName(bookName)            
             setOriginalText(originalData);
-            console.log(originalData)
+            
         } catch (error) {
             console.log('Error fetching Bible verse text:', error);
         }
@@ -51,6 +60,11 @@ export const BibleDetails = ({ book, chapter, verse }) => {
         fetchVerseText();
     }, [book, chapter, verse]);
 
+    
+
+    const reference = `${book} ${chapter}:${verse}`;
+    const originalReference = `${originalBookName} ${chapter}:${verse}`;
+
     return (
         <>
             <div className="detail-card-container">
@@ -58,7 +72,7 @@ export const BibleDetails = ({ book, chapter, verse }) => {
             <PassageCard
                 cardTitle={`Bible (${checkIfOldTestament(book) ? 'Hebrew' : 'Greek'})`}
                 sourceText={originalText}
-                sourceReference={reference}
+                sourceReference={originalReference}
                 additionalReferences={[]}
             />
             </div>
