@@ -1,12 +1,21 @@
 import { useState, useEffect } from 'react';
 
 import { api} from '../../utilities/ApiUtilities'
+import { quranChapters } from '../../utilities/QuranBookUtilities';
 import { PassageCard } from '../PassageCard';
 import { QuranChapterModal } from './QuranChapterModal';
 
 import Button from 'react-bootstrap/Button'
 
 export const QuranDetails = ({chapter, verse }) => {
+
+    /* 
+    
+    This is a pretty straightforward API call. The verse endpoint of our api does not contain the name of the Surah. Because the components were already dealing with quite a few props, it felt simpler to store these Surah names in an object. Doing this also allowed us to pass along the english translations of the Surah names. This object is found here:
+    
+    *QuranBookUtilities.js
+    
+    */
     const [arabicVerse, setArabicVerse] = useState('');
     const [englishVerse, setEnglishVerse] = useState('');
     const [showChapterModal, setShowChapterModal] = useState(false);
@@ -24,6 +33,9 @@ export const QuranDetails = ({chapter, verse }) => {
         }
     };
 
+    const quranChapter = quranChapters[`${chapter}`][0]
+    const quranChapterTranslation = quranChapters[`${chapter}`][1]
+
     const fetchEnglishVerse = async () => {
         try {
             const response = await api.get(`Quran/en/chapter/${chapter}/verse/${verse}/`);
@@ -34,6 +46,8 @@ export const QuranDetails = ({chapter, verse }) => {
             throw error;
         }
     };
+
+    
 
     useEffect(() => {
         fetchArabicVerse();
@@ -48,20 +62,24 @@ export const QuranDetails = ({chapter, verse }) => {
 
     return (
         <div>
+            <div className="detail-card-container">
             <Button size='sm' variant="secondary" className='see-chapter' onClick={() => toggleChapterModal('ar')}>View Chapter</Button>
             <PassageCard
-              cardTitle={`Quran ${chapter}:${verse} (Arabic)`}
+              cardTitle={`Quran (Arabic)`}
               sourceText={arabicVerse}
-              sourceReference={`Chapter ${chapter}, Verse ${verse}`}
+              sourceReference={`Surah ${quranChapter} ${chapter}:${verse}`}
               additionalReferences={[]}
             />
+            </div>
+            <div className="detail-card-container">
             <Button size='sm' variant="secondary" className='see-chapter' onClick={() => toggleChapterModal('en')}>View Chapter</Button>
             <PassageCard
-              cardTitle={`Quran ${chapter}:${verse} (English)`}
+              cardTitle={`Quran (English)`}
               sourceText={englishVerse}
-              sourceReference={`Chapter ${chapter}, Verse ${verse}`}
+              sourceReference={`Surah ${quranChapter} ${quranChapterTranslation} ${chapter}:${verse}`}
               additionalReferences={[]}
             />
+            </div>
         {showChapterModal && (
                 <QuranChapterModal
                     chapter={chapter}

@@ -9,6 +9,12 @@ import Button from 'react-bootstrap/Button'
 
 
 export const BibleDetails = ({ book, chapter, verse }) => {
+
+    /* This page is mostly a straightforward api call. There is some conditional logic related to whether the book in question is from the old or new testement. This logic takes place here:
+    
+    *BibleBookUtilities.js
+    
+    */
     const [selectedLanguage, setSelectedLanguage] = useState('eng');
     const [englishText, setEnglishText] = useState('');
     const [originalText, setOriginalText] = useState('');
@@ -53,7 +59,7 @@ export const BibleDetails = ({ book, chapter, verse }) => {
 
     return (
         <>
-            
+            <div className="detail-card-container">
             <Button size='sm' variant="secondary" className='see-chapter' onClick={() => toggleChapterModal(checkIfOldTestament(book) ? 'heb' : 'grk')}>See Chapter</Button>           
             <PassageCard
                 cardTitle={`Bible (${checkIfOldTestament(book) ? 'Hebrew' : 'Greek'})`}
@@ -61,6 +67,8 @@ export const BibleDetails = ({ book, chapter, verse }) => {
                 sourceReference={reference}
                 additionalReferences={[]}
             />
+            </div>
+            <div className="detail-card-container">
             <Button className='see-chapter' size='sm' variant="secondary" onClick={() => toggleChapterModal('eng')}>See Chapter</Button>   
             <PassageCard
                 cardTitle="Bible (English)"
@@ -68,6 +76,7 @@ export const BibleDetails = ({ book, chapter, verse }) => {
                 sourceReference={reference}
                 additionalReferences={[]}
             />
+            </div>
             {showChapterModal && (
             <BibleChapterModal
                 book={book}

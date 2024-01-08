@@ -10,7 +10,7 @@ export const BibleChapterModal = ({ book, chapter, isOpen, onRequestClose, selec
 
     const fetchChapter = async (bookId, chapter, selectedLanguage) => {
         try {
-            const response = await api.get(`Bible/${selectedLanguage}/${bookId}/chapter/${chapter}`);
+            const response = await api.get(`Bible/${selectedLanguage}/${bookId}/chapter/${chapter}/`);
             return response.data;
         } catch (error) {
             console.error(`Error fetching ${selectedLanguage} Bible chapter:`, error);
@@ -32,13 +32,13 @@ export const BibleChapterModal = ({ book, chapter, isOpen, onRequestClose, selec
     }, [book, chapter, selectedLanguage]);
 
     return (
-        <Modal className="verse-modal" show={isOpen} onHide={onRequestClose}>
+        <Modal className="verse-modal" show={isOpen} onHide={onRequestClose} scrollable={true}>
             <Modal.Header closeButton>
                 <Modal.Title>{`Chapter ${chapter} of ${book}`}</Modal.Title>
             </Modal.Header>
-            <Modal.Body >
+            <Modal.Body>
                 <h5>{selectedLanguage === 'eng' ? 'English' : (checkIfOldTestament(book) ? 'Hebrew' : 'Greek')}</h5>
-                <p>{chapterText}</p>
+                <p >{chapterText}</p>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={onRequestClose}>Close</Button>

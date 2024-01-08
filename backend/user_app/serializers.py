@@ -11,7 +11,15 @@ class UserSerializer(serializers.ModelSerializer):
 class FavoritesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Favorites
-        fields = ['id','user', 'source', 'reference', 'text', 'details']
+        fields = '__all__'
+
+    def to_representation(self, instance):
+        representation = super(FavoritesSerializer, self).to_representation(instance)
+        if 'reference' in representation:
+            representation['reference'] = representation['reference'].title()
+        return representation
+
+
 
 class JournalEntriesSerializer(serializers.ModelSerializer):
     class Meta:

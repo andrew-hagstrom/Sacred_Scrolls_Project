@@ -9,6 +9,18 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Collapse from 'react-bootstrap/Collapse'
 
 export const PassageCard =({ sourceText, sourceReference, additionalReferences, cardTitle }) => {
+
+    /* reused over several pages, this component is the heart of the keyword search page and the verse details page. It also makes an appearance on the favorites page and directs navigation to the posts page.
+    
+    There are two fairly similar functions on this component: 
+    
+    * extractBookChapterVerse  
+    * extractPostBookChapterVerse
+    
+    This may be refactored later, but is necessary for our current site organization.
+
+
+    */
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [currentText, setCurrentText] = useState(sourceText || 
@@ -23,6 +35,10 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     const [favSource, setFavSource] = useState("")
     const [favRef, setFavRef] = useState("")
     const [isFavorite, setIsFavorite] = useState(false);
+
+    const isVerseDetailsPage = () => {
+        return location.pathname.startsWith('/text-compare/') && location.pathname.slice('/text-compare/'.length).length > 0;
+    }
 
     const extractBookChapterVerse = (reference) => {
         const match = reference.match(/(.+) (\d+:\d+)/);
@@ -55,11 +71,17 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
 
 
     useEffect(() => {
+
+        /* This useEffect sets the verse being viewed as the sourceText, which comes from TextComparePage.jsx */
+
         setCurrentText(sourceText || 'Text not available');
         setCurrentReference(sourceReference || "Reference not available");
     }, [sourceText, sourceReference]); 
 
     const handleReferenceClick = (newText, newReference) => {
+        /* This changes the text and reference viewed in the component to be one of the "additionalReferences" from TextComparePage.jsx 
+        */
+
         setCurrentText(newText || 
             'Text not available');
         setCurrentReference(newReference || 
@@ -68,11 +90,14 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
     };
 
     const handleDetailsClick = () => {
+        /* This function handles the details button, grabbing book, chapter, and verse, which are formatted for the endpoint of VerseDetails.jsx 
+        For more about VerseDetails.jsx, look at the directory: verse-detail-components
+        */
         const { book, chapter, verse } = extractBookChapterVerse(currentReference);
     
         if (location.pathname !== `/text-compare/`) {
             // Navigate to the default text compare page
-            navigate('/text-compare/');
+            navigate(-1);
         } else {
             // Navigate to the details page with the route parameters
             navigate(`/text-compare/${book}/${chapter}/${verse}/`);
@@ -126,20 +151,21 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         checkIfFavorite()
     },[currentReference])
 
+    /* The following variable effects the "see more" button */
     const detailsButtonText = location.pathname.startsWith('/text-compare/') && !location.pathname.endsWith('/text-compare/') ? 'Go Back' : 'See More';
     
     return (
         <>
   
             <Card className='passage-card'style={{ margin: '2vh'}}>
-                <Card.Header className='card-header' style={{ textAlign: 'center'}}>
+                <Card.Header className='card-header' >
                     <strong>{cardTitle}</strong>
                     <Button 
                         variant="outline-secondary" 
                         className='passagecard-button'
                         onClick={toggleCollapse}
                         size="sm" 
-                        style={{ position: 'absolute', top: '5px', right: '10px' }}>
+                        >
                         {isCollapsed ? 'Expand' : 'Collapse'}
                     </Button>
                 </Card.Header>
@@ -157,12 +183,14 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                                 {currentText}
                             </Card.Text>
                         
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <div className="passage-card-buttons">
                             <Button className='passagecard-button' variant="dark" onClick={() => handleDetailsClick(book, chapter, verse)}>{detailsButtonText}</Button>
+                            {!isVerseDetailsPage() && (
                             <Button className='passagecard-button' variant="dark" onClick={handlePostClick}>Comment</Button>
+                            )} 
                             <Button className='passagecard-button' variant="dark" onClick={(e)=>addToFavorites(e)} disabled={isFavorite === true}>
                                 {isFavorite ? 
-                                'Already Added\n to Favorites' :
+                                'Added to Favorites' :
                                 'Add to Favorites'} 
                                 </Button>
                         
@@ -175,7 +203,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
             </Card>
             
 
-            <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal className='extra-source-modal' show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Select a Reference</Modal.Title>
                 </Modal.Header>
@@ -183,7 +211,7 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
                     <ListGroup>
                         {additionalReferences && additionalReferences.length > 0 ? (
                             additionalReferences.map(({ text, reference }) => (
-                                <ListGroup.Item key={reference} onClick={() => handleReferenceClick(text, reference)}>
+                                <ListGroup.Item style={{cursor:'pointer'}} key={reference} onClick={() => handleReferenceClick(text, reference)}>
                                     {reference}
                                 </ListGroup.Item>
                             ))

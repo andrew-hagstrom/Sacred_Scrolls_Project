@@ -18,6 +18,12 @@ from rest_framework.status import (
     HTTP_404_NOT_FOUND
 )
 
+class AllPostsView(APIView):
+    def get (self, request):
+        posts = Posts.objects.all()
+        serialized_posts = PostsSerializer(posts, many=True)
+        return Response(serialized_posts.data)
+
 class AllPassagePostsView(APIView):
      def get(self, request):
         book = request.query_params.get("book")
@@ -47,12 +53,11 @@ class AllUserPostsView(APIView):
         return Response(ser_new_post.data)
 
 
-
 class APostView(APIView):
-    def get(self, request, user_id, post_id):
-        post = None
+    def get(self, request, username, post_id):
         try:
-            post = Posts.objects.get(id=post_id, user_id=user_id)
+            user = User.objects.get(username=username)
+            post = Posts.objects.get(id=post_id, user=user)
         except Exception as e:
             print(e)
             return Response({"error": "error occured fetching post from user"})
@@ -60,26 +65,25 @@ class APostView(APIView):
         serialized_post = PostsSerializer(post)
         return Response({"data": serialized_post.data})
 
-    def put(self, request, user, post_id):
-        data = request.data
-        post = None
+    def put(self, request, username, id):
         try:
-            post = Posts.objects.get(user=user, id=post_id)
+            user = User.objects.get(username=username)
+            post = Posts.objects.get(id=id, user=user)
         except Exception as e:
             print(e)
             return Response({"error": "Error while trying to fetch post."})
-
-        updated_post = PostsSerializer(post, data=request.data, partial=True)
+        
+        updated_post = PostsSerializer(post, data={'text': request.data.get('text')}, partial=True)
 
         if not updated_post.is_valid():
-            return Response({"error": updated_post.errors})
-
+            return Response({"error": updated_post.errors}, status=status.HTTP_400_BAD_REQUEST)
+        
         updated_post.save()
-        return Response({"data": updated_post.data})
+        return Response({"data": updated_post.data}, status=status.HTTP_200_OK)
 
-    def delete(self, request, user, post_id):
-        post = Posts.objects.get(user=user, id=post_id)
-
+    def delete(self, request, username, id):
+        user = User.objects.get(username=username)
+        post = Posts.objects.get(user=user, id=id)
         try:
             post.delete()
         except Exception as e:
