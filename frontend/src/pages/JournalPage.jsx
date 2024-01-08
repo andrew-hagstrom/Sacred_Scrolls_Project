@@ -150,7 +150,7 @@ function JournalPage() {
         <div className="row">
           <div
             style={{ border: "none" }}
-            className={`col-md-2 col-12 fade-in-out ${isVisible ? "" : "fade-out"}`}
+            className={`col-12 col-md-2 fade-in-out ${isVisible ? "" : "fade-out"}`}
           >
             <Container style={{}}>
               <div style={{textAlign:"center"}}>
@@ -163,7 +163,7 @@ function JournalPage() {
               className="scrollable-box"
                 style={{
                   // overflowY: "auto",
-                  width: "100vw",
+                  width: "11vw",
                   position: "absolute",
                   height: "250px",
             
@@ -173,7 +173,12 @@ function JournalPage() {
                 <Col
                 
                   style={{
+                    position: "relative",
+                    height: "70vh",
                     paddingLeft: "15px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
                     wordBreak:"break-all"
                   }}
                 >
@@ -201,7 +206,7 @@ function JournalPage() {
             </Container>
           </div>
 
-          <div className="col-md-7 col-12">
+          <div className="col-12 col-md-7">
             <Container>
               <Row className="justify-content-md-center mt-5">
                 <Col xs={12} md={6}>
