@@ -471,14 +471,11 @@ background-color:white;
     position: static;
     height:25vh
   }
+}
   @media (min-width: 984px) {
     .scrollable-box {
       height:50vh
     }
-  .entry, .journal-form {
-    /* margin-top: 10px; */
-    /* width: 100%; */
-  }
 }
 
 
@@ -502,7 +499,9 @@ background-color:white;
 }
 
 
-footer {
-  display:flex
+.footer {
+margin-top: 3%;
+margin-left: 5%;
+
   
 }
