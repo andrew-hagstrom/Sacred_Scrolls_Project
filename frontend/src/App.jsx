@@ -9,7 +9,7 @@ import Container from "react-bootstrap/Container";
 
 import  reactIcon from './assets/react.svg'
 import  djangoIcon from './assets/django-logo-negative.svg'
-import gitHubIcon from './images/github-mark.png'
+import gitHubIcon from './assets/github-mark.png'
 
 function App() {
   const [user, setUser] = useState(null);
