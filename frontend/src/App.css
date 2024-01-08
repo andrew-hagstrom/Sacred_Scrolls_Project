@@ -1,0 +1,479 @@
+html{
+  height:100vh;
+  width:100vw;
+  margin:0;
+}
+
+body{
+  background-image: linear-gradient(to bottom, rgb(2, 27, 51) 33%, rgba(54,69,79,1) 87%);
+  background-size: auto;
+  background-position: 0% 0%;
+  background-repeat: no-repeat;
+  background-color: rgba(0,0,0,0);
+  margin: auto;
+  width: auto;
+  font-family:'lato',sans-serif;
+  color:#dcdbd5;
+  background-attachment: fixed;
+} 
+
+.posts-card{
+  margin: 20px auto;
+  border: 5px solid goldenrod;
+  color: black;
+  background-color: rgb(254, 248, 231);
+  padding: 10px;
+  width: 50vw;
+  border-radius: 10px;
+
+}
+
+.texts{
+  text-align: center;
+}
+
+.mx-2 {
+  color:#dcdbd5;
+}
+
+.mx-2:hover {
+  color:rgb(255,242,194);
+}
+
+#navbar-comp {
+  margin-top: -80px;
+}
+
+.navbar-toggler{
+  
+  border: 2px solid rgb(90, 84, 35);
+}
+@keyframes pulse {
+  0% {
+    filter: brightness(100%);
+  }
+  50% {
+    filter: brightness(150%);
+  }
+  100% {
+    filter: brightness(100%);
+  }
+}
+
+.pulse-button {
+  animation: pulse 2s infinite;
+}
+
+@media (min-width:1840px) {
+  .home-text {
+    border: 2px solid #afafaf;
+    margin-bottom: 30px;
+    font-size: 14px;
+    padding-left:20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: 0 0 5px 2px #758793;
+    border-radius: 15px;
+    width:10vw;
+    margin-top:30px;
+  }
+
+  #welcome-header {
+    font-size: 35px;
+  }
+}
+
+@media (max-width:1839px) {
+  .home-text {
+    margin-bottom: 30px;
+  }
+
+  #welcome-header {
+    margin-bottom: 30px;
+    font-size: 25px;
+  }
+}
+
+#home-text-container {
+  display: flex;
+  justify-content: space-evenly;
+  height: auto;
+  flex-wrap: wrap;
+}
+
+.home-text-headers {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.form-page {
+  position: relative;
+  left:50%;
+  transform: translate(-50%, 0);
+  top:30%;
+  display:flex;
+  flex-direction: column;
+  border: solid 3px #afafaf;
+  box-shadow: 0 0 5px 2px #758793;
+  padding: 25px;
+  width: 90%; /* Added a width for smaller screens */
+  max-width: 500px; /* Maximum width for larger screens */
+}
+
+.form-page-headers {
+  position: relative;
+  left:50%;
+  transform: translate(-50%, 0);
+  top:-25%;
+  margin-top: 10px; 
+  
+}
+
+.form-buttons {
+  margin-top:12px;
+  margin-bottom: 5px;
+
+  
+  width: 100%;
+  background-color: transparent;
+  color: #dcdbd5;
+  /* color:#fff2c2; */
+  border: 1px solid #dcdbd5
+}
+
+@media (max-width: 768px) {
+  .form-page {
+    top: 10%; /* Adjusted top value for smaller screens */
+    width: 95%; /* Adjusted width for smaller screens */
+  }
+
+  .form-page-headers {
+    top: 0;
+    margin-top: 5px; /* Adjusted margin-top for smaller screens */
+  }
+
+  .form-buttons {
+    left: 0; /* Align button to the left edge */
+  }
+}
+
+.favorites-page-headers {
+  width:60vw;
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.verse-modal {
+  color: rgba(0, 0, 0, 1);  
+  background-image: linear-gradient(to bottom, rgb(2, 27, 51) 33%, rgba(54,69,79,1) 87%);
+  overflow-y: auto;
+}
+
+.modal-backdrop {
+  --bs-backdrop-zindex: 1050;
+  --bs-backdrop-bg: none;
+  --bs-backdrop-opacity: 0.5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--bs-backdrop-zindex);
+  width: 100vw;
+  height: 100vh;
+}
+
+.modal-body{
+  overflow-y: auto;
+  /* scroll-behavior: smooth; */
+  max-height: 90vh;
+}
+
+.modal-title {
+  color:black;
+}
+
+.see-chapter {
+  color: white;
+  border: 1px solid white;
+  width: 89%;
+  margin-left: 2.15%;
+  background-color: transparent;
+}
+.detail-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+#favorites-page {
+  display:flex;
+  justify-content: flex-start;
+}
+
+.scrollable {
+  max-height: 300px;
+  min-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  overflow-x: hidden; /* Hide the vertical scroll bar */
+  overflow-y: scroll;
+}
+
+.fade-in-out {
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
+}
+.passage-card{
+  background-color: rgb(254, 248, 231);
+  /* border: 2px solid #afafaf; */
+  /* box-shadow: 0 0 5px 2px #758793; */
+  width:90%;
+  color:black;
+  padding: 1%;
+  margin-right: 2%;
+}
+
+.passage-card-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 768) {
+  .passage-card-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .passage-card-buttons .passagecard-button {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+}
+
+.delete-button {
+  margin-left: 20px;
+}
+
+.card-header {
+  background-color: rgb(248, 234, 198) ;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.card-header > strong {
+  flex-grow: 1;
+
+}
+
+@media (max-width: 768) {
+  .card-header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-header > strong {
+    margin-bottom: 10px;
+    width: 100%
+  }
+  .passagecard-button {
+    width: auto;
+  }
+
+}
+
+
+.bio-card {
+  height: auto;
+  width: 100%;
+  background-color: rgb(254, 248, 231);
+  padding: 1%;
+  margin-bottom: 1%;
+}
+
+.bio-image {
+  max-width: 70%;
+  max-height: auto;
+  object-fit: cover;
+}
+
+.bio-text {
+  width: 100%;
+ 
+}
+
+@media (min-width: 769px) {
+  .bio-card {
+    height: auto;
+    overflow-y: auto;
+    padding: 5%
+  }
+
+  .bio-image {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .bio-card {
+    height: 50vh;
+    overflow-y: auto;
+  }
+
+  .bio-image {
+    width: 100%;
+    height: 50vh;
+  }
+
+  .bio-text {
+    width: 100%;
+  }
+}
+
+.passagecard-button {
+  background-color: transparent;
+  border: 'black 2px solid';
+  color:black;
+}
+
+.list-text {
+  margin-bottom: 6px;
+  font-size: 18px;
+}
+
+.list-text:hover {
+  color:rgb(255,242,194);
+}
+
+@media (max-width: 767px) {
+  .favorites-list {
+    margin-top: 20px; /* Adjust as needed */
+  }
+}
+
+
+.journal-form {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 11px;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
+}
+.journal-button {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: rgb(2, 27, 51);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.journal-button:hover {
+  /* background-color: rgba(255, 255, 255, 1); */
+  color: rgb(2, 27, 51);
+}
+.entry {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
+  margin: 20px 0;
+  background: rgba(255, 255, 255, 0.01);
+  
+  /* text-indent: 25px; */
+}
+
+.entry h1 {
+  margin-bottom: 10px;
+  /* text-align: center; */
+  color: rgb(238, 225, 164);
+}
+
+.entry p {
+  margin-bottom: 15px;
+  text-align: left;
+  color: rgb(233, 225, 190);
+}
+
+.entry button {
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  color: rgb(255, 255, 255);
+  
+}
+
+.entry button:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(2, 27, 51);
+}
+
+.journal-icon {
+  margin-left: 25px;
+  margin-right: 25px;
+  cursor: pointer;
+}
+.delete-icon{
+  color:rgb(247, 86, 86);
+  cursor: pointer;
+}
+.edit-icon{
+  color:rgb(184, 184, 184);
+  cursor: pointer;
+}
+.plus-icon{
+  border:1px solid;
+  border-radius: 3px;
+  padding:3px;
+  margin-left:10px;
+  transition: background-color 0.5s ease;
+  cursor: pointer;
+  
+}
+.plus-icon:hover{
+background-color:white;
+
+}
+.scrollable-box{
+  overflow-y: auto;
+}
+
+/* CSS for screens wider than 768px */
+@media (min-width: 768px) {
+  .scrollable-box {
+    width: 100%; /* or your preferred width */
+    position: static;
+    
+  }
+  .entry, .journal-form {
+    width: 100%;
+  }
+}
+
+
+/* CSS for screens smaller than 768px (mobile devices) */
+@media (max-width: 767px) {
+  .scrollable-box {
+    width: 100%;
+    height: auto; /* Adjust as needed */
+    position: relative; /* or 'static' depending on your layout */
+  }
+}
+
+.scrollable-box::-webkit-scrollbar {
+  display:none;
+}
+.journal-row{
+  transition: 0.3s;
+}
+.journal-row:hover{
+  color:rgb(238, 225, 164);
+}
