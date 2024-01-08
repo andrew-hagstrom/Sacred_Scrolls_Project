@@ -47,6 +47,9 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
           if (book.includes('surah')) {
             book = 'quran'
           }
+          else if (book.includes('yoga')) {
+            book = 'bhagavadgita'
+          }
             
           const [chapter, verse] = match[2].split(':'); // Extract chapter and verse
           return { book, chapter, verse };
