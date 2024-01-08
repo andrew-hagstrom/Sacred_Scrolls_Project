@@ -87,7 +87,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
             <PassageCard
               cardTitle="Bhagavad Gita (Sanskrit)"
               sourceText={sanskritText}
-              sourceReference={`${gitaChapter} ${verse}`}
+              sourceReference={`${gitaChapter} ${chapter}:${verse}`}
               additionalReferences={[]}
             />
           </div>
@@ -96,7 +96,7 @@ export const BhagavadGitaDetails = ({ chapter, verse }) => {
             <PassageCard
               cardTitle="Bhagavad Gita (English)"
               sourceText={englishText}
-              sourceReference={`${gitaChapter} ${englishChapter} ${verse}`}
+              sourceReference={`${gitaChapter} ${englishChapter} ${chapter}:${verse}`}
               additionalReferences={[]}
             />
           </div>
