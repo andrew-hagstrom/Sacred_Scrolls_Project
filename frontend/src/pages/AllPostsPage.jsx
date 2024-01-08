@@ -6,23 +6,23 @@ import { api } from '../utilities/ApiUtilities';
 function AllPostsPage() {
     // const [posts, setUserPosts] = useState([]);
     const [newPostContent, setNewPostContent] = useState('');
-    const { setUserPosts, user, posts, allposts, setAllPosts} = useOutletContext();
+    const { setUserPosts, user, allPosts, setAllPosts} = useOutletContext();
     const [editedText, setEditedText] = useState('');
 
 
-    const sortedPosts = allposts.slice().sort((a, b) => {
+    const sortedPosts = allPosts.slice().sort((a, b) => {
         const dateA = new Date(a.formatted_timestamp);
         const dateB = new Date(b.formatted_timestamp);
         return dateB - dateA;
     });
 
-    const handlePostDelete = async (postid) => {
+    const handlePostDelete = async (postId) => {
         try {
-            console.log(postid)
-            const response = await api.delete(`posts/${user}/post/${postid}/`);
+            console.log(postId)
+            const response = await api.delete(`posts/${user}/post/${postId}/`);
             if (response.status === 200) {
                 // Post deleted successfully, update the posts list
-                const updatedPosts = allposts.filter(allpost => allpost.id !== postid);
+                const updatedPosts = allPosts.filter(allPost => allPost.id !== postId);
                 setAllPosts(updatedPosts);
                 console.log("post deleted successfully")
             } else {
@@ -43,7 +43,7 @@ function AllPostsPage() {
     
             if (response.status === 200) {
                 // Update the local posts list with the edited post
-                const updatedPosts = allposts.map((post) =>
+                const updatedPosts = allPosts.map((post) =>
                     post.id === postId ? { ...post, text: newText } : post
                 );
                 setAllPosts(updatedPosts);
@@ -77,35 +77,35 @@ function AllPostsPage() {
             <div>
             {Array.isArray(sortedPosts) && sortedPosts.length > 0 ? (
                 <div >
-                    {sortedPosts.map((allpost) => (
-                        <div className="posts-card" key={allpost.id}> 
-                        {allpost.formatted_timestamp} <br></br>
-                        User: {allpost.username} <br></br>
-                        Comment:<span style={{ color: "purple" }}> "{allpost.text}"</span> <br></br>
+                    {sortedPosts.map((allPost) => (
+                        <div className="posts-card" key={allPost.id}> 
+                        {allPost.formatted_timestamp} <br></br>
+                        User: {allPost.username} <br></br>
+                        Comment:<span style={{ color: "purple" }}> "{allPost.text}"</span> <br></br>
                         Reference:   
-                        <Link to={`/text-compare/${allpost.book.toLowerCase().startsWith('surah') ? 'quran' : allpost.book.toLowerCase().includes('yoga') ? 'bhagavadgita' : allpost.book.toLowerCase()}/${allpost.chapter}/${allpost.verse}/`}> 
-                        {allpost.book} {allpost.chapter}:{allpost.verse}</Link>
-                    {user === allpost.username && (
+                        <Link to={`/text-compare/${allPost.book.toLowerCase().startsWith('surah') ? 'quran' : allPost.book.toLowerCase().includes('yoga') ? 'bhagavadgita' : allPost.book.toLowerCase()}/${allPost.chapter}/${allPost.verse}/`}> 
+                        {allPost.book} {allPost.chapter}:{allPost.verse}</Link>
+                    {user === allPost.username && (
                         <div>
-                            <button style={{background:'transparent', borderRadius: '5px'}} onClick={() => handlePostDelete(allpost.id)}>
+                            <button style={{background:'transparent', borderRadius: '5px'}} onClick={() => handlePostDelete(allPost.id)}>
                                 Delete
                             </button>
                             <button style={{background:'transparent', borderRadius: '5px'}} onClick={() => setEditedText({
                                 ...editedText,
-                                [allpost.id]: allpost.text
+                                [allPost.id]: allPost.text
                                     })}>
                                         Edit
                                     </button>
-                            {editedText[allpost.id] && (
+                            {editedText[allPost.id] && (
                             <div>
                                 <textarea
-                                    value={editedText[allpost.id]}
+                                    value={editedText[allPost.id]}
                                     onChange={(e) => setEditedText({
                                     ...editedText,
-                                    [allpost.id]: e.target.value
+                                    [allPost.id]: e.target.value
                                         })}
                                     ></textarea>
-                                    <button style={{background:'transparent', borderRadius: '5px'}} onClick={() => handleEditPost(allpost.id, editedText[allpost.id])}>
+                                    <button style={{background:'transparent', borderRadius: '5px'}} onClick={() => handleEditPost(allPost.id, editedText[allPost.id])}>
                                         Save
                                     </button>
                             </div>
