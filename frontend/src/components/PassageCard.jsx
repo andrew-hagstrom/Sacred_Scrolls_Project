@@ -125,10 +125,9 @@ export const PassageCard =({ sourceText, sourceReference, additionalReferences, 
         let response = await api
         .post('user/favorites/', data)
         .catch((err) => {
-            console.log(err.message)
+            console.error(err.message)
         })
-        console.log(response)
-        console.log(response)
+        // console.log(response)
         if (response.status === 201) {
             setFavorites([...favorites, data])
             setIsFavorite(true)

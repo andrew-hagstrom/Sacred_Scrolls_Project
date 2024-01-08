@@ -48,7 +48,7 @@ function PassagePostsPage() {
             fetchPosts();
             setNewPostContent('');
             window.location.reload(); 
-            console.log('Post created:', response.data);
+            // console.log('Post created:', response.data);
         } catch (error) {
             console.error('Error creating post:', error);
         }
@@ -56,14 +56,14 @@ function PassagePostsPage() {
 
     const handlePostDelete = async (postid) => {
         try {
-            console.log(postid)
+            // console.log(postid)
             const response = await api.delete(`posts/${user}/post/${postid}/`);
             if (response.status === 200) {
                 // Post deleted successfully, update the posts list
                 const updatedPosts = posts.filter(post => post.id !== postid);
                 setPosts(updatedPosts);
                 // window.location.reload(); 
-                console.log("post deleted successfully")
+                // console.log("post deleted successfully")
             } else {
                 // Handle deletion failure
                 console.error('Failed to delete post');
@@ -90,7 +90,7 @@ function PassagePostsPage() {
                     post.id === postId ? { ...post, text: newText } : post
                 );
                 setPosts(updatedPosts);
-                console.log('Post updated successfully:', response.data);
+                // console.log('Post updated successfully:', response.data);
     
                 setEditedText(prevState => {
                     const updatedEditedTexts = { ...prevState };

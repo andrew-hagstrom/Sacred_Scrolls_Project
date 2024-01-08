@@ -4,7 +4,7 @@ import BryanHeadshot from '../Images/bryan-headshot.png';
 
 import AndrewsPhoto from '../Images/AndrewsPhoto.png';
 import JoshsPhoto from "../Images/JoshsPhoto.png"
-// import JoshsPhoto from '../Images'
+import EricsPhoto from "../Images/eric-photo.png"
 function AboutPage() {
 
     const developers = [
@@ -33,7 +33,7 @@ function AboutPage() {
           linkedinLink:"https://www.linkedin.com/in/joshuaminchew/",
         },
         {
-          // imageSrc:EricsPhoto,
+          imageSrc :EricsPhoto,
           name:'Eric Mitchell',
           description:"I am a full-stack software developer and army veteran. After leaving the army I decided to spend some time abroad in South Korea for a few years studying Korean at a Yonsei University Korean Language Institute. I found an interest in programming towards the end of my time abroad in South Korea and spent a few months self studying. When I returned to the United States I decided to make a career change into software development by attending a coding bootcamp, which led to me helping create the Sacred Scrolls. In my spare time I enjoy studying foreign languages, spending time with family or catching a football game. I hope you can you enjoy using Sacred Scrolls.",
           email:"ericmitchell1625@hotmail.com",
@@ -46,7 +46,6 @@ function AboutPage() {
     
       return (
         <>
-          <h2>About Us</h2>
           {developers.map((developer, index) => (
             <BioCard
               key={index}

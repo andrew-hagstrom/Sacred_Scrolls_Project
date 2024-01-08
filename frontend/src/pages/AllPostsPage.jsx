@@ -18,19 +18,19 @@ function AllPostsPage() {
 
     const handlePostDelete = async (postId) => {
         try {
-            console.log(postId)
+            // console.log(postId)
             const response = await api.delete(`posts/${user}/post/${postId}/`);
             if (response.status === 200) {
                 // Post deleted successfully, update the posts list
                 const updatedPosts = allPosts.filter(allPost => allPost.id !== postId);
                 setAllPosts(updatedPosts);
-                console.log("post deleted successfully")
+                // console.log("post deleted successfully")
             } else {
                 // Handle deletion failure
                 console.error('Failed to delete post');
             }
         } catch (error) {
-            console.error('Error deleting post:', error);
+            // console.error('Error deleting post:', error);
             // Handle other error scenarios
         }
     };
@@ -47,7 +47,7 @@ function AllPostsPage() {
                     allpost.id === postId ? { ...allpost, text: newText } : allpost
                 );
                 setAllPosts(updatedPosts);
-                console.log('Post updated successfully:', response.data);
+                // console.log('Post updated successfully:', response.data);
     
                 setEditedText(prevState => {
                     const updatedEditedTexts = { ...prevState };
@@ -55,10 +55,10 @@ function AllPostsPage() {
                     return updatedEditedTexts;
                 });
             } else {
-                console.error('Failed to update post');
+                // console.error('Failed to update post');
             }
         } catch (error) {
-            console.error('Error editing post:', error);
+            // console.error('Error editing post:', error);
         }
     };
 
