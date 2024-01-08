@@ -4,7 +4,7 @@ Embrace the richness of diverse cultures, explore the depths of spirituality, an
 <h2>Embark on a Journey</h2>
 Sacred Scrolls is not just a website; it is a journey into the heart of sacred knowledge. We understand that approaching ancient texts can be a formidable task, and that is why we have created a user-friendly interface to help you effortlessly navigate the intricate pathways of ancient sacred texts.
 </br>
-<h2>Broaden your horizons</h2>h2>
+<h2>Broaden your horizons</h2>
 Embark on your exploration by navigating seamlessly through three texts sacred to Christians, Muslims, Jewish people, Hindus, and more - the Bible, Quran, and Bhagavad Gita. Use our intuitive search feature to find passages that resonate with your interests or study themes across multiple scriptures. Uncover hidden gems of wisdom that transcend cultural and religious boundaries.</br>
 <h2>Compare sacred texts side by side</h2>
 Sacred Scrolls empowers you to read these timeless texts side by side in English and in their original language, providing a unique opportunity for comparative study. Witness the interconnectedness of different faiths and deepen your understanding of the common threads that bind humanity together.
