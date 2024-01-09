@@ -98,17 +98,18 @@ const fetchAllPosts = async () => {
      <div className="footer">
      <p>&copy; Sacred Scrolls 2024</p>
      <p>Powered By:</p>
-     <div style={{marginLeft: "-5%",display: "flex", justifyContent: "center", marginBottom: "1%"}}>
+     <div style={{marginLeft: "-25%",display: "flex", justifyContent: "center", marginBottom: "1%"}}>
         
         <a href="https://github.com/andrew-hagstrom/Sacred_Scrolls_Project">
           <img style={{height: "auto", width: '25%'}} src={gitHubIcon} alt="Github Logo" />
         </a>
-        <a style={{marginLeft: "-2%", height: "auto", width: '20%'}} href="https://www.codeplatoon.org">
-          <img src={codePlatoonIcon} alt="Code Platoon Logo" />
-        </a>
         <a href="https://reactjs.org/">
           <img src={reactIcon} alt="React Logo" />
         </a>
+        <a style={{ height: "auto", width: '1%'}} href="https://www.codeplatoon.org">
+          <img src={codePlatoonIcon} alt="Code Platoon Logo" />
+        </a>
+      
         
       </div>
       <a href="https://www.djangoproject.com/">
