@@ -106,7 +106,7 @@ const fetchAllPosts = async () => {
      <div className="footer">
      <p>&copy; Sacred Scrolls 2024</p>
      <p>Powered By:</p>
-      <div style={{display: "flex", justifyContent: "space-evenly", marginBottom: "2%"}}>
+      <div style={{size: "20%", display: "flex", justifyContent: "space-evenly", marginBottom: "2%"}}>
         
         
         <a href="https://reactjs.org/">
@@ -123,7 +123,7 @@ const fetchAllPosts = async () => {
         </a>
         
       </div>
-        <div style={{display: "flex", justifyContent: "space-evenly", marginBottom: "2%"}}>
+        <div style={{size: "20%", display: "flex", justifyContent: "space-evenly", marginBottom: "2%"}}>
       
           <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
             <img src={javascriptLogo} alt="JS Logo" />
@@ -136,7 +136,7 @@ const fetchAllPosts = async () => {
             <img src={awsLogo} alt="AWS Logo" />
           </a>
         </div>
-        <div style={{display: "flex", justifyContent: "space-evenly", marginBottom: "2%"}}>
+        <div style={{size: "20%", display: "flex", justifyContent: "space-evenly", marginBottom: "2%"}}>
           <a href="https://github.com/andrew-hagstrom/Sacred_Scrolls_Project">
             <img src={gitHubLogo} alt="Github Logo" />
           </a>
