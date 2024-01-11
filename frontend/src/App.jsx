@@ -143,13 +143,11 @@ const fetchAllPosts = async () => {
           <a href="https://docs.nginx.com">
             <img src={nginxLogo} alt="NGINX Logo" />
           </a>
-          
-        </div>
-        <div style={{display: "flex", justifyContent: "space-evenly", marginBottom: "1%"}}>
           <a href="https://www.postgresql.org">
             <img  src={postgresLogo} alt="PostgreSQL Logo" />
           </a>
-        </div>
+          
+        </div>        
      </div>
     </>
   );
