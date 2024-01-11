@@ -7,10 +7,18 @@ import { api } from "./utilities/ApiUtilities";
 import "./App.css";
 import Container from "react-bootstrap/Container";
 
-import  reactIcon from './assets/react.svg'
-import  djangoIcon from './assets/django-logo-negative.svg'
-import gitHubIcon from './assets/github-mark.png'
-import codePlatoonIcon from './assets/CP-Logo-White-NoPadding.png'
+import  reactLogo from './assets/reactLogo.png'
+import  djangoLogo from './assets/djangoLogo.png'
+import gitHubLogo from './assets/githubLogo.png'
+import codePlatoonLogo from './assets/codePlatoonLogo.png'
+import javascriptLogo from './assets/JavascriptLogo.png'
+import awsLogo from './assets/awsLogo.png'
+import postgresLogo from './assets/PostgreSQL_logo.3colors.png'
+import pythonLogo from './assets/pythonLogo.png'
+import certBotLogo from './assets/certbotLogo.png'
+import nginxLogo from './assets/nginxLogo.png'
+
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -98,23 +106,50 @@ const fetchAllPosts = async () => {
      <div className="footer">
      <p>&copy; Sacred Scrolls 2024</p>
      <p>Powered By:</p>
-     <div style={{marginLeft: "-25%",display: "flex", justifyContent: "center", marginBottom: "1%"}}>
+      <div style={{display: "flex", justifyContent: "space-evenly", marginBottom: "2%"}}>
         
-        <a href="https://github.com/andrew-hagstrom/Sacred_Scrolls_Project">
-          <img style={{height: "auto", width: '25%'}} src={gitHubIcon} alt="Github Logo" />
-        </a>
+        
         <a href="https://reactjs.org/">
-          <img src={reactIcon} alt="React Logo" />
+          <img src={reactLogo} alt="React Logo" />
         </a>
-        <a style={{ height: "auto", width: '1%'}} href="https://www.codeplatoon.org">
-          <img src={codePlatoonIcon} alt="Code Platoon Logo" />
+        <a href="https://www.codeplatoon.org">
+          <img src={codePlatoonLogo} alt="Code Platoon Logo" />
+        </a> 
+        <a href="https://docs.python.org/3/">
+          <img src={pythonLogo} alt="Python Logo" />
+        </a>  
+        <a href="https://www.djangoproject.com/">
+          <img  src={djangoLogo} alt="Django Logo" />
         </a>
-      
         
       </div>
-      <a href="https://www.djangoproject.com/">
-              <img style={{height: "auto", width: '5%'}} src={djangoIcon} alt="Django Logo" />
-        </a>
+        <div style={{display: "flex", justifyContent: "space-evenly", marginBottom: "2%"}}>
+      
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
+            <img src={javascriptLogo} alt="JS Logo" />
+          </a>
+          <a href="https://eff-certbot.readthedocs.io/en/latest/">
+            <img src={certBotLogo} alt="CertBot Logo" />
+          </a>
+          
+          <a href="https://aws.amazon.com/free/?trk=6a4c3e9d-cdc9-4e25-8dd9-2bd8d15afbca&sc_channel=ps&ef_id=Cj0KCQiAwP6sBhDAARIsAPfK_wb8Q4nYt2EC7SvH5AMSVEVW3xxaDRnQ5TRP8TETYUJjpNGcqOPQRpoaAgCvEALw_wcB:G:s&s_kwcid=AL!4422!3!651751059783!e!!g!!aws!19852662197!145019195897&gclid=Cj0KCQiAwP6sBhDAARIsAPfK_wb8Q4nYt2EC7SvH5AMSVEVW3xxaDRnQ5TRP8TETYUJjpNGcqOPQRpoaAgCvEALw_wcB&all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=*all&awsf.Free%20Tier%20Categories=*all">
+            <img src={awsLogo} alt="AWS Logo" />
+          </a>
+        </div>
+        <div style={{display: "flex", justifyContent: "space-evenly", marginBottom: "2%"}}>
+          <a href="https://github.com/andrew-hagstrom/Sacred_Scrolls_Project">
+            <img src={gitHubLogo} alt="Github Logo" />
+          </a>
+          <a href="https://docs.nginx.com">
+            <img src={nginxLogo} alt="NGINX Logo" />
+          </a>
+          
+        </div>
+        <div style={{display: "flex", justifyContent: "space-evenly", marginBottom: "1%"}}>
+          <a href="https://www.postgresql.org">
+            <img  src={postgresLogo} alt="PostgreSQL Logo" />
+          </a>
+        </div>
      </div>
     </>
   );
