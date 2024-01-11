@@ -9,7 +9,7 @@ import Container from "react-bootstrap/Container";
 
 import  reactLogo from './assets/reactLogo.png'
 import  djangoLogo from './assets/djangoLogo.png'
-import gitHubLogo from './assets/githubLogo.png'
+import gitHubLogo from './assets/gitHubLogo.png'
 import codePlatoonLogo from './assets/codePlatoonLogo.png'
 import javascriptLogo from './assets/JavascriptLogo.png'
 import awsLogo from './assets/awsLogo.png'
