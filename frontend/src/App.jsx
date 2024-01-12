@@ -34,12 +34,12 @@ function App() {
     if (token) {
       api.defaults.headers.common["Authorization"] = `Token ${token}`;
       try {
-        const response = await api.get("user/info/"); // Update with the correct endpoint
+        const response = await api.get("user/info/"); 
         setUser(response.data.username);
-        // setUserID(response.data.user_id);
+   
       } catch (error) {
         console.error("Error fetching user info:", error);
-        // Optionally handle error (e.g., invalid token)
+      
       }
     }
   };
